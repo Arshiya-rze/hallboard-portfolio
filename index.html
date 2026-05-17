@@ -8,179 +8,305 @@
 </head>
 <body>
 
-<main class="page">
+  <main class="page">
 
-  <header class="header">
-    <img class="brand" src="./assets/logo.png" alt="Hallboard" />
-    <!-- <a class="brand" href="#">
-    </a> -->
+    <header class="header">
+      <img class="brand" src="./assets/logo.png" alt="Hallboard" />
+      <!-- <a class="brand" href="#">
+      </a> -->
 
-    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
 
-    <label for="menu-toggle" class="hamburger" aria-label="Open menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
-
-    <nav class="nav">
-      <a href="#">نمونه‌کارها</a>
-      <a href="#">درباره ما</a>
-      <a href="#">تماس با ما</a>
-    </nav>
-
-    <a class="btn btn-primary header-btn" href="#">
-      شروع پروژه
-      <span>↗</span>
-    </a>
-  </header>
-
-  <section class="hero">
-
-    <div class="hero-content">
-      <div class="badge">
+      <label for="menu-toggle" class="hamburger" aria-label="Open menu">
         <span></span>
-        تیم تخصصی طراحی و توسعه وب‌اپلیکیشن
-      </div>
+        <span></span>
+        <span></span>
+      </label>
 
-      <h1>
-        تا ما هستیم<br />
-        چرا <strong>ووردپرس</strong> کار؟!
-      </h1>
+      <nav class="nav">
+        <a href="#">نمونه‌کارها</a>
+        <a href="#">درباره ما</a>
+        <a href="#">تماس با ما</a>
+      </nav>
 
-      <p>
-        بسپرش به تیم برنامه نویسی فول استک هالبورد
-      </p>
+      <a class="btn btn-primary header-btn" href="#">
+        شروع پروژه
+        <span>↗</span>
+      </a>
+    </header>
 
-      <div class="hero-actions">
-        <a class="btn btn-primary btn-lg" href="#">
-          شروع پروژه
-          <span>↗</span>
-        </a>
+    <section class="hero">
 
-        <a class="btn btn-outline btn-lg" href="#">
-          مشاهده نمونه‌کارها
-          <span>▣</span>
-        </a>
-      </div>
-
-      <div class="stack">
-        <span>فناوری‌های ما</span>
-        <div>NET.</div>
-        <div><img src="./assets/angular.png" alt="Angular"></div>
-        <div><img src="./assets/mongodb.png" alt="MongoDB"></div>
-        <div><img src="./assets/postgresql.png" alt="PostgreSQL"></div>
-        <div><img src="./assets/git.png" alt="Git"></div>
-      </div>
-    </div>
-
-    <div class="hero-visual">
-      <div class="orbit"></div>
-
-      <div class="float-logo logo-angular">
-        <img src="./assets/angular.png" alt="Angular">
-      </div>
-
-      <div class="float-logo logo-dotnet">
-        <span>NET.</span>
-      </div>
-
-      <div class="float-logo logo-mongo">
-        <img src="./assets/mongodb.png" alt="MongoDB">
-      </div>
-
-      <div class="float-logo logo-postgres">
-        <img src="./assets/postgresql.png" alt="PostgreSQL">
-      </div>
-
-      <div class="float-logo logo-git">
-        <img src="./assets/git.png" alt="Git">
-      </div>
-
-      <div class="monitor">
-        <div class="dots">
-          <i></i><i></i><i></i>
+      <div class="hero-content">
+        <div class="badge">
+          <span></span>
+          تیم تخصصی طراحی و توسعه وب‌اپلیکیشن
         </div>
 
-        <div class="monitor-ui">
-          <aside>
-            <b>Solution</b>
-            <span>HallboardApp</span>
-            <span>Controllers</span>
-            <span class="active">ProjectController.cs</span>
-            <span>Services</span>
-          </aside>
+        <h1>
+          تا ما هستیم<br />
+          چرا <strong>ووردپرس</strong> کار؟!
+        </h1>
 
-          <section>
-            <div class="tab">ProjectController.cs</div>
-            <pre><code>public async Task&lt;ActionResult&gt; Create()
-            {
-            var result = await _service.Execute();
+        <p>
+          بسپرش به تیم برنامه نویسی فول استک هالبورد
+        </p>
 
-            return Ok(result);
-            }</code></pre>
-          </section>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="#">
+            شروع پروژه
+            <span>↗</span>
+          </a>
+
+          <a class="btn btn-outline btn-lg" href="#">
+            مشاهده نمونه‌کارها
+            <span>▣</span>
+          </a>
+        </div>
+
+        <div class="stack">
+          <span>فناوری‌های ما</span>
+          <div>NET.</div>
+          <div><img src="./assets/angular.png" alt="Angular"></div>
+          <div><img src="./assets/mongodb.png" alt="MongoDB"></div>
+          <div><img src="./assets/postgresql.png" alt="PostgreSQL"></div>
+          <div><img src="./assets/git.png" alt="Git"></div>
         </div>
       </div>
 
-      <div class="phone">
-        <div class="phone-head">
-          <span>9:41</span>
-          <b>پروژه‌های اخیر</b>
+      <div class="hero-visual">
+        <div class="orbit"></div>
+
+        <div class="float-logo logo-angular">
+          <img src="./assets/angular.png" alt="Angular">
         </div>
 
-        <div class="phone-card">
-          <b>سیستم مدیریت فروش</b>
-          <small>در حال توسعه</small>
+        <div class="float-logo logo-dotnet">
+          <span>NET.</span>
         </div>
 
-        <div class="phone-card">
-          <b>پلتفرم آموزش آنلاین</b>
-          <small>تکمیل شده</small>
+        <div class="float-logo logo-mongo">
+          <img src="./assets/mongodb.png" alt="MongoDB">
         </div>
 
-        <div class="phone-card">
-          <b>داشبورد تحلیل داده</b>
-          <small>در حال توسعه</small>
+        <div class="float-logo logo-postgres">
+          <img src="./assets/postgresql.png" alt="PostgreSQL">
+        </div>
+
+        <div class="float-logo logo-git">
+          <img src="./assets/git.png" alt="Git">
+        </div>
+
+        <div class="monitor">
+          <div class="dots">
+            <i></i><i></i><i></i>
+          </div>
+
+          <div class="monitor-ui">
+            <aside>
+              <b>Solution</b>
+              <span>HallboardApp</span>
+              <span>Controllers</span>
+              <span class="active">ProjectController.cs</span>
+              <span>Services</span>
+            </aside>
+
+            <section>
+              <div class="tab">ProjectController.cs</div>
+              <pre><code>public async Task&lt;ActionResult&gt; Create()
+              {
+              var result = await _service.Execute();
+
+              return Ok(result);
+              }</code></pre>
+            </section>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="phone-head">
+            <span>9:41</span>
+            <b>پروژه‌های اخیر</b>
+          </div>
+
+          <div class="phone-card">
+            <b>سیستم مدیریت فروش</b>
+            <small>در حال توسعه</small>
+          </div>
+
+          <div class="phone-card">
+            <b>پلتفرم آموزش آنلاین</b>
+            <small>تکمیل شده</small>
+          </div>
+
+          <div class="phone-card">
+            <b>داشبورد تحلیل داده</b>
+            <small>در حال توسعه</small>
+          </div>
         </div>
       </div>
-    </div>
 
-  </section>
+    </section>
 
-  <section class="feature-bar">
-    <article>
-      <div class="feature-icon">⬡</div>
-      <h3>معماری مقیاس‌پذیر</h3>
-      <p>زیرساختی انعطاف‌پذیر برای رشد پایدار کسب‌وکار شما</p>
-    </article>
+    <section class="feature-bar">
+      <article>
+        <div class="feature-icon">⬡</div>
+        <h3>معماری مقیاس‌پذیر</h3>
+        <p>زیرساختی انعطاف‌پذیر برای رشد پایدار کسب‌وکار شما</p>
+      </article>
 
-    <article>
-      <div class="feature-icon">🛡</div>
-      <h3>امنیت در اولویت</h3>
-      <p>استفاده از استانداردهای امنیتی روز دنیا در تمامی پروژه‌ها</p>
-    </article>
+      <article>
+        <div class="feature-icon">🛡</div>
+        <h3>امنیت در اولویت</h3>
+        <p>استفاده از استانداردهای امنیتی روز دنیا در تمامی پروژه‌ها</p>
+      </article>
 
-    <article>
-      <div class="feature-icon">🚀</div>
-      <h3>عملکرد فوق‌العاده</h3>
-      <p>بهینه‌سازی برای سرعت بالا و تجربه کاربری بی‌نقص</p>
-    </article>
+      <article>
+        <div class="feature-icon">🚀</div>
+        <h3>عملکرد فوق‌العاده</h3>
+        <p>بهینه‌سازی برای سرعت بالا و تجربه کاربری بی‌نقص</p>
+      </article>
 
-    <article>
-      <div class="feature-icon">⌘</div>
-      <h3>کدنویسی تمیز</h3>
-      <p>کدهای استاندارد، قابل نگهداری و توسعه‌پذیر</p>
-    </article>
+      <article>
+        <div class="feature-icon">⌘</div>
+        <h3>کدنویسی تمیز</h3>
+        <p>کدهای استاندارد، قابل نگهداری و توسعه‌پذیر</p>
+      </article>
 
-    <article>
-      <div class="feature-icon">🎧</div>
-      <h3>پشتیبانی مداوم</h3>
-      <p>همراه شما در تمام مراحل پروژه و بعد از اجرا</p>
-    </article>
-  </section>
+      <article>
+        <div class="feature-icon">🎧</div>
+        <h3>پشتیبانی مداوم</h3>
+        <p>همراه شما در تمام مراحل پروژه و بعد از اجرا</p>
+      </article>
+    </section>
 
-</main>
+    <section class="what-we-do" id="what-we-do">
+      <div class="section-header">
+        <span class="section-eyebrow">آنچه انجام می‌دهیم</span>
+
+        <h2>
+          توسعه نرم‌افزارهای مدرن
+          <strong>از ایده تا محصول</strong>
+        </h2>
+
+        <p>
+          ما به کسب‌وکارها کمک می‌کنیم ایده‌های خود را به محصولات دیجیتال قدرتمند،
+          مقیاس‌پذیر و امن تبدیل کنند.
+        </p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <strong>+50</strong>
+          <span>پروژه موفق</span>
+        </div>
+
+        <div class="stat-card">
+          <strong>+30</strong>
+          <span>مشتری راضی</span>
+        </div>
+
+        <div class="stat-card">
+          <strong>+5</strong>
+          <span>سال تجربه</span>
+        </div>
+
+        <div class="stat-card">
+          <strong>100%</strong>
+          <span>تعهد و کیفیت</span>
+        </div>
+      </div>
+
+      <div class="services-header">
+        <span></span>
+        <h3>خدمات ما</h3>
+        <span></span>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-icon">⌘</div>
+          <h3>توسعه وب‌سایت‌های اختصاصی</h3>
+          <p>
+            طراحی و توسعه وب‌سایت‌های سریع، امن و مقیاس‌پذیر با جدیدترین تکنولوژی‌ها.
+          </p>
+
+          <ul>
+            <li>وب‌اپلیکیشن‌های اختصاصی</li>
+            <li>پنل‌های مدیریت پیشرفته</li>
+            <li>فریم‌ورک‌های مدرن</li>
+          </ul>
+
+          <a href="#">اطلاعات بیشتر ↗</a>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">▯</div>
+          <h3>توسعه اپلیکیشن‌های موبایل</h3>
+          <p>
+            ساخت اپلیکیشن‌های موبایل حرفه‌ای برای iOS و Android با تجربه کاربری عالی.
+          </p>
+
+          <ul>
+            <li>اپلیکیشن‌های بومی و کراس‌پلتفرم</li>
+            <li>عملکرد بالا و بهینه</li>
+            <li>طراحی مدرن UI/UX</li>
+          </ul>
+
+          <a href="#">اطلاعات بیشتر ↗</a>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">☁</div>
+          <h3>راهکارهای ابری و زیرساخت</h3>
+          <p>
+            طراحی و پیاده‌سازی زیرساخت‌های ابری مطمئن، مقیاس‌پذیر و مقرون‌به‌صرفه.
+          </p>
+
+          <ul>
+            <li>معماری ابری AWS و Azure</li>
+            <li>DevOps و CI/CD</li>
+            <li>مانیتورینگ و امنیت</li>
+          </ul>
+
+          <a href="#">اطلاعات بیشتر ↗</a>
+        </article>
+
+        <article class="service-card service-card-wide">
+          <div class="service-icon">🛡</div>
+          <h3>امنیت و تست</h3>
+          <p>
+            تضمین امنیت و کیفیت نرم‌افزار در تمام مراحل توسعه با تست‌های جامع و خودکار.
+          </p>
+
+          <ul>
+            <li>تست‌های جامع و خودکار</li>
+            <li>ممیزی امنیتی و نفوذ</li>
+            <li>تضمین کیفیت QA</li>
+          </ul>
+
+          <a href="#">اطلاعات بیشتر ↗</a>
+        </article>
+
+        <article class="service-card service-card-wide">
+          <div class="service-icon">▧</div>
+          <h3>تحلیل و مشاوره</h3>
+          <p>
+            تحلیل نیازهای کسب‌وکار و ارائه راهکارهای فنی برای رشد و بهبود محصول.
+          </p>
+
+          <ul>
+            <li>تحلیل کسب‌وکار</li>
+            <li>طراحی معماری نرم‌افزار</li>
+            <li>مشاوره فنی و بهینه‌سازی</li>
+          </ul>
+
+          <a href="#">اطلاعات بیشتر ↗</a>
+        </article>
+      </div>
+    </section>
+
+  </main>
 
 </body>
 </html>
