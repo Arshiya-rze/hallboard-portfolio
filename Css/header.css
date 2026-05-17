@@ -1,0 +1,126 @@
+/* Header */
+
+.header {
+  position: relative;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  background: rgba(7, 10, 22, 0.74);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  backdrop-filter: blur(22px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 18px 70px rgba(0, 0, 0, 0.38);
+}
+
+.brand {
+  width: 170px;
+  height: 90px;
+  /* display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 18px; */
+}
+
+.brand img {
+  width: 200px;
+  height: 200px;
+  /* object-fit: contain; */
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.hamburger {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-content: center;
+  gap: 6px;
+  border: 1px solid var(--border-purple);
+  border-radius: 14px;
+  background: rgba(139, 92, 246, 0.08);
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: #fff;
+  transition: 0.25s ease;
+}
+
+.nav {
+  grid-column: 1 / -1;
+  display: none;
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border);
+}
+
+.nav a {
+  display: block;
+  padding: 13px 10px;
+  color: rgba(255, 255, 255, 0.84);
+  font-weight: 600;
+  text-align: center;
+}
+
+.menu-toggle:checked ~ .nav {
+  display: block;
+}
+
+.menu-toggle:checked + .hamburger span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle:checked + .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle:checked + .hamburger span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.header-btn {
+  display: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 16px;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #5b21ff 0%, #8b5cf6 52%, #6d28d9 100%);
+  box-shadow:
+    0 0 34px rgba(124, 58, 237, 0.46),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 52px rgba(124, 58, 237, 0.68),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-purple);
+  color: #d8b4fe;
+}

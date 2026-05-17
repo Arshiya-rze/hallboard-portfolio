@@ -1,0 +1,43 @@
+/* Animations */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(2deg);
+  }
+}
+
+@keyframes orbitPulse {
+  0%, 100% {
+    opacity: 0.42;
+    filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.2));
+  }
+
+  50% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.4));
+  }
+}
+
+@keyframes scanGlow {
+  0%, 35% {
+    transform: translateX(120%);
+  }
+
+  65%, 100% {
+    transform: translateX(-120%);
+  }
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    box-shadow: 0 0 24px rgba(139, 92, 246, 0.18);
+  }
+
+  50% {
+    box-shadow: 0 0 44px rgba(139, 92, 246, 0.42);
+  }
+}
