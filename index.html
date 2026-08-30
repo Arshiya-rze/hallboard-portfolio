@@ -3,155 +3,130 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hallboard Hero</title>
+  <meta name="theme-color" content="#02030a" />
+  <meta name="description" content="هالبورد؛ تیم مهندسی نرم‌افزار برای طراحی و توسعه محصولات دیجیتال مدرن و مقیاس‌پذیر." />
+  <title>هالبورد | مهندسی نرم‌افزار برای آینده</title>
+  <link rel="preload" as="image" href="./assets/hero-cinematic-base-mobile.webp" type="image/webp" media="(max-width: 767px)" />
+  <link rel="preload" as="image" href="./assets/hero-cinematic-reveal-mobile.webp" type="image/webp" media="(max-width: 767px)" />
+  <link rel="preload" as="image" href="./assets/hero-cinematic-base.webp" type="image/webp" media="(min-width: 768px)" />
+  <link rel="preload" as="image" href="./assets/hero-cinematic-reveal.webp" type="image/webp" media="(min-width: 768px)" />
   <link rel="stylesheet" href="./style.css" />
+  <script src="./hero-spotlight.js" defer></script>
 </head>
 <body>
 
   <main class="page">
+    <div class="hero-shell">
+      <!-- Header -->
+      <header class="header">
+        <a class="brand" href="#hero" aria-label="هالبورد؛ بازگشت به ابتدای صفحه">
+          <img src="./assets/logo-optimized.webp" width="327" height="240" alt="Hallboard" />
+        </a>
 
-    <!-- Header -->
-    <header class="header">
-      <img class="brand" src="./assets/logo.png" alt="Hallboard" />
-      <!-- <a class="brand" href="#">
-      </a> -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" tabindex="-1" />
 
-      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-
-      <label for="menu-toggle" class="hamburger" aria-label="Open menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-
-      <nav class="nav">
-        <a href="#">نمونه‌کارها</a>
-        <a href="#">درباره ما</a>
-        <a href="#">تماس با ما</a>
-      </nav>
-
-      <a class="btn btn-primary header-btn" href="#">
-        شروع پروژه
-        <span>↗</span>
-      </a>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero">
-
-      <div class="hero-content">
-        <div class="badge">
+        <label for="menu-toggle" class="hamburger" role="button" tabindex="0" aria-label="باز کردن منوی اصلی" aria-controls="primary-nav" aria-expanded="false">
           <span></span>
-          تیم تخصصی طراحی و توسعه وب‌اپلیکیشن
-        </div>
+          <span></span>
+          <span></span>
+        </label>
 
-        <h1>
-          تا ما هستیم<br />
-          چرا <strong>ووردپرس</strong> کار؟!
-        </h1>
+        <nav class="nav" id="primary-nav" aria-label="منوی اصلی">
+          <a href="#projects">نمونه‌کارها</a>
+          <a href="#what-we-do">خدمات ما</a>
+          <a href="#how-we-work">روش کار ما</a>
+        </nav>
 
-        <p>
-          بسپرش به تیم برنامه نویسی فول استک هالبورد
-        </p>
+        <a class="btn btn-primary header-btn" href="#contact">
+          شروع همکاری
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M17 7 7 17M7 7h10v10" /></svg>
+        </a>
+      </header>
 
-        <div class="hero-actions">
-          <a class="btn btn-primary btn-lg" href="#">
-            شروع پروژه
-            <span>↗</span>
-          </a>
+      <!-- Cinematic Hero -->
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <div class="hero-scene" aria-hidden="true">
+          <div class="hero-backdrop hero-backdrop-base"></div>
+          <div class="hero-backdrop hero-backdrop-reveal"></div>
+          <div class="hero-lens-ring"></div>
+          <div class="hero-grid"></div>
+          <div class="hero-vignette"></div>
 
-          <a class="btn btn-outline btn-lg" href="#">
-            مشاهده نمونه‌کارها
-            <span>▣</span>
-          </a>
-        </div>
-
-        <div class="stack">
-          <span>فناوری‌های ما</span>
-          <div>NET.</div>
-          <div><img src="./assets/angular.png" alt="Angular"></div>
-          <div><img src="./assets/mongodb.png" alt="MongoDB"></div>
-          <div><img src="./assets/postgresql.png" alt="PostgreSQL"></div>
-          <div><img src="./assets/git.png" alt="Git"></div>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="orbit"></div>
-
-        <div class="float-logo logo-angular">
-          <img src="./assets/angular.png" alt="Angular">
-        </div>
-
-        <div class="float-logo logo-dotnet">
-          <span>NET.</span>
-        </div>
-
-        <div class="float-logo logo-mongo">
-          <img src="./assets/mongodb.png" alt="MongoDB">
-        </div>
-
-        <div class="float-logo logo-postgres">
-          <img src="./assets/postgresql.png" alt="PostgreSQL">
-        </div>
-
-        <div class="float-logo logo-git">
-          <img src="./assets/git.png" alt="Git">
-        </div>
-
-        <div class="monitor">
-          <div class="dots">
-            <i></i><i></i><i></i>
+          <div class="hero-object hero-object-angular">
+            <img src="./assets/angular.png" alt="" />
           </div>
 
-          <div class="monitor-ui">
-            <aside>
-              <b>Solution</b>
-              <span>HallboardApp</span>
-              <span>Controllers</span>
-              <span class="active">ProjectController.cs</span>
-              <span>Services</span>
-            </aside>
+          <div class="hero-object hero-object-dotnet"><span>.NET</span></div>
 
-            <section>
-              <div class="tab">ProjectController.cs</div>
-              <pre><code>public async Task&lt;ActionResult&gt; Create()
-              {
-              var result = await _service.Execute();
+          <div class="hero-object hero-object-database">
+            <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" /></svg>
+          </div>
 
-              return Ok(result);
-              }</code></pre>
-            </section>
+          <div class="hero-object hero-object-git">
+            <svg viewBox="0 0 24 24"><circle cx="6" cy="5" r="2" /><circle cx="18" cy="6" r="2" /><circle cx="6" cy="19" r="2" /><path d="M6 7v10M8 9c5 0 4-3 8-3" /></svg>
+          </div>
+
+          <div class="hero-object hero-object-api">
+            <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" /><circle cx="19" cy="6" r="2" /><circle cx="19" cy="18" r="2" /><path d="m7 11 10-4M7 13l10 4" /></svg>
+          </div>
+
+          <div class="hero-object hero-object-cloud">
+            <svg viewBox="0 0 24 24"><path d="M17.5 19H7a5 5 0 1 1 1.7-9.7A6 6 0 0 1 20 12a3.5 3.5 0 0 1-2.5 7Z" /></svg>
           </div>
         </div>
 
-        <div class="phone">
-          <div class="phone-head">
-            <span>9:41</span>
-            <b>پروژه‌های اخیر</b>
+        <div class="hero-content">
+          <div class="badge">
+            <span></span>
+            مهندسی دقیق برای محصولات آینده
           </div>
 
-          <div class="phone-card">
-            <b>سیستم مدیریت فروش</b>
-            <small>در حال توسعه</small>
+          <h1 id="hero-title">
+            <span>ما آینده دیجیتال را می‌سازیم</span>
+            <strong>با مهندسی نرم‌افزار</strong>
+          </h1>
+
+          <p>
+            ما یک تیم مهندسی نرم‌افزار هستیم که محصولات دیجیتال مقیاس‌پذیر، سریع و مدرن طراحی و توسعه می‌دهیم.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#contact">
+              شروع همکاری
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M17 7 7 17M7 7h10v10" /></svg>
+            </a>
+
+            <a class="btn btn-outline btn-lg" href="#projects">
+              مشاهده پروژه‌ها
+              <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 8h10M7 12h6" /></svg>
+            </a>
           </div>
 
-          <div class="phone-card">
-            <b>پلتفرم آموزش آنلاین</b>
-            <small>تکمیل شده</small>
-          </div>
-
-          <div class="phone-card">
-            <b>داشبورد تحلیل داده</b>
-            <small>در حال توسعه</small>
+          <div class="hero-tech" aria-label="فناوری‌های اصلی تیم">
+            <span>Angular</span>
+            <i></i>
+            <span>.NET</span>
+            <i></i>
+            <span>Cloud</span>
+            <i></i>
+            <span>DevOps</span>
           </div>
         </div>
-      </div>
 
-    </section>
+        <div class="spotlight-hint" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m5 3 14 8-6 2-2 6L5 3Z" /></svg>
+          <span class="spotlight-hint-desktop">برای کشف لایه عمیق‌تر، نشانگر را حرکت دهید</span>
+          <span class="spotlight-hint-mobile">برای کشف لایه عمیق‌تر، لمس و حرکت کنید</span>
+        </div>
+
+        <a class="scroll-cue" href="#what-we-do" aria-label="رفتن به بخش بعدی">
+          <span></span>
+        </a>
+      </section>
+    </div>
 
     <!-- Feature Bar -->
-    <section class="feature-bar">
+    <section class="feature-bar" id="features">
       <article>
         <div class="feature-icon">⬡</div>
         <h3>معماری مقیاس‌پذیر</h3>
@@ -227,90 +202,104 @@
         <span></span>
       </div>
 
-      <div class="services-grid">
-        <article class="service-card">
-          <div class="service-icon">⌘</div>
-          <h3>توسعه وب‌سایت‌های اختصاصی</h3>
-          <p>
-            طراحی و توسعه وب‌سایت‌های سریع، امن و مقیاس‌پذیر با جدیدترین تکنولوژی‌ها.
-          </p>
+      <div class="services-carousel" id="services" data-services-slider>
+        <button class="services-nav services-nav-prev" type="button" data-slider-prev aria-label="خدمت قبلی">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" /></svg>
+        </button>
 
-          <ul>
-            <li>وب‌اپلیکیشن‌های اختصاصی</li>
-            <li>پنل‌های مدیریت پیشرفته</li>
-            <li>فریم‌ورک‌های مدرن</li>
-          </ul>
+        <div class="services-viewport" tabindex="0" aria-label="اسلایدر خدمات">
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="service-icon">⌘</div>
+              <h3>توسعه وب‌سایت‌های اختصاصی</h3>
+              <p>
+                طراحی و توسعه وب‌سایت‌های سریع، امن و مقیاس‌پذیر با جدیدترین تکنولوژی‌ها.
+              </p>
 
-          <a href="#">اطلاعات بیشتر ↗</a>
-        </article>
+              <ul>
+                <li>وب‌اپلیکیشن‌های اختصاصی</li>
+                <li>پنل‌های مدیریت پیشرفته</li>
+                <li>فریم‌ورک‌های مدرن</li>
+              </ul>
 
-        <article class="service-card">
-          <div class="service-icon">▯</div>
-          <h3>توسعه اپلیکیشن‌های موبایل</h3>
-          <p>
-            ساخت اپلیکیشن‌های موبایل حرفه‌ای برای iOS و Android با تجربه کاربری عالی.
-          </p>
+              <a href="#">اطلاعات بیشتر ↗</a>
+            </article>
 
-          <ul>
-            <li>اپلیکیشن‌های بومی و کراس‌پلتفرم</li>
-            <li>عملکرد بالا و بهینه</li>
-            <li>طراحی مدرن UI/UX</li>
-          </ul>
+            <article class="service-card">
+              <div class="service-icon">▯</div>
+              <h3>توسعه اپلیکیشن‌های موبایل</h3>
+              <p>
+                ساخت اپلیکیشن‌های موبایل حرفه‌ای برای iOS و Android با تجربه کاربری عالی.
+              </p>
 
-          <a href="#">اطلاعات بیشتر ↗</a>
-        </article>
+              <ul>
+                <li>اپلیکیشن‌های بومی و کراس‌پلتفرم</li>
+                <li>عملکرد بالا و بهینه</li>
+                <li>طراحی مدرن UI/UX</li>
+              </ul>
 
-        <article class="service-card">
-          <div class="service-icon">☁</div>
-          <h3>راهکارهای ابری و زیرساخت</h3>
-          <p>
-            طراحی و پیاده‌سازی زیرساخت‌های ابری مطمئن، مقیاس‌پذیر و مقرون‌به‌صرفه.
-          </p>
+              <a href="#">اطلاعات بیشتر ↗</a>
+            </article>
 
-          <ul>
-            <li>معماری ابری AWS و Azure</li>
-            <li>DevOps و CI/CD</li>
-            <li>مانیتورینگ و امنیت</li>
-          </ul>
+            <article class="service-card">
+              <div class="service-icon">☁</div>
+              <h3>راهکارهای ابری و زیرساخت</h3>
+              <p>
+                طراحی و پیاده‌سازی زیرساخت‌های ابری مطمئن، مقیاس‌پذیر و مقرون‌به‌صرفه.
+              </p>
 
-          <a href="#">اطلاعات بیشتر ↗</a>
-        </article>
+              <ul>
+                <li>معماری ابری AWS و Azure</li>
+                <li>DevOps و CI/CD</li>
+                <li>مانیتورینگ و امنیت</li>
+              </ul>
 
-        <article class="service-card service-card-wide">
-          <div class="service-icon">🛡</div>
-          <h3>امنیت و تست</h3>
-          <p>
-            تضمین امنیت و کیفیت نرم‌افزار در تمام مراحل توسعه با تست‌های جامع و خودکار.
-          </p>
+              <a href="#">اطلاعات بیشتر ↗</a>
+            </article>
 
-          <ul>
-            <li>تست‌های جامع و خودکار</li>
-            <li>ممیزی امنیتی و نفوذ</li>
-            <li>تضمین کیفیت QA</li>
-          </ul>
+            <article class="service-card service-card-wide">
+              <div class="service-icon">🛡</div>
+              <h3>امنیت و تست</h3>
+              <p>
+                تضمین امنیت و کیفیت نرم‌افزار در تمام مراحل توسعه با تست‌های جامع و خودکار.
+              </p>
 
-          <a href="#">اطلاعات بیشتر ↗</a>
-        </article>
+              <ul>
+                <li>تست‌های جامع و خودکار</li>
+                <li>ممیزی امنیتی و نفوذ</li>
+                <li>تضمین کیفیت QA</li>
+              </ul>
 
-        <article class="service-card service-card-wide">
-          <div class="service-icon">▧</div>
-          <h3>تحلیل و مشاوره</h3>
-          <p>
-            تحلیل نیازهای کسب‌وکار و ارائه راهکارهای فنی برای رشد و بهبود محصول.
-          </p>
+              <a href="#">اطلاعات بیشتر ↗</a>
+            </article>
 
-          <ul>
-            <li>تحلیل کسب‌وکار</li>
-            <li>طراحی معماری نرم‌افزار</li>
-            <li>مشاوره فنی و بهینه‌سازی</li>
-          </ul>
+            <article class="service-card service-card-wide">
+              <div class="service-icon">▧</div>
+              <h3>تحلیل و مشاوره</h3>
+              <p>
+                تحلیل نیازهای کسب‌وکار و ارائه راهکارهای فنی برای رشد و بهبود محصول.
+              </p>
 
-          <a href="#">اطلاعات بیشتر ↗</a>
-        </article>
+              <ul>
+                <li>تحلیل کسب‌وکار</li>
+                <li>طراحی معماری نرم‌افزار</li>
+                <li>مشاوره فنی و بهینه‌سازی</li>
+              </ul>
+
+              <a href="#">اطلاعات بیشتر ↗</a>
+            </article>
+          </div>
+        </div>
+
+        <button class="services-nav services-nav-next" type="button" data-slider-next aria-label="خدمت بعدی">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></svg>
+        </button>
+
+        <div class="services-dots" data-slider-dots aria-label="صفحه‌های اسلایدر خدمات"></div>
       </div>
 
       <!-- Work Process -->
-      <div class="work-process">
+      <div class="work-process" id="work-process">
         <div class="process-header">
           <span></span>
           <h3>فرآیند همکاری ما</h3>
@@ -357,9 +346,9 @@
       </div>
 
       <!-- What We Do CTA -->
-      <div class="what-we-do-cta">
+      <div class="what-we-do-cta" id="contact">
         <div class="cta-logo">
-          <img src="./assets/logo.png" alt="Hallboard Logo" />
+          <img src="./assets/logo-optimized.webp" width="327" height="240" alt="Hallboard Logo" />
         </div>
 
         <div class="cta-content">
@@ -390,11 +379,19 @@
       <div class="tech-orb tech-orb-left">⌘</div>
       <div class="tech-orb tech-orb-right">{ }</div>
 
+      <div class="tech-tabs" role="tablist" aria-label="دسته‌های استک فناوری">
+        <button class="tech-tab is-active" type="button" data-tech-target="frontend" aria-selected="true">فرانت‌اند</button>
+        <button class="tech-tab" type="button" data-tech-target="backend" aria-selected="false">بک‌اند</button>
+        <button class="tech-tab" type="button" data-tech-target="database" aria-selected="false">دیتابیس</button>
+        <button class="tech-tab" type="button" data-tech-target="devops" aria-selected="false">دیوآپس</button>
+        <button class="tech-tab" type="button" data-tech-target="tools" aria-selected="false">ابزارها</button>
+      </div>
+
       <div class="tech-stack-list">
 
-        <article class="tech-row">
+        <article class="tech-row is-active" data-tech-panel="frontend">
           <div class="tech-category">
-            <div class="tech-category-icon">▣</div>
+            <div class="tech-category-icon"><img src="./assets/category-frontend.svg" alt="" /></div>
             <div>
               <h3>فرانت‌اند</h3>
               <p>ساخت رابط کاربری سریع، واکنش‌گرا و تجربه کاربری فوق‌العاده</p>
@@ -403,17 +400,17 @@
 
           <div class="tech-items">
             <div class="tech-item"><img src="./assets/angular.png" alt="Angular"><span>Angular</span></div>
-            <div class="tech-item"><img src="./assets/react.png" alt="React"><span>React</span></div>
-            <div class="tech-item"><img src="./assets/typescript.png" alt="TypeScript"><span>TypeScript</span></div>
-            <div class="tech-item"><img src="./assets/javascript.png" alt="JavaScript"><span>JavaScript</span></div>
-            <div class="tech-item"><img src="./assets/tailwind.png" alt="Tailwind CSS"><span>Tailwind CSS</span></div>
-            <div class="tech-item"><img src="./assets/nx.png" alt="Nx"><span>Nx</span></div>
+            <div class="tech-item"><img src="./assets/react.svg" alt="React"><span>React</span></div>
+            <div class="tech-item"><img src="./assets/typescript.svg" alt="TypeScript"><span>TypeScript</span></div>
+            <div class="tech-item"><img src="./assets/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+            <div class="tech-item"><img src="./assets/tailwind.svg" alt="Tailwind CSS"><span>Tailwind CSS</span></div>
+            <div class="tech-item"><img src="./assets/nx.svg" alt="Nx"><span>Nx</span></div>
           </div>
         </article>
 
-        <article class="tech-row">
+        <article class="tech-row" data-tech-panel="backend">
           <div class="tech-category">
-            <div class="tech-category-icon">▤</div>
+            <div class="tech-category-icon"><img src="./assets/category-backend.svg" alt="" /></div>
             <div>
               <h3>بک‌اند</h3>
               <p>ساخت APIهای قدرتمند، امن و مقیاس‌پذیر با معماری تمیز</p>
@@ -421,18 +418,18 @@
           </div>
 
           <div class="tech-items">
-            <div class="tech-item"><span class="text-logo">.NET</span><span>.NET 8</span></div>
-            <div class="tech-item"><img src="./assets/nodejs.png" alt="Node.js"><span>Node.js</span></div>
-            <div class="tech-item"><img src="./assets/nestjs.png" alt="NestJS"><span>NestJS</span></div>
-            <div class="tech-item"><img src="./assets/express.png" alt="Express.js"><span>Express.js</span></div>
-            <div class="tech-item"><img src="./assets/grpc.png" alt="gRPC"><span>gRPC</span></div>
-            <div class="tech-item"><img src="./assets/java.png" alt="Java"><span>Java</span></div>
+            <div class="tech-item"><img src="./assets/dotnet.svg" alt=".NET 8"><span>.NET 8</span></div>
+            <div class="tech-item"><img src="./assets/nodejs.svg" alt="Node.js"><span>Node.js</span></div>
+            <div class="tech-item"><img src="./assets/nestjs.svg" alt="NestJS"><span>NestJS</span></div>
+            <div class="tech-item"><img src="./assets/express.svg" alt="Express.js"><span>Express.js</span></div>
+            <div class="tech-item"><img src="./assets/grpc.svg" alt="gRPC"><span>gRPC</span></div>
+            <div class="tech-item"><img src="./assets/java.svg" alt="Java"><span>Java</span></div>
           </div>
         </article>
 
-        <article class="tech-row">
+        <article class="tech-row" data-tech-panel="database">
           <div class="tech-category">
-            <div class="tech-category-icon">◉</div>
+            <div class="tech-category-icon"><img src="./assets/category-database.svg" alt="" /></div>
             <div>
               <h3>دیتابیس</h3>
               <p>مدیریت و پردازش داده‌ها با کارایی بالا و امنیت Enterprise</p>
@@ -442,16 +439,16 @@
           <div class="tech-items">
             <div class="tech-item"><img src="./assets/mongodb.png" alt="MongoDB"><span>MongoDB</span></div>
             <div class="tech-item"><img src="./assets/postgresql.png" alt="PostgreSQL"><span>PostgreSQL</span></div>
-            <div class="tech-item"><img src="./assets/redis.png" alt="Redis"><span>Redis</span></div>
-            <div class="tech-item"><img src="./assets/mysql.png" alt="MySQL"><span>MySQL</span></div>
-            <div class="tech-item"><img src="./assets/elasticsearch.png" alt="Elasticsearch"><span>Elasticsearch</span></div>
-            <div class="tech-item"><img src="./assets/sqlserver.png" alt="SQL Server"><span>SQL Server</span></div>
+            <div class="tech-item"><img src="./assets/redis.svg" alt="Redis"><span>Redis</span></div>
+            <div class="tech-item"><img src="./assets/mysql.svg" alt="MySQL"><span>MySQL</span></div>
+            <div class="tech-item"><img src="./assets/elasticsearch.svg" alt="Elasticsearch"><span>Elasticsearch</span></div>
+            <div class="tech-item"><img src="./assets/sqlserver.svg" alt="SQL Server"><span>SQL Server</span></div>
           </div>
         </article>
 
-        <article class="tech-row">
+        <article class="tech-row" data-tech-panel="devops">
           <div class="tech-category">
-            <div class="tech-category-icon">∞</div>
+            <div class="tech-category-icon"><img src="./assets/category-devops.svg" alt="" /></div>
             <div>
               <h3>دیوآپس</h3>
               <p>استقرار خودکار، مانیتورینگ و زیرساخت ابری پایدار</p>
@@ -459,18 +456,18 @@
           </div>
 
           <div class="tech-items">
-            <div class="tech-item"><img src="./assets/docker.png" alt="Docker"><span>Docker</span></div>
-            <div class="tech-item"><img src="./assets/kubernetes.png" alt="Kubernetes"><span>Kubernetes</span></div>
-            <div class="tech-item"><img src="./assets/github-actions.png" alt="GitHub Actions"><span>GitHub Actions</span></div>
-            <div class="tech-item"><img src="./assets/aws.png" alt="AWS"><span>AWS</span></div>
-            <div class="tech-item"><img src="./assets/azure.png" alt="Azure"><span>Azure</span></div>
-            <div class="tech-item"><img src="./assets/terraform.png" alt="Terraform"><span>Terraform</span></div>
+            <div class="tech-item"><img src="./assets/docker.svg" alt="Docker"><span>Docker</span></div>
+            <div class="tech-item"><img src="./assets/kubernetes.svg" alt="Kubernetes"><span>Kubernetes</span></div>
+            <div class="tech-item"><img src="./assets/github-actions.svg" alt="GitHub Actions"><span>GitHub Actions</span></div>
+            <div class="tech-item"><img src="./assets/aws.svg" alt="AWS"><span>AWS</span></div>
+            <div class="tech-item"><img src="./assets/azure.svg" alt="Azure"><span>Azure</span></div>
+            <div class="tech-item"><img src="./assets/terraform.svg" alt="Terraform"><span>Terraform</span></div>
           </div>
         </article>
 
-        <article class="tech-row">
+        <article class="tech-row" data-tech-panel="tools">
           <div class="tech-category">
-            <div class="tech-category-icon">⚒</div>
+            <div class="tech-category-icon"><img src="./assets/category-tools.svg" alt="" /></div>
             <div>
               <h3>ابزارها</h3>
               <p>ابزارهای توسعه و همکاری برای افزایش کیفیت و سرعت تیم</p>
@@ -479,11 +476,11 @@
 
           <div class="tech-items">
             <div class="tech-item"><img src="./assets/git.png" alt="Git"><span>Git</span></div>
-            <div class="tech-item"><img src="./assets/github.png" alt="GitHub"><span>GitHub</span></div>
-            <div class="tech-item"><img src="./assets/gitlab.png" alt="GitLab"><span>GitLab</span></div>
-            <div class="tech-item"><img src="./assets/jetbrains.png" alt="JetBrains"><span>JetBrains</span></div>
-            <div class="tech-item"><img src="./assets/figma.png" alt="Figma"><span>Figma</span></div>
-            <div class="tech-item"><img src="./assets/postman.png" alt="Postman"><span>Postman</span></div>
+            <div class="tech-item"><img src="./assets/github.svg" alt="GitHub"><span>GitHub</span></div>
+            <div class="tech-item"><img src="./assets/gitlab.svg" alt="GitLab"><span>GitLab</span></div>
+            <div class="tech-item"><img src="./assets/jetbrains.svg" alt="JetBrains"><span>JetBrains</span></div>
+            <div class="tech-item"><img src="./assets/figma.svg" alt="Figma"><span>Figma</span></div>
+            <div class="tech-item"><img src="./assets/postman.svg" alt="Postman"><span>Postman</span></div>
           </div>
         </article>
 
@@ -627,7 +624,7 @@
 
       <div class="project-showcase">
         <div class="project-image-wrap">
-          <img src="./assets/project-placeholder.png" alt="تصویر پروژه" class="project-image" />
+          <img src="./assets/project-placeholder.svg" alt="تصویر پروژه" class="project-image" />
         </div>
 
         <div class="project-content">

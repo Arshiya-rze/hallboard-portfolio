@@ -374,3 +374,306 @@
     max-width: 900px;
   }
 }
+
+/* Compact rhythm + soft motion */
+
+.how-header,
+.principles-title,
+.process-title,
+.principle-card,
+.how-step,
+.how-result {
+  animation: howSectionReveal 0.7s ease both;
+}
+
+.principle-card,
+.how-step {
+  will-change: transform;
+}
+
+.principle-card:nth-child(2),
+.how-step:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.principle-card:nth-child(3),
+.how-step:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.principle-card:nth-child(4),
+.how-step:nth-child(4) {
+  animation-delay: 0.18s;
+}
+
+.principle-card:nth-child(5),
+.how-step:nth-child(5) {
+  animation-delay: 0.24s;
+}
+
+.how-step:nth-child(6) {
+  animation-delay: 0.3s;
+}
+
+.principle-icon,
+.how-step-icon,
+.result-icon {
+  animation: howIconDrift 4.8s ease-in-out infinite;
+}
+
+@keyframes howSectionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes howIconDrift {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@media (max-width: 767px) {
+  .how-we-work {
+    margin-top: 34px;
+    padding: 40px 14px 30px;
+    border-radius: 24px;
+  }
+
+  .how-header {
+    margin-bottom: 20px;
+  }
+
+  .how-header h2 {
+    font-size: clamp(32px, 9vw, 42px);
+    line-height: 1.25;
+  }
+
+  .how-header p {
+    margin-top: 14px;
+    font-size: 12.5px;
+    line-height: 1.9;
+  }
+
+  .principles-title,
+  .process-title {
+    margin: 24px auto 16px;
+    gap: 10px;
+  }
+
+  .principles-title h3,
+  .process-title h3 {
+    font-size: 20px;
+  }
+
+  .process-title p {
+    margin-top: -4px;
+    font-size: 11.5px;
+  }
+
+  .principles-grid,
+  .how-process {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .principle-card,
+  .how-step {
+    min-height: 138px;
+    padding: 14px 9px;
+    border-radius: 16px;
+  }
+
+  .principle-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    min-height: 126px;
+  }
+
+  .principle-card::after {
+    width: 48px;
+  }
+
+  .principle-icon,
+  .how-step-icon {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    font-size: 18px;
+  }
+
+  .how-step-icon {
+    border-radius: 50%;
+  }
+
+  .principle-card h3,
+  .how-step h3 {
+    margin-bottom: 6px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .how-step strong {
+    margin-bottom: 3px;
+    font-size: 12px;
+  }
+
+  .principle-card p,
+  .how-step p {
+    max-width: 150px;
+    font-size: 10.5px;
+    line-height: 1.75;
+  }
+
+  .how-result {
+    margin-top: 16px;
+    padding: 16px 12px;
+    gap: 10px;
+    border-radius: 16px;
+  }
+
+  .result-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    font-size: 20px;
+  }
+
+  .how-result p {
+    font-size: 12px;
+    line-height: 1.85;
+  }
+}
+
+@media (min-width: 768px) {
+  .how-we-work {
+    padding: 58px 34px 40px;
+  }
+
+  .how-header {
+    margin-bottom: 24px;
+  }
+
+  .principles-title,
+  .process-title {
+    margin-top: 28px;
+    margin-bottom: 18px;
+  }
+
+  .principle-card {
+    min-height: 210px;
+    padding: 22px 18px;
+  }
+
+  .principle-icon,
+  .how-step-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 14px;
+    font-size: 24px;
+  }
+
+  .principle-card h3 {
+    font-size: 18px;
+  }
+
+  .principle-card p {
+    font-size: 12.5px;
+    line-height: 1.8;
+  }
+
+  .how-step {
+    min-height: 200px;
+    padding: 22px 16px;
+  }
+
+  .how-step strong {
+    margin-bottom: 7px;
+    font-size: 16px;
+  }
+
+  .how-step h3 {
+    font-size: 17px;
+  }
+
+  .how-step p {
+    font-size: 12px;
+    line-height: 1.75;
+  }
+
+  .how-result {
+    margin-top: 20px;
+    padding: 18px 22px;
+  }
+
+  .result-icon {
+    width: 58px;
+    height: 58px;
+    font-size: 26px;
+  }
+
+  .how-result p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+}
+
+@media (min-width: 1180px) {
+  .how-we-work {
+    padding: 62px 44px 44px;
+  }
+
+  .how-header h2 {
+    font-size: 56px;
+  }
+
+  .principles-grid {
+    gap: 12px;
+  }
+
+  .principle-card {
+    min-height: 190px;
+    padding: 20px 16px;
+  }
+
+  .how-process {
+    padding-top: 14px;
+  }
+
+  .how-step {
+    min-height: 190px;
+    padding: 20px 14px;
+  }
+
+  .how-step:first-child {
+    border-radius: 0 18px 18px 0;
+  }
+
+  .how-step:last-child {
+    border-radius: 18px 0 0 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .how-header,
+  .principles-title,
+  .process-title,
+  .principle-card,
+  .how-step,
+  .how-result,
+  .principle-icon,
+  .how-step-icon,
+  .result-icon {
+    animation: none;
+  }
+}
