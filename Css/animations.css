@@ -41,3 +41,51 @@
     box-shadow: 0 0 44px rgba(139, 92, 246, 0.42);
   }
 }
+
+@keyframes heroSceneBreath {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.025);
+  }
+
+  to {
+    transform: translate3d(0, -0.6%, 0) scale(1.045);
+  }
+}
+
+@keyframes heroObjectFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translate3d(0, -12px, 0) rotate(2deg);
+  }
+}
+
+@keyframes statusPulse {
+  0%, 100% {
+    opacity: 0.62;
+    transform: scale(0.82);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scrollCue {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+}

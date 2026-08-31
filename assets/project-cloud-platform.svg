@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" role="img" aria-label="Cloud operations hub preview">
+  <defs>
+    <linearGradient id="cloudBg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#030712"/>
+      <stop offset=".58" stop-color="#111134"/>
+      <stop offset="1" stop-color="#081827"/>
+    </linearGradient>
+    <linearGradient id="cloudAccent" x1="0" x2="1">
+      <stop stop-color="#60a5fa"/>
+      <stop offset=".52" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#c084fc"/>
+    </linearGradient>
+    <filter id="cloudGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="960" height="640" rx="48" fill="url(#cloudBg)"/>
+  <path d="M92 492c140-174 284-172 432-36 120 110 238 88 344-52v168H92Z" fill="#13213b" opacity=".48"/>
+  <g opacity=".18" stroke="#a78bfa">
+    <path d="M160 102h640M160 202h640M160 302h640M160 402h640"/>
+    <path d="M220 60v460M360 60v460M500 60v460M640 60v460M780 60v460"/>
+  </g>
+  <g filter="url(#cloudGlow)">
+    <path d="M574 238H388a82 82 0 1 1 28-158 100 100 0 0 1 188 44 58 58 0 0 1-30 114Z" fill="url(#cloudAccent)" opacity=".9"/>
+  </g>
+  <rect x="382" y="294" width="196" height="64" rx="24" fill="#091124" stroke="#c084fc" stroke-opacity=".42"/>
+  <path d="M480 238v56M480 358v44" stroke="url(#cloudAccent)" stroke-width="8" stroke-linecap="round"/>
+  <g fill="#0b1020" stroke="#a855f7" stroke-opacity=".42">
+    <rect x="158" y="398" width="174" height="104" rx="24"/>
+    <rect x="393" y="402" width="174" height="104" rx="24"/>
+    <rect x="628" y="398" width="174" height="104" rx="24"/>
+  </g>
+  <g stroke="url(#cloudAccent)" stroke-width="8" stroke-linecap="round" opacity=".88">
+    <path d="M480 402c-42-42-110-54-235-4"/>
+    <path d="M480 402c44-42 112-54 235-4"/>
+  </g>
+  <g fill="#e9d5ff" opacity=".82">
+    <rect x="198" y="435" width="92" height="12" rx="6"/>
+    <rect x="198" y="464" width="58" height="10" rx="5" opacity=".5"/>
+    <rect x="433" y="438" width="92" height="12" rx="6"/>
+    <rect x="433" y="466" width="70" height="10" rx="5" opacity=".5"/>
+    <rect x="668" y="435" width="92" height="12" rx="6"/>
+    <rect x="668" y="464" width="62" height="10" rx="5" opacity=".5"/>
+  </g>
+  <circle cx="245" cy="398" r="10" fill="#22c55e"/>
+  <circle cx="480" cy="402" r="10" fill="#60a5fa"/>
+  <circle cx="715" cy="398" r="10" fill="#a855f7"/>
+</svg>
