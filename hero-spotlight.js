@@ -715,11 +715,91 @@
     });
   };
 
+  const initTeamCards = () => {
+    const section = document.querySelector("[data-team-section]");
+    const cards = Array.from(document.querySelectorAll("[data-team-card]"));
+
+    if (!section || !cards.length) return;
+
+    section.classList.add("is-team-enhanced");
+
+    const clearActiveCards = (except = null) => {
+      cards.forEach((card) => {
+        if (card === except) return;
+        card.classList.remove("is-active");
+        card.setAttribute("aria-pressed", "false");
+      });
+    };
+
+    const toggleCard = (card) => {
+      const shouldActivate = !card.classList.contains("is-active");
+      clearActiveCards(card);
+      card.classList.toggle("is-active", shouldActivate);
+      card.setAttribute("aria-pressed", String(shouldActivate));
+    };
+
+    cards.forEach((card) => {
+      card.addEventListener("click", (event) => {
+        if (event.target.closest?.("a")) return;
+        toggleCard(card);
+      });
+
+      card.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        toggleCard(card);
+      });
+
+      if (!coarsePointer.matches && !reducedMotion.matches && !lowPowerDevice) {
+        card.addEventListener(
+          "pointermove",
+          (event) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width - 0.5) * 8;
+            const y = (0.5 - (event.clientY - rect.top) / rect.height) * 8;
+            const lightX = ((event.clientX - rect.left) / rect.width) * 100;
+            const lightY = ((event.clientY - rect.top) / rect.height) * 100;
+
+            card.style.setProperty("--team-tilt-x", `${x.toFixed(2)}deg`);
+            card.style.setProperty("--team-tilt-y", `${y.toFixed(2)}deg`);
+            card.style.setProperty("--team-light-x", `${lightX.toFixed(1)}%`);
+            card.style.setProperty("--team-light-y", `${lightY.toFixed(1)}%`);
+          },
+          { passive: true }
+        );
+
+        card.addEventListener("pointerleave", () => {
+          card.style.setProperty("--team-tilt-x", "0deg");
+          card.style.setProperty("--team-tilt-y", "0deg");
+          card.style.setProperty("--team-light-x", "50%");
+          card.style.setProperty("--team-light-y", "0%");
+        });
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (section.contains(event.target)) return;
+      clearActiveCards();
+    });
+
+    const teamObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("is-visible", entry.isIntersecting);
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    cards.forEach((card) => teamObserver.observe(card));
+  };
+
   initServicesSlider();
   initTechTabs();
   initEngineeringExperience();
   initProjectsSlider();
   initProjectCards();
+  initTeamCards();
 
   renderPosition();
   startAnimation();
