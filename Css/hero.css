@@ -171,7 +171,7 @@
 
 .hero h1 strong {
   color: transparent;
-  background: linear-gradient(100deg, #f5f3ff 0%, #d8b4fe 26%, #a78bfa 56%, #7c3aed 100%);
+  background: linear-gradient(100deg, #f5f3ff 0%, #d8b4fe 24%, #a78bfa 52%, #60a5fa 78%, #22d3ee 100%);
   -webkit-background-clip: text;
   background-clip: text;
   filter: drop-shadow(0 0 22px rgba(124, 58, 237, 0.26));
@@ -410,7 +410,7 @@
 @media (min-width: 768px) {
   .hero {
     --spotlight-radius: 235px;
-    padding: 126px 28px 108px;
+    padding: 112px 28px 86px;
   }
 
   .hero-backdrop-base {
@@ -426,20 +426,20 @@
   }
 
   .badge {
-    min-height: 38px;
-    margin-bottom: 22px;
-    padding: 8px 16px;
-    font-size: 13px;
+    min-height: 34px;
+    margin-bottom: 16px;
+    padding: 7px 14px;
+    font-size: 12px;
   }
 
   .hero h1 {
-    font-size: clamp(48px, 7.2vw, 72px);
+    font-size: clamp(38px, 5.4vw, 56px);
     line-height: 1.25;
-    letter-spacing: -2px;
+    letter-spacing: -1.5px;
   }
 
   .hero-content > p {
-    margin: 24px auto 30px;
+    margin: 18px auto 24px;
     line-height: 1.9;
   }
 
@@ -448,12 +448,12 @@
   }
 
   .btn-lg {
-    min-height: 58px;
-    font-size: 15px;
+    min-height: 52px;
+    font-size: 14px;
   }
 
   .hero-tech {
-    margin-top: 27px;
+    margin-top: 18px;
     gap: 12px 17px;
     font-size: 11px;
   }
@@ -477,29 +477,34 @@
 }
 
 @media (min-width: 1180px) {
+  .hero-shell {
+    min-height: clamp(640px, 94svh, 720px);
+  }
+
   .hero {
     --spotlight-radius: 260px;
-    min-height: max(100svh, 720px);
-    padding-top: 142px;
+    min-height: clamp(640px, 94svh, 720px);
+    padding-top: 116px;
+    padding-bottom: 78px;
   }
 
   .hero h1 {
-    font-size: clamp(62px, 5.5vw, 84px);
-    line-height: 1.19;
+    font-size: clamp(44px, 4vw, 58px);
+    line-height: 1.2;
   }
 
   .hero-content > p {
-    max-width: 670px;
-    font-size: 18px;
+    max-width: 610px;
+    font-size: 15.5px;
   }
 
   .hero-actions {
-    width: 520px;
+    width: 470px;
   }
 
   .btn-lg {
-    min-height: 60px;
-    font-size: 16px;
+    min-height: 52px;
+    font-size: 14.5px;
   }
 
   .hero-object {

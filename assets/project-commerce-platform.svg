@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" role="img" aria-label="Commerce growth platform preview">
+  <defs>
+    <linearGradient id="commerceBg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#050511"/>
+      <stop offset=".54" stop-color="#1c1039"/>
+      <stop offset="1" stop-color="#071523"/>
+    </linearGradient>
+    <linearGradient id="commerceAccent" x1="0" x2="1">
+      <stop stop-color="#7c3aed"/>
+      <stop offset=".52" stop-color="#a855f7"/>
+      <stop offset="1" stop-color="#60a5fa"/>
+    </linearGradient>
+    <filter id="commerceGlow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="960" height="640" rx="48" fill="url(#commerceBg)"/>
+  <circle cx="740" cy="116" r="168" fill="#7c3aed" opacity=".16"/>
+  <circle cx="190" cy="492" r="190" fill="#2563eb" opacity=".12"/>
+  <rect x="122" y="100" width="716" height="440" rx="34" fill="#07101f" stroke="#a855f7" stroke-opacity=".34"/>
+  <rect x="158" y="142" width="644" height="60" rx="20" fill="#11162a"/>
+  <rect x="614" y="162" width="132" height="18" rx="9" fill="url(#commerceAccent)" opacity=".9"/>
+  <g fill="#12172a" stroke="#ffffff" stroke-opacity=".08">
+    <rect x="166" y="246" width="178" height="216" rx="28"/>
+    <rect x="390" y="246" width="178" height="216" rx="28"/>
+    <rect x="614" y="246" width="178" height="216" rx="28"/>
+  </g>
+  <g filter="url(#commerceGlow)">
+    <rect x="202" y="284" width="106" height="82" rx="22" fill="url(#commerceAccent)"/>
+    <rect x="426" y="284" width="106" height="82" rx="22" fill="url(#commerceAccent)" opacity=".82"/>
+    <rect x="650" y="284" width="106" height="82" rx="22" fill="url(#commerceAccent)" opacity=".72"/>
+  </g>
+  <g fill="#e9d5ff" opacity=".78">
+    <rect x="200" y="398" width="110" height="13" rx="7"/>
+    <rect x="216" y="430" width="78" height="10" rx="5" opacity=".45"/>
+    <rect x="424" y="398" width="110" height="13" rx="7"/>
+    <rect x="440" y="430" width="78" height="10" rx="5" opacity=".45"/>
+    <rect x="648" y="398" width="110" height="13" rx="7"/>
+    <rect x="664" y="430" width="78" height="10" rx="5" opacity=".45"/>
+  </g>
+  <path d="M214 502h532" stroke="#a78bfa" stroke-opacity=".22" stroke-width="2"/>
+  <path d="M246 502c50-70 110-34 160-86 44-46 84-38 126 8 50 56 114 28 178-64" fill="none" stroke="url(#commerceAccent)" stroke-width="12" stroke-linecap="round" filter="url(#commerceGlow)"/>
+</svg>

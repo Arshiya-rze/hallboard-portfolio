@@ -70,6 +70,16 @@
   --muted: rgba(255, 255, 255, 0.64);
   --purple: #8b5cf6;
   --purple-light: #a855f7;
+  --blue: #3b82f6;
+  --cyan: #22d3ee;
+  --emerald: #34d399;
+  --amber: #f59e0b;
+  --rose: #fb7185;
+  --accent: var(--purple-light);
+  --accent-2: var(--blue);
+  --accent-3: var(--cyan);
+  --accent-soft: rgba(168, 85, 247, 0.18);
+  --accent-glow: rgba(139, 92, 246, 0.34);
   --container: 1440px;
 }
 
@@ -80,6 +90,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
+  background: #050712;
 }
 
 body {
@@ -87,8 +98,9 @@ body {
   font-family: "Vazirmatn", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at 50% 24%, rgba(124, 58, 237, 0.24), transparent 32%),
-    radial-gradient(circle at 0% 48%, rgba(124, 58, 237, 0.18), transparent 34%),
+    radial-gradient(circle at 50% 18%, rgba(124, 58, 237, 0.22), transparent 32%),
+    radial-gradient(circle at 0% 48%, rgba(34, 211, 238, 0.11), transparent 34%),
+    radial-gradient(circle at 100% 62%, rgba(52, 211, 153, 0.075), transparent 34%),
     linear-gradient(180deg, #050712 0%, #060816 100%);
   overflow-x: hidden;
 }
@@ -117,4 +129,14 @@ img {
 .page {
   width: min(100% - 28px, var(--container));
   margin: 0 auto 32px;
+}
+
+@media (min-width: 1025px) {
+  :root {
+    --container: 1180px;
+  }
+
+  .page {
+    width: min(100% - clamp(72px, 10vw, 172px), var(--container));
+  }
 }
