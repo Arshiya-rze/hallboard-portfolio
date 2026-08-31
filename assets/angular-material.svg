@@ -1,0 +1,19 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="12" y="12" width="104" height="104" rx="28" fill="url(#bg)"/>
+  <path d="M64 24 99 40.5 93.5 87.5 64 104 34.5 87.5 29 40.5 64 24Z" fill="url(#shield)" stroke="rgba(255,255,255,.72)" stroke-width="3"/>
+  <path d="M48.5 78.5 64 39l15.5 39.5h-9.4l-2.9-8.4H60.8l2.7-7.7h.9L64 61.7l-.4 1.2h-2.9l-2.9 7.2-2.9 8.4h-6.4Z" fill="white"/>
+  <rect x="73" y="73" width="24" height="19" rx="7" fill="#FDE047"/>
+  <text x="85" y="87.5" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="900" fill="#111827">M3</text>
+  <defs>
+    <linearGradient id="bg" x1="20" y1="16" x2="108" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EF4444"/>
+      <stop offset=".48" stop-color="#C026D3"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="38" y1="31" x2="96" y2="97" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F43F5E"/>
+      <stop offset=".5" stop-color="#A855F7"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+</svg>

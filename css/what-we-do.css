@@ -244,6 +244,8 @@
   position: relative;
   flex: 0 0 var(--services-card-width);
   min-height: 360px;
+  display: flex;
+  flex-direction: column;
   padding: 28px 24px;
   overflow: hidden;
   direction: rtl;
@@ -320,6 +322,8 @@
   list-style: none;
   display: grid;
   gap: 13px;
+  flex: 1;
+  align-content: start;
 }
 
 .service-card li {
@@ -347,7 +351,7 @@
 }
 
 .service-card a {
-  margin-top: 26px;
+  margin-top: auto;
   padding-top: 18px;
   display: flex;
   justify-content: center;
@@ -514,7 +518,7 @@
   }
 
   .service-card a {
-    margin-top: 18px;
+    margin-top: auto;
     padding-top: 14px;
     font-size: 12px;
   }

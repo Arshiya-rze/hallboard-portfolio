@@ -13,6 +13,7 @@
   --parallax-y-deg: 0deg;
   --core-size: 108px;
   position: relative;
+  scroll-margin-top: 0;
   min-height: 188svh;
   margin-top: 44px;
   overflow: clip;

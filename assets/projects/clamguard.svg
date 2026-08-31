@@ -1,0 +1,64 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" rx="44" fill="#050712"/>
+  <rect x="60" y="58" width="1160" height="604" rx="40" fill="url(#panel)" stroke="url(#stroke)" stroke-width="2"/>
+  <g opacity=".52">
+    <path d="M111 184h1058M111 279h1058M111 374h1058M111 469h1058M111 564h1058" stroke="#1E3A5F"/>
+    <path d="M238 98v526M396 98v526M554 98v526M712 98v526M870 98v526M1028 98v526" stroke="#1B2548"/>
+  </g>
+  <circle cx="640" cy="360" r="142" fill="url(#coreGlow)" opacity=".75"/>
+  <circle cx="640" cy="360" r="96" fill="#08111F" stroke="#3DD6B3" stroke-width="2"/>
+  <path d="M640 228c48 31 104 39 104 39v87c0 76-48 124-104 146-56-22-104-70-104-146v-87s56-8 104-39Z" fill="url(#shield)" stroke="#67E8F9" stroke-width="3"/>
+  <path d="m604 359 27 27 54-68" stroke="white" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <g filter="url(#blur)">
+    <circle cx="359" cy="208" r="55" fill="#7C3AED" opacity=".55"/>
+    <circle cx="936" cy="504" r="70" fill="#10B981" opacity=".42"/>
+    <circle cx="943" cy="199" r="46" fill="#38BDF8" opacity=".42"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif" font-weight="800">
+    <text x="116" y="145" fill="#A7F3D0" font-size="28">Native AOT Linux CLI</text>
+    <text x="116" y="188" fill="#F8FAFC" font-size="54">Hallboard ClamGuard</text>
+    <text x="116" y="234" fill="#9CA3AF" font-size="25">Concurrent malware scanning through ClamAV INSTREAM</text>
+  </g>
+  <g font-family="JetBrains Mono, monospace" font-size="24" font-weight="700">
+    <rect x="102" y="430" width="410" height="148" rx="24" fill="#06101D" stroke="#1F8A70"/>
+    <text x="132" y="476" fill="#67E8F9">$ clamguard scan /srv</text>
+    <text x="132" y="516" fill="#A7F3D0">scanned: 42,816 files</text>
+    <text x="132" y="556" fill="#FBBF24">coverage: reliable</text>
+    <rect x="775" y="430" width="402" height="148" rx="24" fill="#07101D" stroke="#2563EB"/>
+    <text x="805" y="476" fill="#93C5FD">socket: /run/clamav/clamd.ctl</text>
+    <text x="805" y="516" fill="#C4B5FD">mode: bounded concurrency</text>
+    <text x="805" y="556" fill="#F8FAFC">exit codes: automation-ready</text>
+  </g>
+  <g>
+    <circle cx="387" cy="326" r="8" fill="#67E8F9"/>
+    <circle cx="493" cy="308" r="6" fill="#A78BFA"/>
+    <circle cx="798" cy="315" r="7" fill="#34D399"/>
+    <circle cx="890" cy="351" r="5" fill="#60A5FA"/>
+    <path d="M395 326h145M746 334h139M512 463l62-55M768 460l-62-55" stroke="#67E8F9" stroke-width="2" opacity=".55"/>
+  </g>
+  <defs>
+    <linearGradient id="panel" x1="60" y1="58" x2="1185" y2="662" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071523"/>
+      <stop offset=".48" stop-color="#060817"/>
+      <stop offset="1" stop-color="#0B1D22"/>
+    </linearGradient>
+    <linearGradient id="stroke" x1="104" y1="82" x2="1216" y2="645" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8"/>
+      <stop offset=".52" stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#34D399"/>
+    </linearGradient>
+    <radialGradient id="coreGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(640 360) rotate(90) scale(164)">
+      <stop stop-color="#67E8F9"/>
+      <stop offset=".48" stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shield" x1="548" y1="243" x2="724" y2="489" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0EA5E9"/>
+      <stop offset=".45" stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#10B981"/>
+    </linearGradient>
+    <filter id="blur" x="250" y="99" width="756" height="511" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+  </defs>
+</svg>

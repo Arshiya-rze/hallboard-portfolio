@@ -116,6 +116,23 @@
 
   document.addEventListener("visibilitychange", startAnimation);
 
+  const header = document.querySelector(".header");
+  let stickyFrameId = 0;
+
+  const updateHeaderStickiness = () => {
+    stickyFrameId = 0;
+    header?.classList.toggle("is-sticky", window.scrollY > 18);
+  };
+
+  const requestHeaderStickinessUpdate = () => {
+    if (stickyFrameId) return;
+    stickyFrameId = requestAnimationFrame(updateHeaderStickiness);
+  };
+
+  updateHeaderStickiness();
+  window.addEventListener("scroll", requestHeaderStickinessUpdate, { passive: true });
+  window.addEventListener("resize", requestHeaderStickinessUpdate, { passive: true });
+
   const menuToggle = document.querySelector("#menu-toggle");
   const menuButton = document.querySelector(".hamburger");
   const menuLinks = document.querySelectorAll("#primary-nav a");

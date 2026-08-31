@@ -38,6 +38,9 @@
   position: relative;
   min-width: 0;
   padding: 13px 9px 14px;
+  display: grid;
+  justify-items: center;
+  align-content: start;
   text-align: center;
   background: rgba(255, 255, 255, 0.018);
   border: 1px solid rgba(255, 255, 255, 0.055);
@@ -89,13 +92,17 @@
 }
 
 .feature-bar h3 {
-  margin: 0 0 5px;
+  width: 100%;
+  max-width: 150px;
+  margin: 0 auto 5px;
   font-size: 13px;
   line-height: 1.55;
 }
 
 .feature-bar p {
-  margin: 0;
+  width: 100%;
+  max-width: 170px;
+  margin: 0 auto;
   color: var(--muted);
   font-size: 10.5px;
   line-height: 1.8;
