@@ -56,6 +56,54 @@
   object-fit: contain;
 }
 
+/* Reveal the existing wordmark, not a replacement font/logo. Fixed outer width
+   keeps navigation and the mobile menu stationary throughout the animation. */
+.header .brand { width: 128px; min-height: 44px; }
+.brand-reveal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  direction: ltr;
+  gap: 0;
+  margin-inline: auto;
+  transition: gap 550ms cubic-bezier(.22, 1, .36, 1);
+}
+.brand-mark {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 36px;
+  background: url('../assets/logo-optimized.webp') -19.25px 0 / 71.53px 52.5px no-repeat;
+  filter: drop-shadow(0 0 7px #9355e550);
+  transition: filter 550ms ease;
+}
+.brand-wordmark {
+  position: relative;
+  width: 0;
+  height: 14px;
+  opacity: 0;
+  overflow: hidden;
+  background: url('../assets/logo-optimized.webp') 0 -48px / 90px 66.05px no-repeat;
+  transition: width 650ms cubic-bezier(.22, 1, .36, 1), opacity 350ms ease;
+}
+.brand-wordmark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 65%, #bba2ff70);
+  transform: translateX(-110%);
+  pointer-events: none;
+}
+.is-brand-expanded .brand-reveal { gap: 8px; }
+.is-brand-expanded .brand-wordmark { width: 90px; opacity: 1; }
+.is-brand-expanded .brand-wordmark::after { animation: brand-trail 700ms ease-out both; }
+.is-brand-expanded .brand-mark { filter: drop-shadow(0 0 9px #9355e580); }
+.brand:focus-visible { outline: 2px solid #c4b5fd; outline-offset: 3px; border-radius: 8px; }
+@keyframes brand-trail { to { transform: translateX(110%); } }
+@media (prefers-reduced-motion: reduce) {
+  .brand-reveal, .brand-mark, .brand-wordmark { transition: none; }
+  .is-brand-expanded .brand-wordmark::after { animation: none; display: none; }
+}
+
 .menu-toggle {
   position: absolute;
   opacity: 0;

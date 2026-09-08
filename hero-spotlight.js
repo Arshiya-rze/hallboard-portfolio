@@ -118,10 +118,20 @@
 
   const header = document.querySelector(".header");
   let stickyFrameId = 0;
+  let brandScrollAnchor = Math.max(0, window.scrollY);
 
   const updateHeaderStickiness = () => {
     stickyFrameId = 0;
-    header?.classList.toggle("is-sticky", window.scrollY > 18);
+    const scrollY = Math.max(0, Math.min(window.scrollY, document.documentElement.scrollHeight - window.innerHeight));
+    header?.classList.toggle("is-sticky", scrollY > 18);
+    // Accumulate small movements; avoid flicker from trackpad jitter and bounce.
+    if (scrollY <= 24) {
+      header?.classList.remove("is-brand-expanded");
+      brandScrollAnchor = scrollY;
+    } else if (Math.abs(scrollY - brandScrollAnchor) >= 12) {
+      header?.classList.toggle("is-brand-expanded", scrollY > brandScrollAnchor);
+      brandScrollAnchor = scrollY;
+    }
   };
 
   const requestHeaderStickinessUpdate = () => {
