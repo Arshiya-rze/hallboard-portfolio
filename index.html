@@ -1,1328 +1,2110 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#02030a" />
-  <meta name="description" content="هالبورد؛ تیم مهندسی نرم‌افزار برای طراحی و توسعه محصولات دیجیتال مدرن و مقیاس‌پذیر." />
-  <title>Hallboard</title>
-  <link rel="icon" href="./favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
-  <link rel="preload" as="image" href="./assets/hero-cinematic-base-mobile.webp" type="image/webp" media="(max-width: 767px)" />
-  <link rel="preload" as="image" href="./assets/hero-cinematic-reveal-mobile.webp" type="image/webp" media="(max-width: 767px)" />
-  <link rel="preload" as="image" href="./assets/hero-cinematic-base.webp" type="image/webp" media="(min-width: 768px)" />
-  <link rel="preload" as="image" href="./assets/hero-cinematic-reveal.webp" type="image/webp" media="(min-width: 768px)" />
-  <link rel="stylesheet" href="./style.css" />
-  <script src="./hero-spotlight.js" defer></script>
-</head>
-<body>
-
-  <main class="page">
-    <!-- Header -->
-    <header class="header">
-      <a class="brand" href="#hero" aria-label="هالبورد؛ بازگشت به ابتدای صفحه">
-        <img src="./assets/logo-optimized.webp" width="327" height="240" alt="Hallboard" />
-      </a>
-
-      <input type="checkbox" id="menu-toggle" class="menu-toggle" tabindex="-1" />
-
-      <label for="menu-toggle" class="hamburger" role="button" tabindex="0" aria-label="باز کردن منوی اصلی" aria-controls="primary-nav" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-
-      <nav class="nav" id="primary-nav" aria-label="منوی اصلی">
-        <a href="#projects">نمونه‌کارها</a>
-        <a href="#what-we-do">خدمات ما</a>
-        <a href="#how-we-work">روش کار ما</a>
-        <a href="#team">تیم ما</a>
-      </nav>
-
-      <a class="btn btn-primary header-btn" href="#contact">
-        شروع همکاری
-        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M17 7 7 17M7 7h10v10" /></svg>
-      </a>
-    </header>
-
-    <div class="hero-shell">
-      <!-- Cinematic Hero -->
-      <section class="hero" id="hero" aria-labelledby="hero-title">
-        <div class="hero-scene" aria-hidden="true">
-          <div class="hero-backdrop hero-backdrop-base"></div>
-          <div class="hero-backdrop hero-backdrop-reveal"></div>
-          <div class="hero-lens-ring"></div>
-          <div class="hero-grid"></div>
-          <div class="hero-vignette"></div>
-
-          <div class="hero-object hero-object-angular">
-            <img src="./assets/angular.png" alt="" />
-          </div>
-
-          <div class="hero-object hero-object-dotnet"><span>.NET 10</span></div>
-
-          <div class="hero-object hero-object-database">
-            <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" /></svg>
-          </div>
-
-          <div class="hero-object hero-object-git">
-            <svg viewBox="0 0 24 24"><circle cx="6" cy="5" r="2" /><circle cx="18" cy="6" r="2" /><circle cx="6" cy="19" r="2" /><path d="M6 7v10M8 9c5 0 4-3 8-3" /></svg>
-          </div>
-
-          <div class="hero-object hero-object-api">
-            <svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" /><circle cx="19" cy="6" r="2" /><circle cx="19" cy="18" r="2" /><path d="m7 11 10-4M7 13l10 4" /></svg>
-          </div>
-
-          <div class="hero-object hero-object-cloud">
-            <svg viewBox="0 0 24 24"><path d="M17.5 19H7a5 5 0 1 1 1.7-9.7A6 6 0 0 1 20 12a3.5 3.5 0 0 1-2.5 7Z" /></svg>
-          </div>
-        </div>
-
-        <div class="hero-content">
-          <div class="badge">
-            <span></span>
-            مهندسی دقیق برای محصولات آینده
-          </div>
-
-          <h1 id="hero-title">
-            <span>ما آینده دیجیتال را می‌سازیم</span>
-            <strong>با مهندسی نرم‌افزار</strong>
-          </h1>
-
-          <p>
-            ما یک تیم مهندسی نرم‌افزار هستیم که محصولات دیجیتال مقیاس‌پذیر، سریع و مدرن طراحی و توسعه می‌دهیم.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="#contact">
-              شروع همکاری
-              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M17 7 7 17M7 7h10v10" /></svg>
-            </a>
-
-            <a class="btn btn-outline btn-lg" href="#projects">
-              مشاهده پروژه‌ها
-              <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 8h10M7 12h6" /></svg>
-            </a>
-          </div>
-
-          <div class="hero-tech" aria-label="فناوری‌های اصلی تیم">
-            <span class="tech-angular">Angular 22</span>
-            <i></i>
-            <span class="tech-dotnet">.NET 10</span>
-            <i></i>
-            <span class="tech-cloud">Cloud</span>
-            <i></i>
-            <span class="tech-devops">DevOps</span>
-          </div>
-        </div>
-
-        <div class="spotlight-hint" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="m5 3 14 8-6 2-2 6L5 3Z" /></svg>
-          <span class="spotlight-hint-desktop">برای کشف لایه عمیق‌تر، نشانگر را حرکت دهید</span>
-          <span class="spotlight-hint-mobile">برای کشف لایه عمیق‌تر، لمس و حرکت کنید</span>
-        </div>
-
-        <a class="scroll-cue" href="#engineering-experience" aria-label="رفتن به بخش بعدی؛ تجربه مهندسی محصول">
-          <!-- <span class="scroll-cue-text">بخش بعدی</span> -->
-          <span class="scroll-cue-arrow" aria-hidden="true"></span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#02030a" />
+    <meta
+      name="description"
+      content="هالبورد؛ تیم مهندسی نرم‌افزار برای طراحی و توسعه محصولات دیجیتال مدرن و مقیاس‌پذیر."
+    />
+    <title>Hallboard</title>
+    <link rel="icon" href="./favicon.ico" sizes="any" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/apple-touch-icon.png"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="./assets/hero-cinematic-base-mobile.webp"
+      type="image/webp"
+      media="(max-width: 767px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="./assets/hero-cinematic-reveal-mobile.webp"
+      type="image/webp"
+      media="(max-width: 767px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="./assets/hero-cinematic-base.webp"
+      type="image/webp"
+      media="(min-width: 768px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="./assets/hero-cinematic-reveal.webp"
+      type="image/webp"
+      media="(min-width: 768px)"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./hero-spotlight.js" defer></script>
+    <script src="./team-cards.js" defer></script>
+  </head>
+  <body>
+    <main class="page">
+      <!-- Header -->
+      <header class="header">
+        <a
+          class="brand"
+          href="#hero"
+          aria-label="هالبورد؛ بازگشت به ابتدای صفحه"
+        >
+          <img
+            src="./assets/logo-optimized.webp"
+            width="327"
+            height="240"
+            alt="Hallboard"
+          />
         </a>
-      </section>
-    </div>
 
-    <!-- Engineering Experience -->
-    <section class="engineering-experience story-stage-0" id="engineering-experience" aria-labelledby="engineering-experience-title" data-engineering-experience>
-      <div class="engineering-sticky">
-        <div class="engineering-copy">
-          <span class="section-eyebrow">جهان مهندسی محصول</span>
-
-          <h2 id="engineering-experience-title" data-story-title>
-            ما ایده‌ها را به محصولات دیجیتال تبدیل می‌کنیم
-          </h2>
-
-          <p data-story-description>
-            یک موتور مهندسی کامل؛ از استراتژی و طراحی تا فرانت‌اند، بک‌اند،
-            داده، زیرساخت ابری و محصول واقعی قابل رشد.
-          </p>
-
-          <div class="story-progress-meter" aria-hidden="true">
-            <span></span>
-          </div>
-
-          <div class="story-stage-pills" aria-label="مراحل تجربه مهندسی محصول">
-            <span class="is-active" data-stage-pill="0">Core</span>
-            <span data-stage-pill="1">Strategy</span>
-            <span data-stage-pill="2">Build</span>
-            <span data-stage-pill="3">Scale</span>
-            <span data-stage-pill="4">Product</span>
-          </div>
-        </div>
-
-        <div class="engineering-visual" data-engineering-visual>
-          <div class="universe-card" data-universe-card>
-            <div class="universe-grid" aria-hidden="true"></div>
-            <div class="engineering-artifacts" aria-hidden="true">
-              <div class="artifact-card artifact-code">
-                <span></span>
-                <i></i>
-                <i></i>
-                <i></i>
-              </div>
-              <div class="artifact-card artifact-chart">
-                <b></b>
-                <b></b>
-                <b></b>
-              </div>
-              <div class="artifact-card artifact-deploy">
-                <img src="./assets/docker.svg" alt="" />
-                <img src="./assets/github-actions.svg" alt="" />
-                <img src="./assets/aws.svg" alt="" />
-              </div>
-            </div>
-            <div class="orbit-ring orbit-ring-inner" aria-hidden="true"></div>
-            <div class="orbit-ring orbit-ring-outer" aria-hidden="true"></div>
-
-            <div class="connection-web" aria-hidden="true">
-              <span class="connection-line connection-strategy"></span>
-              <span class="connection-line connection-frontend"></span>
-              <span class="connection-line connection-backend"></span>
-              <span class="connection-line connection-data"></span>
-              <span class="connection-line connection-cloud"></span>
-              <span class="connection-line connection-product"></span>
-            </div>
-
-            <span class="data-particle particle-1" aria-hidden="true"></span>
-            <span class="data-particle particle-2" aria-hidden="true"></span>
-            <span class="data-particle particle-3" aria-hidden="true"></span>
-            <span class="data-particle particle-4" aria-hidden="true"></span>
-
-            <div class="product-core" aria-label="موتور محصول دیجیتال هالبورد">
-              <span class="core-halo"></span>
-              <span class="core-shell"></span>
-              <span class="core-particle core-particle-1"></span>
-              <span class="core-particle core-particle-2"></span>
-              <span class="core-particle core-particle-3"></span>
-              <img class="core-mark" src="./assets/logo-optimized.webp" alt="" />
-              <div class="core-label">
-                <small>Digital Product Engine</small>
-                <strong>Hallboard Core</strong>
-              </div>
-            </div>
-
-            <button class="orbit-node node-strategy" type="button" data-story-node data-story-stage="1" data-node-title="تحلیل و طراحی" data-node-description="نیاز، بازار، مسیر محصول و اولویت‌های فنی قبل از توسعه شفاف می‌شود.">
-              <span class="node-orb"><img src="./assets/figma.svg" alt="" /></span>
-              <strong>Strategy</strong>
-              <small>تحلیل و طراحی</small>
-            </button>
-
-            <button class="orbit-node node-frontend" type="button" data-story-node data-story-stage="2" data-node-title="فرانت‌اند مهندسی‌شده" data-node-description="رابط‌های سریع، واکنش‌گرا و قابل توسعه با ساختار component-based طراحی می‌شوند.">
-              <span class="node-orb"><img src="./assets/angular.png" alt="" /></span>
-              <strong>Frontend</strong>
-              <small>لایه تجربه کاربر</small>
-            </button>
-
-            <button class="orbit-node node-backend" type="button" data-story-node data-story-stage="2" data-node-title="بک‌اند و API" data-node-description="سرویس‌ها، APIها و منطق تجاری با معماری امن و مقیاس‌پذیر ساخته می‌شوند.">
-              <span class="node-orb"><img src="./assets/dotnet.svg" alt="" /></span>
-              <strong>Backend</strong>
-              <small>سرویس و API</small>
-            </button>
-
-            <button class="orbit-node node-data" type="button" data-story-node data-story-stage="3" data-node-title="لایه داده" data-node-description="دیتابیس، کش، جست‌وجو و جریان داده برای رشد محصول بهینه می‌شود.">
-              <span class="node-orb"><img src="./assets/postgresql.png" alt="" /></span>
-              <strong>Data</strong>
-              <small>دیتابیس و پردازش</small>
-            </button>
-
-            <button class="orbit-node node-cloud" type="button" data-story-node data-story-stage="3" data-node-title="Cloud & DevOps" data-node-description="استقرار، CI/CD، مانیتورینگ و زیرساخت ابری با هزینه و ریسک کنترل‌شده اجرا می‌شود.">
-              <span class="node-orb"><img src="./assets/aws.svg" alt="" /></span>
-              <strong>Cloud</strong>
-              <small>زیرساخت و DevOps</small>
-            </button>
-
-            <button class="orbit-node node-products" type="button" data-story-node data-story-stage="4" data-node-title="محصول واقعی" data-node-description="خروجی فقط کد نیست؛ محصولی قابل استفاده، قابل رشد و آماده ورود به بازار است.">
-              <span class="node-orb"><img src="./assets/project-dashboard.svg" alt="" /></span>
-              <strong>Products</strong>
-              <small>از ایده تا لانچ</small>
-            </button>
-
-            <div class="node-info" data-node-info>
-              <strong>موتور محصول دیجیتال</strong>
-              <span>با اسکرول، اکوسیستم مهندسی کامل هالبورد فعال می‌شود.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section class="projects-section" id="projects">
-      <div class="section-header projects-header">
-        <span class="section-eyebrow">پروژه‌های منتخب</span>
-
-        <h2>
-          محصولاتی که فقط زیبا نیستند؛
-          <strong>اثرگذارند</strong>
-        </h2>
-
-        <p>
-          نمونه‌ای از راهکارهایی که با تمرکز بر مسئله کسب‌وکار، معماری قابل رشد
-          و تجربه کاربری دقیق ساخته شده‌اند.
-        </p>
-      </div>
-
-      <div class="projects-carousel" data-projects-slider>
-        <button class="projects-nav projects-nav-prev" type="button" data-project-prev aria-label="پروژه قبلی">
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" /></svg>
-        </button>
-
-        <div class="projects-viewport" tabindex="0" aria-label="اسلایدر نمونه‌کارها">
-          <div class="featured-projects" data-projects-track aria-label="نمونه پروژه‌های منتخب">
-            <article class="project-card" data-project-card>
-              <a class="project-visual" href="https://tc-vault-eta.vercel.app/fa/home" target="_blank" rel="noopener" aria-label="مشاهده پروژه TCVault">
-                <img src="./assets/projects/tcvault.jpg" alt="تصویر پلتفرم TCVault برای خرید و فروش کارت‌های فوتبالی" loading="eager" decoding="async" />
-              </a>
-
-              <div class="project-body">
-                <div class="project-meta">
-                  <span>Marketplace</span>
-                  <span>محصول واقعی</span>
-                </div>
-
-                <h3>TCVault</h3>
-                <p>
-                  پلتفرم دو زبانه برای خرید، فروش و معاوضه کارت‌های فوتبالی با تمرکز
-                  بر معامله امن، تأیید اصالت کارت‌ها و تجربه کاربری سریع.
-                </p>
-
-                <div class="project-impact">
-                  <strong>۱۰۰٪</strong>
-                  <span>تمرکز بر امنیت معامله، بررسی تخصصی کارت‌ها و ارسال مطمئن</span>
-                </div>
-
-                <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
-                  <span>Marketplace</span>
-                  <span>i18n</span>
-                  <span>Secure Flow</span>
-                  <span>Vercel</span>
-                </div>
-
-                <details class="project-more">
-                  <summary>جزئیات</summary>
-                  <p>طراحی مسیرهای خانه، بازار، کارت بازی، فروشگاه و راهنمای کاربر برای یک تجربه قابل اعتماد در حوزه کلکسیون کارت فوتبال.</p>
-                </details>
-
-                <div class="project-actions">
-                  <a href="https://tc-vault-eta.vercel.app/fa/home" target="_blank" rel="noopener" class="btn btn-primary">مشاهده پروژه <span>↗</span></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" data-project-card>
-              <a class="project-visual" href="https://git.hallboard.ir/team/ClamGuard.NativeAOT" target="_blank" rel="noopener" aria-label="مشاهده مخزن Hallboard ClamGuard">
-                <img src="./assets/projects/clamguard.svg" alt="تصویر مفهومی ابزار امنیتی Hallboard ClamGuard" loading="eager" decoding="async" />
-              </a>
-
-              <div class="project-body">
-                <div class="project-meta">
-                  <span>Security CLI</span>
-                  <span>Native AOT</span>
-                </div>
-
-                <h3>Hallboard ClamGuard</h3>
-                <p>
-                  ابزار CLI لینوکسی برای اسکن بدافزار با ارتباط مستقیم به ClamAV از
-                  طریق Unix Socket و پروتکل INSTREAM.
-                </p>
-
-                <div class="project-impact">
-                  <strong>AOT</strong>
-                  <span>اجرای مستقل روی Linux x64 بدون نیاز به نصب runtime دات‌نت</span>
-                </div>
-
-                <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
-                  <span><img src="./assets/dotnet.svg" alt="" />.NET 10</span>
-                  <span>C#</span>
-                  <span>ClamAV</span>
-                  <span>Unix Sockets</span>
-                </div>
-
-                <details class="project-more">
-                  <summary>جزئیات</summary>
-                  <p>پیاده‌سازی scan همزمان کنترل‌شده، traversal امن فایل‌سیستم، پروفایل‌های قابل تنظیم، progress زنده و exit code مناسب اتوماسیون.</p>
-                </details>
-
-                <div class="project-actions">
-                  <a href="https://git.hallboard.ir/team/ClamGuard.NativeAOT" target="_blank" rel="noopener" class="btn btn-primary">مشاهده مخزن <span>↗</span></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" data-project-card>
-              <a class="project-visual" href="https://sound-wave-sepia.vercel.app/" target="_blank" rel="noopener" aria-label="مشاهده پروژه Sound Wave">
-                <img src="./assets/projects/soundwave.jpg" alt="تصویر وب‌اپلیکیشن Sound Wave برای اشتراک‌گذاری موسیقی" loading="eager" decoding="async" />
-              </a>
-
-              <div class="project-body">
-                <div class="project-meta">
-                  <span>PWA</span>
-                  <span>Music Platform</span>
-                </div>
-
-                <h3>Sound Wave</h3>
-                <p>
-                  وب‌اپلیکیشن و PWA برای ثبت‌نام، آپلود موسیقی، پخش آثار کاربران و
-                  پیشنهاد موزیک با Chat AI بر اساس حس‌وحال کاربر.
-                </p>
-
-                <div class="project-impact">
-                  <strong>AI</strong>
-                  <span>پیشنهاد موسیقی شخصی‌سازی‌شده در کنار تجربه اشتراک‌گذاری و پخش</span>
-                </div>
-
-                <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
-                  <span><img src="./assets/angular.png" alt="" />Angular 22</span>
-                  <span><img src="./assets/dotnet.svg" alt="" />.NET 10</span>
-                  <span><img src="./assets/mongodb.png" alt="" />MongoDB</span>
-                  <span>PWA</span>
-                </div>
-
-                <details class="project-more">
-                  <summary>جزئیات</summary>
-                  <p>توسعه کامل فرانت‌اند و بک‌اند، مدیریت داده‌ها و طراحی جریان کاربر برای آپلود، کشف و تعامل با موسیقی.</p>
-                </details>
-
-                <div class="project-actions">
-                  <a href="https://sound-wave-sepia.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary">مشاهده پروژه <span>↗</span></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" data-project-card>
-              <a class="project-visual" href="https://boomdeal.net/" target="_blank" rel="noopener" aria-label="مشاهده پروژه Boom Deal">
-                <img src="./assets/projects/boomdeal.jpg" alt="تصویر پلتفرم Boom Deal برای جستجوی آگهی خودرو" loading="lazy" decoding="async" />
-              </a>
-
-              <div class="project-body">
-                <div class="project-meta">
-                  <span>AI Search</span>
-                  <span>خودرو</span>
-                </div>
-
-                <h3>Boom Deal</h3>
-                <p>
-                  پلتفرم تخصصی نمایش و جستجوی آگهی خودروهای حوزه خلیج فارس با
-                  فیلترهای پیشرفته و پیشنهاد هوشمند خودرو.
-                </p>
-
-                <div class="project-impact">
-                  <strong>AI</strong>
-                  <span>تطبیق نیاز و ترجیحات کاربر با پیشنهادهای مناسب خودرو</span>
-                </div>
-
-                <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
-                  <span><img src="./assets/angular.png" alt="" />Angular 22</span>
-                  <span>Python API</span>
-                  <span><img src="./assets/postgresql.png" alt="" />PostgreSQL</span>
-                  <span>UX Design</span>
-                </div>
-
-                <details class="project-more">
-                  <summary>جزئیات</summary>
-                  <p>پیاده‌سازی رابط کاربری، صفحات جستجو، تجربه کاربری روان و اتصال فرانت‌اند به APIهای مبتنی بر Python و PostgreSQL.</p>
-                </details>
-
-                <div class="project-actions">
-                  <a href="https://boomdeal.net/" target="_blank" rel="noopener" class="btn btn-primary">مشاهده پروژه <span>↗</span></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" data-project-card>
-              <a class="project-visual" href="#contact" aria-label="درخواست دمو پروژه Tehran Page">
-                <img src="./assets/projects/tehranpage.jpg" alt="تصویر پلتفرم Tehran Page برای مدیریت صرافی و نرخ ارز" loading="lazy" decoding="async" />
-              </a>
-
-              <div class="project-body">
-                <div class="project-meta">
-                  <span>Exchange Platform</span>
-                  <span>نرخ ارز</span>
-                </div>
-
-                <h3>Tehran Page</h3>
-                <p>
-                  پلتفرم آنلاین ثبت و مدیریت صرافی‌ها؛ کاربران پس از تأیید ادمین
-                  می‌توانند با ارزهای موجود در اپلیکیشن کار کنند.
-                </p>
-
-                <div class="project-impact">
-                  <strong>Admin</strong>
-                  <span>جریان ثبت، تأیید و مدیریت صرافی‌ها در یک ساختار قابل کنترل</span>
-                </div>
-
-                <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
-                  <span><img src="./assets/nx.svg" alt="" />Next.js</span>
-                  <span><img src="./assets/dotnet.svg" alt="" />.NET 10</span>
-                  <span><img src="./assets/mysql.svg" alt="" />MySQL</span>
-                  <span>Admin Panel</span>
-                </div>
-
-                <details class="project-more">
-                  <summary>جزئیات</summary>
-                  <p>توسعه رابط کاربری، بک‌اند و ساختار داده برای نمایش نرخ‌ها، شعبه‌ها و مدیریت عملیات صرافی.</p>
-                </details>
-
-                <div class="project-actions">
-                  <a href="#contact" class="btn btn-primary">درخواست دمو <span>↗</span></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" data-project-card>
-              <a class="project-visual" href="#contact" aria-label="درخواست دمو پروژه Connect">
-                <img src="./assets/projects/connect.jpg" alt="تصویر وب‌اپلیکیشن Connect برای چت همزمان" loading="lazy" decoding="async" />
-              </a>
-
-              <div class="project-body">
-                <div class="project-meta">
-                  <span>Realtime Chat</span>
-                  <span>File Sharing</span>
-                </div>
-
-                <h3>Connect</h3>
-                <p>
-                  وب‌اپلیکیشن چت Realtime برای ایجاد اتاق‌های عمومی و خصوصی، گفت‌وگوی
-                  همزمان و ارسال فایل بین کاربران.
-                </p>
-
-                <div class="project-impact">
-                  <strong>Live</strong>
-                  <span>ارتباط همزمان، مدیریت اتاق‌ها و تجربه تعاملی بدون وقفه</span>
-                </div>
-
-                <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
-                  <span><img src="./assets/angular.png" alt="" />Angular 22</span>
-                  <span><img src="./assets/dotnet.svg" alt="" />.NET 10</span>
-                  <span>SignalR</span>
-                  <span><img src="./assets/mongodb.png" alt="" />MongoDB</span>
-                </div>
-
-                <details class="project-more">
-                  <summary>جزئیات</summary>
-                  <p>پیاده‌سازی اتاق‌های چت، ارسال فایل، ساختار عمومی/خصوصی و هماهنگی فرانت‌اند و بک‌اند برای ارتباط زنده.</p>
-                </details>
-
-                <div class="project-actions">
-                  <a href="#contact" class="btn btn-primary">درخواست دمو <span>↗</span></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" data-project-card>
-              <a class="project-visual" href="#contact" aria-label="درخواست دمو پروژه Exvore">
-                <img src="./assets/projects/exvore.jpg" alt="تصویر پلتفرم Exvore برای مدیریت صرافی‌ها" loading="lazy" decoding="async" />
-              </a>
-
-              <div class="project-body">
-                <div class="project-meta">
-                  <span>Exchange Management</span>
-                  <span>Realtime Data</span>
-                </div>
-
-                <h3>Exvore</h3>
-                <p>
-                  پلتفرم جامع مدیریت صرافی‌ها با ثبت صراف، تأیید ادمین، مدیریت ارزها
-                  و به‌روزرسانی قیمت‌ها به‌صورت Realtime.
-                </p>
-
-                <div class="project-impact">
-                  <strong>Realtime</strong>
-                  <span>دسترسی دقیق‌تر کاربران به آخرین قیمت‌ها با به‌روزرسانی زنده</span>
-                </div>
-
-                <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
-                  <span><img src="./assets/angular.png" alt="" />Angular 22</span>
-                  <span><img src="./assets/dotnet.svg" alt="" />.NET 10</span>
-                  <span>SignalR</span>
-                  <span><img src="./assets/mongodb.png" alt="" />MongoDB</span>
-                </div>
-
-                <details class="project-more">
-                  <summary>جزئیات</summary>
-                  <p>طراحی پنل مدیریتی، جریان تأیید صرافی‌ها، نمایش داده‌های بازار و مدیریت داده‌ها با معماری سریع و پایدار.</p>
-                </details>
-
-                <div class="project-actions">
-                  <a href="#contact" class="btn btn-primary">درخواست دمو <span>↗</span></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" data-project-card>
-              <a class="project-visual" href="#contact" aria-label="درخواست دمو پروژه City Menu">
-                <img src="./assets/projects/citymenu.jpg" alt="تصویر پلتفرم City Menu برای مدیریت منوی آنلاین" loading="lazy" decoding="async" />
-              </a>
-
-              <div class="project-body">
-                <div class="project-meta">
-                  <span>Restaurant SaaS</span>
-                  <span>منوی آنلاین</span>
-                </div>
-
-                <h3>City Menu</h3>
-                <p>
-                  پلتفرم طراحی و مدیریت منوی آنلاین برای کسب‌وکارها با تمرکز بر
-                  سادگی، سرعت و تجربه کاربری روان.
-                </p>
-
-                <div class="project-impact">
-                  <strong>UX</strong>
-                  <span>ساخت سریع منوی دیجیتال حرفه‌ای برای رستوران‌ها و کافه‌ها</span>
-                </div>
-
-                <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
-                  <span><img src="./assets/angular.png" alt="" />Angular 22</span>
-                  <span><img src="./assets/dotnet.svg" alt="" />C# .NET 10</span>
-                  <span>Menu Builder</span>
-                  <span>UI Design</span>
-                </div>
-
-                <details class="project-more">
-                  <summary>جزئیات</summary>
-                  <p>پیاده‌سازی فرانت‌اند Angular 22 و بک‌اند C# .NET 10 با تجربه‌ای ساده برای ایجاد و مدیریت منوی آنلاین.</p>
-                </details>
-
-                <div class="project-actions">
-                  <a href="#contact" class="btn btn-primary">درخواست دمو <span>↗</span></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" data-project-card>
-              <a class="project-visual" href="#contact" aria-label="درخواست دمو پروژه NexWear">
-                <img src="./assets/projects/nexwear.jpg" alt="تصویر فروشگاه آنلاین NexWear" loading="lazy" decoding="async" />
-              </a>
-
-              <div class="project-body">
-                <div class="project-meta">
-                  <span>Online Shop</span>
-                  <span>CRUD Demo</span>
-                </div>
-
-                <h3>NexWear Shop</h3>
-                <p>
-                  فروشگاه آنلاین دمو با پنل مدیریت محصولات؛ ادمین می‌تواند محصول
-                  اضافه، ویرایش یا حذف کند و برای هر محصول تصویر انتخاب کند.
-                </p>
-
-                <div class="project-impact">
-                  <strong>CRUD</strong>
-                  <span>مدیریت محصول، تصویر، فیلترها و تجربه مرور سریع برای کاربران</span>
-                </div>
-
-                <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
-                  <span><img src="./assets/angular.png" alt="" />Angular 22</span>
-                  <span>Admin Panel</span>
-                  <span>Image Resize</span>
-                  <span>Product Filters</span>
-                </div>
-
-                <details class="project-more">
-                  <summary>جزئیات</summary>
-                  <p>طراحی بخش مدیریت، انتخاب و resize تصویر محصول و امکان مشاهده محصولات با فیلترهای مختلف در سمت کاربر.</p>
-                </details>
-
-                <div class="project-actions">
-                  <a href="#contact" class="btn btn-primary">درخواست دمو <span>↗</span></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" data-project-card>
-              <a class="project-visual" href="#contact" aria-label="درخواست دمو پروژه School">
-                <img src="./assets/projects/school.jpg" alt="تصویر سامانه School برای مدیریت مدرسه برنامه‌نویسی" loading="lazy" decoding="async" />
-              </a>
-
-              <div class="project-body">
-                <div class="project-meta">
-                  <span>Education Platform</span>
-                  <span>مدیریت آموزش</span>
-                </div>
-
-                <h3>School</h3>
-                <p>
-                  سامانه مدیریت مدرسه برنامه‌نویسی برای مدیریت دوره‌ها، دانشجویان،
-                  حضور و غیاب اساتید و مشاهده پروفایل کاربران.
-                </p>
-
-                <div class="project-impact">
-                  <strong>LMS</strong>
-                  <span>یکپارچه‌سازی مدیریت دوره، حضور و غیاب و پروفایل دانشجویان</span>
-                </div>
-
-                <div class="project-techs" aria-label="قابلیت‌های پروژه">
-                  <span>Course Management</span>
-                  <span>Attendance</span>
-                  <span>Student Profiles</span>
-                  <span>Admin Flow</span>
-                </div>
-
-                <details class="project-more">
-                  <summary>جزئیات</summary>
-                  <p>مدیر مدرسه دوره‌ها را مدیریت می‌کند، اساتید حضور و غیاب ثبت می‌کنند و دانشجویان دوره‌ها و پروفایل‌ها را مشاهده می‌کنند.</p>
-                </details>
-
-                <div class="project-actions">
-                  <a href="#contact" class="btn btn-primary">درخواست دمو <span>↗</span></a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <button class="projects-nav projects-nav-next" type="button" data-project-next aria-label="پروژه بعدی">
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></svg>
-        </button>
-
-        <div class="projects-dots" data-projects-dots aria-label="صفحه‌های اسلایدر پروژه‌ها"></div>
-      </div>
-    </section>
-
-    <!-- Feature Bar -->
-    <section class="feature-bar" id="features">
-      <article>
-        <div class="feature-icon">⬡</div>
-        <h3>معماری مقیاس‌پذیر</h3>
-        <p>زیرساختی انعطاف‌پذیر برای رشد پایدار کسب‌وکار شما</p>
-      </article>
-
-      <article>
-        <div class="feature-icon">🛡</div>
-        <h3>امنیت در اولویت</h3>
-        <p>استفاده از استانداردهای امنیتی روز دنیا در تمامی پروژه‌ها</p>
-      </article>
-
-      <article>
-        <div class="feature-icon">🚀</div>
-        <h3>عملکرد فوق‌العاده</h3>
-        <p>بهینه‌سازی برای سرعت بالا و تجربه کاربری بی‌نقص</p>
-      </article>
-
-      <article>
-        <div class="feature-icon">⌘</div>
-        <h3>کدنویسی تمیز</h3>
-        <p>کدهای استاندارد، قابل نگهداری و توسعه‌پذیر</p>
-      </article>
-
-      <article>
-        <div class="feature-icon">🎧</div>
-        <h3>پشتیبانی مداوم</h3>
-        <p>همراه شما در تمام مراحل پروژه و بعد از اجرا</p>
-      </article>
-    </section>
-
-    <!-- What We Do -->
-    <section class="what-we-do" id="what-we-do">
-      <div class="section-header">
-        <span class="section-eyebrow">آنچه انجام می‌دهیم</span>
-
-        <h2>
-          توسعه نرم‌افزارهای مدرن
-          <strong>از ایده تا محصول</strong>
-        </h2>
-
-        <p>
-          ما به کسب‌وکارها کمک می‌کنیم ایده‌های خود را به محصولات دیجیتال قدرتمند،
-          مقیاس‌پذیر و امن تبدیل کنند.
-        </p>
-      </div>
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <strong>+50</strong>
-          <span>پروژه موفق</span>
-        </div>
-
-        <div class="stat-card">
-          <strong>+30</strong>
-          <span>مشتری راضی</span>
-        </div>
-
-        <div class="stat-card">
-          <strong>+5</strong>
-          <span>سال تجربه</span>
-        </div>
-
-        <div class="stat-card">
-          <strong>100%</strong>
-          <span>تعهد و کیفیت</span>
-        </div>
-      </div>
-
-      <div class="services-header">
-        <span></span>
-        <h3>خدمات ما</h3>
-        <span></span>
-      </div>
-
-      <div class="services-carousel" id="services" data-services-slider>
-        <button class="services-nav services-nav-prev" type="button" data-slider-prev aria-label="خدمت قبلی">
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6" /></svg>
-        </button>
-
-        <div class="services-viewport" tabindex="0" aria-label="اسلایدر خدمات">
-          <div class="services-grid">
-            <article class="service-card">
-              <div class="service-icon">⌘</div>
-              <h3>توسعه وب‌سایت‌های اختصاصی</h3>
-              <p>
-                طراحی و توسعه وب‌سایت‌های سریع، امن و مقیاس‌پذیر با جدیدترین تکنولوژی‌ها.
-              </p>
-
-              <ul>
-                <li>وب‌اپلیکیشن‌های اختصاصی</li>
-                <li>پنل‌های مدیریت پیشرفته</li>
-                <li>فریم‌ورک‌های مدرن</li>
-              </ul>
-
-              <a href="#">اطلاعات بیشتر ↗</a>
-            </article>
-
-            <article class="service-card">
-              <div class="service-icon">▯</div>
-              <h3>توسعه اپلیکیشن‌های موبایل</h3>
-              <p>
-                ساخت اپلیکیشن‌های موبایل حرفه‌ای برای iOS و Android با تجربه کاربری عالی.
-              </p>
-
-              <ul>
-                <li>اپلیکیشن‌های بومی و کراس‌پلتفرم</li>
-                <li>عملکرد بالا و بهینه</li>
-                <li>طراحی مدرن UI/UX</li>
-              </ul>
-
-              <a href="#">اطلاعات بیشتر ↗</a>
-            </article>
-
-            <article class="service-card">
-              <div class="service-icon">☁</div>
-              <h3>راهکارهای ابری و زیرساخت</h3>
-              <p>
-                طراحی و پیاده‌سازی زیرساخت‌های ابری مطمئن، مقیاس‌پذیر و مقرون‌به‌صرفه.
-              </p>
-
-              <ul>
-                <li>معماری ابری AWS و Azure</li>
-                <li>DevOps و CI/CD</li>
-                <li>مانیتورینگ و امنیت</li>
-              </ul>
-
-              <a href="#">اطلاعات بیشتر ↗</a>
-            </article>
-
-            <article class="service-card service-card-wide">
-              <div class="service-icon">🛡</div>
-              <h3>امنیت و تست</h3>
-              <p>
-                تضمین امنیت و کیفیت نرم‌افزار در تمام مراحل توسعه با تست‌های جامع و خودکار.
-              </p>
-
-              <ul>
-                <li>تست‌های جامع و خودکار</li>
-                <li>ممیزی امنیتی و نفوذ</li>
-                <li>تضمین کیفیت QA</li>
-              </ul>
-
-              <a href="#">اطلاعات بیشتر ↗</a>
-            </article>
-
-            <article class="service-card service-card-wide">
-              <div class="service-icon">▧</div>
-              <h3>تحلیل و مشاوره</h3>
-              <p>
-                تحلیل نیازهای کسب‌وکار و ارائه راهکارهای فنی برای رشد و بهبود محصول.
-              </p>
-
-              <ul>
-                <li>تحلیل کسب‌وکار</li>
-                <li>طراحی معماری نرم‌افزار</li>
-                <li>مشاوره فنی و بهینه‌سازی</li>
-              </ul>
-
-              <a href="#">اطلاعات بیشتر ↗</a>
-            </article>
-          </div>
-        </div>
-
-        <button class="services-nav services-nav-next" type="button" data-slider-next aria-label="خدمت بعدی">
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></svg>
-        </button>
-
-        <div class="services-dots" data-slider-dots aria-label="صفحه‌های اسلایدر خدمات"></div>
-      </div>
-
-      <!-- Work Process -->
-      <div class="work-process" id="work-process">
-        <div class="process-header">
+        <input
+          type="checkbox"
+          id="menu-toggle"
+          class="menu-toggle"
+          tabindex="-1"
+        />
+
+        <label
+          for="menu-toggle"
+          class="hamburger"
+          role="button"
+          tabindex="0"
+          aria-label="باز کردن منوی اصلی"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+        >
           <span></span>
-          <h3>فرآیند همکاری ما</h3>
           <span></span>
-          <p>یک مسیر شفاف برای رسیدن به بهترین نتیجه</p>
-        </div>
+          <span></span>
+        </label>
 
-        <div class="process-steps">
-          <article class="process-step">
-            <div class="process-icon">⌕</div>
-            <strong>01</strong>
-            <h4>بررسی و تحلیل</h4>
-            <p>بررسی دقیق نیازها و تحلیل کسب‌وکار شما</p>
-          </article>
+        <nav class="nav" id="primary-nav" aria-label="منوی اصلی">
+          <a href="#projects">نمونه‌کارها</a>
+          <a href="#what-we-do">خدمات ما</a>
+          <a href="#how-we-work">روش کار ما</a>
+          <a href="#team">تیم ما</a>
+        </nav>
 
-          <article class="process-step">
-            <div class="process-icon">💡</div>
-            <strong>02</strong>
-            <h4>طراحی راهکار</h4>
-            <p>ارائه بهترین راهکار فنی و طراحی معماری سیستم</p>
-          </article>
+        <a class="btn btn-primary header-btn" href="./contact.html">
+          شروع همکاری
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M17 7 7 17M7 7h10v10" />
+          </svg>
+        </a>
+      </header>
 
-          <article class="process-step">
-            <div class="process-icon">⌘</div>
-            <strong>03</strong>
-            <h4>توسعه و پیاده‌سازی</h4>
-            <p>توسعه با کیفیت بالا و پایبندی به استانداردها</p>
-          </article>
+      <div class="hero-shell">
+        <!-- Cinematic Hero -->
+        <section class="hero" id="hero" aria-labelledby="hero-title">
+          <div class="hero-scene" aria-hidden="true">
+            <div class="hero-backdrop hero-backdrop-base"></div>
+            <div class="hero-backdrop hero-backdrop-reveal"></div>
+            <div class="hero-lens-ring"></div>
+            <div class="hero-grid"></div>
+            <div class="hero-vignette"></div>
 
-          <article class="process-step">
-            <div class="process-icon">✓</div>
-            <strong>04</strong>
-            <h4>تست و کنترل کیفیت</h4>
-            <p>تست‌های جامع برای اطمینان از عملکرد و امنیت</p>
-          </article>
-
-          <article class="process-step">
-            <div class="process-icon">🚀</div>
-            <strong>05</strong>
-            <h4>تحویل و پشتیبانی</h4>
-            <p>تحویل موفق پروژه و پشتیبانی مداوم پس از اجرا</p>
-          </article>
-        </div>
-      </div>
-
-      <!-- What We Do CTA -->
-      <div class="what-we-do-cta" id="contact">
-        <div class="cta-logo">
-          <img src="./assets/logo-optimized.webp" width="327" height="240" alt="Hallboard Logo" />
-        </div>
-
-        <div class="cta-content">
-          <h3>آماده شروع پروژه بعدی شما هستیم</h3>
-          <p>ایده خود را با ما در میان بگذارید و با هم آینده دیجیتال کسب‌وکار شما را بسازیم.</p>
-        </div>
-
-        <div class="cta-actions">
-          <a href="#" class="btn btn-primary">شروع پروژه <span>↗</span></a>
-          <a href="tel:+989038467057" class="btn btn-outline" aria-label="تماس با هالبورد با شماره ۰۹۰۳۸۴۶۷۰۵۷">تماس با ما <span>☎</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Tech Stack -->
-    <section class="tech-stack" id="tech-stack">
-      <div class="section-header tech-stack-header">
-        <span class="section-eyebrow">تکنولوژی‌هایی که با آن‌ها کار می‌کنیم</span>
-
-        <h2>استک فناوری ما</h2>
-
-        <p>
-          ما از مدرن‌ترین و پایدارترین تکنولوژی‌ها برای ساخت محصولاتی مقیاس‌پذیر،
-          امن و با عملکرد بالا استفاده می‌کنیم.
-        </p>
-      </div>
-
-      <div class="tech-orb tech-orb-left">⌘</div>
-      <div class="tech-orb tech-orb-right">{ }</div>
-
-      <div class="tech-tabs" role="tablist" aria-label="دسته‌های استک فناوری">
-        <button class="tech-tab is-active" type="button" data-tech-target="frontend" aria-selected="true">فرانت‌اند</button>
-        <button class="tech-tab" type="button" data-tech-target="backend" aria-selected="false">بک‌اند</button>
-        <button class="tech-tab" type="button" data-tech-target="database" aria-selected="false">دیتابیس</button>
-        <button class="tech-tab" type="button" data-tech-target="devops" aria-selected="false">دوآپس</button>
-        <button class="tech-tab" type="button" data-tech-target="tools" aria-selected="false">ابزارها</button>
-      </div>
-
-      <div class="tech-stack-list">
-
-        <article class="tech-row is-active" data-tech-panel="frontend">
-          <div class="tech-category">
-            <div class="tech-category-icon"><img src="./assets/category-frontend.svg" alt="" /></div>
-            <div>
-              <h3>فرانت‌اند</h3>
-              <p>ساخت رابط کاربری سریع، واکنش‌گرا و تجربه کاربری فوق‌العاده</p>
+            <div class="hero-object hero-object-angular">
+              <img src="./assets/angular.png" alt="" />
             </div>
-          </div>
 
-          <div class="tech-items">
-            <div class="tech-item"><img src="./assets/angular.png" alt="Angular 22"><span>Angular 22</span></div>
-            <div class="tech-item"><img src="./assets/typescript.svg" alt="TypeScript"><span>TypeScript</span></div>
-            <div class="tech-item"><img src="./assets/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
-            <div class="tech-item"><img src="./assets/angular-material.svg" alt="Angular Material v3"><span>Angular Material v3</span></div>
-          </div>
-        </article>
-
-        <article class="tech-row" data-tech-panel="backend">
-          <div class="tech-category">
-            <div class="tech-category-icon"><img src="./assets/category-backend.svg" alt="" /></div>
-            <div>
-              <h3>بک‌اند</h3>
-              <p>ساخت APIهای قدرتمند، امن و مقیاس‌پذیر با معماری تمیز</p>
-            </div>
-          </div>
-
-          <div class="tech-items">
-            <div class="tech-item"><img src="./assets/dotnet.svg" alt=".NET 10"><span>.NET 10</span></div>
-            <div class="tech-item"><img src="./assets/nodejs.svg" alt="Node.js"><span>Node.js</span></div>
-            <div class="tech-item"><img src="./assets/express.svg" alt="Express.js"><span>Express.js</span></div>
-            <div class="tech-item"><img src="./assets/grpc.svg" alt="gRPC"><span>gRPC</span></div>
-            <div class="tech-item"><img src="./assets/java.svg" alt="Java"><span>Java</span></div>
-          </div>
-        </article>
-
-        <article class="tech-row" data-tech-panel="database">
-          <div class="tech-category">
-            <div class="tech-category-icon"><img src="./assets/category-database.svg" alt="" /></div>
-            <div>
-              <h3>دیتابیس</h3>
-              <p>مدیریت و پردازش داده‌ها با کارایی بالا و امنیت Enterprise</p>
-            </div>
-          </div>
-
-          <div class="tech-items">
-            <div class="tech-item"><img src="./assets/mongodb.png" alt="MongoDB"><span>MongoDB</span></div>
-            <div class="tech-item"><img src="./assets/postgresql.png" alt="PostgreSQL"><span>PostgreSQL</span></div>
-            <div class="tech-item"><img src="./assets/redis.svg" alt="Redis"><span>Redis</span></div>
-            <div class="tech-item"><img src="./assets/mysql.svg" alt="MySQL"><span>MySQL</span></div>
-            <div class="tech-item"><img src="./assets/sqlserver.svg" alt="SQL Server"><span>SQL Server</span></div>
-          </div>
-        </article>
-
-        <article class="tech-row" data-tech-panel="devops">
-          <div class="tech-category">
-            <div class="tech-category-icon"><img src="./assets/category-devops.svg" alt="" /></div>
-            <div>
-              <h3>دوآپس</h3>
-              <p>استقرار خودکار، مانیتورینگ و زیرساخت ابری پایدار</p>
-            </div>
-          </div>
-
-          <div class="tech-items">
-            <div class="tech-item"><img src="./assets/docker.svg" alt="Docker"><span>Docker</span></div>
-            <div class="tech-item"><img src="./assets/kubernetes.svg" alt="Kubernetes"><span>Kubernetes</span></div>
-            <div class="tech-item"><img src="./assets/github-actions.svg" alt="GitHub Actions"><span>GitHub Actions</span></div>
-            <div class="tech-item"><img src="./assets/aws.svg" alt="AWS"><span>AWS</span></div>
-            <div class="tech-item"><img src="./assets/azure.svg" alt="Azure"><span>Azure</span></div>
-          </div>
-        </article>
-
-        <article class="tech-row" data-tech-panel="tools">
-          <div class="tech-category">
-            <div class="tech-category-icon"><img src="./assets/category-tools.svg" alt="" /></div>
-            <div>
-              <h3>ابزارها</h3>
-              <p>ابزارهای توسعه و همکاری برای افزایش کیفیت و سرعت تیم</p>
-            </div>
-          </div>
-
-          <div class="tech-items">
-            <div class="tech-item"><img src="./assets/git.png" alt="Git"><span>Git</span></div>
-            <div class="tech-item"><img src="./assets/github.svg" alt="GitHub"><span>GitHub</span></div>
-            <div class="tech-item"><img src="./assets/gitlab.svg" alt="GitLab"><span>GitLab</span></div>
-            <div class="tech-item"><img src="./assets/jetbrains.svg" alt="JetBrains"><span>JetBrains</span></div>
-            <div class="tech-item"><img src="./assets/figma.svg" alt="Figma"><span>Figma</span></div>
-            <div class="tech-item"><img src="./assets/postman.svg" alt="Postman"><span>Postman</span></div>
-          </div>
-        </article>
-
-      </div>
-
-      <div class="tech-note">
-        <span>🛡</span>
-        ما همیشه در حال ارزیابی و به‌روزرسانی استک فناوری خود هستیم تا بهترین راهکارها را برای پروژه‌های شما ارائه دهیم.
-      </div>
-    </section>
-
-    <!-- How We Work -->
-    <section class="how-we-work" id="how-we-work">
-      <div class="section-header how-header">
-        <span class="section-eyebrow">روش کار ما</span>
-
-        <h2>
-          ما چطور <strong>کار</strong> می‌کنیم؟
-        </h2>
-
-        <p>
-          فرآیند کاری ما بر پایه شفافیت، همکاری و کیفیت ساخته شده تا بهترین نتیجه
-          با بیشترین ارزش و کمترین ریسک ارائه شود.
-        </p>
-      </div>
-
-      <div class="how-orb how-orb-left">⌘</div>
-      <div class="how-orb how-orb-right">☷</div>
-
-      <div class="principles-title">
-        <span></span>
-        <h3>اصول کاری ما</h3>
-        <span></span>
-      </div>
-
-      <div class="principles-grid">
-        <article class="principle-card">
-          <div class="principle-icon">☷</div>
-          <h3>همکاری واقعی</h3>
-          <p>ما خودمان را بخشی از تیم شما می‌دانیم، نه فقط یک تیم سفارش‌گیرنده.</p>
-        </article>
-
-        <article class="principle-card">
-          <div class="principle-icon">🚀</div>
-          <h3>تمرکز بر ارزش</h3>
-          <p>ما روی ویژگی‌هایی تمرکز می‌کنیم که بیشترین ارزش را برای کسب‌وکار شما ایجاد می‌کنند.</p>
-        </article>
-
-        <article class="principle-card">
-          <div class="principle-icon">⌘</div>
-          <h3>کدنویسی تمیز</h3>
-          <p>استفاده از استانداردهای روز دنیا و معماری تمیز برای توسعه پایدار و مقیاس‌پذیر.</p>
-        </article>
-
-        <article class="principle-card">
-          <div class="principle-icon">💬</div>
-          <h3>شفافیت کامل</h3>
-          <p>ارتباط شفاف، گزارش‌دهی منظم و دسترسی کامل شما به روند پروژه.</p>
-        </article>
-
-        <article class="principle-card">
-          <div class="principle-icon">🛡</div>
-          <h3>کیفیت در اولویت</h3>
-          <p>ما کیفیت را در هر مرحله، از طراحی تا استقرار و پشتیبانی، تضمین می‌کنیم.</p>
-        </article>
-      </div>
-
-      <div class="process-title">
-        <span></span>
-        <h3>فرآیند کاری ما</h3>
-        <span></span>
-        <p>از ایده تا انتشار، در کنار شما هستیم.</p>
-      </div>
-
-      <div class="how-process">
-        <article class="how-step">
-          <div class="how-step-icon">▤</div>
-          <strong>01</strong>
-          <h3>تحلیل و کشف</h3>
-          <p>بررسی نیازها، تحلیل بازار و تعریف اهداف پروژه با جزئیات.</p>
-        </article>
-
-        <article class="how-step">
-          <div class="how-step-icon">✎</div>
-          <strong>02</strong>
-          <h3>طراحی و برنامه‌ریزی</h3>
-          <p>طراحی معماری، UI/UX و برنامه‌ریزی فنی و زمان‌بندی پروژه.</p>
-        </article>
-
-        <article class="how-step">
-          <div class="how-step-icon">⌘</div>
-          <strong>03</strong>
-          <h3>توسعه و پیاده‌سازی</h3>
-          <p>توسعه ماژولار و اصولی با رعایت استانداردهای کدنویسی.</p>
-        </article>
-
-        <article class="how-step">
-          <div class="how-step-icon">🛡</div>
-          <strong>04</strong>
-          <h3>تست و تضمین کیفیت</h3>
-          <p>تست‌های خودکار و دستی برای تضمین عملکرد، امنیت و پایداری سیستم.</p>
-        </article>
-
-        <article class="how-step">
-          <div class="how-step-icon">🚀</div>
-          <strong>05</strong>
-          <h3>استقرار و راه‌اندازی</h3>
-          <p>استقرار امن در زیرساخت‌های پایدار و بهینه‌سازی عملکرد.</p>
-        </article>
-
-        <article class="how-step">
-          <div class="how-step-icon">🎧</div>
-          <strong>06</strong>
-          <h3>پشتیبانی و بهبود</h3>
-          <p>پشتیبانی مستمر، مانیتورینگ و بهبود مداوم بر اساس داده‌ها.</p>
-        </article>
-      </div>
-
-      <div class="how-result">
-        <div class="result-icon">✺</div>
-        <p>
-          نتیجه کار ما، محصولی <strong>پایدار، امن و مقیاس‌پذیر</strong> است که همراه با رشد کسب‌وکار شما رشد می‌کند.
-        </p>
-      </div>
-    </section>
-
-    <!-- Team -->
-    <section class="team-section" id="team" aria-labelledby="team-title" data-team-section>
-      <div class="team-orb team-orb-right" aria-hidden="true"></div>
-      <div class="team-orb team-orb-left" aria-hidden="true"></div>
-
-      <div class="section-header team-header">
-        <span class="section-eyebrow">تیم هالبورد</span>
-
-        <h2 id="team-title">
-          آدم‌هایی که محصول را
-          <strong>واقعی می‌سازند</strong>
-        </h2>
-
-        <p>
-          پشت هر تصمیم فنی، یک تیم کوچک و دقیق ایستاده؛ از معماری و طراحی تجربه
-          تا توسعه فول‌استک، تست، استقرار و رشد محصول.
-        </p>
-      </div>
-
-      <div class="team-lead-stage">
-        <article class="team-card team-lead-card" data-team-card tabindex="0" role="button" aria-pressed="false" style="--team-accent: #a78bfa; --team-accent-2: #22d3ee; --team-accent-3: #f8fafc;">
-          <div class="team-card-visual">
-            <span class="team-portrait-aura" aria-hidden="true"></span>
-            <img class="team-portrait" src="./assets/team/reza-taba.webp" width="1100" height="1377" alt="پرتره مهندس رضا طبا، Team Lead هالبورد" loading="eager" decoding="async" />
-          </div>
-
-          <div class="team-card-content">
-            <span class="team-card-kicker">Team Lead</span>
-            <h3>مهندس رضا طبا</h3>
-            <p class="team-card-role">Team Lead of Hallboard / Senior Full Stack Developer</p>
-            <p class="team-card-bio">
-              هدایت معماری، تصمیم‌های فنی و کیفیت خروجی؛ از ایده تا محصولی که
-              بتواند در دنیای واقعی رشد کند.
-            </p>
-
-            <div class="team-tags" aria-label="تمرکزهای مهندس رضا طبا">
-              <span>Architecture</span>
-              <span>Leadership</span>
-              <span>Product Engineering</span>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="team-grid" aria-label="اعضای تیم هالبورد">
-        <article class="team-card" data-team-card tabindex="0" role="button" aria-pressed="false" style="--team-accent: #22d3ee; --team-accent-2: #a78bfa; --team-accent-3: #34d399;">
-          <div class="team-card-visual">
-            <span class="team-portrait-aura" aria-hidden="true"></span>
-            <img class="team-portrait" src="./assets/team/frank-baran.webp" width="1059" height="1485" alt="پرتره فرانک باران چشمه، مدیر هالبورد و توسعه‌دهنده فول‌استک" loading="eager" decoding="async" />
-          </div>
-
-          <div class="team-card-content">
-            <span class="team-card-kicker">Manager</span>
-            <h3>فرانک باران چشمه</h3>
-            <p class="team-card-role">Manager of Hallboard / Full Stack Developer</p>
-            <p class="team-card-bio">مدیریت مسیر تیم، هماهنگی اجرا و توسعه محصول با نگاه عملیاتی و دقیق.</p>
-
-            <div class="team-tags" aria-label="تمرکزهای فرانک باران چشمه">
-              <span>Team Flow</span>
-              <span>Product Ops</span>
-              <span>Full Stack</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="team-card" data-team-card tabindex="0" role="button" aria-pressed="false" style="--team-accent: #60a5fa; --team-accent-2: #8b5cf6; --team-accent-3: #22d3ee;">
-          <div class="team-card-visual">
-            <span class="team-portrait-aura" aria-hidden="true"></span>
-            <img class="team-portrait" src="./assets/team/arshia-rezaei.webp" width="1100" height="1375" alt="پرتره ارشیا رضایی، UI و توسعه‌دهنده فول‌استک" loading="eager" decoding="async" />
-          </div>
-
-          <div class="team-card-content">
-            <span class="team-card-kicker">UI Engineering</span>
-            <h3>ارشیا رضایی</h3>
-            <p class="team-card-role">UI / Full Stack Developer</p>
-            <p class="team-card-bio">پیوند تجربه بصری، رابط‌های دقیق و توسعه کامل محصول از فرانت تا بک‌اند.</p>
-
-            <div class="team-tags" aria-label="تمرکزهای ارشیا رضایی">
-              <span>UI</span>
-              <span>Angular 22</span>
+            <div class="hero-object hero-object-dotnet">
               <span>.NET 10</span>
             </div>
-          </div>
-        </article>
 
-        <article class="team-card" data-team-card tabindex="0" role="button" aria-pressed="false" style="--team-accent: #34d399; --team-accent-2: #22d3ee; --team-accent-3: #a78bfa;">
-          <div class="team-card-visual">
-            <span class="team-portrait-aura" aria-hidden="true"></span>
-            <img class="team-portrait" src="./assets/team/hamid-rahimi.webp" width="1100" height="1375" alt="پرتره حمید رحیمی، UX و توسعه‌دهنده فول‌استک" loading="eager" decoding="async" />
-          </div>
+            <div class="hero-object hero-object-database">
+              <svg viewBox="0 0 24 24">
+                <ellipse cx="12" cy="5" rx="8" ry="3" />
+                <path
+                  d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"
+                />
+              </svg>
+            </div>
 
-          <div class="team-card-content">
-            <span class="team-card-kicker">UX Systems</span>
-            <h3>حمید رحیمی</h3>
-            <p class="team-card-role">UX / Full Stack Developer</p>
-            <p class="team-card-bio">طراحی تجربه‌های انسانی و توسعه ساختارهایی که هم قابل استفاده‌اند، هم قابل رشد.</p>
+            <div class="hero-object hero-object-git">
+              <svg viewBox="0 0 24 24">
+                <circle cx="6" cy="5" r="2" />
+                <circle cx="18" cy="6" r="2" />
+                <circle cx="6" cy="19" r="2" />
+                <path d="M6 7v10M8 9c5 0 4-3 8-3" />
+              </svg>
+            </div>
 
-            <div class="team-tags" aria-label="تمرکزهای حمید رحیمی">
-              <span>UX</span>
-              <span>Product Flow</span>
-              <span>Full Stack</span>
+            <div class="hero-object hero-object-api">
+              <svg viewBox="0 0 24 24">
+                <circle cx="5" cy="12" r="2" />
+                <circle cx="19" cy="6" r="2" />
+                <circle cx="19" cy="18" r="2" />
+                <path d="m7 11 10-4M7 13l10 4" />
+              </svg>
+            </div>
+
+            <div class="hero-object hero-object-cloud">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M17.5 19H7a5 5 0 1 1 1.7-9.7A6 6 0 0 1 20 12a3.5 3.5 0 0 1-2.5 7Z"
+                />
+              </svg>
             </div>
           </div>
-        </article>
 
-        <article class="team-card" data-team-card tabindex="0" role="button" aria-pressed="false" style="--team-accent: #f59e0b; --team-accent-2: #8b5cf6; --team-accent-3: #60a5fa;">
-          <div class="team-card-visual">
-            <span class="team-portrait-aura" aria-hidden="true"></span>
-            <img class="team-portrait" src="./assets/team/parsa-joghfari.webp" width="1024" height="1536" alt="پرتره پارسا جغفری، توسعه‌دهنده فول‌استک" loading="eager" decoding="async" />
-          </div>
+          <div class="hero-content">
+            <div class="badge">
+              <span></span>
+              مهندسی دقیق برای محصولات آینده
+            </div>
 
-          <div class="team-card-content">
-            <span class="team-card-kicker">Full Stack</span>
-            <h3>پارسا جغفری</h3>
-            <p class="team-card-role">Full Stack Developer</p>
-            <p class="team-card-bio">ساخت قابلیت‌های کاربردی، اتصال لایه‌ها و توسعه محصول با تمرکز روی کیفیت.</p>
+            <h1 id="hero-title">
+              <span>ما آینده دیجیتال را می‌سازیم</span>
+              <strong>با مهندسی نرم‌افزار</strong>
+            </h1>
 
-            <div class="team-tags" aria-label="تمرکزهای پارسا جغفری">
-              <span>Frontend</span>
-              <span>Backend</span>
-              <span>API</span>
+            <p>
+              ما یک تیم مهندسی نرم‌افزار هستیم که محصولات دیجیتال مقیاس‌پذیر،
+              سریع و مدرن طراحی و توسعه می‌دهیم.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary btn-lg" href="./contact.html">
+                شروع همکاری
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M17 7 7 17M7 7h10v10" />
+                </svg>
+              </a>
+
+              <a class="btn btn-outline btn-lg" href="#projects">
+                مشاهده پروژه‌ها
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="16" rx="2" />
+                  <path d="M7 8h10M7 12h6" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="hero-tech" aria-label="فناوری‌های اصلی تیم">
+              <span class="tech-angular">Angular 22</span>
+              <i></i>
+              <span class="tech-dotnet">.NET 10</span>
+              <i></i>
+              <span class="tech-cloud">Cloud</span>
+              <i></i>
+              <span class="tech-devops">DevOps</span>
             </div>
           </div>
-        </article>
 
-        <article class="team-card" data-team-card tabindex="0" role="button" aria-pressed="false" style="--team-accent: #fb7185; --team-accent-2: #60a5fa; --team-accent-3: #a78bfa;">
-          <div class="team-card-visual">
-            <span class="team-portrait-aura" aria-hidden="true"></span>
-            <img class="team-portrait" src="./assets/team/vahid-hayatipour.webp" width="1100" height="1100" alt="پرتره وحید حیاتی پور، توسعه‌دهنده فول‌استک" loading="eager" decoding="async" />
+          <div class="spotlight-hint" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="m5 3 14 8-6 2-2 6L5 3Z" /></svg>
+            <span class="spotlight-hint-desktop"
+              >برای کشف لایه عمیق‌تر، نشانگر را حرکت دهید</span
+            >
+            <span class="spotlight-hint-mobile"
+              >برای کشف لایه عمیق‌تر، لمس و حرکت کنید</span
+            >
           </div>
 
-          <div class="team-card-content">
-            <span class="team-card-kicker">Full Stack</span>
-            <h3>وحید حیاتی پور</h3>
-            <p class="team-card-role">Full Stack Developer</p>
-            <p class="team-card-bio">پیاده‌سازی بخش‌های پایدار، نگهدارپذیر و آماده رشد در محصول.</p>
+          <a
+            class="scroll-cue"
+            href="#engineering-experience"
+            aria-label="رفتن به بخش بعدی؛ تجربه مهندسی محصول"
+          >
+            <!-- <span class="scroll-cue-text">بخش بعدی</span> -->
+            <span class="scroll-cue-arrow" aria-hidden="true"></span>
+          </a>
+        </section>
+      </div>
 
-            <div class="team-tags" aria-label="تمرکزهای وحید حیاتی پور">
-              <span>Systems</span>
-              <span>Backend</span>
-              <span>Delivery</span>
+      <!-- Engineering Experience -->
+      <section
+        class="engineering-experience story-stage-0"
+        id="engineering-experience"
+        aria-labelledby="engineering-experience-title"
+        data-engineering-experience
+      >
+        <div class="engineering-sticky">
+          <div class="engineering-copy">
+            <span class="section-eyebrow">جهان مهندسی محصول</span>
+
+            <h2 id="engineering-experience-title" data-story-title>
+              ما ایده‌ها را به محصولات دیجیتال تبدیل می‌کنیم
+            </h2>
+
+            <p data-story-description>
+              یک موتور مهندسی کامل؛ از استراتژی و طراحی تا فرانت‌اند، بک‌اند،
+              داده، زیرساخت ابری و محصول واقعی قابل رشد.
+            </p>
+
+            <div class="story-progress-meter" aria-hidden="true">
+              <span></span>
+            </div>
+
+            <div
+              class="story-stage-pills"
+              aria-label="مراحل تجربه مهندسی محصول"
+            >
+              <span class="is-active" data-stage-pill="0">Core</span>
+              <span data-stage-pill="1">Strategy</span>
+              <span data-stage-pill="2">Build</span>
+              <span data-stage-pill="3">Scale</span>
+              <span data-stage-pill="4">Product</span>
             </div>
           </div>
+
+          <div class="engineering-visual" data-engineering-visual>
+            <div class="universe-card" data-universe-card>
+              <div class="universe-grid" aria-hidden="true"></div>
+              <div class="engineering-artifacts" aria-hidden="true">
+                <div class="artifact-card artifact-code">
+                  <span></span>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+                <div class="artifact-card artifact-chart">
+                  <b></b>
+                  <b></b>
+                  <b></b>
+                </div>
+                <div class="artifact-card artifact-deploy">
+                  <img src="./assets/docker.svg" alt="" />
+                  <img src="./assets/github-actions.svg" alt="" />
+                  <img src="./assets/aws.svg" alt="" />
+                </div>
+              </div>
+              <div class="orbit-ring orbit-ring-inner" aria-hidden="true"></div>
+              <div class="orbit-ring orbit-ring-outer" aria-hidden="true"></div>
+
+              <div class="connection-web" aria-hidden="true">
+                <span class="connection-line connection-strategy"></span>
+                <span class="connection-line connection-frontend"></span>
+                <span class="connection-line connection-backend"></span>
+                <span class="connection-line connection-data"></span>
+                <span class="connection-line connection-cloud"></span>
+                <span class="connection-line connection-product"></span>
+              </div>
+
+              <span class="data-particle particle-1" aria-hidden="true"></span>
+              <span class="data-particle particle-2" aria-hidden="true"></span>
+              <span class="data-particle particle-3" aria-hidden="true"></span>
+              <span class="data-particle particle-4" aria-hidden="true"></span>
+
+              <div
+                class="product-core"
+                aria-label="موتور محصول دیجیتال هالبورد"
+              >
+                <span class="core-halo"></span>
+                <span class="core-shell"></span>
+                <span class="core-particle core-particle-1"></span>
+                <span class="core-particle core-particle-2"></span>
+                <span class="core-particle core-particle-3"></span>
+                <img
+                  class="core-mark"
+                  src="./assets/logo-optimized.webp"
+                  alt=""
+                />
+                <div class="core-label">
+                  <small>Digital Product Engine</small>
+                  <strong>Hallboard Core</strong>
+                </div>
+              </div>
+
+              <button
+                class="orbit-node node-strategy"
+                type="button"
+                data-story-node
+                data-story-stage="1"
+                data-node-title="تحلیل و طراحی"
+                data-node-description="نیاز، بازار، مسیر محصول و اولویت‌های فنی قبل از توسعه شفاف می‌شود."
+              >
+                <span class="node-orb"
+                  ><img src="./assets/figma.svg" alt=""
+                /></span>
+                <strong>Strategy</strong>
+                <small>تحلیل و طراحی</small>
+              </button>
+
+              <button
+                class="orbit-node node-frontend"
+                type="button"
+                data-story-node
+                data-story-stage="2"
+                data-node-title="فرانت‌اند مهندسی‌شده"
+                data-node-description="رابط‌های سریع، واکنش‌گرا و قابل توسعه با ساختار component-based طراحی می‌شوند."
+              >
+                <span class="node-orb"
+                  ><img src="./assets/angular.png" alt=""
+                /></span>
+                <strong>Frontend</strong>
+                <small>لایه تجربه کاربر</small>
+              </button>
+
+              <button
+                class="orbit-node node-backend"
+                type="button"
+                data-story-node
+                data-story-stage="2"
+                data-node-title="بک‌اند و API"
+                data-node-description="سرویس‌ها، APIها و منطق تجاری با معماری امن و مقیاس‌پذیر ساخته می‌شوند."
+              >
+                <span class="node-orb"
+                  ><img src="./assets/dotnet.svg" alt=""
+                /></span>
+                <strong>Backend</strong>
+                <small>سرویس و API</small>
+              </button>
+
+              <button
+                class="orbit-node node-data"
+                type="button"
+                data-story-node
+                data-story-stage="3"
+                data-node-title="لایه داده"
+                data-node-description="دیتابیس، کش، جست‌وجو و جریان داده برای رشد محصول بهینه می‌شود."
+              >
+                <span class="node-orb"
+                  ><img src="./assets/postgresql.png" alt=""
+                /></span>
+                <strong>Data</strong>
+                <small>دیتابیس و پردازش</small>
+              </button>
+
+              <button
+                class="orbit-node node-cloud"
+                type="button"
+                data-story-node
+                data-story-stage="3"
+                data-node-title="Cloud & DevOps"
+                data-node-description="استقرار، CI/CD، مانیتورینگ و زیرساخت ابری با هزینه و ریسک کنترل‌شده اجرا می‌شود."
+              >
+                <span class="node-orb"
+                  ><img src="./assets/aws.svg" alt=""
+                /></span>
+                <strong>Cloud</strong>
+                <small>زیرساخت و DevOps</small>
+              </button>
+
+              <button
+                class="orbit-node node-products"
+                type="button"
+                data-story-node
+                data-story-stage="4"
+                data-node-title="محصول واقعی"
+                data-node-description="خروجی فقط کد نیست؛ محصولی قابل استفاده، قابل رشد و آماده ورود به بازار است."
+              >
+                <span class="node-orb"
+                  ><img src="./assets/project-dashboard.svg" alt=""
+                /></span>
+                <strong>Products</strong>
+                <small>از ایده تا لانچ</small>
+              </button>
+
+              <div class="node-info" data-node-info>
+                <strong>موتور محصول دیجیتال</strong>
+                <span
+                  >با اسکرول، اکوسیستم مهندسی کامل هالبورد فعال می‌شود.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="projects-section" id="projects">
+        <div class="section-header projects-header">
+          <span class="section-eyebrow">پروژه‌های منتخب</span>
+
+          <h2>
+            محصولاتی که فقط زیبا نیستند؛
+            <strong>اثرگذارند</strong>
+          </h2>
+
+          <p>
+            نمونه‌ای از راهکارهایی که با تمرکز بر مسئله کسب‌وکار، معماری قابل
+            رشد و تجربه کاربری دقیق ساخته شده‌اند.
+          </p>
+        </div>
+
+        <div class="projects-carousel" data-projects-slider>
+          <button
+            class="projects-nav projects-nav-prev"
+            type="button"
+            data-project-prev
+            aria-label="پروژه قبلی"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+
+          <div
+            class="projects-viewport"
+            tabindex="0"
+            aria-label="اسلایدر نمونه‌کارها"
+          >
+            <div
+              class="featured-projects"
+              data-projects-track
+              aria-label="نمونه پروژه‌های منتخب"
+            >
+              <article class="project-card" data-project-card>
+                <a
+                  class="project-visual"
+                  href="https://tc-vault-eta.vercel.app/fa/home"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="مشاهده پروژه TCVault"
+                >
+                  <img
+                    src="./assets/projects/tcvault.jpg"
+                    alt="تصویر پلتفرم TCVault برای خرید و فروش کارت‌های فوتبالی"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </a>
+
+                <div class="project-body">
+                  <div class="project-meta">
+                    <span>Marketplace</span>
+                    <span>محصول واقعی</span>
+                  </div>
+
+                  <h3>TCVault</h3>
+                  <p>
+                    پلتفرم دو زبانه برای خرید، فروش و معاوضه کارت‌های فوتبالی با
+                    تمرکز بر معامله امن، تأیید اصالت کارت‌ها و تجربه کاربری
+                    سریع.
+                  </p>
+
+                  <div class="project-impact">
+                    <strong>۱۰۰٪</strong>
+                    <span
+                      >تمرکز بر امنیت معامله، بررسی تخصصی کارت‌ها و ارسال
+                      مطمئن</span
+                    >
+                  </div>
+
+                  <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
+                    <span>Marketplace</span>
+                    <span>i18n</span>
+                    <span>Secure Flow</span>
+                    <span>Vercel</span>
+                  </div>
+
+                  <details class="project-more">
+                    <summary>جزئیات</summary>
+                    <p>
+                      طراحی مسیرهای خانه، بازار، کارت بازی، فروشگاه و راهنمای
+                      کاربر برای یک تجربه قابل اعتماد در حوزه کلکسیون کارت
+                      فوتبال.
+                    </p>
+                  </details>
+
+                  <div class="project-actions">
+                    <a
+                      href="https://tc-vault-eta.vercel.app/fa/home"
+                      target="_blank"
+                      rel="noopener"
+                      class="btn btn-primary"
+                      >مشاهده پروژه <span>↗</span></a
+                    >
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-card" data-project-card>
+                <a
+                  class="project-visual"
+                  href="https://git.hallboard.ir/team/ClamGuard.NativeAOT"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="مشاهده مخزن Hallboard ClamGuard"
+                >
+                  <img
+                    src="./assets/projects/clamguard.svg"
+                    alt="تصویر مفهومی ابزار امنیتی Hallboard ClamGuard"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </a>
+
+                <div class="project-body">
+                  <div class="project-meta">
+                    <span>Security CLI</span>
+                    <span>Native AOT</span>
+                  </div>
+
+                  <h3>Hallboard ClamGuard</h3>
+                  <p>
+                    ابزار CLI لینوکسی برای اسکن بدافزار با ارتباط مستقیم به
+                    ClamAV از طریق Unix Socket و پروتکل INSTREAM.
+                  </p>
+
+                  <div class="project-impact">
+                    <strong>AOT</strong>
+                    <span
+                      >اجرای مستقل روی Linux x64 بدون نیاز به نصب runtime
+                      دات‌نت</span
+                    >
+                  </div>
+
+                  <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
+                    <span><img src="./assets/dotnet.svg" alt="" />.NET 10</span>
+                    <span>C#</span>
+                    <span>ClamAV</span>
+                    <span>Unix Sockets</span>
+                  </div>
+
+                  <details class="project-more">
+                    <summary>جزئیات</summary>
+                    <p>
+                      پیاده‌سازی scan همزمان کنترل‌شده، traversal امن
+                      فایل‌سیستم، پروفایل‌های قابل تنظیم، progress زنده و exit
+                      code مناسب اتوماسیون.
+                    </p>
+                  </details>
+
+                  <div class="project-actions">
+                    <a
+                      href="https://git.hallboard.ir/team/ClamGuard.NativeAOT"
+                      target="_blank"
+                      rel="noopener"
+                      class="btn btn-primary"
+                      >مشاهده مخزن <span>↗</span></a
+                    >
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-card" data-project-card>
+                <a
+                  class="project-visual"
+                  href="https://sound-wave-sepia.vercel.app/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="مشاهده پروژه Sound Wave"
+                >
+                  <img
+                    src="./assets/projects/soundwave.jpg"
+                    alt="تصویر وب‌اپلیکیشن Sound Wave برای اشتراک‌گذاری موسیقی"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </a>
+
+                <div class="project-body">
+                  <div class="project-meta">
+                    <span>PWA</span>
+                    <span>Music Platform</span>
+                  </div>
+
+                  <h3>Sound Wave</h3>
+                  <p>
+                    وب‌اپلیکیشن و PWA برای ثبت‌نام، آپلود موسیقی، پخش آثار
+                    کاربران و پیشنهاد موزیک با Chat AI بر اساس حس‌وحال کاربر.
+                  </p>
+
+                  <div class="project-impact">
+                    <strong>AI</strong>
+                    <span
+                      >پیشنهاد موسیقی شخصی‌سازی‌شده در کنار تجربه اشتراک‌گذاری و
+                      پخش</span
+                    >
+                  </div>
+
+                  <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
+                    <span
+                      ><img src="./assets/angular.png" alt="" />Angular 22</span
+                    >
+                    <span><img src="./assets/dotnet.svg" alt="" />.NET 10</span>
+                    <span
+                      ><img src="./assets/mongodb.png" alt="" />MongoDB</span
+                    >
+                    <span>PWA</span>
+                  </div>
+
+                  <details class="project-more">
+                    <summary>جزئیات</summary>
+                    <p>
+                      توسعه کامل فرانت‌اند و بک‌اند، مدیریت داده‌ها و طراحی
+                      جریان کاربر برای آپلود، کشف و تعامل با موسیقی.
+                    </p>
+                  </details>
+
+                  <div class="project-actions">
+                    <a
+                      href="https://sound-wave-sepia.vercel.app/"
+                      target="_blank"
+                      rel="noopener"
+                      class="btn btn-primary"
+                      >مشاهده پروژه <span>↗</span></a
+                    >
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-card" data-project-card>
+                <a
+                  class="project-visual"
+                  href="https://boomdeal.net/"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="مشاهده پروژه Boom Deal"
+                >
+                  <img
+                    src="./assets/projects/boomdeal.jpg"
+                    alt="تصویر پلتفرم Boom Deal برای جستجوی آگهی خودرو"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+
+                <div class="project-body">
+                  <div class="project-meta">
+                    <span>AI Search</span>
+                    <span>خودرو</span>
+                  </div>
+
+                  <h3>Boom Deal</h3>
+                  <p>
+                    پلتفرم تخصصی نمایش و جستجوی آگهی خودروهای حوزه خلیج فارس با
+                    فیلترهای پیشرفته و پیشنهاد هوشمند خودرو.
+                  </p>
+
+                  <div class="project-impact">
+                    <strong>AI</strong>
+                    <span
+                      >تطبیق نیاز و ترجیحات کاربر با پیشنهادهای مناسب
+                      خودرو</span
+                    >
+                  </div>
+
+                  <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
+                    <span
+                      ><img src="./assets/angular.png" alt="" />Angular 22</span
+                    >
+                    <span>Python API</span>
+                    <span
+                      ><img
+                        src="./assets/postgresql.png"
+                        alt=""
+                      />PostgreSQL</span
+                    >
+                    <span>UX Design</span>
+                  </div>
+
+                  <details class="project-more">
+                    <summary>جزئیات</summary>
+                    <p>
+                      پیاده‌سازی رابط کاربری، صفحات جستجو، تجربه کاربری روان و
+                      اتصال فرانت‌اند به APIهای مبتنی بر Python و PostgreSQL.
+                    </p>
+                  </details>
+
+                  <div class="project-actions">
+                    <a
+                      href="https://boomdeal.net/"
+                      target="_blank"
+                      rel="noopener"
+                      class="btn btn-primary"
+                      >مشاهده پروژه <span>↗</span></a
+                    >
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-card" data-project-card>
+                <a
+                  class="project-visual"
+                  href="./contact.html"
+                  aria-label="درخواست دمو پروژه Tehran Page"
+                >
+                  <img
+                    src="./assets/projects/tehranpage.jpg"
+                    alt="تصویر پلتفرم Tehran Page برای مدیریت صرافی و نرخ ارز"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+
+                <div class="project-body">
+                  <div class="project-meta">
+                    <span>Exchange Platform</span>
+                    <span>نرخ ارز</span>
+                  </div>
+
+                  <h3>Tehran Page</h3>
+                  <p>
+                    پلتفرم آنلاین ثبت و مدیریت صرافی‌ها؛ کاربران پس از تأیید
+                    ادمین می‌توانند با ارزهای موجود در اپلیکیشن کار کنند.
+                  </p>
+
+                  <div class="project-impact">
+                    <strong>Admin</strong>
+                    <span
+                      >جریان ثبت، تأیید و مدیریت صرافی‌ها در یک ساختار قابل
+                      کنترل</span
+                    >
+                  </div>
+
+                  <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
+                    <span><img src="./assets/nx.svg" alt="" />Next.js</span>
+                    <span><img src="./assets/dotnet.svg" alt="" />.NET 10</span>
+                    <span><img src="./assets/mysql.svg" alt="" />MySQL</span>
+                    <span>Admin Panel</span>
+                  </div>
+
+                  <details class="project-more">
+                    <summary>جزئیات</summary>
+                    <p>
+                      توسعه رابط کاربری، بک‌اند و ساختار داده برای نمایش نرخ‌ها،
+                      شعبه‌ها و مدیریت عملیات صرافی.
+                    </p>
+                  </details>
+
+                  <div class="project-actions">
+                    <a href="./contact.html" class="btn btn-primary"
+                      >درخواست دمو <span>↗</span></a
+                    >
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-card" data-project-card>
+                <a
+                  class="project-visual"
+                  href="./contact.html"
+                  aria-label="درخواست دمو پروژه Connect"
+                >
+                  <img
+                    src="./assets/projects/connect.jpg"
+                    alt="تصویر وب‌اپلیکیشن Connect برای چت همزمان"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+
+                <div class="project-body">
+                  <div class="project-meta">
+                    <span>Realtime Chat</span>
+                    <span>File Sharing</span>
+                  </div>
+
+                  <h3>Connect</h3>
+                  <p>
+                    وب‌اپلیکیشن چت Realtime برای ایجاد اتاق‌های عمومی و خصوصی،
+                    گفت‌وگوی همزمان و ارسال فایل بین کاربران.
+                  </p>
+
+                  <div class="project-impact">
+                    <strong>Live</strong>
+                    <span
+                      >ارتباط همزمان، مدیریت اتاق‌ها و تجربه تعاملی بدون
+                      وقفه</span
+                    >
+                  </div>
+
+                  <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
+                    <span
+                      ><img src="./assets/angular.png" alt="" />Angular 22</span
+                    >
+                    <span><img src="./assets/dotnet.svg" alt="" />.NET 10</span>
+                    <span>SignalR</span>
+                    <span
+                      ><img src="./assets/mongodb.png" alt="" />MongoDB</span
+                    >
+                  </div>
+
+                  <details class="project-more">
+                    <summary>جزئیات</summary>
+                    <p>
+                      پیاده‌سازی اتاق‌های چت، ارسال فایل، ساختار عمومی/خصوصی و
+                      هماهنگی فرانت‌اند و بک‌اند برای ارتباط زنده.
+                    </p>
+                  </details>
+
+                  <div class="project-actions">
+                    <a href="./contact.html" class="btn btn-primary"
+                      >درخواست دمو <span>↗</span></a
+                    >
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-card" data-project-card>
+                <a
+                  class="project-visual"
+                  href="./contact.html"
+                  aria-label="درخواست دمو پروژه Exvore"
+                >
+                  <img
+                    src="./assets/projects/exvore.jpg"
+                    alt="تصویر پلتفرم Exvore برای مدیریت صرافی‌ها"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+
+                <div class="project-body">
+                  <div class="project-meta">
+                    <span>Exchange Management</span>
+                    <span>Realtime Data</span>
+                  </div>
+
+                  <h3>Exvore</h3>
+                  <p>
+                    پلتفرم جامع مدیریت صرافی‌ها با ثبت صراف، تأیید ادمین، مدیریت
+                    ارزها و به‌روزرسانی قیمت‌ها به‌صورت Realtime.
+                  </p>
+
+                  <div class="project-impact">
+                    <strong>Realtime</strong>
+                    <span
+                      >دسترسی دقیق‌تر کاربران به آخرین قیمت‌ها با به‌روزرسانی
+                      زنده</span
+                    >
+                  </div>
+
+                  <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
+                    <span
+                      ><img src="./assets/angular.png" alt="" />Angular 22</span
+                    >
+                    <span><img src="./assets/dotnet.svg" alt="" />.NET 10</span>
+                    <span>SignalR</span>
+                    <span
+                      ><img src="./assets/mongodb.png" alt="" />MongoDB</span
+                    >
+                  </div>
+
+                  <details class="project-more">
+                    <summary>جزئیات</summary>
+                    <p>
+                      طراحی پنل مدیریتی، جریان تأیید صرافی‌ها، نمایش داده‌های
+                      بازار و مدیریت داده‌ها با معماری سریع و پایدار.
+                    </p>
+                  </details>
+
+                  <div class="project-actions">
+                    <a href="./contact.html" class="btn btn-primary"
+                      >درخواست دمو <span>↗</span></a
+                    >
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-card" data-project-card>
+                <a
+                  class="project-visual"
+                  href="./contact.html"
+                  aria-label="درخواست دمو پروژه City Menu"
+                >
+                  <img
+                    src="./assets/projects/citymenu.jpg"
+                    alt="تصویر پلتفرم City Menu برای مدیریت منوی آنلاین"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+
+                <div class="project-body">
+                  <div class="project-meta">
+                    <span>Restaurant SaaS</span>
+                    <span>منوی آنلاین</span>
+                  </div>
+
+                  <h3>City Menu</h3>
+                  <p>
+                    پلتفرم طراحی و مدیریت منوی آنلاین برای کسب‌وکارها با تمرکز
+                    بر سادگی، سرعت و تجربه کاربری روان.
+                  </p>
+
+                  <div class="project-impact">
+                    <strong>UX</strong>
+                    <span
+                      >ساخت سریع منوی دیجیتال حرفه‌ای برای رستوران‌ها و
+                      کافه‌ها</span
+                    >
+                  </div>
+
+                  <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
+                    <span
+                      ><img src="./assets/angular.png" alt="" />Angular 22</span
+                    >
+                    <span
+                      ><img src="./assets/dotnet.svg" alt="" />C# .NET 10</span
+                    >
+                    <span>Menu Builder</span>
+                    <span>UI Design</span>
+                  </div>
+
+                  <details class="project-more">
+                    <summary>جزئیات</summary>
+                    <p>
+                      پیاده‌سازی فرانت‌اند Angular 22 و بک‌اند C# .NET 10 با
+                      تجربه‌ای ساده برای ایجاد و مدیریت منوی آنلاین.
+                    </p>
+                  </details>
+
+                  <div class="project-actions">
+                    <a href="./contact.html" class="btn btn-primary"
+                      >درخواست دمو <span>↗</span></a
+                    >
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-card" data-project-card>
+                <a
+                  class="project-visual"
+                  href="./contact.html"
+                  aria-label="درخواست دمو پروژه NexWear"
+                >
+                  <img
+                    src="./assets/projects/nexwear.jpg"
+                    alt="تصویر فروشگاه آنلاین NexWear"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+
+                <div class="project-body">
+                  <div class="project-meta">
+                    <span>Online Shop</span>
+                    <span>CRUD Demo</span>
+                  </div>
+
+                  <h3>NexWear Shop</h3>
+                  <p>
+                    فروشگاه آنلاین دمو با پنل مدیریت محصولات؛ ادمین می‌تواند
+                    محصول اضافه، ویرایش یا حذف کند و برای هر محصول تصویر انتخاب
+                    کند.
+                  </p>
+
+                  <div class="project-impact">
+                    <strong>CRUD</strong>
+                    <span
+                      >مدیریت محصول، تصویر، فیلترها و تجربه مرور سریع برای
+                      کاربران</span
+                    >
+                  </div>
+
+                  <div class="project-techs" aria-label="تکنولوژی‌های پروژه">
+                    <span
+                      ><img src="./assets/angular.png" alt="" />Angular 22</span
+                    >
+                    <span>Admin Panel</span>
+                    <span>Image Resize</span>
+                    <span>Product Filters</span>
+                  </div>
+
+                  <details class="project-more">
+                    <summary>جزئیات</summary>
+                    <p>
+                      طراحی بخش مدیریت، انتخاب و resize تصویر محصول و امکان
+                      مشاهده محصولات با فیلترهای مختلف در سمت کاربر.
+                    </p>
+                  </details>
+
+                  <div class="project-actions">
+                    <a href="./contact.html" class="btn btn-primary"
+                      >درخواست دمو <span>↗</span></a
+                    >
+                  </div>
+                </div>
+              </article>
+
+              <article class="project-card" data-project-card>
+                <a
+                  class="project-visual"
+                  href="./contact.html"
+                  aria-label="درخواست دمو پروژه School"
+                >
+                  <img
+                    src="./assets/projects/school.jpg"
+                    alt="تصویر سامانه School برای مدیریت مدرسه برنامه‌نویسی"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+
+                <div class="project-body">
+                  <div class="project-meta">
+                    <span>Education Platform</span>
+                    <span>مدیریت آموزش</span>
+                  </div>
+
+                  <h3>School</h3>
+                  <p>
+                    سامانه مدیریت مدرسه برنامه‌نویسی برای مدیریت دوره‌ها،
+                    دانشجویان، حضور و غیاب اساتید و مشاهده پروفایل کاربران.
+                  </p>
+
+                  <div class="project-impact">
+                    <strong>LMS</strong>
+                    <span
+                      >یکپارچه‌سازی مدیریت دوره، حضور و غیاب و پروفایل
+                      دانشجویان</span
+                    >
+                  </div>
+
+                  <div class="project-techs" aria-label="قابلیت‌های پروژه">
+                    <span>Course Management</span>
+                    <span>Attendance</span>
+                    <span>Student Profiles</span>
+                    <span>Admin Flow</span>
+                  </div>
+
+                  <details class="project-more">
+                    <summary>جزئیات</summary>
+                    <p>
+                      مدیر مدرسه دوره‌ها را مدیریت می‌کند، اساتید حضور و غیاب
+                      ثبت می‌کنند و دانشجویان دوره‌ها و پروفایل‌ها را مشاهده
+                      می‌کنند.
+                    </p>
+                  </details>
+
+                  <div class="project-actions">
+                    <a href="./contact.html" class="btn btn-primary"
+                      >درخواست دمو <span>↗</span></a
+                    >
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <button
+            class="projects-nav projects-nav-next"
+            type="button"
+            data-project-next
+            aria-label="پروژه بعدی"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+
+          <div
+            class="projects-dots"
+            data-projects-dots
+            aria-label="صفحه‌های اسلایدر پروژه‌ها"
+          ></div>
+        </div>
+      </section>
+
+      <!-- Feature Bar -->
+      <section class="feature-bar" id="features">
+        <article>
+          <div class="feature-icon">⬡</div>
+          <h3>معماری مقیاس‌پذیر</h3>
+          <p>زیرساختی انعطاف‌پذیر برای رشد پایدار کسب‌وکار شما</p>
         </article>
-      </div>
 
-      <div class="team-manifest">
-        <span>۶ نفر</span>
-        <span>یک تیم محصول‌محور</span>
-        <span>از طراحی تا استقرار</span>
-      </div>
+        <article>
+          <div class="feature-icon">🛡</div>
+          <h3>امنیت در اولویت</h3>
+          <p>استفاده از استانداردهای امنیتی روز دنیا در تمامی پروژه‌ها</p>
+        </article>
 
-      <div class="team-cta">
-        <p>اگر دنبال تیمی هستید که فقط کد ننویسد و محصول را تا نتیجه جلو ببرد، همین‌جا شروع کنیم.</p>
-        <a href="#contact" class="btn btn-primary">شروع همکاری با تیم <span>↗</span></a>
-      </div>
-    </section>
+        <article>
+          <div class="feature-icon">🚀</div>
+          <h3>عملکرد فوق‌العاده</h3>
+          <p>بهینه‌سازی برای سرعت بالا و تجربه کاربری بی‌نقص</p>
+        </article>
 
-  </main>
+        <article>
+          <div class="feature-icon">⌘</div>
+          <h3>کدنویسی تمیز</h3>
+          <p>کدهای استاندارد، قابل نگهداری و توسعه‌پذیر</p>
+        </article>
 
-</body>
+        <article>
+          <div class="feature-icon">🎧</div>
+          <h3>پشتیبانی مداوم</h3>
+          <p>همراه شما در تمام مراحل پروژه و بعد از اجرا</p>
+        </article>
+      </section>
+
+      <!-- What We Do -->
+      <section class="what-we-do" id="what-we-do">
+        <div class="section-header">
+          <span class="section-eyebrow">آنچه انجام می‌دهیم</span>
+
+          <h2>
+            توسعه نرم‌افزارهای مدرن
+            <strong>از ایده تا محصول</strong>
+          </h2>
+
+          <p>
+            ما به کسب‌وکارها کمک می‌کنیم ایده‌های خود را به محصولات دیجیتال
+            قدرتمند، مقیاس‌پذیر و امن تبدیل کنند.
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <strong>+50</strong>
+            <span>پروژه موفق</span>
+          </div>
+
+          <div class="stat-card">
+            <strong>+30</strong>
+            <span>مشتری راضی</span>
+          </div>
+
+          <div class="stat-card">
+            <strong>+5</strong>
+            <span>سال تجربه</span>
+          </div>
+
+          <div class="stat-card">
+            <strong>100%</strong>
+            <span>تعهد و کیفیت</span>
+          </div>
+        </div>
+
+        <div class="services-header">
+          <span></span>
+          <h3>خدمات ما</h3>
+          <span></span>
+        </div>
+
+        <div class="services-carousel" id="services" data-services-slider>
+          <button
+            class="services-nav services-nav-prev"
+            type="button"
+            data-slider-prev
+            aria-label="خدمت قبلی"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+
+          <div
+            class="services-viewport"
+            tabindex="0"
+            aria-label="اسلایدر خدمات"
+          >
+            <div class="services-grid">
+              <article class="service-card">
+                <div class="service-icon">⌘</div>
+                <h3>توسعه وب‌سایت‌های اختصاصی</h3>
+                <p>
+                  طراحی و توسعه وب‌سایت‌های سریع، امن و مقیاس‌پذیر با جدیدترین
+                  تکنولوژی‌ها.
+                </p>
+
+                <ul>
+                  <li>وب‌اپلیکیشن‌های اختصاصی</li>
+                  <li>پنل‌های مدیریت پیشرفته</li>
+                  <li>فریم‌ورک‌های مدرن</li>
+                </ul>
+
+                <a href="#">اطلاعات بیشتر ↗</a>
+              </article>
+
+              <article class="service-card">
+                <div class="service-icon">▯</div>
+                <h3>توسعه اپلیکیشن‌های موبایل</h3>
+                <p>
+                  ساخت اپلیکیشن‌های موبایل حرفه‌ای برای iOS و Android با تجربه
+                  کاربری عالی.
+                </p>
+
+                <ul>
+                  <li>اپلیکیشن‌های بومی و کراس‌پلتفرم</li>
+                  <li>عملکرد بالا و بهینه</li>
+                  <li>طراحی مدرن UI/UX</li>
+                </ul>
+
+                <a href="#">اطلاعات بیشتر ↗</a>
+              </article>
+
+              <article class="service-card">
+                <div class="service-icon">☁</div>
+                <h3>راهکارهای ابری و زیرساخت</h3>
+                <p>
+                  طراحی و پیاده‌سازی زیرساخت‌های ابری مطمئن، مقیاس‌پذیر و
+                  مقرون‌به‌صرفه.
+                </p>
+
+                <ul>
+                  <li>معماری ابری AWS و Azure</li>
+                  <li>DevOps و CI/CD</li>
+                  <li>مانیتورینگ و امنیت</li>
+                </ul>
+
+                <a href="#">اطلاعات بیشتر ↗</a>
+              </article>
+
+              <article class="service-card service-card-wide">
+                <div class="service-icon">🛡</div>
+                <h3>امنیت و تست</h3>
+                <p>
+                  تضمین امنیت و کیفیت نرم‌افزار در تمام مراحل توسعه با تست‌های
+                  جامع و خودکار.
+                </p>
+
+                <ul>
+                  <li>تست‌های جامع و خودکار</li>
+                  <li>ممیزی امنیتی و نفوذ</li>
+                  <li>تضمین کیفیت QA</li>
+                </ul>
+
+                <a href="#">اطلاعات بیشتر ↗</a>
+              </article>
+
+              <article class="service-card service-card-wide">
+                <div class="service-icon">▧</div>
+                <h3>تحلیل و مشاوره</h3>
+                <p>
+                  تحلیل نیازهای کسب‌وکار و ارائه راهکارهای فنی برای رشد و بهبود
+                  محصول.
+                </p>
+
+                <ul>
+                  <li>تحلیل کسب‌وکار</li>
+                  <li>طراحی معماری نرم‌افزار</li>
+                  <li>مشاوره فنی و بهینه‌سازی</li>
+                </ul>
+
+                <a href="#">اطلاعات بیشتر ↗</a>
+              </article>
+            </div>
+          </div>
+
+          <button
+            class="services-nav services-nav-next"
+            type="button"
+            data-slider-next
+            aria-label="خدمت بعدی"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+
+          <div
+            class="services-dots"
+            data-slider-dots
+            aria-label="صفحه‌های اسلایدر خدمات"
+          ></div>
+        </div>
+
+        <!-- Work Process -->
+        <div class="work-process" id="work-process">
+          <div class="process-header">
+            <span></span>
+            <h3>فرآیند همکاری ما</h3>
+            <span></span>
+            <p>یک مسیر شفاف برای رسیدن به بهترین نتیجه</p>
+          </div>
+
+          <div class="process-steps">
+            <article class="process-step">
+              <div class="process-icon">⌕</div>
+              <strong>01</strong>
+              <h4>بررسی و تحلیل</h4>
+              <p>بررسی دقیق نیازها و تحلیل کسب‌وکار شما</p>
+            </article>
+
+            <article class="process-step">
+              <div class="process-icon">💡</div>
+              <strong>02</strong>
+              <h4>طراحی راهکار</h4>
+              <p>ارائه بهترین راهکار فنی و طراحی معماری سیستم</p>
+            </article>
+
+            <article class="process-step">
+              <div class="process-icon">⌘</div>
+              <strong>03</strong>
+              <h4>توسعه و پیاده‌سازی</h4>
+              <p>توسعه با کیفیت بالا و پایبندی به استانداردها</p>
+            </article>
+
+            <article class="process-step">
+              <div class="process-icon">✓</div>
+              <strong>04</strong>
+              <h4>تست و کنترل کیفیت</h4>
+              <p>تست‌های جامع برای اطمینان از عملکرد و امنیت</p>
+            </article>
+
+            <article class="process-step">
+              <div class="process-icon">🚀</div>
+              <strong>05</strong>
+              <h4>تحویل و پشتیبانی</h4>
+              <p>تحویل موفق پروژه و پشتیبانی مداوم پس از اجرا</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- What We Do CTA -->
+        <div class="what-we-do-cta" id="contact">
+          <div class="cta-logo">
+            <img
+              src="./assets/logo-optimized.webp"
+              width="327"
+              height="240"
+              alt="Hallboard Logo"
+            />
+          </div>
+
+          <div class="cta-content">
+            <h3>آماده شروع پروژه بعدی شما هستیم</h3>
+            <p>
+              ایده خود را با ما در میان بگذارید و با هم آینده دیجیتال کسب‌وکار
+              شما را بسازیم.
+            </p>
+          </div>
+
+          <div class="cta-actions">
+            <a href="./contact.html" class="btn btn-primary"
+              >شروع پروژه <span>↗</span></a
+            >
+            <a
+              href="./contact.html#contact-options"
+              class="btn btn-outline"
+              aria-label="رفتن به صفحه تماس با هالبورد"
+              >تماس با ما <span>☎</span></a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Tech Stack -->
+      <section class="tech-stack" id="tech-stack">
+        <div class="section-header tech-stack-header">
+          <span class="section-eyebrow"
+            >تکنولوژی‌هایی که با آن‌ها کار می‌کنیم</span
+          >
+
+          <h2>استک فناوری ما</h2>
+
+          <p>
+            ما از مدرن‌ترین و پایدارترین تکنولوژی‌ها برای ساخت محصولاتی
+            مقیاس‌پذیر، امن و با عملکرد بالا استفاده می‌کنیم.
+          </p>
+        </div>
+
+        <div class="tech-orb tech-orb-left">⌘</div>
+        <div class="tech-orb tech-orb-right">{ }</div>
+
+        <div class="tech-tabs" role="tablist" aria-label="دسته‌های استک فناوری">
+          <button
+            class="tech-tab is-active"
+            type="button"
+            data-tech-target="frontend"
+            aria-selected="true"
+          >
+            فرانت‌اند
+          </button>
+          <button
+            class="tech-tab"
+            type="button"
+            data-tech-target="backend"
+            aria-selected="false"
+          >
+            بک‌اند
+          </button>
+          <button
+            class="tech-tab"
+            type="button"
+            data-tech-target="database"
+            aria-selected="false"
+          >
+            دیتابیس
+          </button>
+          <button
+            class="tech-tab"
+            type="button"
+            data-tech-target="devops"
+            aria-selected="false"
+          >
+            دوآپس
+          </button>
+          <button
+            class="tech-tab"
+            type="button"
+            data-tech-target="tools"
+            aria-selected="false"
+          >
+            ابزارها
+          </button>
+        </div>
+
+        <div class="tech-stack-list">
+          <article class="tech-row is-active" data-tech-panel="frontend">
+            <div class="tech-category">
+              <div class="tech-category-icon">
+                <img src="./assets/category-frontend.svg" alt="" />
+              </div>
+              <div>
+                <h3>فرانت‌اند</h3>
+                <p>
+                  ساخت رابط کاربری سریع، واکنش‌گرا و تجربه کاربری فوق‌العاده
+                </p>
+              </div>
+            </div>
+
+            <div class="tech-items">
+              <div class="tech-item">
+                <img src="./assets/angular.png" alt="Angular 22" /><span
+                  >Angular 22</span
+                >
+              </div>
+              <div class="tech-item">
+                <img src="./assets/typescript.svg" alt="TypeScript" /><span
+                  >TypeScript</span
+                >
+              </div>
+              <div class="tech-item">
+                <img src="./assets/javascript.svg" alt="JavaScript" /><span
+                  >JavaScript</span
+                >
+              </div>
+              <div class="tech-item">
+                <img
+                  src="./assets/angular-material.svg"
+                  alt="Angular Material v3"
+                /><span>Angular Material v3</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="tech-row" data-tech-panel="backend">
+            <div class="tech-category">
+              <div class="tech-category-icon">
+                <img src="./assets/category-backend.svg" alt="" />
+              </div>
+              <div>
+                <h3>بک‌اند</h3>
+                <p>ساخت APIهای قدرتمند، امن و مقیاس‌پذیر با معماری تمیز</p>
+              </div>
+            </div>
+
+            <div class="tech-items">
+              <div class="tech-item">
+                <img src="./assets/dotnet.svg" alt=".NET 10" /><span
+                  >.NET 10</span
+                >
+              </div>
+              <div class="tech-item">
+                <img src="./assets/nodejs.svg" alt="Node.js" /><span
+                  >Node.js</span
+                >
+              </div>
+              <div class="tech-item">
+                <img src="./assets/express.svg" alt="Express.js" /><span
+                  >Express.js</span
+                >
+              </div>
+              <div class="tech-item">
+                <img src="./assets/grpc.svg" alt="gRPC" /><span>gRPC</span>
+              </div>
+              <div class="tech-item">
+                <img src="./assets/java.svg" alt="Java" /><span>Java</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="tech-row" data-tech-panel="database">
+            <div class="tech-category">
+              <div class="tech-category-icon">
+                <img src="./assets/category-database.svg" alt="" />
+              </div>
+              <div>
+                <h3>دیتابیس</h3>
+                <p>مدیریت و پردازش داده‌ها با کارایی بالا و امنیت Enterprise</p>
+              </div>
+            </div>
+
+            <div class="tech-items">
+              <div class="tech-item">
+                <img src="./assets/mongodb.png" alt="MongoDB" /><span
+                  >MongoDB</span
+                >
+              </div>
+              <div class="tech-item">
+                <img src="./assets/postgresql.png" alt="PostgreSQL" /><span
+                  >PostgreSQL</span
+                >
+              </div>
+              <div class="tech-item">
+                <img src="./assets/redis.svg" alt="Redis" /><span>Redis</span>
+              </div>
+              <div class="tech-item">
+                <img src="./assets/mysql.svg" alt="MySQL" /><span>MySQL</span>
+              </div>
+              <div class="tech-item">
+                <img src="./assets/sqlserver.svg" alt="SQL Server" /><span
+                  >SQL Server</span
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="tech-row" data-tech-panel="devops">
+            <div class="tech-category">
+              <div class="tech-category-icon">
+                <img src="./assets/category-devops.svg" alt="" />
+              </div>
+              <div>
+                <h3>دوآپس</h3>
+                <p>استقرار خودکار، مانیتورینگ و زیرساخت ابری پایدار</p>
+              </div>
+            </div>
+
+            <div class="tech-items">
+              <div class="tech-item">
+                <img src="./assets/docker.svg" alt="Docker" /><span
+                  >Docker</span
+                >
+              </div>
+              <div class="tech-item">
+                <img src="./assets/kubernetes.svg" alt="Kubernetes" /><span
+                  >Kubernetes</span
+                >
+              </div>
+              <div class="tech-item">
+                <img
+                  src="./assets/github-actions.svg"
+                  alt="GitHub Actions"
+                /><span>GitHub Actions</span>
+              </div>
+              <div class="tech-item">
+                <img src="./assets/aws.svg" alt="AWS" /><span>AWS</span>
+              </div>
+              <div class="tech-item">
+                <img src="./assets/azure.svg" alt="Azure" /><span>Azure</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="tech-row" data-tech-panel="tools">
+            <div class="tech-category">
+              <div class="tech-category-icon">
+                <img src="./assets/category-tools.svg" alt="" />
+              </div>
+              <div>
+                <h3>ابزارها</h3>
+                <p>ابزارهای توسعه و همکاری برای افزایش کیفیت و سرعت تیم</p>
+              </div>
+            </div>
+
+            <div class="tech-items">
+              <div class="tech-item">
+                <img src="./assets/git.png" alt="Git" /><span>Git</span>
+              </div>
+              <div class="tech-item">
+                <img src="./assets/github.svg" alt="GitHub" /><span
+                  >GitHub</span
+                >
+              </div>
+              <div class="tech-item">
+                <img src="./assets/gitlab.svg" alt="GitLab" /><span
+                  >GitLab</span
+                >
+              </div>
+              <div class="tech-item">
+                <img src="./assets/jetbrains.svg" alt="JetBrains" /><span
+                  >JetBrains</span
+                >
+              </div>
+              <div class="tech-item">
+                <img src="./assets/figma.svg" alt="Figma" /><span>Figma</span>
+              </div>
+              <div class="tech-item">
+                <img src="./assets/postman.svg" alt="Postman" /><span
+                  >Postman</span
+                >
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="tech-note">
+          <span>🛡</span>
+          ما همیشه در حال ارزیابی و به‌روزرسانی استک فناوری خود هستیم تا بهترین
+          راهکارها را برای پروژه‌های شما ارائه دهیم.
+        </div>
+      </section>
+
+      <!-- How We Work -->
+      <section class="how-we-work" id="how-we-work">
+        <div class="section-header how-header">
+          <span class="section-eyebrow">روش کار ما</span>
+
+          <h2>ما چطور <strong>کار</strong> می‌کنیم؟</h2>
+
+          <p>
+            فرآیند کاری ما بر پایه شفافیت، همکاری و کیفیت ساخته شده تا بهترین
+            نتیجه با بیشترین ارزش و کمترین ریسک ارائه شود.
+          </p>
+        </div>
+
+        <div class="how-orb how-orb-left">⌘</div>
+        <div class="how-orb how-orb-right">☷</div>
+
+        <div class="principles-title">
+          <span></span>
+          <h3>اصول کاری ما</h3>
+          <span></span>
+        </div>
+
+        <div class="principles-grid">
+          <article class="principle-card">
+            <div class="principle-icon">☷</div>
+            <h3>همکاری واقعی</h3>
+            <p>
+              ما خودمان را بخشی از تیم شما می‌دانیم، نه فقط یک تیم سفارش‌گیرنده.
+            </p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-icon">🚀</div>
+            <h3>تمرکز بر ارزش</h3>
+            <p>
+              ما روی ویژگی‌هایی تمرکز می‌کنیم که بیشترین ارزش را برای کسب‌وکار
+              شما ایجاد می‌کنند.
+            </p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-icon">⌘</div>
+            <h3>کدنویسی تمیز</h3>
+            <p>
+              استفاده از استانداردهای روز دنیا و معماری تمیز برای توسعه پایدار و
+              مقیاس‌پذیر.
+            </p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-icon">💬</div>
+            <h3>شفافیت کامل</h3>
+            <p>ارتباط شفاف، گزارش‌دهی منظم و دسترسی کامل شما به روند پروژه.</p>
+          </article>
+
+          <article class="principle-card">
+            <div class="principle-icon">🛡</div>
+            <h3>کیفیت در اولویت</h3>
+            <p>
+              ما کیفیت را در هر مرحله، از طراحی تا استقرار و پشتیبانی، تضمین
+              می‌کنیم.
+            </p>
+          </article>
+        </div>
+
+        <div class="process-title">
+          <span></span>
+          <h3>فرآیند کاری ما</h3>
+          <span></span>
+          <p>از ایده تا انتشار، در کنار شما هستیم.</p>
+        </div>
+
+        <div class="how-process">
+          <article class="how-step">
+            <div class="how-step-icon">▤</div>
+            <strong>01</strong>
+            <h3>تحلیل و کشف</h3>
+            <p>بررسی نیازها، تحلیل بازار و تعریف اهداف پروژه با جزئیات.</p>
+          </article>
+
+          <article class="how-step">
+            <div class="how-step-icon">✎</div>
+            <strong>02</strong>
+            <h3>طراحی و برنامه‌ریزی</h3>
+            <p>طراحی معماری، UI/UX و برنامه‌ریزی فنی و زمان‌بندی پروژه.</p>
+          </article>
+
+          <article class="how-step">
+            <div class="how-step-icon">⌘</div>
+            <strong>03</strong>
+            <h3>توسعه و پیاده‌سازی</h3>
+            <p>توسعه ماژولار و اصولی با رعایت استانداردهای کدنویسی.</p>
+          </article>
+
+          <article class="how-step">
+            <div class="how-step-icon">🛡</div>
+            <strong>04</strong>
+            <h3>تست و تضمین کیفیت</h3>
+            <p>
+              تست‌های خودکار و دستی برای تضمین عملکرد، امنیت و پایداری سیستم.
+            </p>
+          </article>
+
+          <article class="how-step">
+            <div class="how-step-icon">🚀</div>
+            <strong>05</strong>
+            <h3>استقرار و راه‌اندازی</h3>
+            <p>استقرار امن در زیرساخت‌های پایدار و بهینه‌سازی عملکرد.</p>
+          </article>
+
+          <article class="how-step">
+            <div class="how-step-icon">🎧</div>
+            <strong>06</strong>
+            <h3>پشتیبانی و بهبود</h3>
+            <p>پشتیبانی مستمر، مانیتورینگ و بهبود مداوم بر اساس داده‌ها.</p>
+          </article>
+        </div>
+
+        <div class="how-result">
+          <div class="result-icon">✺</div>
+          <p>
+            نتیجه کار ما، محصولی <strong>پایدار، امن و مقیاس‌پذیر</strong> است
+            که همراه با رشد کسب‌وکار شما رشد می‌کند.
+          </p>
+        </div>
+      </section>
+
+      <!-- Team -->
+      <section
+        class="team-section"
+        id="team"
+        aria-labelledby="team-title"
+        data-team-section
+      >
+        <div class="team-orb team-orb-right" aria-hidden="true"></div>
+        <div class="team-orb team-orb-left" aria-hidden="true"></div>
+
+        <div class="section-header team-header">
+          <span class="section-eyebrow">تیم هالبورد</span>
+
+          <h2 id="team-title">
+            آدم‌هایی که محصول را
+            <strong>واقعی می‌سازند</strong>
+          </h2>
+
+          <p>
+            پشت هر تصمیم فنی، یک تیم کوچک و دقیق ایستاده؛ از معماری و طراحی
+            تجربه تا توسعه فول‌استک، تست، استقرار و رشد محصول.
+          </p>
+        </div>
+
+        <template id="team-portrait-template">
+          <div class="team-card-visual living-portrait">
+            <div class="living-portrait-backdrop">
+              <span class="living-portrait-halo" aria-hidden="true"></span>
+              <span class="living-portrait-light" aria-hidden="true"></span>
+              <div class="living-portrait-photo-layer"><span data-portrait-photo-slot></span></div>
+              <span class="living-portrait-shadow" aria-hidden="true"></span>
+              <span class="living-portrait-sweep" aria-hidden="true"></span>
+            </div>
+            <div class="living-portrait-depth" aria-hidden="true">
+              <div class="living-portrait-arrival">
+                <div class="living-portrait-cutout">
+                  <img
+                    class="living-portrait-image living-portrait-character"
+                    data-portrait-image
+                    width="800"
+                    height="1000"
+                    alt=""
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+            <button
+              class="living-portrait-toggle"
+              type="button"
+              data-portrait-toggle
+              aria-pressed="false"
+              hidden
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true">
+                <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" />
+                <path d="m4 7.5 8 4.5 8-4.5M12 12v9m-4-16.25 8 4.5" />
+              </svg>
+              <span data-portrait-label>کاراکتر سه‌بعدی</span>
+            </button>
+          </div>
+        </template>
+
+        <div class="team-grid" aria-label="اعضای تیم هالبورد">
+          <div class="team-card-scene" data-team-scene>
+            <article
+              class="team-card team-lead-card"
+              data-team-card
+              data-portrait-src="./assets/team/reza-taba-3d-portrait.webp"
+              data-portrait-mask="./assets/team/reza-taba-portrait-mask.svg"
+              aria-labelledby="taba-name"
+              style="
+                --team-accent: #a78bfa;
+                --team-accent-2: #22d3ee;
+                --team-accent-3: #f8fafc;
+              "
+            >
+              <div class="team-card-visual">
+                <span class="team-portrait-aura" aria-hidden="true"></span>
+                <img
+                  class="team-portrait"
+                  src="./assets/team/reza-taba-3d-portrait.webp"
+                  width="800"
+                  height="1000"
+                  alt="پرتره مهندس رضا طبا، Team Lead هالبورد"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Team Lead</span>
+                <h3 id="taba-name">مهندس رضا طبا</h3>
+                <p class="team-card-role">
+                  Team Lead of Hallboard / Senior Full Stack Developer
+                </p>
+                <p class="team-card-bio">
+                  هدایت معماری، تصمیم‌های فنی و کیفیت خروجی؛ از ایده تا محصولی که
+                  بتواند در دنیای واقعی رشد کند.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای مهندس رضا طبا">
+                  <span>Architecture</span>
+                  <span>Leadership</span>
+                  <span>Product Engineering</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene>
+            <article
+              class="team-card"
+              data-team-card
+              aria-labelledby="frank-name"
+              style="
+                --team-accent: #22d3ee;
+                --team-accent-2: #a78bfa;
+                --team-accent-3: #34d399;
+              "
+            >
+              <div class="team-card-visual">
+                <span class="team-portrait-aura" aria-hidden="true"></span>
+                <img
+                  class="team-portrait"
+                  src="./assets/team/frank-baran.webp"
+                  width="1059"
+                  height="1485"
+                  alt="پرتره فرانک باران چشمه، مدیر هالبورد و توسعه‌دهنده فول‌استک"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Manager</span>
+                <h3 id="frank-name">فرانک باران چشمه</h3>
+                <p class="team-card-role">
+                  Manager of Hallboard / Full Stack Developer
+                </p>
+                <p class="team-card-bio">
+                  مدیریت مسیر تیم، هماهنگی اجرا و توسعه محصول با نگاه عملیاتی و
+                  دقیق.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای فرانک باران چشمه">
+                  <span>Team Flow</span>
+                  <span>Product Ops</span>
+                  <span>Full Stack</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene>
+            <article
+              class="team-card"
+              data-team-card
+              data-portrait-src="./assets/team/arshia-rezaei-3d-portrait-v3.webp"
+              data-portrait-mask="./assets/team/arshia-rezaei.webp"
+              aria-labelledby="arshia-name"
+              style="
+                --team-accent: #60a5fa;
+                --team-accent-2: #8b5cf6;
+                --team-accent-3: #22d3ee;
+              "
+            >
+              <div class="team-card-visual">
+                <img class="team-portrait" src="./assets/team/arshia-rezaei.webp" width="1100" height="1375" alt="پرتره ارشیا رضایی، UI و توسعه‌دهنده فول‌استک" loading="lazy" decoding="async" />
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">UI Engineering</span>
+                <h3 id="arshia-name">ارشیا رضایی</h3>
+                <p class="team-card-role">UI / Full Stack Developer</p>
+                <p class="team-card-bio">
+                  پیوند تجربه بصری، رابط‌های دقیق و توسعه کامل محصول از فرانت تا
+                  بک‌اند.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای ارشیا رضایی">
+                  <span>UI</span>
+                  <span>Angular 22</span>
+                  <span>.NET 10</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene>
+            <article
+              class="team-card"
+              data-team-card
+              aria-labelledby="hamid-name"
+              data-portrait-src="./assets/team/hamid-rahimi-3d-portrait.webp"
+              data-portrait-mask="./assets/team/hamid-rahimi-portrait-mask.svg"
+              style="
+                --team-accent: #34d399;
+                --team-accent-2: #22d3ee;
+                --team-accent-3: #a78bfa;
+              "
+            >
+              <div class="team-card-visual">
+                <span class="team-portrait-aura" aria-hidden="true"></span>
+                <img
+                  class="team-portrait"
+                  src="./assets/team/hamid-rahimi-3d-portrait.webp"
+                  width="800"
+                  height="1000"
+                  alt="پرتره حمید رحیمی، UX و توسعه‌دهنده فول‌استک"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">UX Systems</span>
+                <h3 id="hamid-name">حمید رحیمی</h3>
+                <p class="team-card-role">UX / Full Stack Developer</p>
+                <p class="team-card-bio">
+                  طراحی تجربه‌های انسانی و توسعه ساختارهایی که هم قابل
+                  استفاده‌اند، هم قابل رشد.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای حمید رحیمی">
+                  <span>UX</span>
+                  <span>Product Flow</span>
+                  <span>Full Stack</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene>
+            <article
+              class="team-card"
+              data-team-card
+              aria-labelledby="parsa-name"
+              data-portrait-src="./assets/team/parsa-jafari-3d-portrait.webp"
+              data-portrait-mask="./assets/team/parsa-jafari-portrait-mask.svg"
+              style="
+                --team-accent: #f59e0b;
+                --team-accent-2: #8b5cf6;
+                --team-accent-3: #60a5fa;
+              "
+            >
+              <div class="team-card-visual">
+                <span class="team-portrait-aura" aria-hidden="true"></span>
+                <img
+                  class="team-portrait"
+                  src="./assets/team/parsa-jafari-3d-portrait.webp"
+                  width="800"
+                  height="1000"
+                  alt="پرتره پارسا جعفری، توسعه‌دهنده فول‌استک"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Full Stack</span>
+                <h3 id="parsa-name">پارسا جعفری</h3>
+                <p class="team-card-role">Full Stack Developer</p>
+                <p class="team-card-bio">
+                  ساخت قابلیت‌های کاربردی، اتصال لایه‌ها و توسعه محصول با تمرکز
+                  روی کیفیت.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای پارسا جغفری">
+                  <span>Frontend</span>
+                  <span>Backend</span>
+                  <span>API</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene>
+            <article
+              class="team-card"
+              data-team-card
+              data-portrait-src="./assets/team/vahid-hayati-3d-portrait.webp"
+              data-portrait-mask="./assets/team/vahid-hayati-portrait-mask.svg"
+              aria-labelledby="vahid-name"
+              style="
+                --team-accent: #fb7185;
+                --team-accent-2: #60a5fa;
+                --team-accent-3: #a78bfa;
+              "
+            >
+              <div class="team-card-visual">
+                <span class="team-portrait-aura" aria-hidden="true"></span>
+                <img
+                  class="team-portrait"
+                  src="./assets/team/vahid-hayati-3d-portrait.webp"
+                  width="800"
+                  height="1000"
+                  alt="پرتره وحید حیاتی پور، توسعه‌دهنده فول‌استک"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Full Stack</span>
+                <h3 id="vahid-name">وحید حیاتی</h3>
+                <p class="team-card-role">Full Stack Developer</p>
+                <p class="team-card-bio">
+                  پیاده‌سازی بخش‌های پایدار، نگهدارپذیر و آماده رشد در محصول.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای وحید حیاتی">
+                  <span>Systems</span>
+                  <span>Backend</span>
+                  <span>Delivery</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="team-manifest">
+          <span>۶ نفر</span>
+          <span>یک تیم محصول‌محور</span>
+          <span>از طراحی تا استقرار</span>
+        </div>
+
+        <div class="team-cta">
+          <p>
+            اگر دنبال تیمی هستید که فقط کد ننویسد و محصول را تا نتیجه جلو ببرد،
+            همین‌جا شروع کنیم.
+          </p>
+          <a href="./contact.html" class="btn btn-primary"
+            >شروع همکاری با تیم <span>↗</span></a
+          >
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
