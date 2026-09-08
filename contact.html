@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#02030a" />
+    <meta
+      name="description"
+      content="فرم شروع همکاری با تیم هالبورد برای ثبت اطلاعات پروژه و ارسال درخواست به تیم."
+    />
+    <title>Hallboard</title>
+    <link rel="icon" href="./favicon.ico" sizes="any" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/apple-touch-icon.png"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./contact-form.js" defer></script>
+  </head>
+  <body class="contact-page">
+    <main class="page contact-shell">
+      <header class="header contact-header is-sticky">
+        <a
+          class="brand"
+          href="./index.html#hero"
+          aria-label="هالبورد؛ بازگشت به صفحه اصلی"
+        >
+          <img
+            src="./assets/logo-optimized.webp"
+            width="327"
+            height="240"
+            alt="Hallboard"
+          />
+        </a>
+
+        <input
+          type="checkbox"
+          id="menu-toggle"
+          class="menu-toggle"
+          tabindex="-1"
+        />
+
+        <label
+          for="menu-toggle"
+          class="hamburger"
+          role="button"
+          tabindex="0"
+          aria-label="باز کردن منوی اصلی"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+
+        <nav
+          class="nav contact-nav"
+          id="primary-nav"
+          aria-label="منوی صفحه تماس"
+        >
+          <a href="./index.html#hero">صفحه اصلی</a>
+          <a href="./index.html#projects">نمونه‌کارها</a>
+          <a href="./index.html#what-we-do">خدمات ما</a>
+          <a href="./index.html#how-we-work">روش کار ما</a>
+          <a href="./index.html#team">تیم ما</a>
+        </nav>
+
+        <a class="btn btn-primary header-btn" href="#contact-options">
+          انتخاب مسیر
+        </a>
+      </header>
+
+      <section class="contact-hero" aria-labelledby="contact-title">
+        <div class="contact-orb contact-orb-one" aria-hidden="true"></div>
+        <div class="contact-orb contact-orb-two" aria-hidden="true"></div>
+
+        <div class="contact-copy">
+          <span class="section-eyebrow">شروع همکاری با هالبورد</span>
+
+          <h1 id="contact-title">
+            چند سؤال کوتاه؛
+            <strong>بعدش تیم ما با شما هماهنگ می‌شود</strong>
+          </h1>
+
+          <p>
+            اطلاعات پروژه را وارد کنید تا درخواست شما به ایمیل تیم هالبورد ارسال
+            شود. هرچه دقیق‌تر بنویسید، جلسه اول سریع‌تر و مفیدتر پیش می‌رود.
+          </p>
+
+          <div class="contact-direct" id="contact-options" aria-label="انتخاب روش ارتباط با هالبورد">
+            <a href="tel:+989038467057" class="contact-direct-card" data-contact-call>
+              <span>☎</span>
+              <div>
+                <strong>می‌خواهم تماس بگیرم</strong>
+                <small>09038467057</small>
+              </div>
+            </a>
+
+            <a
+              href="#project-form"
+              class="contact-direct-card"
+              data-contact-email
+            >
+              <span>✉</span>
+              <div>
+                <strong>می‌خواهم فرم ارسال کنم</strong>
+                <small>ارسال به hallboardteam@gmail.com</small>
+              </div>
+            </a>
+          </div>
+
+          <div class="contact-choice-note" id="call-info" data-contact-choice-note>
+            <strong>مسیر ارتباط را انتخاب کنید</strong>
+            <p>
+              برای ارسال جزئیات پروژه از فرم استفاده کنید. اگر فقط می‌خواهید
+              صحبت اولیه داشته باشید، شماره تماس تیم همین‌جا در دسترس است.
+            </p>
+          </div>
+        </div>
+
+        <form
+          id="project-form"
+          class="contact-form"
+          action="https://formsubmit.co/hallboardteam@gmail.com"
+          method="POST"
+          data-contact-form
+        >
+          <input
+            type="text"
+            name="_honey"
+            class="contact-honey"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+          />
+          <input
+            type="hidden"
+            name="_subject"
+            value="درخواست همکاری جدید از سایت Hallboard"
+          />
+          <input type="hidden" name="_template" value="table" />
+          <input
+            type="hidden"
+            name="_next"
+            value="https://hallboard-portfolio.vercel.app/thank-you"
+            data-next-url
+          />
+          <input type="hidden" name="_replyto" value="" data-reply-to />
+
+          <div class="form-header">
+            <span>Project Brief</span>
+            <h2>فرم درخواست پروژه</h2>
+            <p>
+              بعد از ارسال، اطلاعات به ایمیل تیم می‌رسد و برای هماهنگی با شما
+              تماس می‌گیریم.
+            </p>
+          </div>
+
+          <div class="form-grid">
+            <label class="form-field">
+              <span>نام و نام خانوادگی <b>*</b></span>
+              <input
+                type="text"
+                name="name"
+                placeholder="مثلاً علی محمدی"
+                required
+                autocomplete="name"
+              />
+            </label>
+
+            <label class="form-field">
+              <span>شماره تماس <b>*</b></span>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="09xxxxxxxxx"
+                required
+                autocomplete="tel"
+                inputmode="tel"
+              />
+            </label>
+
+            <label class="form-field">
+              <span>ایمیل <b>*</b></span>
+              <input
+                type="email"
+                name="email"
+                placeholder="name@example.com"
+                required
+                autocomplete="email"
+                data-email-input
+              />
+            </label>
+
+            <label class="form-field">
+              <span>نام شرکت / برند</span>
+              <input
+                type="text"
+                name="company"
+                placeholder="اختیاری"
+                autocomplete="organization"
+              />
+            </label>
+
+            <label class="form-field">
+              <span>نوع پروژه <b>*</b></span>
+              <select name="project_type" required>
+                <option value="">انتخاب کنید</option>
+                <option value="وب‌سایت اختصاصی">وب‌سایت اختصاصی</option>
+                <option value="وب‌اپلیکیشن">وب‌اپلیکیشن</option>
+                <option value="اپلیکیشن موبایل">اپلیکیشن موبایل</option>
+                <option value="زیرساخت و DevOps">زیرساخت و DevOps</option>
+                <option value="طراحی UI/UX">طراحی UI/UX</option>
+                <option value="مشاوره فنی">مشاوره فنی</option>
+              </select>
+            </label>
+
+            <label class="form-field">
+              <span>زمان شروع</span>
+              <select name="timeline">
+                <option value="در اسرع وقت">در اسرع وقت</option>
+                <option value="۱ تا ۲ هفته آینده">۱ تا ۲ هفته آینده</option>
+                <option value="ماه آینده">ماه آینده</option>
+                <option value="فقط در حال بررسی هستم">
+                  فقط در حال بررسی هستم
+                </option>
+              </select>
+            </label>
+
+            <label class="form-field">
+              <span>بودجه تقریبی</span>
+              <select name="budget">
+                <option value="نیاز به مشاوره دارد">نیاز به مشاوره دارد</option>
+                <option value="کمتر از ۵۰ میلیون تومان">
+                  کمتر از ۵۰ میلیون تومان
+                </option>
+                <option value="۵۰ تا ۱۵۰ میلیون تومان">
+                  ۵۰ تا ۱۵۰ میلیون تومان
+                </option>
+                <option value="۱۵۰ تا ۳۰۰ میلیون تومان">
+                  ۱۵۰ تا ۳۰۰ میلیون تومان
+                </option>
+                <option value="بیشتر از ۳۰۰ میلیون تومان">
+                  بیشتر از ۳۰۰ میلیون تومان
+                </option>
+              </select>
+            </label>
+
+            <label class="form-field">
+              <span>روش ارتباط ترجیحی</span>
+              <select name="preferred_contact">
+                <option value="تماس تلفنی">تماس تلفنی</option>
+                <option value="واتساپ / پیام‌رسان">واتساپ / پیام‌رسان</option>
+                <option value="ایمیل">ایمیل</option>
+                <option value="جلسه آنلاین">جلسه آنلاین</option>
+              </select>
+            </label>
+
+            <label class="form-field form-field-wide">
+              <span>توضیحات پروژه <b>*</b></span>
+              <textarea
+                name="message"
+                rows="6"
+                placeholder="ایده، امکانات مورد نیاز، وضعیت فعلی پروژه یا هر چیزی که کمک کند بهتر راهنمایی‌تان کنیم..."
+                required
+              ></textarea>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <p>با زدن دکمه ارسال، اطلاعات شما برای تیم هالبورد ایمیل می‌شود.</p>
+
+            <button class="btn btn-primary btn-lg" type="submit">
+              ارسال درخواست
+              <span>↗</span>
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

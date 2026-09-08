@@ -1,0 +1,523 @@
+/* Contact */
+
+.contact-page {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.contact-shell {
+  min-height: 100vh;
+  padding-top: 104px;
+  padding-bottom: 34px;
+}
+
+.contact-header {
+  position: fixed;
+}
+
+.contact-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: auto;
+  padding: clamp(28px, 4.2vw, 46px) clamp(14px, 3.5vw, 42px);
+  display: grid;
+  gap: clamp(18px, 3vw, 30px);
+  align-items: start;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(34, 211, 238, 0.12), transparent 30%),
+    radial-gradient(circle at 88% 22%, rgba(139, 92, 246, 0.2), transparent 34%),
+    radial-gradient(circle at 50% 100%, rgba(52, 211, 153, 0.08), transparent 34%),
+    linear-gradient(155deg, rgba(8, 11, 28, 0.96), rgba(4, 6, 16, 0.99));
+  box-shadow:
+    0 26px 90px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.065);
+}
+
+.contact-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.14;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.052) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.052) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(circle at 50% 20%, black, transparent 72%);
+  pointer-events: none;
+}
+
+.contact-orb {
+  position: absolute;
+  z-index: -1;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  filter: blur(12px);
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.contact-orb-one {
+  top: 76px;
+  left: -120px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.22), transparent 68%);
+}
+
+.contact-orb-two {
+  right: -120px;
+  bottom: 90px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.24), transparent 68%);
+}
+
+.contact-copy {
+  max-width: 540px;
+  margin-inline: auto;
+  align-self: start;
+  text-align: center;
+}
+
+.contact-copy .section-eyebrow {
+  margin-bottom: 10px;
+}
+
+.contact-copy h1 {
+  max-width: 500px;
+  margin: 10px auto 0;
+  color: #fff;
+  font-size: clamp(28px, 4.8vw, 42px);
+  line-height: 1.34;
+  font-weight: 950;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.contact-copy h1 strong {
+  display: block;
+  color: transparent;
+  background: linear-gradient(135deg, #f8fafc 0%, #a78bfa 34%, #22d3ee 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.contact-copy p {
+  max-width: 470px;
+  margin: 12px auto 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+.contact-direct {
+  max-width: 470px;
+  margin: 16px auto 0;
+  display: grid;
+  gap: 10px;
+}
+
+.contact-direct-card {
+  min-height: 66px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: right;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
+}
+
+.contact-direct-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(34, 211, 238, 0.34);
+  background: rgba(34, 211, 238, 0.065);
+}
+
+.contact-direct-card:focus-visible {
+  outline: 2px solid rgba(196, 181, 253, 0.82);
+  outline-offset: 3px;
+}
+
+.contact-direct-card span {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(34, 211, 238, 0.7));
+  box-shadow: 0 0 28px rgba(34, 211, 238, 0.18);
+}
+
+.contact-direct-card strong,
+.contact-direct-card small {
+  display: block;
+}
+
+.contact-direct-card div {
+  min-width: 0;
+}
+
+.contact-direct-card strong {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.contact-direct-card small {
+  margin-top: 3px;
+  direction: ltr;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 11.5px;
+  overflow-wrap: anywhere;
+}
+
+.contact-choice-note {
+  max-width: 470px;
+  margin: 12px auto 0;
+  padding: 13px 14px;
+  text-align: right;
+  border: 1px solid rgba(34, 211, 238, 0.14);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(34, 211, 238, 0.1), transparent 38%),
+    rgba(255, 255, 255, 0.035);
+}
+
+.contact-choice-note strong {
+  display: block;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.contact-choice-note p {
+  max-width: none;
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+.contact-choice-note.is-active {
+  border-color: rgba(34, 211, 238, 0.32);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(34, 211, 238, 0.14), transparent 42%),
+    rgba(34, 211, 238, 0.045);
+  box-shadow: 0 16px 42px rgba(34, 211, 238, 0.07);
+}
+
+.contact-form {
+  position: relative;
+  align-self: start;
+  max-width: 720px;
+  width: 100%;
+  margin-inline: auto;
+  padding: clamp(18px, 3vw, 28px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(167, 139, 250, 0.13), transparent 36%),
+    rgba(5, 8, 20, 0.78);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.065);
+  -webkit-backdrop-filter: blur(22px);
+  backdrop-filter: blur(22px);
+}
+
+.contact-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.form-header {
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.form-header span {
+  color: #8eefff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+.form-header h2 {
+  margin: 8px 0 0;
+  color: #fff;
+  font-size: clamp(24px, 5vw, 34px);
+  line-height: 1.35;
+  font-weight: 950;
+}
+
+.form-header p {
+  max-width: 520px;
+  margin: 8px auto 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 12.5px;
+  line-height: 1.9;
+}
+
+.form-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.form-field {
+  display: grid;
+  gap: 7px;
+}
+
+.form-field span {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.form-field b {
+  color: #22d3ee;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 50px;
+  padding: 0 14px;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.095);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.045);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-field textarea {
+  min-height: 132px;
+  padding-block: 13px;
+  resize: vertical;
+  line-height: 1.9;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.36);
+}
+
+.form-field select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: rgba(34, 211, 238, 0.48);
+  background: rgba(34, 211, 238, 0.055);
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.08);
+}
+
+.form-actions {
+  margin-top: 18px;
+  display: grid;
+  gap: 12px;
+  align-items: center;
+  text-align: center;
+}
+
+.form-actions p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.contact-form.is-sending .btn {
+  pointer-events: none;
+  opacity: 0.76;
+}
+
+.thank-you-card {
+  min-height: calc(100vh - 68px);
+  padding: clamp(24px, 6vw, 54px);
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 14px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(139, 92, 246, 0.2), transparent 34%),
+    radial-gradient(circle at 20% 90%, rgba(34, 211, 238, 0.12), transparent 30%),
+    linear-gradient(155deg, rgba(8, 11, 28, 0.96), rgba(4, 6, 16, 0.99));
+}
+
+.thank-you-card img {
+  width: 118px;
+  height: auto;
+}
+
+.thank-you-card span {
+  color: #8eefff;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.thank-you-card h1 {
+  max-width: 680px;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(32px, 7vw, 58px);
+  line-height: 1.25;
+  font-weight: 950;
+}
+
+.thank-you-card p {
+  max-width: 560px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 14px;
+  line-height: 2;
+}
+
+.thank-you-actions {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+@media (min-width: 720px) {
+  .contact-direct,
+  .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .form-field-wide {
+    grid-column: 1 / -1;
+  }
+
+  .form-actions {
+    grid-template-columns: 1fr auto;
+    text-align: right;
+  }
+}
+
+@media (min-width: 1025px) {
+  .contact-hero {
+    grid-template-columns: minmax(0, 0.66fr) minmax(540px, 1fr);
+    gap: 30px;
+  }
+
+  .contact-copy {
+    justify-self: center;
+    padding-top: 22px;
+    text-align: right;
+  }
+
+  .contact-copy h1,
+  .contact-copy p {
+    margin-inline: 0;
+  }
+
+  .contact-copy .contact-direct {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin-inline: 0 auto;
+  }
+
+  .contact-copy .contact-choice-note {
+    max-width: 360px;
+    margin-inline: 0 auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .contact-shell {
+    width: 100%;
+    margin-inline: 0;
+    padding: 92px 14px 34px;
+  }
+
+  .contact-header {
+    right: 14px;
+    left: 14px;
+    width: auto;
+    transform: none;
+    grid-template-columns: auto 1fr;
+    direction: ltr;
+  }
+
+  .contact-header .hamburger {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .contact-header .brand {
+    grid-column: 2;
+    grid-row: 1;
+    width: 94px;
+    justify-self: end;
+    justify-content: flex-end;
+  }
+
+  .contact-header .brand img {
+    height: 42px;
+  }
+
+  .contact-header .contact-nav {
+    direction: rtl;
+  }
+
+  .contact-header .header-btn {
+    display: none;
+  }
+
+  .contact-hero {
+    width: 100%;
+    padding: 24px 14px 28px;
+    gap: 18px;
+    border-radius: 26px;
+  }
+
+  .contact-copy h1 {
+    max-width: 100%;
+    font-size: clamp(25px, 7.3vw, 31px);
+    line-height: 1.44;
+    letter-spacing: -0.025em;
+  }
+
+  .contact-copy p {
+    font-size: 12.5px;
+    line-height: 1.9;
+  }
+
+  .contact-direct {
+    margin-top: 14px;
+  }
+
+  .contact-direct-card {
+    min-height: 62px;
+    padding: 10px;
+  }
+
+  .contact-choice-note {
+    padding: 12px;
+    font-size: 12px;
+  }
+}
