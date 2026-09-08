@@ -1,0 +1,29 @@
+.contact-modal-open { overflow: hidden; }
+.contact-dialog {
+  box-sizing: border-box;
+  width: min(520px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: clamp(24px, 5vw, 36px);
+  overflow: auto;
+  color: #f6f5ff;
+  background: radial-gradient(ellipse at top right, #282044, #101321 70%);
+  border: 1px solid #63558e;
+  border-radius: 28px;
+  box-shadow: 0 24px 90px #0009;
+  font: inherit;
+}
+.contact-dialog::backdrop { background: #030513b8; backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px); }
+.contact-dialog[open] { animation: contact-enter 220ms ease-out; }
+.contact-dialog-close { display: block; margin-inline-start: auto; width: 44px; height: 44px; border: 1px solid #ffffff30; border-radius: 50%; color: inherit; background: #ffffff08; font: inherit; font-size: 26px; cursor: pointer; }
+.contact-dialog h2 { font-size: clamp(24px, 5vw, 30px); margin: 12px 0; }
+.contact-dialog p { font-size: 14px; line-height: 1.9; color: #bab9ce; margin: 0 0 24px; }
+.contact-dialog-options { display: grid; gap: 12px; }
+.contact-dialog-option { display: grid; gap: 6px; padding: 18px 20px; border: 1px solid #ffffff25; border-radius: 18px; color: #f6f5ff; background: #ffffff06; text-decoration: none; transition: background 180ms, border-color 180ms; }
+.contact-dialog-option:hover { background: #8064e51f; border-color: #a68aee; }
+.contact-dialog-option small { color: #b9c6dc; overflow-wrap: anywhere; }
+.contact-dialog-email { margin-top: 16px; text-align: center; }
+.contact-dialog-email a { display: inline-block; padding: 12px; color: #bda5ff; font-size: 13px; }
+.contact-dialog :focus-visible { outline: 3px solid #69def0; outline-offset: 4px; }
+@keyframes contact-enter { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .contact-dialog[open] { animation: none; } .contact-dialog-option { transition: none; } }
