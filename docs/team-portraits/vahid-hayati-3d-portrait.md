@@ -1,5 +1,10 @@
 # Vahid Hayati — shared team portrait
 
+> Asset cleanup (2026-09-13): this is a historical generation record. Active
+> portraits and masks live in `assets/team/` at the project root. Superseded
+> portraits, sheets and turntable frames were removed from deployment assets;
+> recover them from Git history if needed. Original external references were not deleted.
+
 Built-in imagegen generation, 2026-09-09. Export: `vahid-hayati-3d-portrait.webp`, 800×1000. Original generated render and previous portrait are retained.
 
 Primary identity reference: `ChatGPT Image Sep 9, 2026, 01_25_22 AM.png`. Arshia v3 supplies only wardrobe, pin and rendering style. The opaque navy asset uses `vahid-hayati-portrait-mask.svg` as a display-only silhouette in the shared component; no member-specific animation was added.

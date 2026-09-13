@@ -1,5 +1,10 @@
 # Living portrait — second visual version
 
+> Asset cleanup (2026-09-13): this is a historical generation record. Active
+> portraits and masks live in `assets/team/` at the project root. Superseded
+> portraits, sheets and turntable frames were removed from deployment assets;
+> recover them from Git history if needed. Original external references were not deleted.
+
 Output: `arshia-rezaei-3d-portrait-v2.webp`, 800 × 1000.
 
 Created with the built-in imagegen tool. The stronger animated facial design is paired with closer CSS framing, a short entrance movement, layered light and pointer parallax. This remains a stylized rendered portrait, not a rigged 3D model.

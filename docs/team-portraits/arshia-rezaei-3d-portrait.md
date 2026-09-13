@@ -1,5 +1,10 @@
 # Arshia's living portrait
 
+> Asset cleanup (2026-09-13): this is a historical generation record. Active
+> portraits and masks live in `assets/team/` at the project root. Superseded
+> portraits, sheets and turntable frames were removed from deployment assets;
+> recover them from Git history if needed. Original external references were not deleted.
+
 Generated using the built-in imagegen tool for the team-card prototype. The matching bust framing and subdued cyan/violet light are designed for a crossfade from the existing portrait. The final asset uses a solid dark studio background, blended into the card with CSS; it is a rendered image, not a 3D mesh.
 
 Output: `arshia-rezaei-3d-portrait.webp`.

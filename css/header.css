@@ -72,7 +72,7 @@
   flex: 0 0 28px;
   width: 28px;
   height: 36px;
-  background: url('../assets/logo-optimized.webp') -19.25px 0 / 71.53px 52.5px no-repeat;
+  background: url('../assets/brand/logo-optimized.webp') -19.25px 0 / 71.53px 52.5px no-repeat;
   filter: drop-shadow(0 0 7px #9355e550);
   transition: filter 550ms ease;
 }
@@ -82,7 +82,7 @@
   height: 14px;
   opacity: 0;
   overflow: hidden;
-  background: url('../assets/logo-optimized.webp') 0 -48px / 90px 66.05px no-repeat;
+  background: url('../assets/brand/logo-optimized.webp') 0 -48px / 90px 66.05px no-repeat;
   transition: width 650ms cubic-bezier(.22, 1, .36, 1), opacity 350ms ease;
 }
 .brand-wordmark::after {

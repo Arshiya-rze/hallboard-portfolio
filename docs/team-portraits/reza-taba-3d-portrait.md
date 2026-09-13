@@ -1,5 +1,10 @@
 # Reza Taba — upright team portrait
 
+> Asset cleanup (2026-09-13): this is a historical generation record. Active
+> portraits and masks live in `assets/team/` at the project root. Superseded
+> portraits, sheets and turntable frames were removed from deployment assets;
+> recover them from Git history if needed. Original external references were not deleted.
+
 Generated using the built-in imagegen tool on 2026-09-09. Export: `reza-taba-3d-portrait.webp`, 800 × 1000. Original renders retained in the imagegen output directory.
 
 Primary reference: user-provided `ChatGPT Image Sep 9, 2026, 12_52_02 AM.png`. Arshia v3 supplies only wardrobe, pin and rendering style. Head/neck are upright. The tool returned a painted checkerboard, not alpha; a second edit replaced it with navy. `reza-taba-portrait-mask.svg` is a display-only silhouette used by the shared component, not an altered face.

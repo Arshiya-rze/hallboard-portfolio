@@ -1,5 +1,10 @@
 # Arshia — identity-led portrait v3
 
+> Asset cleanup (2026-09-13): this is a historical generation record. Active
+> portraits and masks live in `assets/team/` at the project root. Superseded
+> portraits, sheets and turntable frames were removed from deployment assets;
+> recover them from Git history if needed. Original external references were not deleted.
+
 Generated with the built-in imagegen tool on 2026-09-08. Selected output exported as 800 × 1000 WebP for the team card. The original render and earlier portrait versions are retained.
 
 Primary reference: `ChatGPT Image Sep 5, 2026, 12_21_45 AM.png` (user-provided identity sheet).

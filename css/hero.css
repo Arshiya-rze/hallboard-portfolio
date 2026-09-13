@@ -48,14 +48,14 @@
 }
 
 .hero-backdrop-base {
-  background-image: url("../assets/hero-cinematic-base-mobile.webp");
+  background-image: url("../assets/hero/hero-cinematic-base-mobile.webp");
   animation: heroSceneBreath 18s ease-in-out infinite alternate;
 }
 
 .hero-backdrop-reveal {
   z-index: 1;
   opacity: 0.98;
-  background-image: url("../assets/hero-cinematic-reveal-mobile.webp");
+  background-image: url("../assets/hero/hero-cinematic-reveal-mobile.webp");
   -webkit-mask-image: radial-gradient(
     circle var(--spotlight-radius) at var(--spot-x) var(--spot-y),
     #000 0%,
@@ -553,11 +553,11 @@
   }
 
   .hero-backdrop-base {
-    background-image: url("../assets/hero-cinematic-base.webp");
+    background-image: url("../assets/hero/hero-cinematic-base.webp");
   }
 
   .hero-backdrop-reveal {
-    background-image: url("../assets/hero-cinematic-reveal.webp");
+    background-image: url("../assets/hero/hero-cinematic-reveal.webp");
   }
 
   .hero-content {
