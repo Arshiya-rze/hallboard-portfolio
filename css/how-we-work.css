@@ -35,6 +35,7 @@
 }
 
 .how-header h2 strong {
+  display: inline;
   color: transparent;
   background: linear-gradient(135deg, var(--section-accent) 0%, var(--section-accent-2) 56%, var(--section-accent-3) 100%);
   -webkit-background-clip: text;

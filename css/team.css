@@ -62,6 +62,13 @@
   max-width: 680px;
 }
 
+@media (min-width: 768px) {
+  .team-header p {
+    max-width: none;
+    white-space: nowrap;
+  }
+}
+
 .team-grid {
   position: relative;
   max-width: 1080px;

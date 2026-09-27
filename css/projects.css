@@ -61,6 +61,17 @@
   background-clip: text;
 }
 
+@media (min-width: 768px) {
+  .projects-header {
+    max-width: 900px;
+  }
+
+  .projects-header h2 {
+    max-width: none;
+    white-space: nowrap;
+  }
+}
+
 .projects-header p {
   max-width: 620px;
   font-size: 13px;
