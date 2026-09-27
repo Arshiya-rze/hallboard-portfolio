@@ -303,8 +303,16 @@
   const initTechTabs = () => {
     const tabs = Array.from(document.querySelectorAll("[data-tech-target]"));
     const panels = Array.from(document.querySelectorAll("[data-tech-panel]"));
+    const techStack = document.querySelector(".tech-stack");
 
-    if (!tabs.length || !panels.length) return;
+    if (!tabs.length || !panels.length || !techStack) return;
+
+    let activeIndex = Math.max(
+      0,
+      tabs.findIndex((tab) => tab.classList.contains("is-active"))
+    );
+    let autoplayId = 0;
+    let isPaused = false;
 
     const activate = (target) => {
       tabs.forEach((tab) => {
@@ -318,9 +326,54 @@
       });
     };
 
+    const stopAutoplay = () => {
+      if (autoplayId) {
+        window.clearInterval(autoplayId);
+        autoplayId = 0;
+      }
+    };
+
+    const startAutoplay = () => {
+      stopAutoplay();
+
+      if (reducedMotion.matches || isPaused || document.hidden) return;
+
+      autoplayId = window.setInterval(() => {
+        activeIndex = (activeIndex + 1) % tabs.length;
+        activate(tabs[activeIndex].dataset.techTarget);
+      }, 2000);
+    };
+
     tabs.forEach((tab) => {
-      tab.addEventListener("click", () => activate(tab.dataset.techTarget));
+      tab.addEventListener("click", () => {
+        activeIndex = tabs.indexOf(tab);
+        activate(tab.dataset.techTarget);
+        startAutoplay();
+      });
     });
+
+    techStack.addEventListener("pointerenter", () => {
+      isPaused = true;
+      stopAutoplay();
+    });
+    techStack.addEventListener("pointerleave", () => {
+      isPaused = false;
+      startAutoplay();
+    });
+    techStack.addEventListener("focusin", () => {
+      isPaused = true;
+      stopAutoplay();
+    });
+    techStack.addEventListener("focusout", (event) => {
+      if (!techStack.contains(event.relatedTarget)) {
+        isPaused = false;
+        startAutoplay();
+      }
+    });
+    document.addEventListener("visibilitychange", startAutoplay);
+    reducedMotion.addEventListener?.("change", startAutoplay);
+
+    startAutoplay();
   };
 
   const initEngineeringExperience = () => {
