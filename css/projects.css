@@ -584,3 +584,176 @@
     transition: none;
   }
 }
+
+
+/* Compact, image-led project cards inspired by editorial product showcases. */
+.projects-section {
+  margin-top: clamp(24px, 4vw, 42px);
+  padding: 34px 16px 28px;
+  border-radius: 28px;
+}
+
+.projects-header {
+  margin-bottom: 20px;
+}
+
+.projects-header h2 {
+  font-size: clamp(28px, 4.4vw, 40px);
+  line-height: 1.25;
+}
+
+.projects-header p {
+  margin-top: 10px;
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+
+.projects-carousel {
+  --projects-gap: 14px;
+}
+
+.project-card {
+  min-height: 0;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 20px;
+}
+
+.project-visual {
+  height: 158px;
+  flex: 0 0 auto;
+  border-radius: 16px;
+  box-shadow: 0 9px 24px rgba(0, 0, 0, .22);
+}
+
+.project-body {
+  gap: 7px;
+}
+
+.project-meta {
+  gap: 6px;
+}
+
+.project-meta span {
+  padding: 4px 8px;
+  font-size: 9.5px;
+}
+
+.project-body h3 {
+  font-size: clamp(19px, 2vw, 22px);
+}
+
+.project-body > p {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 11.5px;
+  line-height: 1.7;
+}
+
+.project-impact {
+  gap: 7px;
+  padding: 7px 9px;
+  border-radius: 13px;
+}
+
+.project-impact strong {
+  font-size: 18px;
+}
+
+.project-impact span {
+  font-size: 9.5px;
+  line-height: 1.45;
+}
+
+.project-techs {
+  gap: 5px;
+}
+
+.project-techs span {
+  min-height: 26px;
+  gap: 5px;
+  padding: 4px 7px;
+  font-size: 9.5px;
+}
+
+.project-techs img {
+  width: 14px;
+  height: 14px;
+}
+
+.project-more {
+  padding-top: 7px;
+}
+
+.project-more summary {
+  padding: 2px 0;
+  font-size: 10.5px;
+}
+
+.project-more[open] {
+  display: grid;
+  gap: 9px;
+}
+
+.project-more[open] > p {
+  margin-top: 0;
+}
+
+.project-actions .btn {
+  min-height: 39px;
+  border-radius: 13px;
+  font-size: 11.5px;
+}
+
+@media (min-width: 768px) {
+  .projects-section {
+    padding: 38px 30px 30px;
+  }
+
+  .projects-header {
+    margin-bottom: 20px;
+  }
+
+  .projects-carousel {
+    --projects-gap: 14px;
+  }
+
+  .project-card {
+    padding: 12px;
+    border-radius: 21px;
+  }
+
+  .project-visual {
+    height: clamp(140px, 13vw, 172px);
+  }
+}
+
+@media (max-width: 767px) {
+  .projects-section {
+    padding: 28px 14px 24px;
+    border-radius: 24px;
+  }
+
+  .projects-header {
+    margin-bottom: 16px;
+  }
+
+  .projects-header h2 {
+    font-size: clamp(27px, 7vw, 34px);
+  }
+
+  .projects-header p {
+    font-size: 12px;
+  }
+
+  .projects-carousel {
+    --projects-gap: 12px;
+    --project-card-width: min(86vw, 340px);
+  }
+
+  .project-visual {
+    height: 158px;
+  }
+}

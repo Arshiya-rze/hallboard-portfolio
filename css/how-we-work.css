@@ -14,7 +14,7 @@
     inset -1px -2px 2px rgba(0, 0, 0, 0.45);
   position: relative;
   margin-top: 56px;
-  padding: 64px 18px 48px;
+  padding: 48px 18px 48px;
   overflow: hidden;
   border-radius: 32px;
   background:
@@ -34,23 +34,16 @@
   pointer-events: none;
 }
 
-.how-header h2 strong {
-  display: inline;
-  color: transparent;
-  background: linear-gradient(135deg, var(--section-accent) 0%, var(--section-accent-2) 56%, var(--section-accent-3) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
 
 .how-orb {
   position: absolute;
-  width: 96px;
-  height: 96px;
+  width: 72px;
+  height: 72px;
   display: none;
   place-items: center;
-  border-radius: 24px;
+  border-radius: 20px;
   color: #d9bb72;
-  font-size: 40px;
+  font-size: 31px;
   background: linear-gradient(145deg, #202838, #171e2c 48%, #131a27);
   border: 1px solid rgba(207, 220, 255, 0.12);
   box-shadow:
@@ -78,14 +71,14 @@
 .how-orb::after {
   content: '';
   position: absolute;
-  inset: 8px;
-  border-radius: 18px;
+  inset: 6px;
+  border-radius: 15px;
   background: linear-gradient(140deg, #ffffff06, transparent 65%);
   border: 1px solid #ffffff05;
   transform: translateZ(1px);
 }
 .how-orb > span {
-  transform: translateZ(18px);
+  transform: translateZ(12px);
   text-shadow: 0 1px 0 #f9dea54d, 1px 3px 0 #695426, 3px 7px 8px #0009;
   line-height: 1;
 }
@@ -98,13 +91,13 @@
 }
 
 .how-orb-left {
-  right: 8%;
-  top: 86px;
+  right: 3%;
+  top: 18px;
 }
 
 .how-orb-right {
-  left: 8%;
-  top: 86px;
+  left: 3%;
+  top: 18px;
   animation-delay: -1.4s;
 }
 
@@ -416,7 +409,7 @@
 
 @media (min-width: 768px) {
   .how-we-work {
-    padding: 76px 42px 54px;
+    padding: 52px 42px 54px;
   }
 
   .principles-grid {
@@ -435,7 +428,7 @@
 
 @media (min-width: 1180px) {
   .how-we-work {
-    padding: 88px 64px 64px;
+    padding: 58px 64px 64px;
   }
 
   .how-orb {
@@ -490,7 +483,6 @@
 
 /* Compact rhythm + soft motion */
 
-.how-header,
 .principles-title,
 .process-title,
 .principle-card,
@@ -559,24 +551,10 @@
 @media (max-width: 767px) {
   .how-we-work {
     margin-top: 34px;
-    padding: 40px 14px 30px;
+    padding: 26px 14px 30px;
     border-radius: 24px;
   }
 
-  .how-header {
-    margin-bottom: 20px;
-  }
-
-  .how-header h2 {
-    font-size: clamp(32px, 9vw, 42px);
-    line-height: 1.25;
-  }
-
-  .how-header p {
-    margin-top: 14px;
-    font-size: 12.5px;
-    line-height: 1.9;
-  }
 
   .principles-title,
   .process-title {
@@ -670,11 +648,7 @@
 
 @media (min-width: 768px) {
   .how-we-work {
-    padding: 58px 34px 40px;
-  }
-
-  .how-header {
-    margin-bottom: 24px;
+    padding: 38px 34px 40px;
   }
 
   .principles-title,
@@ -744,12 +718,8 @@
 @media (min-width: 1180px) {
   .how-we-work {
     margin-top: 48px;
-    padding: 54px 40px 40px;
+    padding: 42px 40px 40px;
     border-radius: 30px;
-  }
-
-  .how-header h2 {
-    font-size: 48px;
   }
 
   .principles-grid {
@@ -780,7 +750,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .how-header,
   .principles-title,
   .process-title,
   .principle-card,
