@@ -21,36 +21,9 @@
       sizes="180x180"
       href="./assets/brand/apple-touch-icon.png"
     />
-    <link
-      rel="preload"
-      as="image"
-      href="./assets/hero/hero-cinematic-base-mobile.webp"
-      type="image/webp"
-      media="(max-width: 767px)"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="./assets/hero/hero-cinematic-reveal-mobile.webp"
-      type="image/webp"
-      media="(max-width: 767px)"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="./assets/hero/hero-cinematic-base.webp"
-      type="image/webp"
-      media="(min-width: 768px)"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="./assets/hero/hero-cinematic-reveal.webp"
-      type="image/webp"
-      media="(min-width: 768px)"
-    />
     <link rel="stylesheet" href="./style.css" />
     <script src="./hero-spotlight.js" defer></script>
+    <script src="./hero-cinematic.js" defer></script>
     <script src="./team-cards.js" defer></script>
   </head>
   <body>
@@ -90,10 +63,10 @@
         </label>
 
         <nav class="nav" id="primary-nav" aria-label="منوی اصلی">
+          <a href="#team">تیم ما</a>
           <a href="#projects">نمونه‌کارها</a>
           <a href="#what-we-do">خدمات ما</a>
           <a href="#how-we-work">روش کار ما</a>
-          <a href="#team">تیم ما</a>
         </nav>
 
         <a
@@ -108,321 +81,420 @@
         </a>
       </header>
 
-      <div class="hero-shell">
-        <!-- Cinematic Hero -->
-        <section class="hero" id="hero" aria-labelledby="hero-title">
-          <div class="hero-scene" aria-hidden="true">
-            <div class="hero-backdrop hero-backdrop-base"></div>
-            <div class="hero-backdrop hero-backdrop-reveal"></div>
-            <div class="hero-lens-ring"></div>
-            <div class="hero-grid"></div>
-            <div class="hero-vignette"></div>
-
-            <div class="hero-object hero-object-angular">
-              <img src="./assets/technologies/angular.png" alt="" />
-            </div>
-
-            <div class="hero-object hero-object-dotnet">
-              <span>.NET 10</span>
-            </div>
-
-            <div class="hero-object hero-object-database">
-              <svg viewBox="0 0 24 24">
-                <ellipse cx="12" cy="5" rx="8" ry="3" />
-                <path
-                  d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"
-                />
-              </svg>
-            </div>
-
-            <div class="hero-object hero-object-git">
-              <svg viewBox="0 0 24 24">
-                <circle cx="6" cy="5" r="2" />
-                <circle cx="18" cy="6" r="2" />
-                <circle cx="6" cy="19" r="2" />
-                <path d="M6 7v10M8 9c5 0 4-3 8-3" />
-              </svg>
-            </div>
-
-            <div class="hero-object hero-object-api">
-              <svg viewBox="0 0 24 24">
-                <circle cx="5" cy="12" r="2" />
-                <circle cx="19" cy="6" r="2" />
-                <circle cx="19" cy="18" r="2" />
-                <path d="m7 11 10-4M7 13l10 4" />
-              </svg>
-            </div>
-
-            <div class="hero-object hero-object-cloud">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M17.5 19H7a5 5 0 1 1 1.7-9.7A6 6 0 0 1 20 12a3.5 3.5 0 0 1-2.5 7Z"
-                />
-              </svg>
-            </div>
+      <div class="hero-shell" data-hero-film-shell>
+        <section
+          class="hero hero-film"
+          id="hero"
+          aria-labelledby="hero-title"
+          data-cinematic-hero
+        >
+          <div class="hero-film-atmosphere" aria-hidden="true"></div>
+          <div class="hero-film-beam" aria-hidden="true"></div>
+          <div class="hero-film-symbol" data-film-symbol aria-hidden="true">
+            <span class="hero-film-symbol-image"></span>
           </div>
 
-          <div class="hero-content">
-            <div class="badge">
-              <span></span>
-              مهندسی دقیق برای محصولات آینده
+          <div class="hero-browser" data-film-browser>
+            <div class="hero-browser-screen">
+              <div class="hero-browser-chrome" aria-hidden="true">
+                <span class="hero-browser-dots"><i></i><i></i><i></i></span>
+              </div>
+              <div class="hero-browser-page">
+                <header class="hero-browser-header">
+                  <div class="hero-browser-brand" dir="ltr">
+                    <span class="hero-browser-wordmark">Hallboard</span>
+                    <span
+                      class="hero-browser-mark-anchor"
+                      aria-hidden="true"
+                    ></span>
+                  </div>
+                </header>
+                <div class="hero-browser-content" data-browser-content>
+                  <span class="hero-browser-accent" aria-hidden="true"></span>
+                  <div class="hero-copy-stack">
+                    <section class="hero-copy-step" data-copy-step="0">
+                      <h1 id="hero-title">وب‌سایت بعدی کسب‌وکارتان، از اینجا ساخته می‌شود</h1>
+                      <p>از طراحی تجربه تا توسعه، یک تیم همراه شماست.</p>
+                    </section>
+                    <section class="hero-copy-step" data-copy-step="1" aria-hidden="true" inert>
+                      <h2>برای کسب‌وکار شما، نه یک قالب آماده.</h2>
+                      <p>طراحی متناسب با مسئله، کاربران و مسیر رشد شما.</p>
+                    </section>
+                    <section class="hero-copy-step" data-copy-step="2" aria-hidden="true" inert>
+                      <h2>از ایده تا انتشار، یک تیم کنار شماست.</h2>
+                      <p>طراحی و توسعه در مسیری روشن، منسجم و قابل اتکا.</p>
+                    </section>
+                  </div>
+                  <a
+                    class="btn btn-primary hero-browser-cta"
+                    href="mailto:hallboardteam@gmail.com"
+                    data-contact-open
+                  >
+                    شروع همکاری
+                    <svg aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M17 7 7 17M7 7h10v10" />
+                    </svg>
+                  </a>
+                </div>
+                <footer class="hero-browser-footer" dir="ltr">© 2026 Hallboard</footer>
+              </div>
             </div>
-
-            <h1 id="hero-title">
-              <span>ما آینده دیجیتال را می‌سازیم</span>
-              <strong>با مهندسی نرم‌افزار</strong>
-            </h1>
-
-            <p>
-              ما یک تیم مهندسی نرم‌افزار هستیم که محصولات دیجیتال مقیاس‌پذیر،
-              سریع و مدرن طراحی و توسعه می‌دهیم.
-            </p>
-
-            <div class="hero-actions">
-              <a
-                class="btn btn-primary btn-lg"
-                href="mailto:hallboardteam@gmail.com"
-                data-contact-open
-              >
-                شروع همکاری
-                <svg aria-hidden="true" viewBox="0 0 24 24">
-                  <path d="M17 7 7 17M7 7h10v10" />
-                </svg>
-              </a>
-
-              <a class="btn btn-outline btn-lg" href="#projects">
-                مشاهده پروژه‌ها
-                <svg aria-hidden="true" viewBox="0 0 24 24">
-                  <rect x="3" y="4" width="18" height="16" rx="2" />
-                  <path d="M7 8h10M7 12h6" />
-                </svg>
-              </a>
-            </div>
-
-            <div class="hero-tech" aria-label="فناوری‌های اصلی تیم">
-              <span class="tech-angular">Angular 22</span>
-              <i></i>
-              <span class="tech-dotnet">.NET 10</span>
-              <i></i>
-              <span class="tech-cloud">Cloud</span>
-              <i></i>
-              <span class="tech-devops">DevOps</span>
-            </div>
+            <span class="hero-device-camera" aria-hidden="true"></span>
+            <span class="hero-device-side-controls" aria-hidden="true"></span>
+            <span class="hero-device-home-indicator" aria-hidden="true"></span>
+            <span class="hero-device-base" aria-hidden="true"></span>
           </div>
-
-          <div class="spotlight-hint" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="m5 3 14 8-6 2-2 6L5 3Z" /></svg>
-            <span class="spotlight-hint-desktop"
-              >برای کشف لایه عمیق‌تر، نشانگر را حرکت دهید</span
-            >
-            <span class="spotlight-hint-mobile"
-              >برای کشف لایه عمیق‌تر، لمس و حرکت کنید</span
-            >
-          </div>
-
-          <a
-            class="scroll-cue"
-            href="#engineering-experience"
-            aria-label="رفتن به بخش بعدی؛ تجربه مهندسی محصول"
-          >
-            <!-- <span class="scroll-cue-text">بخش بعدی</span> -->
-            <span class="scroll-cue-arrow" aria-hidden="true"></span>
-          </a>
         </section>
       </div>
 
-      <!-- Engineering Experience -->
+      <!-- Team -->
       <section
-        class="engineering-experience story-stage-0"
-        id="engineering-experience"
-        aria-labelledby="engineering-experience-title"
-        data-engineering-experience
+        class="team-section"
+        id="team"
+        aria-labelledby="team-title"
+        data-team-section
       >
-        <div class="engineering-sticky">
-          <div class="engineering-copy">
-            <span class="section-eyebrow">جهان مهندسی محصول</span>
+        <div class="team-orb team-orb-right" aria-hidden="true"></div>
+        <div class="team-orb team-orb-left" aria-hidden="true"></div>
 
-            <h2 id="engineering-experience-title" data-story-title>
-              ما ایده‌ها را به محصولات دیجیتال تبدیل می‌کنیم
-            </h2>
+        <div class="section-header team-header">
+          <h2 id="team-title">
+            <strong>تیم هالبورد</strong>
+          </h2>
 
-            <p data-story-description>
-              یک موتور مهندسی کامل؛ از استراتژی و طراحی تا فرانت‌اند، بک‌اند،
-              داده، زیرساخت ابری و محصول واقعی قابل رشد.
-            </p>
+          <p>
+            پشت هر تصمیم فنی، یک تیم دقیق ایستاده؛ از معماری و طراحی تا توسعه
+            فول‌استک، تست، استقرار و رشد محصول.
+          </p>
+        </div>
 
-            <div class="story-progress-meter" aria-hidden="true">
-              <span></span>
+        <template id="team-portrait-template">
+          <div class="team-card-visual living-portrait">
+            <div class="living-portrait-backdrop">
+              <span class="living-portrait-halo" aria-hidden="true"></span>
+              <span class="living-portrait-light" aria-hidden="true"></span>
+              <div class="living-portrait-photo-layer">
+                <span data-portrait-photo-slot></span>
+              </div>
+              <span class="living-portrait-shadow" aria-hidden="true"></span>
+              <span class="living-portrait-sweep" aria-hidden="true"></span>
             </div>
-
-            <div
-              class="story-stage-pills"
-              aria-label="مراحل تجربه مهندسی محصول"
+            <div class="living-portrait-depth" aria-hidden="true">
+              <div class="living-portrait-arrival">
+                <div class="living-portrait-cutout">
+                  <img
+                    class="living-portrait-image living-portrait-character"
+                    data-portrait-image
+                    width="800"
+                    height="1000"
+                    alt=""
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+            <button
+              class="living-portrait-toggle"
+              type="button"
+              data-portrait-toggle
+              aria-pressed="false"
+              hidden
             >
-              <span class="is-active" data-stage-pill="0">Core</span>
-              <span data-stage-pill="1">Strategy</span>
-              <span data-stage-pill="2">Build</span>
-              <span data-stage-pill="3">Scale</span>
-              <span data-stage-pill="4">Product</span>
-            </div>
-          </div>
-
-          <div class="engineering-visual" data-engineering-visual>
-            <div class="universe-card" data-universe-card>
-              <div class="universe-grid" aria-hidden="true"></div>
-              <div class="engineering-artifacts" aria-hidden="true">
-                <div class="artifact-card artifact-code">
-                  <span></span>
-                  <i></i>
-                  <i></i>
-                  <i></i>
-                </div>
-                <div class="artifact-card artifact-chart">
-                  <b></b>
-                  <b></b>
-                  <b></b>
-                </div>
-                <div class="artifact-card artifact-deploy">
-                  <img src="./assets/technologies/docker.svg" alt="" />
-                  <img src="./assets/technologies/github-actions.svg" alt="" />
-                  <img src="./assets/technologies/aws.svg" alt="" />
-                </div>
-              </div>
-              <div class="orbit-ring orbit-ring-inner" aria-hidden="true"></div>
-              <div class="orbit-ring orbit-ring-outer" aria-hidden="true"></div>
-
-              <div class="connection-web" aria-hidden="true">
-                <span class="connection-line connection-strategy"></span>
-                <span class="connection-line connection-frontend"></span>
-                <span class="connection-line connection-backend"></span>
-                <span class="connection-line connection-data"></span>
-                <span class="connection-line connection-cloud"></span>
-                <span class="connection-line connection-product"></span>
-              </div>
-
-              <span class="data-particle particle-1" aria-hidden="true"></span>
-              <span class="data-particle particle-2" aria-hidden="true"></span>
-              <span class="data-particle particle-3" aria-hidden="true"></span>
-              <span class="data-particle particle-4" aria-hidden="true"></span>
-
-              <div
-                class="product-core"
-                aria-label="موتور محصول دیجیتال هالبورد"
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+                aria-hidden="true"
               >
-                <span class="core-halo"></span>
-                <span class="core-shell"></span>
-                <span class="core-particle core-particle-1"></span>
-                <span class="core-particle core-particle-2"></span>
-                <span class="core-particle core-particle-3"></span>
+                <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" />
+                <path d="m4 7.5 8 4.5 8-4.5M12 12v9m-4-16.25 8 4.5" />
+              </svg>
+              <span data-portrait-label>کاراکتر سه‌بعدی</span>
+            </button>
+          </div>
+        </template>
+
+        <div class="team-grid" aria-label="اعضای تیم هالبورد">
+          <div class="team-card-scene" data-team-scene>
+            <article
+              class="team-card team-lead-card"
+              data-team-card
+              data-portrait-src="./assets/team/reza-taba-3d-portrait.webp"
+              data-portrait-mask="./assets/team/reza-taba-portrait-mask.svg"
+              aria-labelledby="taba-name"
+              style="
+                --team-accent: #a78bfa;
+                --team-accent-2: #22d3ee;
+                --team-accent-3: #f8fafc;
+              "
+            >
+              <div class="team-card-visual">
+                <span class="team-portrait-aura" aria-hidden="true"></span>
                 <img
-                  class="core-mark"
-                  src="./assets/brand/logo-optimized.webp"
-                  alt=""
+                  class="team-portrait"
+                  src="./assets/team/reza-taba-3d-portrait.webp"
+                  width="800"
+                  height="1000"
+                  alt="پرتره مهندس رضا طبا، Team Lead هالبورد"
+                  loading="lazy"
+                  decoding="async"
                 />
-                <div class="core-label">
-                  <small>Digital Product Engine</small>
-                  <strong>Hallboard Core</strong>
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Team Lead</span>
+                <h3 id="taba-name">مهندس رضا طبا</h3>
+                <p class="team-card-role">
+                  Team Lead of Hallboard / Senior Full Stack Developer
+                </p>
+                <p class="team-card-bio">
+                  هدایت معماری، تصمیم‌های فنی و کیفیت خروجی؛ از ایده تا محصولی
+                  که بتواند در دنیای واقعی رشد کند.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای مهندس رضا طبا">
+                  <span>Architecture</span>
+                  <span>Leadership</span>
+                  <span>Product Engineering</span>
                 </div>
               </div>
-
-              <button
-                class="orbit-node node-strategy"
-                type="button"
-                data-story-node
-                data-story-stage="1"
-                data-node-title="تحلیل و طراحی"
-                data-node-description="نیاز، بازار، مسیر محصول و اولویت‌های فنی قبل از توسعه شفاف می‌شود."
-              >
-                <span class="node-orb"
-                  ><img src="./assets/technologies/figma.svg" alt=""
-                /></span>
-                <strong>Strategy</strong>
-                <small>تحلیل و طراحی</small>
-              </button>
-
-              <button
-                class="orbit-node node-frontend"
-                type="button"
-                data-story-node
-                data-story-stage="2"
-                data-node-title="فرانت‌اند مهندسی‌شده"
-                data-node-description="رابط‌های سریع، واکنش‌گرا و قابل توسعه با ساختار component-based طراحی می‌شوند."
-              >
-                <span class="node-orb"
-                  ><img src="./assets/technologies/angular.png" alt=""
-                /></span>
-                <strong>Frontend</strong>
-                <small>لایه تجربه کاربر</small>
-              </button>
-
-              <button
-                class="orbit-node node-backend"
-                type="button"
-                data-story-node
-                data-story-stage="2"
-                data-node-title="بک‌اند و API"
-                data-node-description="سرویس‌ها، APIها و منطق تجاری با معماری امن و مقیاس‌پذیر ساخته می‌شوند."
-              >
-                <span class="node-orb"
-                  ><img src="./assets/technologies/dotnet.svg" alt=""
-                /></span>
-                <strong>Backend</strong>
-                <small>سرویس و API</small>
-              </button>
-
-              <button
-                class="orbit-node node-data"
-                type="button"
-                data-story-node
-                data-story-stage="3"
-                data-node-title="لایه داده"
-                data-node-description="دیتابیس، کش، جست‌وجو و جریان داده برای رشد محصول بهینه می‌شود."
-              >
-                <span class="node-orb"
-                  ><img src="./assets/technologies/postgresql.png" alt=""
-                /></span>
-                <strong>Data</strong>
-                <small>دیتابیس و پردازش</small>
-              </button>
-
-              <button
-                class="orbit-node node-cloud"
-                type="button"
-                data-story-node
-                data-story-stage="3"
-                data-node-title="Cloud & DevOps"
-                data-node-description="استقرار، CI/CD، مانیتورینگ و زیرساخت ابری با هزینه و ریسک کنترل‌شده اجرا می‌شود."
-              >
-                <span class="node-orb"
-                  ><img src="./assets/technologies/aws.svg" alt=""
-                /></span>
-                <strong>Cloud</strong>
-                <small>زیرساخت و DevOps</small>
-              </button>
-
-              <button
-                class="orbit-node node-products"
-                type="button"
-                data-story-node
-                data-story-stage="4"
-                data-node-title="محصول واقعی"
-                data-node-description="خروجی فقط کد نیست؛ محصولی قابل استفاده، قابل رشد و آماده ورود به بازار است."
-              >
-                <span class="node-orb"
-                  ><img src="./assets/projects/project-dashboard.svg" alt=""
-                /></span>
-                <strong>Products</strong>
-                <small>از ایده تا لانچ</small>
-              </button>
-
-              <div class="node-info" data-node-info>
-                <strong>موتور محصول دیجیتال</strong>
-                <span
-                  >با اسکرول، اکوسیستم مهندسی کامل هالبورد فعال می‌شود.</span
-                >
-              </div>
-            </div>
+            </article>
           </div>
+
+          <div class="team-card-scene" data-team-scene>
+            <article
+              class="team-card"
+              data-team-card
+              aria-labelledby="frank-name"
+              style="
+                --team-accent: #22d3ee;
+                --team-accent-2: #a78bfa;
+                --team-accent-3: #34d399;
+              "
+            >
+              <div class="team-card-visual">
+                <span class="team-portrait-aura" aria-hidden="true"></span>
+                <img
+                  class="team-portrait"
+                  src="./assets/team/frank-baran.webp"
+                  width="1059"
+                  height="1485"
+                  alt="پرتره فرانک باران چشمه، مدیر هالبورد و توسعه‌دهنده فول‌استک"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Manager</span>
+                <h3 id="frank-name">فرانک باران چشمه</h3>
+                <p class="team-card-role">
+                  Manager of Hallboard / Full Stack Developer
+                </p>
+                <p class="team-card-bio">
+                  مدیریت مسیر تیم، هماهنگی اجرا و توسعه محصول با نگاه عملیاتی و
+                  دقیق.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای فرانک باران چشمه">
+                  <span>Team Flow</span>
+                  <span>Product Ops</span>
+                  <span>Full Stack</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene>
+            <article
+              class="team-card"
+              data-team-card
+              data-portrait-src="./assets/team/arshia-rezaei-3d-portrait-v3.webp"
+              data-portrait-mask="./assets/team/arshia-rezaei.webp"
+              aria-labelledby="arshia-name"
+              style="
+                --team-accent: #60a5fa;
+                --team-accent-2: #8b5cf6;
+                --team-accent-3: #22d3ee;
+              "
+            >
+              <div class="team-card-visual">
+                <img
+                  class="team-portrait"
+                  src="./assets/team/arshia-rezaei.webp"
+                  width="1100"
+                  height="1375"
+                  alt="پرتره ارشیا رضایی، UI و توسعه‌دهنده فول‌استک"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">UI Engineering</span>
+                <h3 id="arshia-name">ارشیا رضایی</h3>
+                <p class="team-card-role">UI / Full Stack Developer</p>
+                <p class="team-card-bio">
+                  پیوند تجربه بصری، رابط‌های دقیق و توسعه کامل محصول از فرانت تا
+                  بک‌اند.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای ارشیا رضایی">
+                  <span>UI</span>
+                  <span>Angular 22</span>
+                  <span>.NET 10</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene>
+            <article
+              class="team-card"
+              data-team-card
+              aria-labelledby="hamid-name"
+              data-portrait-src="./assets/team/hamid-rahimi-3d-portrait.webp"
+              data-portrait-mask="./assets/team/hamid-rahimi-portrait-mask.svg"
+              style="
+                --team-accent: #34d399;
+                --team-accent-2: #22d3ee;
+                --team-accent-3: #a78bfa;
+              "
+            >
+              <div class="team-card-visual">
+                <span class="team-portrait-aura" aria-hidden="true"></span>
+                <img
+                  class="team-portrait"
+                  src="./assets/team/hamid-rahimi-3d-portrait.webp"
+                  width="800"
+                  height="1000"
+                  alt="پرتره حمید رحیمی، UX و توسعه‌دهنده فول‌استک"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">UX Systems</span>
+                <h3 id="hamid-name">حمید رحیمی</h3>
+                <p class="team-card-role">UX / Full Stack Developer</p>
+                <p class="team-card-bio">
+                  طراحی تجربه‌های انسانی و توسعه ساختارهایی که هم قابل
+                  استفاده‌اند، هم قابل رشد.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای حمید رحیمی">
+                  <span>UX</span>
+                  <span>Product Flow</span>
+                  <span>Full Stack</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene>
+            <article
+              class="team-card"
+              data-team-card
+              aria-labelledby="parsa-name"
+              data-portrait-src="./assets/team/parsa-jafari-3d-portrait.webp"
+              data-portrait-mask="./assets/team/parsa-jafari-portrait-mask.svg"
+              style="
+                --team-accent: #f59e0b;
+                --team-accent-2: #8b5cf6;
+                --team-accent-3: #60a5fa;
+              "
+            >
+              <div class="team-card-visual">
+                <span class="team-portrait-aura" aria-hidden="true"></span>
+                <img
+                  class="team-portrait"
+                  src="./assets/team/parsa-jafari-3d-portrait.webp"
+                  width="800"
+                  height="1000"
+                  alt="پرتره پارسا جعفری، توسعه‌دهنده فول‌استک"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Full Stack</span>
+                <h3 id="parsa-name">پارسا جعفری</h3>
+                <p class="team-card-role">Full Stack Developer</p>
+                <p class="team-card-bio">
+                  ساخت قابلیت‌های کاربردی، اتصال لایه‌ها و توسعه محصول با تمرکز
+                  روی کیفیت.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای پارسا جغفری">
+                  <span>Frontend</span>
+                  <span>Backend</span>
+                  <span>API</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene>
+            <article
+              class="team-card"
+              data-team-card
+              data-portrait-src="./assets/team/vahid-hayati-3d-portrait.webp"
+              data-portrait-mask="./assets/team/vahid-hayati-portrait-mask.svg"
+              aria-labelledby="vahid-name"
+              style="
+                --team-accent: #fb7185;
+                --team-accent-2: #60a5fa;
+                --team-accent-3: #a78bfa;
+              "
+            >
+              <div class="team-card-visual">
+                <span class="team-portrait-aura" aria-hidden="true"></span>
+                <img
+                  class="team-portrait"
+                  src="./assets/team/vahid-hayati-3d-portrait.webp"
+                  width="800"
+                  height="1000"
+                  alt="پرتره وحید حیاتی پور، توسعه‌دهنده فول‌استک"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Full Stack</span>
+                <h3 id="vahid-name">وحید حیاتی</h3>
+                <p class="team-card-role">Full Stack Developer</p>
+                <p class="team-card-bio">
+                  پیاده‌سازی بخش‌های پایدار، نگهدارپذیر و آماده رشد در محصول.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای وحید حیاتی">
+                  <span>Systems</span>
+                  <span>Backend</span>
+                  <span>Delivery</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="team-cta">
+          <p>
+            اگر دنبال تیمی هستید که فقط کد ننویسد و محصول را تا نتیجه جلو ببرد،
+            همین‌جا شروع کنید.
+          </p>
+          <a
+            href="mailto:hallboardteam@gmail.com"
+            data-contact-open
+            class="btn btn-primary"
+            >شروع همکاری با تیم <span>↗</span></a
+          >
         </div>
       </section>
 
@@ -1103,6 +1175,201 @@
         </div>
       </section>
 
+      <!-- Engineering Experience -->
+      <section
+        class="engineering-experience story-stage-0"
+        id="engineering-experience"
+        aria-labelledby="engineering-experience-title"
+        data-engineering-experience
+      >
+        <div class="engineering-sticky">
+          <div class="engineering-copy">
+            <span class="section-eyebrow">جهان مهندسی محصول</span>
+
+            <h2 id="engineering-experience-title" data-story-title>
+              ما ایده‌ها را به محصولات دیجیتال تبدیل می‌کنیم
+            </h2>
+
+            <p data-story-description>
+              یک موتور مهندسی کامل؛ از استراتژی و طراحی تا فرانت‌اند، بک‌اند،
+              داده، زیرساخت ابری و محصول واقعی قابل رشد.
+            </p>
+
+            <div class="story-progress-meter" aria-hidden="true">
+              <span></span>
+            </div>
+
+            <div
+              class="story-stage-pills"
+              aria-label="مراحل تجربه مهندسی محصول"
+            >
+              <span class="is-active" data-stage-pill="0">Core</span>
+              <span data-stage-pill="1">Strategy</span>
+              <span data-stage-pill="2">Build</span>
+              <span data-stage-pill="3">Scale</span>
+              <span data-stage-pill="4">Product</span>
+            </div>
+          </div>
+
+          <div class="engineering-visual" data-engineering-visual>
+            <div class="universe-card" data-universe-card>
+              <div class="universe-grid" aria-hidden="true"></div>
+              <div class="engineering-artifacts" aria-hidden="true">
+                <div class="artifact-card artifact-code">
+                  <span></span>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+                <div class="artifact-card artifact-chart">
+                  <b></b>
+                  <b></b>
+                  <b></b>
+                </div>
+                <div class="artifact-card artifact-deploy">
+                  <img src="./assets/technologies/docker.svg" alt="" />
+                  <img src="./assets/technologies/github-actions.svg" alt="" />
+                  <img src="./assets/technologies/aws.svg" alt="" />
+                </div>
+              </div>
+              <div class="orbit-ring orbit-ring-inner" aria-hidden="true"></div>
+              <div class="orbit-ring orbit-ring-outer" aria-hidden="true"></div>
+
+              <div class="connection-web" aria-hidden="true">
+                <span class="connection-line connection-strategy"></span>
+                <span class="connection-line connection-frontend"></span>
+                <span class="connection-line connection-backend"></span>
+                <span class="connection-line connection-data"></span>
+                <span class="connection-line connection-cloud"></span>
+                <span class="connection-line connection-product"></span>
+              </div>
+
+              <span class="data-particle particle-1" aria-hidden="true"></span>
+              <span class="data-particle particle-2" aria-hidden="true"></span>
+              <span class="data-particle particle-3" aria-hidden="true"></span>
+              <span class="data-particle particle-4" aria-hidden="true"></span>
+
+              <div
+                class="product-core"
+                aria-label="موتور محصول دیجیتال هالبورد"
+              >
+                <span class="core-halo"></span>
+                <span class="core-shell"></span>
+                <span class="core-particle core-particle-1"></span>
+                <span class="core-particle core-particle-2"></span>
+                <span class="core-particle core-particle-3"></span>
+                <img
+                  class="core-mark"
+                  src="./assets/brand/logo-optimized.webp"
+                  alt=""
+                />
+                <div class="core-label">
+                  <small>Digital Product Engine</small>
+                  <strong>Hallboard Core</strong>
+                </div>
+              </div>
+
+              <button
+                class="orbit-node node-strategy"
+                type="button"
+                data-story-node
+                data-story-stage="1"
+                data-node-title="تحلیل و طراحی"
+                data-node-description="نیاز، بازار، مسیر محصول و اولویت‌های فنی قبل از توسعه شفاف می‌شود."
+              >
+                <span class="node-orb"
+                  ><img src="./assets/technologies/figma.svg" alt=""
+                /></span>
+                <strong>Strategy</strong>
+                <small>تحلیل و طراحی</small>
+              </button>
+
+              <button
+                class="orbit-node node-frontend"
+                type="button"
+                data-story-node
+                data-story-stage="2"
+                data-node-title="فرانت‌اند مهندسی‌شده"
+                data-node-description="رابط‌های سریع، واکنش‌گرا و قابل توسعه با ساختار component-based طراحی می‌شوند."
+              >
+                <span class="node-orb"
+                  ><img src="./assets/technologies/angular.png" alt=""
+                /></span>
+                <strong>Frontend</strong>
+                <small>لایه تجربه کاربر</small>
+              </button>
+
+              <button
+                class="orbit-node node-backend"
+                type="button"
+                data-story-node
+                data-story-stage="2"
+                data-node-title="بک‌اند و API"
+                data-node-description="سرویس‌ها، APIها و منطق تجاری با معماری امن و مقیاس‌پذیر ساخته می‌شوند."
+              >
+                <span class="node-orb"
+                  ><img src="./assets/technologies/dotnet.svg" alt=""
+                /></span>
+                <strong>Backend</strong>
+                <small>سرویس و API</small>
+              </button>
+
+              <button
+                class="orbit-node node-data"
+                type="button"
+                data-story-node
+                data-story-stage="3"
+                data-node-title="لایه داده"
+                data-node-description="دیتابیس، کش، جست‌وجو و جریان داده برای رشد محصول بهینه می‌شود."
+              >
+                <span class="node-orb"
+                  ><img src="./assets/technologies/postgresql.png" alt=""
+                /></span>
+                <strong>Data</strong>
+                <small>دیتابیس و پردازش</small>
+              </button>
+
+              <button
+                class="orbit-node node-cloud"
+                type="button"
+                data-story-node
+                data-story-stage="3"
+                data-node-title="Cloud & DevOps"
+                data-node-description="استقرار، CI/CD، مانیتورینگ و زیرساخت ابری با هزینه و ریسک کنترل‌شده اجرا می‌شود."
+              >
+                <span class="node-orb"
+                  ><img src="./assets/technologies/aws.svg" alt=""
+                /></span>
+                <strong>Cloud</strong>
+                <small>زیرساخت و DevOps</small>
+              </button>
+
+              <button
+                class="orbit-node node-products"
+                type="button"
+                data-story-node
+                data-story-stage="4"
+                data-node-title="محصول واقعی"
+                data-node-description="خروجی فقط کد نیست؛ محصولی قابل استفاده، قابل رشد و آماده ورود به بازار است."
+              >
+                <span class="node-orb"
+                  ><img src="./assets/projects/project-dashboard.svg" alt=""
+                /></span>
+                <strong>Products</strong>
+                <small>از ایده تا لانچ</small>
+              </button>
+
+              <div class="node-info" data-node-info>
+                <strong>موتور محصول دیجیتال</strong>
+                <span
+                  >با اسکرول، اکوسیستم مهندسی کامل هالبورد فعال می‌شود.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Feature Bar -->
       <section class="feature-bar" id="features">
         <article>
@@ -1756,356 +2023,6 @@
         </div>
       </section>
 
-      <!-- Team -->
-      <section
-        class="team-section"
-        id="team"
-        aria-labelledby="team-title"
-        data-team-section
-      >
-        <div class="team-orb team-orb-right" aria-hidden="true"></div>
-        <div class="team-orb team-orb-left" aria-hidden="true"></div>
-
-        <div class="section-header team-header">
-          <h2 id="team-title">
-            <strong>تیم هالبورد</strong>
-          </h2>
-
-          <p>
-            پشت هر تصمیم فنی، یک تیم دقیق ایستاده؛ از معماری و طراحی تا توسعه
-            فول‌استک، تست، استقرار و رشد محصول.
-          </p>
-        </div>
-
-        <template id="team-portrait-template">
-          <div class="team-card-visual living-portrait">
-            <div class="living-portrait-backdrop">
-              <span class="living-portrait-halo" aria-hidden="true"></span>
-              <span class="living-portrait-light" aria-hidden="true"></span>
-              <div class="living-portrait-photo-layer">
-                <span data-portrait-photo-slot></span>
-              </div>
-              <span class="living-portrait-shadow" aria-hidden="true"></span>
-              <span class="living-portrait-sweep" aria-hidden="true"></span>
-            </div>
-            <div class="living-portrait-depth" aria-hidden="true">
-              <div class="living-portrait-arrival">
-                <div class="living-portrait-cutout">
-                  <img
-                    class="living-portrait-image living-portrait-character"
-                    data-portrait-image
-                    width="800"
-                    height="1000"
-                    alt=""
-                    decoding="async"
-                  />
-                </div>
-              </div>
-            </div>
-            <button
-              class="living-portrait-toggle"
-              type="button"
-              data-portrait-toggle
-              aria-pressed="false"
-              hidden
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" />
-                <path d="m4 7.5 8 4.5 8-4.5M12 12v9m-4-16.25 8 4.5" />
-              </svg>
-              <span data-portrait-label>کاراکتر سه‌بعدی</span>
-            </button>
-          </div>
-        </template>
-
-        <div class="team-grid" aria-label="اعضای تیم هالبورد">
-          <div class="team-card-scene" data-team-scene>
-            <article
-              class="team-card team-lead-card"
-              data-team-card
-              data-portrait-src="./assets/team/reza-taba-3d-portrait.webp"
-              data-portrait-mask="./assets/team/reza-taba-portrait-mask.svg"
-              aria-labelledby="taba-name"
-              style="
-                --team-accent: #a78bfa;
-                --team-accent-2: #22d3ee;
-                --team-accent-3: #f8fafc;
-              "
-            >
-              <div class="team-card-visual">
-                <span class="team-portrait-aura" aria-hidden="true"></span>
-                <img
-                  class="team-portrait"
-                  src="./assets/team/reza-taba-3d-portrait.webp"
-                  width="800"
-                  height="1000"
-                  alt="پرتره مهندس رضا طبا، Team Lead هالبورد"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <div class="team-card-content">
-                <span class="team-card-kicker">Team Lead</span>
-                <h3 id="taba-name">مهندس رضا طبا</h3>
-                <p class="team-card-role">
-                  Team Lead of Hallboard / Senior Full Stack Developer
-                </p>
-                <p class="team-card-bio">
-                  هدایت معماری، تصمیم‌های فنی و کیفیت خروجی؛ از ایده تا محصولی
-                  که بتواند در دنیای واقعی رشد کند.
-                </p>
-
-                <div class="team-tags" aria-label="تمرکزهای مهندس رضا طبا">
-                  <span>Architecture</span>
-                  <span>Leadership</span>
-                  <span>Product Engineering</span>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div class="team-card-scene" data-team-scene>
-            <article
-              class="team-card"
-              data-team-card
-              aria-labelledby="frank-name"
-              style="
-                --team-accent: #22d3ee;
-                --team-accent-2: #a78bfa;
-                --team-accent-3: #34d399;
-              "
-            >
-              <div class="team-card-visual">
-                <span class="team-portrait-aura" aria-hidden="true"></span>
-                <img
-                  class="team-portrait"
-                  src="./assets/team/frank-baran.webp"
-                  width="1059"
-                  height="1485"
-                  alt="پرتره فرانک باران چشمه، مدیر هالبورد و توسعه‌دهنده فول‌استک"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <div class="team-card-content">
-                <span class="team-card-kicker">Manager</span>
-                <h3 id="frank-name">فرانک باران چشمه</h3>
-                <p class="team-card-role">
-                  Manager of Hallboard / Full Stack Developer
-                </p>
-                <p class="team-card-bio">
-                  مدیریت مسیر تیم، هماهنگی اجرا و توسعه محصول با نگاه عملیاتی و
-                  دقیق.
-                </p>
-
-                <div class="team-tags" aria-label="تمرکزهای فرانک باران چشمه">
-                  <span>Team Flow</span>
-                  <span>Product Ops</span>
-                  <span>Full Stack</span>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div class="team-card-scene" data-team-scene>
-            <article
-              class="team-card"
-              data-team-card
-              data-portrait-src="./assets/team/arshia-rezaei-3d-portrait-v3.webp"
-              data-portrait-mask="./assets/team/arshia-rezaei.webp"
-              aria-labelledby="arshia-name"
-              style="
-                --team-accent: #60a5fa;
-                --team-accent-2: #8b5cf6;
-                --team-accent-3: #22d3ee;
-              "
-            >
-              <div class="team-card-visual">
-                <img
-                  class="team-portrait"
-                  src="./assets/team/arshia-rezaei.webp"
-                  width="1100"
-                  height="1375"
-                  alt="پرتره ارشیا رضایی، UI و توسعه‌دهنده فول‌استک"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <div class="team-card-content">
-                <span class="team-card-kicker">UI Engineering</span>
-                <h3 id="arshia-name">ارشیا رضایی</h3>
-                <p class="team-card-role">UI / Full Stack Developer</p>
-                <p class="team-card-bio">
-                  پیوند تجربه بصری، رابط‌های دقیق و توسعه کامل محصول از فرانت تا
-                  بک‌اند.
-                </p>
-
-                <div class="team-tags" aria-label="تمرکزهای ارشیا رضایی">
-                  <span>UI</span>
-                  <span>Angular 22</span>
-                  <span>.NET 10</span>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div class="team-card-scene" data-team-scene>
-            <article
-              class="team-card"
-              data-team-card
-              aria-labelledby="hamid-name"
-              data-portrait-src="./assets/team/hamid-rahimi-3d-portrait.webp"
-              data-portrait-mask="./assets/team/hamid-rahimi-portrait-mask.svg"
-              style="
-                --team-accent: #34d399;
-                --team-accent-2: #22d3ee;
-                --team-accent-3: #a78bfa;
-              "
-            >
-              <div class="team-card-visual">
-                <span class="team-portrait-aura" aria-hidden="true"></span>
-                <img
-                  class="team-portrait"
-                  src="./assets/team/hamid-rahimi-3d-portrait.webp"
-                  width="800"
-                  height="1000"
-                  alt="پرتره حمید رحیمی، UX و توسعه‌دهنده فول‌استک"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <div class="team-card-content">
-                <span class="team-card-kicker">UX Systems</span>
-                <h3 id="hamid-name">حمید رحیمی</h3>
-                <p class="team-card-role">UX / Full Stack Developer</p>
-                <p class="team-card-bio">
-                  طراحی تجربه‌های انسانی و توسعه ساختارهایی که هم قابل
-                  استفاده‌اند، هم قابل رشد.
-                </p>
-
-                <div class="team-tags" aria-label="تمرکزهای حمید رحیمی">
-                  <span>UX</span>
-                  <span>Product Flow</span>
-                  <span>Full Stack</span>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div class="team-card-scene" data-team-scene>
-            <article
-              class="team-card"
-              data-team-card
-              aria-labelledby="parsa-name"
-              data-portrait-src="./assets/team/parsa-jafari-3d-portrait.webp"
-              data-portrait-mask="./assets/team/parsa-jafari-portrait-mask.svg"
-              style="
-                --team-accent: #f59e0b;
-                --team-accent-2: #8b5cf6;
-                --team-accent-3: #60a5fa;
-              "
-            >
-              <div class="team-card-visual">
-                <span class="team-portrait-aura" aria-hidden="true"></span>
-                <img
-                  class="team-portrait"
-                  src="./assets/team/parsa-jafari-3d-portrait.webp"
-                  width="800"
-                  height="1000"
-                  alt="پرتره پارسا جعفری، توسعه‌دهنده فول‌استک"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <div class="team-card-content">
-                <span class="team-card-kicker">Full Stack</span>
-                <h3 id="parsa-name">پارسا جعفری</h3>
-                <p class="team-card-role">Full Stack Developer</p>
-                <p class="team-card-bio">
-                  ساخت قابلیت‌های کاربردی، اتصال لایه‌ها و توسعه محصول با تمرکز
-                  روی کیفیت.
-                </p>
-
-                <div class="team-tags" aria-label="تمرکزهای پارسا جغفری">
-                  <span>Frontend</span>
-                  <span>Backend</span>
-                  <span>API</span>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div class="team-card-scene" data-team-scene>
-            <article
-              class="team-card"
-              data-team-card
-              data-portrait-src="./assets/team/vahid-hayati-3d-portrait.webp"
-              data-portrait-mask="./assets/team/vahid-hayati-portrait-mask.svg"
-              aria-labelledby="vahid-name"
-              style="
-                --team-accent: #fb7185;
-                --team-accent-2: #60a5fa;
-                --team-accent-3: #a78bfa;
-              "
-            >
-              <div class="team-card-visual">
-                <span class="team-portrait-aura" aria-hidden="true"></span>
-                <img
-                  class="team-portrait"
-                  src="./assets/team/vahid-hayati-3d-portrait.webp"
-                  width="800"
-                  height="1000"
-                  alt="پرتره وحید حیاتی پور، توسعه‌دهنده فول‌استک"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <div class="team-card-content">
-                <span class="team-card-kicker">Full Stack</span>
-                <h3 id="vahid-name">وحید حیاتی</h3>
-                <p class="team-card-role">Full Stack Developer</p>
-                <p class="team-card-bio">
-                  پیاده‌سازی بخش‌های پایدار، نگهدارپذیر و آماده رشد در محصول.
-                </p>
-
-                <div class="team-tags" aria-label="تمرکزهای وحید حیاتی">
-                  <span>Systems</span>
-                  <span>Backend</span>
-                  <span>Delivery</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <div class="team-cta">
-          <p>
-            اگر دنبال تیمی هستید که فقط کد ننویسد و محصول را تا نتیجه جلو ببرد،
-            همین‌جا شروع کنید.
-          </p>
-          <a
-            href="mailto:hallboardteam@gmail.com"
-            data-contact-open
-            class="btn btn-primary"
-            >شروع همکاری با تیم <span>↗</span></a
-          >
-        </div>
-      </section>
     </main>
     <dialog
       id="contact-dialog"

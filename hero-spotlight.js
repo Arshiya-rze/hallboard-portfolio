@@ -1,129 +1,41 @@
 (() => {
   "use strict";
 
-  const hero = document.querySelector(".hero");
-
-  if (!hero) return;
-
   const coarsePointer = window.matchMedia("(pointer: coarse)");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const hardwareConcurrency = navigator.hardwareConcurrency || 8;
   const deviceMemory = navigator.deviceMemory || 8;
   const lowPowerDevice = hardwareConcurrency <= 4 || deviceMemory <= 4;
-  const state = {
-    targetX: hero.clientWidth * 0.52,
-    targetY: hero.clientHeight * 0.58,
-    currentX: hero.clientWidth * 0.52,
-    currentY: hero.clientHeight * 0.58,
-    lastInteraction: 0,
-    visible: true,
-    frameId: 0,
-    lastFrameTime: 0,
-  };
-
-  hero.classList.toggle("is-low-power", lowPowerDevice);
-  hero.classList.toggle("is-reduced-motion", reducedMotion.matches);
-
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
-  const setTargetFromPointer = (event) => {
-    if (event.pointerType === "mouse" && event.buttons > 0) return;
-
-    const rect = hero.getBoundingClientRect();
-    state.targetX = clamp(event.clientX - rect.left, 0, rect.width);
-    state.targetY = clamp(event.clientY - rect.top, 0, rect.height);
-    state.lastInteraction = performance.now();
-    hero.classList.add("has-interacted");
-
-    if (reducedMotion.matches) {
-      state.currentX = state.targetX;
-      state.currentY = state.targetY;
-      renderPosition();
-    }
-  };
-
-  const renderPosition = () => {
-    hero.style.setProperty("--spot-x", `${state.currentX.toFixed(1)}px`);
-    hero.style.setProperty("--spot-y", `${state.currentY.toFixed(1)}px`);
-  };
-
-  const animate = (time) => {
-    state.frameId = 0;
-
-    if (!state.visible || document.hidden) return;
-
-    const minimumFrameGap = lowPowerDevice ? 32 : 0;
-
-    if (time - state.lastFrameTime >= minimumFrameGap) {
-      const idleOnTouch = coarsePointer.matches && time - state.lastInteraction > 1800;
-
-      if (idleOnTouch && !reducedMotion.matches) {
-        const width = hero.clientWidth;
-        const height = hero.clientHeight;
-        state.targetX = width * (0.5 + Math.sin(time * 0.00032) * 0.24);
-        state.targetY = height * (0.56 + Math.cos(time * 0.00025) * 0.13);
-      }
-
-      const smoothing = reducedMotion.matches ? 1 : coarsePointer.matches ? 0.085 : 0.1;
-      state.currentX += (state.targetX - state.currentX) * smoothing;
-      state.currentY += (state.targetY - state.currentY) * smoothing;
-      renderPosition();
-      state.lastFrameTime = time;
-    }
-
-    state.frameId = requestAnimationFrame(animate);
-  };
-
-  const startAnimation = () => {
-    if (!state.frameId && state.visible && !document.hidden) {
-      state.frameId = requestAnimationFrame(animate);
-    }
-  };
-
-  hero.addEventListener("pointerdown", setTargetFromPointer, { passive: true });
-  hero.addEventListener("pointermove", setTargetFromPointer, { passive: true });
-
-  window.addEventListener(
-    "resize",
-    () => {
-      state.targetX = clamp(state.targetX, 0, hero.clientWidth);
-      state.targetY = clamp(state.targetY, 0, hero.clientHeight);
-      state.currentX = clamp(state.currentX, 0, hero.clientWidth);
-      state.currentY = clamp(state.currentY, 0, hero.clientHeight);
-    },
-    { passive: true }
-  );
-
-  reducedMotion.addEventListener?.("change", (event) => {
-    hero.classList.toggle("is-reduced-motion", event.matches);
-  });
-
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      state.visible = entry.isIntersecting;
-
-      if (state.visible) {
-        startAnimation();
-      } else if (state.frameId) {
-        cancelAnimationFrame(state.frameId);
-        state.frameId = 0;
-      }
-    },
-    { threshold: 0.01 }
-  );
-
-  observer.observe(hero);
-
-  document.addEventListener("visibilitychange", startAnimation);
-
   const header = document.querySelector(".header");
+  const heroShell = document.querySelector("[data-hero-film-shell]");
+  const menuToggle = document.querySelector("#menu-toggle");
+  const menuButton = document.querySelector(".hamburger");
+  const menuLinks = document.querySelectorAll("#primary-nav a");
   let stickyFrameId = 0;
   let brandScrollAnchor = Math.max(0, window.scrollY);
 
   const updateHeaderStickiness = () => {
     stickyFrameId = 0;
     const scrollY = Math.max(0, Math.min(window.scrollY, document.documentElement.scrollHeight - window.innerHeight));
-    header?.classList.toggle("is-sticky", scrollY > 18);
+    const shellTop = heroShell
+      ? heroShell.getBoundingClientRect().top + scrollY
+      : 0;
+    const heroStickyEnd = heroShell
+      ? shellTop + heroShell.offsetHeight - window.innerHeight
+      : 0;
+    const hasScrolled = scrollY > 18;
+    const hidingOverHero = hasScrolled && scrollY < heroStickyEnd - 1;
+
+    header?.classList.toggle("is-hero-hidden", hidingOverHero);
+    header?.classList.toggle("is-sticky", hasScrolled && !hidingOverHero);
+    if (hidingOverHero && menuToggle?.checked) {
+      menuToggle.checked = false;
+      menuButton?.setAttribute("aria-expanded", "false");
+      menuButton?.setAttribute("aria-label", "باز کردن منوی اصلی");
+    }
+
     // Accumulate small movements; avoid flicker from trackpad jitter and bounce.
     if (scrollY <= 24) {
       header?.classList.remove("is-brand-expanded");
@@ -142,10 +54,6 @@
   updateHeaderStickiness();
   window.addEventListener("scroll", requestHeaderStickinessUpdate, { passive: true });
   window.addEventListener("resize", requestHeaderStickinessUpdate, { passive: true });
-
-  const menuToggle = document.querySelector("#menu-toggle");
-  const menuButton = document.querySelector(".hamburger");
-  const menuLinks = document.querySelectorAll("#primary-nav a");
 
   const syncMenuState = () => {
     if (!menuToggle || !menuButton) return;
@@ -778,13 +686,10 @@
     });
   };
 
-
   initServicesSlider();
   initTechTabs();
   initEngineeringExperience();
   initProjectsSlider();
   initProjectCards();
 
-  renderPosition();
-  startAnimation();
 })();

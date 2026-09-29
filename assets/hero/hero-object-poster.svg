@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="edge" x1="260" y1="0" x2="1390" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6f51c9" stop-opacity="0"/>
+      <stop offset=".18" stop-color="#aa8aff" stop-opacity=".42"/>
+      <stop offset=".52" stop-color="#e9e5ff" stop-opacity=".86"/>
+      <stop offset=".82" stop-color="#9779f4" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#6f51c9" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="surface" x1="700" y1="610" x2="980" y2="660" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#657088" stop-opacity=".17"/>
+      <stop offset=".55" stop-color="#353e53" stop-opacity=".52"/>
+      <stop offset="1" stop-color="#111723" stop-opacity=".1"/>
+    </linearGradient>
+    <linearGradient id="light" x1="300" y1="0" x2="1300" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8b5cf6" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#c4b5fd"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+  </defs>
+  <ellipse cx="800" cy="654" rx="570" ry="42" fill="#7955d6" fill-opacity=".11" filter="url(#blur)"/>
+  <path d="M238 625 1325 620 1393 639 307 645Z" fill="url(#surface)"/>
+  <path d="M238 625 1325 620" stroke="url(#edge)" stroke-width="2.5"/>
+  <path d="M307 645 1393 639" stroke="url(#light)" stroke-opacity=".4"/>
+  <path d="M490 662c198 18 422 15 625-6" stroke="#8c6bec" stroke-opacity=".18" stroke-width="1"/>
+</svg>
