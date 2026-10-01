@@ -331,44 +331,9 @@
   background: rgba(255, 255, 255, 0.025);
 }
 
-.team-cta {
-  position: relative;
-  max-width: 900px;
-  margin: 14px auto 0;
-  padding: 16px;
-  display: grid;
-  gap: 13px;
-  align-items: center;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.075);
-  border-radius: 22px;
-  background: linear-gradient(135deg, rgba(167, 139, 250, 0.08), rgba(34, 211, 238, 0.04));
-}
-
-.team-cta p {
-  margin: 0;
-  color: #cbd5e1;
-  font-size: 13px;
-  line-height: 1.85;
-}
-
-.team-cta .btn {
-  min-height: 44px;
-  border-radius: 15px;
-  white-space: nowrap;
-}
-
 @media (min-width: 640px) {
   .team-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1025px) {
-  .team-cta {
-    grid-template-columns: 1fr auto;
-    padding: 16px 18px;
-    text-align: right;
   }
 }
 

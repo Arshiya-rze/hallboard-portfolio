@@ -122,53 +122,6 @@
 }
 .tech-tab:active { box-shadow: var(--soft-pressed); }
 
-/* Project CTA only: a solid sidewall makes these two controls feel raised.
-   The layout stays fixed; only the face and its shadow move on interaction. */
-.what-we-do-cta .cta-actions { gap: 12px; padding-block: 2px; }
-.what-we-do-cta .cta-actions .btn {
-  --cta-edge: #080e1b;
-  --cta-light: #ffffff1c;
-  min-height: 46px;
-  position: relative;
-  border: 1px solid #636c87;
-  background: linear-gradient(145deg, #2b3449, #192133 65%, #151c2b);
-  color: #f0eaff;
-  transform: translateY(-4px);
-  box-shadow: 0 6px 0 var(--cta-edge), 6px 14px 20px #0008,
-    -4px -4px 12px #8395c014, inset 1px 1px 1px var(--cta-light),
-    inset -1px -2px 2px #0006;
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-  -webkit-tap-highlight-color: transparent;
-}
-.what-we-do-cta .cta-actions .btn-primary {
-  --cta-edge: #352079;
-  --cta-light: #ffffff55;
-  color: #fff;
-  border-color: #a78cfa;
-  background: linear-gradient(135deg, #783bff, #8050ea 46%, #3558d9);
-}
-@media (hover: hover) and (pointer: fine) {
-  .what-we-do-cta .cta-actions .btn:hover {
-    transform: translateY(-6px);
-    border-color: #c1a8ff;
-    box-shadow: 0 8px 0 var(--cta-edge), 7px 18px 24px #0009,
-      -4px -4px 12px #8395c019, inset 1px 1px 1px var(--cta-light),
-      inset -1px -2px 2px #0006;
-  }
-}
-.what-we-do-cta .cta-actions .btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 1px 0 var(--cta-edge), 2px 4px 7px #0006,
-    inset 2px 3px 5px #0005, inset -1px -1px 1px #ffffff12;
-}
-.what-we-do-cta .cta-actions .btn:focus-visible { outline: 3px solid #d2c2ff; outline-offset: 5px; }
-@media (prefers-reduced-motion: reduce) {
-  .what-we-do-cta .cta-actions .btn { transition: none; }
-}
-@media (forced-colors: active) {
-  .what-we-do-cta .cta-actions .btn { box-shadow: none; border: 2px solid ButtonText; }
-}
-
 /* Keyboard and high-contrast users must not depend on depth perception. */
 :is(.btn-outline, .hamburger, .projects-nav, .services-nav,
     .contact-dialog-close, .contact-dialog-option, .tech-tab):focus-visible {

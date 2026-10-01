@@ -76,14 +76,22 @@ try {
   await cdp('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:false});
   await cdp('Page.navigate',{url:origin+'/index.html'});await waitFor("document.readyState==='complete'");
   await evaluate("document.documentElement.style.scrollBehavior='auto'");
-  for(const selector of ['.stats-grid','.service-card','.project-card','.tech-tabs','.what-we-do-cta']) {
+  assert.equal(await evaluate("document.querySelector('.contact-fab').hidden"),true,'contact action stays out of the hero');
+  assert.equal(await evaluate("document.querySelector('.team-cta,.what-we-do-cta')"),null,'inline contact CTAs are removed');
+  await evaluate("document.querySelector('#team').scrollIntoView({block:'start'})");await pause(250);
+  assert.equal(await evaluate("document.querySelector('.contact-fab').hidden"),false,'contact action appears when entering the team section');
+  assert.equal(await evaluate("document.querySelector('.contact-fab').textContent.trim()"),'','floating action is icon-only');
+  assert.ok(await evaluate("Math.abs(document.querySelector('.contact-fab').getBoundingClientRect().width-document.querySelector('.contact-fab').getBoundingClientRect().height)<1"),'floating action keeps a circular hit target');
+  await evaluate("document.querySelector('.contact-fab').click()");
+  assert.equal(await evaluate("document.querySelector('#contact-dialog').open"),true,'floating contact action opens the contact dialog');
+  await evaluate("document.querySelector('#contact-dialog').close()");await pause(50);
+  for(const selector of ['.stats-grid','.service-card','.project-card','.tech-tabs']) {
    await evaluate("document.querySelector("+JSON.stringify(selector)+").scrollIntoView({block:'center'})"); await pause(700);
    assert.ok(await evaluate("document.documentElement.scrollWidth<=innerWidth"),'no horizontal overflow');
    assert.notEqual(await evaluate("getComputedStyle(document.querySelector("+JSON.stringify(selector==='.stats-grid'?'.stat-card':selector)+")).boxShadow"),'none');
    await screenshot('soft-'+selector.slice(1)+'-'+width);
   }
   assert.ok(await evaluate("Array.from(document.querySelectorAll('.tech-tab')).every(e=>e.getBoundingClientRect().height>=44)"));
-  assert.ok(await evaluate("Array.from(document.querySelectorAll('.what-we-do-cta .cta-actions .btn')).every(e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return r.height>=52&&s.boxShadow.includes('inset')&&s.transform!=='none'&&e.getAttribute('aria-haspopup')==='dialog'})"),'raised CTA buttons remain dialog controls');
   await evaluate("document.querySelectorAll('.tech-tab')[1].click()");
   assert.ok(await evaluate("document.querySelectorAll('.tech-tab')[1].classList.contains('is-active')"));
   await evaluate("document.querySelector('[data-services-slider]').dispatchEvent(new Event('pointerenter'));document.querySelector('.services-viewport').scrollIntoView({block:'center'});document.querySelector('.services-dot').click()");await pause(650);

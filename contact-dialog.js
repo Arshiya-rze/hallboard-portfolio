@@ -29,4 +29,22 @@
     document.documentElement.classList.remove('contact-modal-open');
     opener?.focus({ preventScroll: true });
   });
+
+  const contactFab = document.querySelector('.contact-fab');
+  const teamSection = document.querySelector('[data-team-section]');
+  if (contactFab && teamSection) {
+    let frame = 0;
+    const updateContactFab = () => {
+      frame = 0;
+      const teamTop = teamSection.getBoundingClientRect().top + window.scrollY;
+      contactFab.hidden = window.scrollY + window.innerHeight < teamTop - 24;
+    };
+    const scheduleContactFabUpdate = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(updateContactFab);
+    };
+    updateContactFab();
+    window.addEventListener('scroll', scheduleContactFabUpdate, { passive: true });
+    window.addEventListener('resize', scheduleContactFabUpdate, { passive: true });
+  }
 })();
