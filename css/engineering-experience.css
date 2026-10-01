@@ -1147,3 +1147,99 @@
     transition: none;
   }
 }
+
+/* Keep the complete engineering story composition inside the mobile viewport. */
+@media (max-width: 767px) {
+  .engineering-experience {
+    scroll-margin-top: 82px;
+  }
+
+  .engineering-sticky {
+    top: 84px;
+    min-height: calc(100svh - 96px);
+    align-content: center;
+    gap: 10px;
+    padding: 14px 14px 18px;
+  }
+
+  .engineering-copy {
+    width: min(100%, 420px);
+  }
+
+  .engineering-copy .section-eyebrow {
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+
+  .engineering-copy h2 {
+    min-height: 2.4em;
+    max-width: 420px;
+    font-size: clamp(24px, 6.2vw, 30px);
+    line-height: 1.24;
+  }
+
+  .engineering-copy p {
+    max-width: 420px;
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  .story-progress-meter {
+    margin-top: 11px;
+  }
+
+  .story-stage-pills {
+    margin-top: 8px;
+  }
+
+  .universe-card {
+    width: min(100%, 380px);
+    height: clamp(300px, 39svh, 340px);
+    border-radius: 26px;
+  }
+
+  .node-strategy { --node-y: -110px; }
+  .node-products { --node-y: 110px; }
+  .node-frontend { --node-x: clamp(104px, 29vw, 116px); --node-y: -36px; }
+  .node-backend { --node-x: clamp(-116px, -29vw, -104px); --node-y: -36px; }
+  .node-data { --node-x: clamp(88px, 24vw, 96px); --node-y: 74px; }
+  .node-cloud { --node-x: clamp(-96px, -24vw, -88px); --node-y: 74px; }
+}
+
+@media (max-width: 380px) {
+  .engineering-sticky {
+    top: 80px;
+    min-height: calc(100svh - 90px);
+    gap: 8px;
+    padding: 10px 10px 14px;
+  }
+
+  .engineering-copy h2 {
+    min-height: 2.25em;
+    font-size: 24px;
+  }
+
+  .engineering-copy p {
+    font-size: 11.5px;
+  }
+
+  .story-progress-meter {
+    margin-top: 8px;
+  }
+
+  .story-stage-pills {
+    margin-top: 6px;
+  }
+
+  .universe-card {
+    height: 300px;
+  }
+
+  .node-strategy { --node-y: -108px; }
+  .node-products { --node-y: 108px; }
+  .node-frontend { --node-x: clamp(92px, 28vw, 104px); --node-y: -34px; }
+  .node-backend { --node-x: clamp(-104px, -28vw, -92px); --node-y: -34px; }
+  .node-data { --node-x: clamp(78px, 23vw, 88px); --node-y: 70px; }
+  .node-cloud { --node-x: clamp(-88px, -23vw, -78px); --node-y: 70px; }
+}
