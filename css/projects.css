@@ -950,3 +950,27 @@
   .project-dialog-content { gap: 13px; padding: 16px; }
 }
 @media (prefers-reduced-motion: reduce) { .project-dialog[open] { animation: none; } }
+
+
+/* Compact project introduction and image preview */
+.projects-header { margin-bottom: 14px; }
+.projects-header h2 { max-width: 900px; margin-inline: auto; }
+.project-visual {
+  display: block; width: 100%; padding: 0; border: 1px solid var(--project-accent-border);
+  color: inherit; font: inherit; text-align: initial; cursor: zoom-in;
+}
+.project-visual:focus-visible { outline: 2px solid #bba4ff; outline-offset: 3px; }
+.project-image-dialog {
+  width: min(1100px, calc(100vw - 32px)); max-width: none; max-height: 92dvh;
+  margin: auto; padding: 12px; overflow: auto;
+  border: 1px solid rgba(190,165,255,.3); border-radius: 20px;
+  background: linear-gradient(155deg,#171827,#080911); color: white;
+  box-shadow: 0 28px 100px rgba(0,0,0,.72);
+}
+.project-image-dialog::backdrop { background: rgba(3,4,12,.84); backdrop-filter: blur(10px); }
+.project-image-dialog-toolbar { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:2px 2px 12px; }
+.project-image-dialog-toolbar h2 { margin:0; color:rgba(255,255,255,.82); font-size:14px; font-weight:800; }
+.project-image-dialog-close { width:38px; height:38px; flex:0 0 38px; border:1px solid rgba(255,255,255,.14); border-radius:50%; background:rgba(255,255,255,.07); color:#fff; font-size:25px; line-height:1; cursor:pointer; }
+.project-image-dialog-close:focus-visible { outline:2px solid #a78bfa; outline-offset:3px; }
+.project-image-dialog-image { display:block; width:100%; max-height:calc(92dvh - 78px); object-fit:contain; border-radius:12px; background:#080911; }
+@media(max-width:600px) { .project-image-dialog { width:calc(100vw - 20px); max-height:90dvh; padding:9px; border-radius:16px; } .project-image-dialog-image { max-height:calc(90dvh - 70px); } }

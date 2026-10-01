@@ -675,6 +675,32 @@
     });
   };
 
+  const initProjectImagePreview = () => {
+    const dialog = document.querySelector("#project-image-preview");
+    const image = dialog?.querySelector(".project-image-dialog-image");
+    const title = dialog?.querySelector("#project-image-preview-title");
+    const closeButton = dialog?.querySelector(".project-image-dialog-close");
+    if (!(dialog instanceof HTMLDialogElement) || !image || !title) return;
+
+    let opener = null;
+    document.querySelectorAll("[data-project-image-open]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const source = button.querySelector("img");
+        if (!source) return;
+        opener = button;
+        image.src = source.currentSrc || source.src;
+        image.alt = source.alt;
+        title.textContent = button.getAttribute("aria-label")?.replace("بزرگ‌نمایی تصویر نمونه‌کار ", "") || "پیش‌نمایش پروژه";
+        dialog.showModal();
+      });
+    });
+    closeButton?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener("close", () => opener?.focus({ preventScroll: true }));
+  };
+
   const initProjectCards = () => {
     const cards = Array.from(document.querySelectorAll("[data-project-card]"));
 
@@ -705,6 +731,7 @@
   initEngineeringExperience();
   initProjectsSlider();
   initProjectDialogs();
+  initProjectImagePreview();
   initProjectCards();
 
 })();
