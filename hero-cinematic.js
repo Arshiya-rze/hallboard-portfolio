@@ -19,7 +19,7 @@
   };
 
   const introEnd = 0.70;
-  const introDuration = 6400;
+  const introDuration = 2800;
   let progress = 0;
   let manual = false;
   let visible = false;
@@ -55,10 +55,10 @@
 
   const setProgress = (value) => {
     progress = clamp(value, 0, 1);
-    const markReveal = smooth(0.035, 0.17, progress);
-    const browserReveal = smooth(0.29, 0.57, progress);
-    const pageReveal = smooth(0.535, 0.67, progress);
-    const travel = smooth(0.365, 0.605, progress);
+    const markReveal = smooth(0.23, 0.35, progress);
+    const browserReveal = smooth(0.35, 0.63, progress);
+    const pageReveal = smooth(0.555, 0.69, progress);
+    const travel = smooth(0.40, 0.64, progress);
     const copyOne = smooth(0.70, 0.75, progress);
     const copyTwo = smooth(0.80, 0.85, progress);
     const copyWeights = [1 - copyOne, copyOne * (1 - copyTwo), copyTwo];
@@ -75,13 +75,13 @@
     hero.style.setProperty("--hero-scroll-hint-opacity", hintOpacity.toFixed(3));
     if (scrollHint) scrollHint.setAttribute("aria-hidden", hintOpacity < 0.15 ? "true" : "false");
     hero.style.setProperty("--mark-inset", `${((1 - markReveal) * 50).toFixed(2)}%`);
-    hero.style.setProperty("--mark-opacity", smooth(0.015, 0.065, progress).toFixed(3));
-    hero.style.setProperty("--beam-opacity", (1 - smooth(0.065, 0.145, progress)).toFixed(3));
+    hero.style.setProperty("--mark-opacity", smooth(0.20, 0.26, progress).toFixed(3));
+    hero.style.setProperty("--beam-opacity", (1 - smooth(0.10, 0.21, progress)).toFixed(3));
     hero.style.setProperty("--beam-scale", mix(0.34, 1, smooth(0.005, 0.055, progress)).toFixed(3));
     hero.style.setProperty("--browser-opacity", browserReveal.toFixed(3));
     hero.style.setProperty("--browser-scale", browserScale.toFixed(4));
     hero.style.setProperty("--page-reveal", pageReveal.toFixed(3));
-    hero.style.setProperty("--wordmark-reveal", smooth(0.535, 0.625, progress).toFixed(3));
+    hero.style.setProperty("--wordmark-reveal", smooth(0.555, 0.645, progress).toFixed(3));
     hero.style.setProperty("--mobile-layout", mobile.toFixed(3));
     hero.style.setProperty("--content-lift", `${mix(14, 0, pageReveal).toFixed(1)}px`);
     copyWeights.forEach((weight, index) => {
@@ -154,13 +154,49 @@
   };
 
   const getScrollProgress = (y) => clamp(progressForScroll(y), introEnd, 1);
+  const storyStops = [introEnd, 0.75, 0.85, 1];
+  let requestedProgress = null;
+
+  const nextStoryStop = (from, direction) => {
+    if (direction > 0) return storyStops.find((stop) => stop > from + 0.005) ?? null;
+    for (let index = storyStops.length - 1; index >= 0; index -= 1) {
+      if (storyStops[index] < from - 0.005) return storyStops[index];
+    }
+    return null;
+  };
+
+  const beginManualScroll = () => {
+    if (manual || reducedMotion.matches) return;
+    manual = true;
+    anchorY = previousY;
+    anchorProgress = Math.max(progress, introEnd);
+    if (rafId) window.cancelAnimationFrame(rafId);
+    rafId = 0;
+    previousFrame = 0;
+  };
+
+  const moveToStoryStop = (target) => {
+    beginManualScroll();
+    requestedProgress = target;
+    const remainingProgress = Math.max(0.001, 1 - anchorProgress);
+    const remainingScroll = Math.max(1, scrollDistance - anchorY);
+    const top = anchorY + ((target - anchorProgress) / remainingProgress) * remainingScroll;
+    window.scrollTo({
+      top: clamp(top, 0, scrollDistance),
+      behavior: reducedMotion.matches ? "auto" : "smooth",
+    });
+  };
 
   const requestFrame = () => {
     if (rafId || !visible || document.hidden) return;
     rafId = window.requestAnimationFrame(() => {
       rafId = 0;
-      if (manual) setProgress(getScrollProgress(window.scrollY));
-      else animateIntro(performance.now());
+      if (manual) {
+        setProgress(getScrollProgress(window.scrollY));
+        if (requestedProgress !== null && Math.abs(progress - requestedProgress) < 0.005) {
+          requestedProgress = null;
+        }
+      } else animateIntro(performance.now());
     });
   };
 
@@ -177,15 +213,61 @@
   const onScroll = () => {
     const currentY = window.scrollY;
     if (!manual && !reducedMotion.matches) {
-      manual = true;
-      anchorY = previousY;
-      anchorProgress = Math.max(progress, introEnd);
-      if (rafId) window.cancelAnimationFrame(rafId);
-      rafId = 0;
-      previousFrame = 0;
+      beginManualScroll();
     }
     previousY = currentY;
     if (manual) requestFrame();
+  };
+
+  let wheelConsumed = false;
+  let wheelResetTimer = 0;
+  const onWheel = (event) => {
+    if (!visible || !shell.contains(event.target) || event.ctrlKey || reducedMotion.matches || !event.deltaY) return;
+
+    if (wheelConsumed) {
+      event.preventDefault();
+    } else {
+      const base = requestedProgress ?? Math.max(progress, introEnd);
+      const target = nextStoryStop(base, Math.sign(event.deltaY));
+      if (target === null) return;
+      event.preventDefault();
+      wheelConsumed = true;
+      moveToStoryStop(target);
+    }
+
+    window.clearTimeout(wheelResetTimer);
+    wheelResetTimer = window.setTimeout(() => { wheelConsumed = false; }, 380);
+  };
+
+  let touchStartY = null;
+  let touchDirection = 0;
+  let touchCaptured = false;
+  const onTouchStart = (event) => {
+    if (!visible || !shell.contains(event.target) || reducedMotion.matches || event.touches.length !== 1) return;
+    touchStartY = event.touches[0].clientY;
+    touchDirection = 0;
+    touchCaptured = false;
+  };
+  const onTouchMove = (event) => {
+    if (touchStartY === null || event.touches.length !== 1) return;
+    const delta = touchStartY - event.touches[0].clientY;
+    if (Math.abs(delta) < 18) return;
+    const direction = Math.sign(delta);
+    const base = requestedProgress ?? Math.max(progress, introEnd);
+    if (nextStoryStop(base, direction) === null) return;
+    event.preventDefault();
+    touchDirection = direction;
+    touchCaptured = true;
+  };
+  const onTouchEnd = () => {
+    if (touchCaptured && touchDirection) {
+      const base = requestedProgress ?? Math.max(progress, introEnd);
+      const target = nextStoryStop(base, touchDirection);
+      if (target !== null) moveToStoryStop(target);
+    }
+    touchStartY = null;
+    touchDirection = 0;
+    touchCaptured = false;
   };
 
   const onResize = () => {
@@ -225,6 +307,7 @@
       if (rafId) window.cancelAnimationFrame(rafId);
       rafId = 0;
       manual = true;
+      requestedProgress = null;
       setProgress(narrowViewport ? 1 : 0.69);
     } else {
       manual = false;
@@ -255,6 +338,10 @@
 
   observer.observe(shell);
   window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("wheel", onWheel, { passive: false });
+  window.addEventListener("touchstart", onTouchStart, { passive: true });
+  window.addEventListener("touchmove", onTouchMove, { passive: false });
+  window.addEventListener("touchend", onTouchEnd, { passive: true });
   window.addEventListener("resize", onResize, { passive: true });
   document.addEventListener("visibilitychange", requestFrame);
   reducedMotion.addEventListener?.("change", onMotionChange);
