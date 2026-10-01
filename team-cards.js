@@ -283,6 +283,12 @@
     if (hasPortrait) {
       // Hover only activates on entry: clicking “original” stays off until re-entry.
       button.addEventListener("click", () => setPortrait(!requested));
+      // On touch devices, the photo itself is also a convenient way to switch views.
+      // Keep the explicit toggle independent so a tap on it never toggles twice.
+      stage.addEventListener("click", (event) => {
+        if (hoverPointer.matches || event.target.closest("[data-portrait-toggle]")) return;
+        setPortrait(!requested);
+      });
       if (preloadObserver) preloadObserver.observe(scene);
       else loadPortrait();
     }
