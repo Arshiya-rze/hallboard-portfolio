@@ -503,7 +503,9 @@
 
   .tech-items {
     order: 2;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
     gap: 0;
     min-width: 0;
   }
