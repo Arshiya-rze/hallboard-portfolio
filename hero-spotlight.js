@@ -161,7 +161,7 @@
       autoplayId = window.setInterval(() => {
         if (document.hidden) return;
         goTo(activeIndex + 1);
-      }, 4200);
+      }, 2000);
     };
 
     prevButton?.addEventListener("click", () => goTo(activeIndex - 1));
@@ -249,7 +249,7 @@
       autoplayId = window.setInterval(() => {
         activeIndex = (activeIndex + 1) % tabs.length;
         activate(tabs[activeIndex].dataset.techTarget);
-      }, 2000);
+      }, 2500);
     };
 
     tabs.forEach((tab) => {

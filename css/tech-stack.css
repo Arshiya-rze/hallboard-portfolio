@@ -143,11 +143,20 @@
   position: relative;
   z-index: 2;
   display: grid;
-  gap: 14px;
+  gap: 0;
 }
 
 .tech-row:not(.is-active) {
-  display: none;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.tech-row {
+  grid-area: 1 / 1;
+}
+
+.tech-row.is-active {
+  visibility: visible;
 }
 
 .tech-row {
