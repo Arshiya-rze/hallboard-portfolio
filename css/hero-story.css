@@ -79,10 +79,10 @@
   position: absolute;
   inset: 0;
   display: block;
-  background-image: url('../assets/brand/logo-optimized.webp');
+  background-image: url('../assets/brand/logo-crystal.webp');
   background-repeat: no-repeat;
-  background-position: -87px 0;
-  background-size: 327px 240px;
+  background-position: center;
+  background-size: contain;
   clip-path: inset(var(--mark-inset) 0);
   will-change: clip-path;
   filter: drop-shadow(0 0 12px rgba(146, 91, 255, .55));
@@ -405,4 +405,75 @@
   .hero-shell[data-hero-film-shell] { height: 100svh; height: 100dvh; min-height: 0; }
   .hero.hero-film[data-cinematic-hero] { position: relative; top: auto; height: 100svh; height: 100dvh; min-height: 0; }
   .hero-browser, .hero-copy-step { transition: none !important; }
+}
+
+
+/* A persistent, responsive cue that turns the cinematic scroll into progress. */
+.hero-scroll-hint {
+  --hero-scroll-progress: 0;
+  position: absolute;
+  right: 50%;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: max-content;
+  max-width: calc(100% - 28px);
+  padding: 8px 12px;
+  color: rgba(242, 237, 255, .78);
+  border: 1px solid rgba(188, 164, 255, .18);
+  border-radius: 999px;
+  background: rgba(8, 8, 20, .58);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  font-size: 12px;
+  line-height: 1;
+  opacity: var(--hero-scroll-hint-opacity, 1);
+  transform: translateX(50%);
+  transition: opacity 220ms ease, border-color 220ms ease;
+  pointer-events: none;
+}
+.hero-scroll-hint svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: #c4a3ff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: hero-scroll-nudge 1.25s ease-in-out infinite;
+}
+.hero-scroll-meter {
+  position: relative;
+  width: 54px;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .18);
+}
+.hero-scroll-meter i {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #8b5cf6, #22d3ee, #c4a3ff);
+  transform: scaleX(var(--hero-scroll-progress, 0));
+  transform-origin: right center;
+}
+@keyframes hero-scroll-nudge {
+  0%, 100% { transform: translateY(-2px); opacity: .65; }
+  50% { transform: translateY(2px); opacity: 1; }
+}
+@media (max-width: 767px) {
+  .hero-scroll-hint {
+    bottom: max(18px, env(safe-area-inset-bottom));
+    gap: 7px;
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+  .hero-scroll-meter { width: 42px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-hint svg { animation: none; }
 }

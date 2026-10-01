@@ -7,6 +7,7 @@
   const symbol = hero?.querySelector("[data-film-symbol]");
   const content = hero?.querySelector("[data-browser-content]");
   const copySteps = [...(hero?.querySelectorAll("[data-copy-step]") ?? [])];
+  const scrollHint = hero?.querySelector("[data-hero-scroll-hint]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   if (!shell || !hero || !browser || !symbol || !content) return;
 
@@ -68,6 +69,11 @@
     const frameHeight = mix(dimensions.desktopHeight, dimensions.mobileHeight, mobile);
 
     hero.style.setProperty("--film-progress", progress.toFixed(4));
+    const scrollProgress = manual ? clamp((progress - introEnd) / (1 - introEnd), 0, 1) : 0;
+    const hintOpacity = reducedMotion.matches ? 1 : manual ? 1 - smooth(introEnd, introEnd + 0.14, progress) : 1;
+    hero.style.setProperty("--hero-scroll-progress", scrollProgress.toFixed(4));
+    hero.style.setProperty("--hero-scroll-hint-opacity", hintOpacity.toFixed(3));
+    if (scrollHint) scrollHint.setAttribute("aria-hidden", hintOpacity < 0.15 ? "true" : "false");
     hero.style.setProperty("--mark-inset", `${((1 - markReveal) * 50).toFixed(2)}%`);
     hero.style.setProperty("--mark-opacity", smooth(0.015, 0.065, progress).toFixed(3));
     hero.style.setProperty("--beam-opacity", (1 - smooth(0.065, 0.145, progress)).toFixed(3));
