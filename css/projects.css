@@ -974,3 +974,40 @@
 .project-image-dialog-close:focus-visible { outline:2px solid #a78bfa; outline-offset:3px; }
 .project-image-dialog-image { display:block; width:100%; max-height:calc(92dvh - 78px); object-fit:contain; border-radius:12px; background:#080911; }
 @media(max-width:600px) { .project-image-dialog { width:calc(100vw - 20px); max-height:90dvh; padding:9px; border-radius:16px; } .project-image-dialog-image { max-height:calc(90dvh - 70px); } }
+
+/* Keep the projects title clear and make the primary actions easy to spot. */
+.projects-header { margin-bottom: 16px; }
+.projects-header .section-eyebrow {
+  margin-bottom: 0;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 900;
+}
+.project-actions .btn {
+  min-height: 44px;
+  padding-inline: 16px;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+/* A more balanced image preview with its project action kept in view. */
+.project-image-dialog {
+  width: min(900px, calc(100vw - 48px));
+  max-height: 88dvh;
+}
+.project-image-dialog-image { max-height: calc(88dvh - 132px); }
+.project-image-dialog-action {
+  display: flex;
+  justify-content: flex-start;
+  padding: 12px 2px 2px;
+}
+.project-image-dialog-visit {
+  min-height: 44px;
+  padding-inline: 18px;
+  font-size: 13px;
+  font-weight: 850;
+  text-decoration: none;
+}
+@media (max-width: 600px) {
+  .project-image-dialog { max-height: 90dvh; }
+  .project-image-dialog-image { max-height: calc(90dvh - 132px); }
+}

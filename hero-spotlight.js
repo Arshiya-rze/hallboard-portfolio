@@ -680,19 +680,41 @@
     const image = dialog?.querySelector(".project-image-dialog-image");
     const title = dialog?.querySelector("#project-image-preview-title");
     const closeButton = dialog?.querySelector(".project-image-dialog-close");
-    if (!(dialog instanceof HTMLDialogElement) || !image || !title) return;
+    const visitButton = dialog?.querySelector(".project-image-dialog-visit");
+    if (!(dialog instanceof HTMLDialogElement) || !image || !title || !visitButton) return;
 
     let opener = null;
+    let contactAction = null;
     document.querySelectorAll("[data-project-image-open]").forEach((button) => {
       button.addEventListener("click", () => {
         const source = button.querySelector("img");
         if (!source) return;
         opener = button;
+        const card = button.closest("[data-project-card]");
+        const projectAction = card?.querySelector(".project-actions a");
         image.src = source.currentSrc || source.src;
         image.alt = source.alt;
-        title.textContent = button.getAttribute("aria-label")?.replace("بزرگ‌نمایی تصویر نمونه‌کار ", "") || "پیش‌نمایش پروژه";
+        title.textContent = card?.querySelector(".project-body h3")?.textContent.trim() || "پیش‌نمایش پروژه";
+        contactAction = projectAction?.hasAttribute("data-contact-open") ? projectAction : null;
+        visitButton.href = projectAction?.href || "#";
+        visitButton.textContent = contactAction ? "درخواست دمو ↗" : "مشاهده پروژه ↗";
+        if (contactAction) {
+          visitButton.removeAttribute("target");
+          visitButton.removeAttribute("rel");
+        } else {
+          visitButton.target = projectAction?.target || "_blank";
+          visitButton.rel = projectAction?.rel || "noopener";
+        }
         dialog.showModal();
       });
+    });
+    visitButton.addEventListener("click", (event) => {
+      if (!contactAction) return;
+      event.preventDefault();
+      const action = contactAction;
+      contactAction = null;
+      dialog.close();
+      window.setTimeout(() => action.click(), 0);
     });
     closeButton?.addEventListener("click", () => dialog.close());
     dialog.addEventListener("click", (event) => {
