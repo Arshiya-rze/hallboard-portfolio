@@ -88,7 +88,8 @@ try {
   await evaluate("document.querySelector('[data-contact-open]').click()");
   await pause(300);
   assert.ok(await evaluate("(()=>{const d=document.querySelector('#contact-dialog'),r=d.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight&&getComputedStyle(d,'::backdrop').backdropFilter.includes('blur')})()"));
-  assert.equal(await evaluate("document.querySelector('#contact-dialog a[href^=\"tel:\"]').getAttribute('href')"),'tel:+989038467057');
+  assert.equal(await evaluate("document.querySelector('#contact-dialog a[href^=\"tel:\"]').getAttribute('href')"),'tel:+989999685110');
+  assert.equal(await evaluate("document.querySelector('#contact-dialog a[href^=\"tel:\"]').querySelector('small').textContent.trim()"),'0999 968 5110');
   assert.equal(await evaluate("document.querySelector('#contact-dialog a[href^=\"mailto:\"]').getAttribute('href')"),'mailto:hallboardteam@gmail.com');
   assert.equal(await evaluate("new URL(document.querySelector('#contact-dialog a[target]').href).searchParams.get('to')"),'hallboardteam@gmail.com');
   await screenshot('contact-dialog-'+width);
