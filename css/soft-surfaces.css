@@ -124,11 +124,11 @@
 
 /* Project CTA only: a solid sidewall makes these two controls feel raised.
    The layout stays fixed; only the face and its shadow move on interaction. */
-.what-we-do-cta .cta-actions { gap: 16px; padding-block: 8px 12px; }
+.what-we-do-cta .cta-actions { gap: 12px; padding-block: 2px; }
 .what-we-do-cta .cta-actions .btn {
   --cta-edge: #080e1b;
   --cta-light: #ffffff1c;
-  min-height: 52px;
+  min-height: 46px;
   position: relative;
   border: 1px solid #636c87;
   background: linear-gradient(145deg, #2b3449, #192133 65%, #151c2b);
@@ -186,4 +186,122 @@
     border: 1px solid ButtonText;
   }
   .tech-tab.is-active { border: 2px solid Highlight; }
+}
+
+/* Match the featured-project carousel's bottom navigation row. */
+.services-controls {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) 36px;
+  direction: ltr;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+.what-we-do .services-controls .services-nav {
+  position: relative;
+  inset: auto;
+  top: auto;
+  left: auto;
+  right: auto;
+  width: 36px;
+  height: 36px;
+  transform: none;
+  border-color: rgba(193, 175, 255, .2);
+  background: rgba(20, 21, 35, .88);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .22);
+}
+.services-controls .services-nav-prev { grid-column: 1; grid-row: 1; }
+.services-controls .services-nav-next { grid-column: 3; grid-row: 1; }
+.services-controls .services-dots {
+  position: static;
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 18px;
+  margin: 0;
+  transform: none;
+}
+.what-we-do .services-controls .services-nav:hover,
+.what-we-do .services-controls .services-nav:focus-visible {
+  border-color: rgba(193, 175, 255, .36);
+  background: rgba(29, 30, 48, .96);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, .3);
+  transform: scale(1.06);
+}
+.what-we-do .services-nav svg {
+  width: 19px;
+  height: 19px;
+}
+@media (max-width: 767px) {
+  .services-controls { gap: 8px; margin-top: 12px; }
+}
+
+/* Compact, product-style services showcase; arrows stay in the bottom row. */
+.what-we-do {
+  padding: 38px clamp(16px, 3vw, 40px);
+}
+.what-we-do .services-header {
+  margin-bottom: 16px;
+}
+.what-we-do .services-header h3 {
+  font-size: 23px;
+}
+.what-we-do .services-viewport {
+  padding-block: 10px 14px;
+}
+.what-we-do .service-card {
+  min-height: 292px;
+  padding: 18px 20px 16px;
+  border-radius: 20px;
+}
+.what-we-do .service-icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 14px;
+  border-radius: 16px;
+  font-size: 28px;
+}
+.what-we-do .service-card h3 {
+  margin-bottom: 8px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+.what-we-do .service-card p {
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.what-we-do .service-card ul {
+  gap: 7px;
+}
+.what-we-do .service-card li {
+  font-size: 12px;
+  line-height: 1.55;
+}
+.what-we-do .service-card li::before {
+  width: 18px;
+  height: 18px;
+}
+.what-we-do .service-card a {
+  padding-top: 11px;
+  font-size: 13px;
+}
+.services-controls {
+  grid-template-columns: 36px minmax(0, 1fr) 36px;
+  direction: ltr;
+  margin-top: 8px;
+}
+@media (max-width: 767px) {
+  .what-we-do {
+    padding: 30px 14px;
+  }
+  .what-we-do .service-card {
+    min-height: 290px;
+    padding: 18px 17px 15px;
+  }
+  .what-we-do .services-header {
+    margin-bottom: 10px;
+  }
+  .services-controls {
+    margin-top: 6px;
+  }
 }

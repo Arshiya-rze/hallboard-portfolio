@@ -601,10 +601,10 @@
 .what-we-do-cta {
   position: relative;
   z-index: 2;
-  margin-top: 28px;
-  padding: 24px 18px;
+  margin-top: 24px;
+  padding: 18px 16px;
   display: grid;
-  gap: 18px;
+  gap: 13px;
   align-items: center;
   overflow: hidden;
   border: 1px solid rgba(34, 211, 238, 0.2);
@@ -627,8 +627,8 @@
 }
 
 .cta-logo img {
-  width: min(170px, 72vw);
-  max-height: 96px;
+  width: min(150px, 72vw);
+  max-height: 78px;
   object-fit: contain;
   filter:
     drop-shadow(0 0 22px rgba(139, 92, 246, 0.28))
@@ -640,45 +640,45 @@
 }
 
 .cta-content h3 {
-  margin: 0 0 10px;
-  font-size: 22px;
-  line-height: 1.55;
+  margin: 0 0 6px;
+  font-size: 20px;
+  line-height: 1.4;
   font-weight: 900;
 }
 
 .cta-content p {
   margin: 0;
   color: var(--muted);
-  font-size: 13px;
-  line-height: 1.85;
+  font-size: 12.5px;
+  line-height: 1.7;
 }
 
 .cta-actions {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .what-we-do-cta .btn {
   width: 100%;
-  min-height: 50px;
+  min-height: 46px;
   white-space: nowrap;
   border-radius: 15px;
 }
 
 @media (max-width: 767px) {
   .what-we-do-cta {
-    margin-top: 24px;
-    padding: 22px 16px;
-    gap: 14px;
+    margin-top: 20px;
+    padding: 17px 14px;
+    gap: 11px;
   }
 
   .cta-logo {
-    min-height: 74px;
+    min-height: 58px;
   }
 
   .cta-logo img {
-    width: min(150px, 66vw);
-    max-height: 82px;
+    width: min(132px, 66vw);
+    max-height: 68px;
   }
 
   .cta-content h3 {
@@ -700,20 +700,20 @@
 
 @media (min-width: 768px) {
   .what-we-do-cta {
-    grid-template-columns: minmax(150px, 0.8fr) minmax(320px, 1.4fr) max-content;
-    gap: 28px;
-    padding: 30px 34px;
-    border-radius: 24px;
+    grid-template-columns: minmax(120px, 0.65fr) minmax(280px, 1.4fr) max-content;
+    gap: 18px;
+    padding: 20px 24px;
+    border-radius: 20px;
   }
 
   .cta-logo {
-    min-height: 116px;
+    min-height: 82px;
     justify-content: flex-end;
   }
 
   .cta-logo img {
-    width: min(210px, 100%);
-    max-height: 118px;
+    width: min(172px, 100%);
+    max-height: 90px;
   }
 
   .cta-content {
@@ -721,12 +721,12 @@
   }
 
   .cta-content h3 {
-    font-size: 25px;
+    font-size: 22px;
   }
 
   .cta-content p {
     max-width: 500px;
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .cta-actions {
@@ -738,8 +738,20 @@
   .what-we-do-cta .btn {
     width: auto;
     min-width: 132px;
-    min-height: 52px;
-    padding-inline: 20px;
-    border-radius: 16px;
+    min-height: 46px;
+    padding-inline: 16px;
+    border-radius: 14px;
+  }
+}
+
+/* The refreshed crystal mark is a standalone square symbol. */
+.cta-logo img {
+  width: min(92px, 24vw);
+  max-height: 92px;
+}
+@media (max-width: 767px) {
+  .cta-logo img {
+    width: min(72px, 22vw);
+    max-height: 72px;
   }
 }
