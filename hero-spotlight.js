@@ -604,8 +604,8 @@
       }, 5200);
     };
 
-    prevButton?.addEventListener("click", () => goTo(activeIndex - 1));
-    nextButton?.addEventListener("click", () => goTo(activeIndex + 1));
+    prevButton?.addEventListener("click", () => goTo(activeIndex + 1));
+    nextButton?.addEventListener("click", () => goTo(activeIndex - 1));
 
     viewport.addEventListener(
       "scroll",
@@ -661,6 +661,20 @@
     renderDots();
   };
 
+  const initProjectDialogs = () => {
+    document.querySelectorAll(".project-details-trigger[aria-controls]").forEach((trigger) => {
+      const dialog = document.getElementById(trigger.getAttribute("aria-controls"));
+      if (!(dialog instanceof HTMLDialogElement)) return;
+
+      trigger.addEventListener("click", () => dialog.showModal());
+      dialog.querySelector(".project-dialog-close")?.addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+      dialog.addEventListener("close", () => trigger.focus({ preventScroll: true }));
+    });
+  };
+
   const initProjectCards = () => {
     const cards = Array.from(document.querySelectorAll("[data-project-card]"));
 
@@ -690,6 +704,7 @@
   initTechTabs();
   initEngineeringExperience();
   initProjectsSlider();
+  initProjectDialogs();
   initProjectCards();
 
 })();
