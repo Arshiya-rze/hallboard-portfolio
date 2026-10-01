@@ -147,11 +147,13 @@
     return anchorY > 0 ? anchorProgress * y / anchorY : anchorProgress;
   };
 
+  const getScrollProgress = (y) => clamp(progressForScroll(y), introEnd, 1);
+
   const requestFrame = () => {
     if (rafId || !visible || document.hidden) return;
     rafId = window.requestAnimationFrame(() => {
       rafId = 0;
-      if (manual) setProgress(progressForScroll(window.scrollY));
+      if (manual) setProgress(getScrollProgress(window.scrollY));
       else animateIntro(performance.now());
     });
   };
@@ -171,7 +173,7 @@
     if (!manual && !reducedMotion.matches) {
       manual = true;
       anchorY = previousY;
-      anchorProgress = progress;
+      anchorProgress = Math.max(progress, introEnd);
       if (rafId) window.cancelAnimationFrame(rafId);
       rafId = 0;
       previousFrame = 0;
@@ -183,8 +185,11 @@
   const onResize = () => {
     updateScrollDistance();
     dimensions = measureScene();
-    if (manual && !reducedMotion.matches) setProgress(progressForScroll(window.scrollY));
-    else setProgress(progress);
+    if (manual && !reducedMotion.matches) {
+      setProgress(getScrollProgress(window.scrollY));
+    } else {
+      setProgress(progress);
+    }
   };
 
   const observer = new IntersectionObserver(([entry]) => {
@@ -237,7 +242,7 @@
     manual = true;
     anchorY = 0;
     anchorProgress = 0;
-    setProgress(clamp(window.scrollY / scrollDistance, 0, 1));
+    setProgress(Math.max(introEnd, clamp(window.scrollY / scrollDistance, 0, 1)));
   } else {
     setProgress(0);
   }
