@@ -601,7 +601,7 @@
 
       autoplayId = window.setInterval(() => {
         if (!document.hidden) goTo(activeIndex + 1);
-      }, 5200);
+      }, 7000);
     };
 
     prevButton?.addEventListener("click", () => goTo(activeIndex + 1));
