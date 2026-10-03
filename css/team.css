@@ -304,33 +304,6 @@
   box-shadow: inset 2px 2px 4px rgba(2, 6, 13, 0.34), inset -1px -1px 3px rgba(98, 121, 157, 0.1);
 }
 
-.team-manifest {
-  position: relative;
-  max-width: 900px;
-  margin: 30px auto 0;
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.075);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.025);
-}
-
-.team-manifest span {
-  min-height: 38px;
-  min-width: min(100%, 180px);
-  display: grid;
-  place-items: center;
-  padding: 0 14px;
-  color: #cbd5e1;
-  font-size: 12.5px;
-  font-weight: 850;
-  border-radius: 13px;
-  background: rgba(255, 255, 255, 0.025);
-}
-
 @media (min-width: 640px) {
   .team-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

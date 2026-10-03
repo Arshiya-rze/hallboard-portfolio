@@ -2,10 +2,10 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/contact", "destination": "/#contact", "permanent": true },
-    { "source": "/contact.html", "destination": "/#contact", "permanent": true },
-    { "source": "/thank-you", "destination": "/#contact", "permanent": true },
-    { "source": "/thank-you.html", "destination": "/#contact", "permanent": true }
+    { "source": "/contact", "destination": "/#team", "permanent": true },
+    { "source": "/contact.html", "destination": "/#team", "permanent": true },
+    { "source": "/thank-you", "destination": "/#team", "permanent": true },
+    { "source": "/thank-you.html", "destination": "/#team", "permanent": true }
   ],
   "headers": [
     {
