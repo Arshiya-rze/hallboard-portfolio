@@ -59,11 +59,11 @@
     const browserReveal = smooth(0.35, 0.63, progress);
     const pageReveal = smooth(0.555, 0.69, progress);
     const travel = smooth(0.40, 0.64, progress);
-    const copyOne = smooth(0.70, 0.75, progress);
-    const copyTwo = smooth(0.80, 0.85, progress);
-    const copyWeights = [1 - copyOne, copyOne * (1 - copyTwo), copyTwo];
-    const activeCopy = copyTwo >= 0.5 ? 2 : copyOne >= 0.5 ? 1 : 0;
     const mobile = smooth(0.90, 0.995, progress);
+    // Keep one copy visible at a time: desktop copy, then the final mobile copy.
+    // Never crossfade stacked headlines, which looks like a second mobile slide.
+    const activeCopy = mobile >= 0.5 ? 2 : 0;
+    const copyWeights = [activeCopy === 0 ? 1 : 0, 0, activeCopy === 2 ? 1 : 0];
     const browserScale = 0.025 + browserReveal * 0.975;
     const frameWidth = mix(dimensions.desktopWidth, dimensions.mobileWidth, mobile);
     const frameHeight = mix(dimensions.desktopHeight, dimensions.mobileHeight, mobile);
@@ -154,8 +154,48 @@
   };
 
   const getScrollProgress = (y) => clamp(progressForScroll(y), introEnd, 1);
-  const storyStops = [introEnd, 0.75, 0.85, 1];
+  // Keep the post-intro story to one deliberate scroll: copy changes and the
+  // desktop-to-mobile device transformation are scrubbed together.
+  const storyStops = [introEnd, 1];
   let requestedProgress = null;
+  let snapFallbackTimer = 0;
+
+  const storyStopY = (target) => {
+    const remainingProgress = Math.max(0.001, 1 - anchorProgress);
+    const remainingScroll = Math.max(1, scrollDistance - anchorY);
+    return clamp(
+      anchorY + ((target - anchorProgress) / remainingProgress) * remainingScroll,
+      0,
+      scrollDistance,
+    );
+  };
+
+  const finishRequestedScroll = () => {
+    if (requestedProgress === null) return;
+    const target = requestedProgress;
+    const targetY = storyStopY(target);
+    const root = document.documentElement;
+    const previousBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo({ top: targetY, behavior: "auto" });
+    root.style.scrollBehavior = previousBehavior;
+    requestedProgress = null;
+    window.clearTimeout(snapFallbackTimer);
+    snapFallbackTimer = 0;
+    previousY = targetY;
+    setProgress(target);
+  };
+
+  const releaseCompletedRequest = () => {
+    if (requestedProgress === null) return false;
+    const currentProgress = getScrollProgress(window.scrollY);
+    if (Math.abs(currentProgress - requestedProgress) > 0.01) return true;
+    requestedProgress = null;
+    window.clearTimeout(snapFallbackTimer);
+    snapFallbackTimer = 0;
+    setProgress(currentProgress);
+    return false;
+  };
 
   const nextStoryStop = (from, direction) => {
     if (direction > 0) return storyStops.find((stop) => stop > from + 0.005) ?? null;
@@ -178,13 +218,13 @@
   const moveToStoryStop = (target) => {
     beginManualScroll();
     requestedProgress = target;
-    const remainingProgress = Math.max(0.001, 1 - anchorProgress);
-    const remainingScroll = Math.max(1, scrollDistance - anchorY);
-    const top = anchorY + ((target - anchorProgress) / remainingProgress) * remainingScroll;
+    const top = storyStopY(target);
     window.scrollTo({
-      top: clamp(top, 0, scrollDistance),
+      top,
       behavior: reducedMotion.matches ? "auto" : "smooth",
     });
+    window.clearTimeout(snapFallbackTimer);
+    snapFallbackTimer = window.setTimeout(finishRequestedScroll, 1000);
   };
 
   const requestFrame = () => {
@@ -195,6 +235,8 @@
         setProgress(getScrollProgress(window.scrollY));
         if (requestedProgress !== null && Math.abs(progress - requestedProgress) < 0.005) {
           requestedProgress = null;
+          window.clearTimeout(snapFallbackTimer);
+          snapFallbackTimer = 0;
         }
       } else animateIntro(performance.now());
     });
@@ -219,24 +261,21 @@
     if (manual) requestFrame();
   };
 
-  let wheelConsumed = false;
-  let wheelResetTimer = 0;
   const onWheel = (event) => {
     if (!visible || !shell.contains(event.target) || event.ctrlKey || reducedMotion.matches || !event.deltaY) return;
 
-    if (wheelConsumed) {
+    const snapPending = releaseCompletedRequest();
+    // Do not let a follow-up wheel event interrupt the smooth snap halfway
+    // through the device morph and leave it at an in-between width.
+    if (snapPending) {
       event.preventDefault();
     } else {
       const base = requestedProgress ?? Math.max(progress, introEnd);
       const target = nextStoryStop(base, Math.sign(event.deltaY));
       if (target === null) return;
       event.preventDefault();
-      wheelConsumed = true;
       moveToStoryStop(target);
     }
-
-    window.clearTimeout(wheelResetTimer);
-    wheelResetTimer = window.setTimeout(() => { wheelConsumed = false; }, 380);
   };
 
   let touchStartY = null;
@@ -250,8 +289,14 @@
   };
   const onTouchMove = (event) => {
     if (touchStartY === null || event.touches.length !== 1) return;
+    // Keep the first swipe atomic: absorb further gestures until the phone
+    // reaches its final width, otherwise native scrolling can stop the morph.
+    if (releaseCompletedRequest()) {
+      event.preventDefault();
+      return;
+    }
     const delta = touchStartY - event.touches[0].clientY;
-    if (Math.abs(delta) < 18) return;
+    if (Math.abs(delta) < 8) return;
     const direction = Math.sign(delta);
     const base = requestedProgress ?? Math.max(progress, introEnd);
     if (nextStoryStop(base, direction) === null) return;

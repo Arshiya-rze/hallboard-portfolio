@@ -302,7 +302,7 @@
   grid-area: 1 / 1;
   opacity: var(--copy-opacity, 0);
   transform: translateY(var(--copy-shift, 12px));
-  transition: opacity .18s linear, transform .28s ease-out;
+  transition: transform .28s ease-out;
   pointer-events: none;
 }
 .hero-copy-step h1,
