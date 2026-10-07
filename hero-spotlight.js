@@ -229,6 +229,7 @@
     );
     let autoplayId = 0;
     let isPaused = false;
+    let manualInteraction = false;
 
     const activate = (target) => {
       tabs.forEach((tab) => {
@@ -249,10 +250,15 @@
       }
     };
 
+    const disableAutoplay = () => {
+      manualInteraction = true;
+      stopAutoplay();
+    };
+
     const startAutoplay = () => {
       stopAutoplay();
 
-      if (reducedMotion.matches || isPaused || document.hidden) return;
+      if (reducedMotion.matches || isPaused || manualInteraction || document.hidden) return;
 
       autoplayId = window.setInterval(() => {
         activeIndex = (activeIndex + 1) % tabs.length;
@@ -264,8 +270,10 @@
       tab.addEventListener("click", () => {
         activeIndex = tabs.indexOf(tab);
         activate(tab.dataset.techTarget);
-        startAutoplay();
+        disableAutoplay();
       });
+      tab.addEventListener("pointerdown", disableAutoplay, { passive: true });
+      tab.addEventListener("keydown", disableAutoplay);
     });
 
     techStack.addEventListener("pointerenter", () => {
@@ -275,16 +283,6 @@
     techStack.addEventListener("pointerleave", () => {
       isPaused = false;
       startAutoplay();
-    });
-    techStack.addEventListener("focusin", () => {
-      isPaused = true;
-      stopAutoplay();
-    });
-    techStack.addEventListener("focusout", (event) => {
-      if (!techStack.contains(event.relatedTarget)) {
-        isPaused = false;
-        startAutoplay();
-      }
     });
     document.addEventListener("visibilitychange", startAutoplay);
     reducedMotion.addEventListener?.("change", startAutoplay);
