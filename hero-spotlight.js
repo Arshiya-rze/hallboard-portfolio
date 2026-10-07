@@ -530,6 +530,8 @@
     let autoplayId = 0;
     let scrollTimer = 0;
     let isVisible = false;
+    let touchGesture = null;
+    let suppressClickUntil = 0;
 
     const getPerView = () => {
       if (window.matchMedia("(min-width: 1025px)").matches) return 3;
@@ -606,6 +608,53 @@
 
     prevButton?.addEventListener("click", () => goTo(activeIndex + 1));
     nextButton?.addEventListener("click", () => goTo(activeIndex - 1));
+
+    // Native touch momentum can cross several mandatory snap points in one
+    // swipe. Treat each horizontal touch gesture as exactly one carousel step.
+    viewport.addEventListener("pointerdown", (event) => {
+      if (event.pointerType !== "touch" || !event.isPrimary) return;
+      touchGesture = {
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        dragged: false,
+      };
+      activeIndex = Math.min(getNearestIndex(), getMaxIndex());
+      stopAutoplay();
+    }, { passive: true });
+
+    viewport.addEventListener("pointermove", (event) => {
+      if (!touchGesture || event.pointerId !== touchGesture.pointerId) return;
+      const deltaX = event.clientX - touchGesture.startX;
+      const deltaY = event.clientY - touchGesture.startY;
+      if (Math.abs(deltaX) > 10 && Math.abs(deltaX) > Math.abs(deltaY)) {
+        touchGesture.dragged = true;
+      }
+    }, { passive: true });
+
+    viewport.addEventListener("pointerup", (event) => {
+      if (!touchGesture || event.pointerId !== touchGesture.pointerId) return;
+      const { startX, startY, dragged } = touchGesture;
+      touchGesture = null;
+      const deltaX = event.clientX - startX;
+      const deltaY = event.clientY - startY;
+      const swipeThreshold = Math.max(32, viewport.clientWidth * 0.08);
+
+      if (dragged && Math.abs(deltaX) >= swipeThreshold && Math.abs(deltaX) > Math.abs(deltaY)) {
+        suppressClickUntil = performance.now() + 400;
+        goTo(activeIndex + (deltaX < 0 ? 1 : -1));
+      }
+    }, { passive: true });
+
+    viewport.addEventListener("pointercancel", () => {
+      touchGesture = null;
+    }, { passive: true });
+
+    viewport.addEventListener("click", (event) => {
+      if (performance.now() > suppressClickUntil) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }, true);
 
     viewport.addEventListener(
       "scroll",

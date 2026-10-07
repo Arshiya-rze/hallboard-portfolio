@@ -88,6 +88,7 @@
 .projects-viewport {
   direction: ltr;
   overflow-x: auto;
+  touch-action: pan-y pinch-zoom;
   overscroll-behavior-inline: contain;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
