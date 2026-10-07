@@ -234,10 +234,6 @@
   width: 18px;
   height: 18px;
 }
-.what-we-do .service-card a {
-  padding-top: 11px;
-  font-size: 13px;
-}
 .services-controls {
   grid-template-columns: 36px minmax(0, 1fr) 36px;
   direction: ltr;
