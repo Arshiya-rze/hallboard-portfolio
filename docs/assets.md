@@ -7,7 +7,7 @@ Updated 2026-10-02. Runtime references were checked in HTML, CSS, JavaScript and
 - `assets/brand/`: logo and touch/favicon images (root `favicon.ico` stays for browser discovery).
 - `assets/hero/`: desktop/mobile cinematic backgrounds.
 - `assets/technologies/`: technology and category icons.
-- `assets/projects/`: project screenshots and active dashboard illustration.
+- `assets/projects/`: project screenshots.
 - `assets/team/`: active portraits and display masks.
 - `assets/fonts/`: existing fonts, unchanged by this image cleanup.
 
@@ -54,4 +54,3 @@ Updated 2026-10-02. Runtime references were checked in HTML, CSS, JavaScript and
 ## Verification
 
 Run `node tests/assets.test.mjs` to check image references and unused images. This static audit covers literal asset paths; if future code constructs filenames dynamically, extend the audit before deleting assets.
-
