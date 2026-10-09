@@ -30,6 +30,7 @@ export class Services {
 
   private initializeSlider(): void {
     const root = this.host.nativeElement;
+    const observationTarget = root.querySelector<HTMLElement>('.what-we-do') ?? root;
     const viewport = root.querySelector<HTMLElement>('.services-viewport');
     const track = root.querySelector<HTMLElement>('.services-grid');
     const cards = Array.from(track?.children ?? []) as HTMLElement[];
@@ -100,7 +101,7 @@ export class Services {
       if (visible) start();
       else stop();
     }, { threshold: 0.12 });
-    visibility?.observe(root);
+    visibility?.observe(observationTarget);
     const onResize = (): void => {
       this.serviceDots.set(Array.from({ length: maxIndex() + 1 }, (_, index) => index));
       this.goToService(Math.min(this.activeService(), maxIndex()));

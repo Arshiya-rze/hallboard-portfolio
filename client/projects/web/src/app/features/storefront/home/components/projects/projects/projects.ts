@@ -38,6 +38,7 @@ export class Projects {
 
   private initializeSliderAndDialogs(): void {
     const root = this.host.nativeElement;
+    const observationTarget = root.querySelector<HTMLElement>('.projects-section') ?? root;
     const viewport = root.querySelector<HTMLElement>('.projects-viewport');
     const track = root.querySelector<HTMLElement>('[data-projects-track]');
     const cards = Array.from(track?.children ?? []) as HTMLElement[];
@@ -224,7 +225,7 @@ export class Projects {
       if (isVisible) startAutoplay();
       else stopAutoplay();
     }, { threshold: 0.08 });
-    visibility?.observe(root);
+    visibility?.observe(observationTarget);
     const onResize = (): void => {
       if (resizeFrame) return;
       resizeFrame = window.requestAnimationFrame(() => {
