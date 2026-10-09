@@ -1,0 +1,26 @@
+@use './css/base';
+@use './css/header';
+@use './css/hero';
+@use './css/animations';
+@use './css/responsive';
+@use './css/what-we-do';
+@use './css/tech-stack';
+@use './css/how-we-work';
+@use './css/team';
+@use './css/team-portrait';
+@use './css/contact-dialog';
+@use './css/projects';
+@use './css/soft-surfaces';
+@use './css/hero-story';
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}

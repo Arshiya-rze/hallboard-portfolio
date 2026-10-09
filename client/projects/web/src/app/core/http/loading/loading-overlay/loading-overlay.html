@@ -1,0 +1,14 @@
+<!-- @if (true) { -->
+@if (loadingService.isLoadingSig()) {
+    <!-- Any loading UI is rendered -->
+    <ng-content />
+}
+
+<!-- USE_CASE:
+<app-loading-overlay>
+  <ui-loading-spinner />
+</app-loading-overlay> 
+
+EXAMPLE:
+app.ts & app.html
+-->

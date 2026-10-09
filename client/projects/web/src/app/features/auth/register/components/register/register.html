@@ -1,0 +1,26 @@
+<form [formGroup]="registerFg" (ngSubmit)="registerFg.valid && register()">
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-label>Password</mat-label>
+    <input matInput [formControl]="PasswordCtrl" type="password" placeholder="Enter a password" />
+    <mat-hint>8 to 20 characters with an uppercase character.</mat-hint>
+  </mat-form-field>
+  <div>
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Confirm Password</mat-label>
+      <input
+        matInput
+        [formControl]="ConfirmPasswordCtrl"
+        type="password"
+        placeholder="Confirm your password"
+      />
+      <mat-hint>Confirm the password above.</mat-hint>
+      @if (
+        PasswordCtrl.valid &&
+        ConfirmPasswordCtrl.valid &&
+        registerFg.hasError('invalidPasswordsMatch')
+      ) {
+        <mat-error>Password entries don't match.</mat-error>
+      }
+    </mat-form-field>
+  </div>
+</form>

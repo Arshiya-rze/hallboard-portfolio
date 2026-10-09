@@ -1,0 +1,256 @@
+/* Selective soft relief. Keep primary CTAs, portraits, text and decorative
+   badges unchanged. Borders and focus rings carry meaning independently of shadows. */
+:root {
+  --soft-surface: linear-gradient(145deg, #1a2031, #111625);
+  --soft-border: #41495e;
+  --soft-raised: 5px 7px 16px #02040b66, -3px -3px 10px #8797c00b,
+    inset 0 1px 0 #ffffff0d;
+  --soft-pressed: inset 3px 3px 7px #02040b99, inset -2px -2px 5px #ffffff09;
+  --soft-card-face: linear-gradient(145deg, #202838, #171e2c 48%, #131a27);
+  --soft-card-relief: 0 4px 0 #0b111c, 10px 14px 24px #03070f80,
+    -6px -6px 18px #49577624, inset 1px 1px 1px #e1e8ff1a,
+    inset -1px -2px 2px #0007;
+}
+
+/* Large surfaces: shallow edges, no extra nested card framing. */
+.service-card,
+.project-card {
+  background: var(--soft-surface);
+  border-color: #333c52;
+  box-shadow: var(--soft-raised);
+}
+.service-card { backdrop-filter: none; transition: border-color 200ms, box-shadow 200ms, transform 200ms; }
+.service-card::before { pointer-events: none; }
+.service-card:hover { transform: none; box-shadow: var(--soft-raised); }
+@media (hover: hover) and (pointer: fine) {
+  .service-card:hover,
+  .project-card:hover {
+    border-color: #6d7097;
+    box-shadow: 6px 10px 20px #02040b88, -3px -3px 10px #8797c010, inset 0 1px 0 #ffffff12;
+  }
+  .service-card:hover { transform: translateY(-3px); }
+}
+
+/* Statistics are informational, not buttons: depth without a hover/press cue. */
+.what-we-do .stat-card {
+  background: var(--soft-card-face);
+  border-color: #cfdcff20;
+  box-shadow: var(--soft-card-relief);
+}
+
+/* Service tiles share the stronger team-card material, with their own accents.
+   Vertical breathing room keeps the raised edge visible inside the scroller. */
+.what-we-do .services-viewport { padding-block: 14px 22px; }
+.what-we-do .service-card {
+  background: radial-gradient(ellipse at 50% 0, var(--card-accent-soft), transparent 48%), var(--soft-card-face);
+  border-color: var(--card-accent-border);
+  box-shadow: var(--soft-card-relief);
+}
+.what-we-do .service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 35%;
+  right: 35%;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--card-accent), transparent);
+  pointer-events: none;
+}
+.what-we-do .service-icon {
+  box-shadow: 4px 6px 10px #0006, -2px -2px 7px #ffffff0f,
+    inset 1px 1px 1px #ffffff3d, inset -1px -2px 2px #0005;
+}
+@media (hover: hover) and (pointer: fine) {
+  .what-we-do .service-card:hover {
+    border-color: var(--card-accent);
+    box-shadow: var(--soft-card-relief), 0 0 16px var(--card-accent-soft);
+  }
+}
+@media (forced-colors: active) {
+  .what-we-do .stat-card, .what-we-do .service-card {
+    box-shadow: none;
+    border: 1px solid CanvasText;
+  }
+}
+
+/* Secondary actions: raised at rest, inset while pressed. */
+.btn-outline,
+.hamburger,
+.projects-nav,
+.services-nav,
+.contact-dialog-close,
+.contact-dialog-option {
+  background: var(--soft-surface);
+  border-color: var(--soft-border);
+  box-shadow: var(--soft-raised);
+}
+.contact-dialog-options { gap: 16px; }
+.contact-dialog-option { transition: border-color 180ms, box-shadow 180ms, background-color 180ms; }
+.projects-nav, .services-nav { width: 44px; height: 44px; }
+.btn-outline:hover,
+.contact-dialog-option:hover,
+.contact-dialog-close:hover {
+  border-color: #aa91e0;
+  background: linear-gradient(145deg, #24283e, #171c2e);
+}
+.btn-outline:active,
+.hamburger:active,
+.projects-nav:not(:disabled):active,
+.services-nav:not(:disabled):active,
+.contact-dialog-close:active,
+.contact-dialog-option:active {
+  box-shadow: var(--soft-pressed);
+}
+.projects-nav:disabled, .services-nav:disabled { box-shadow: none; }
+.btn-outline:active { transform: none; }
+
+/* Segmented controls: a recessed track and a distinct selected tab. */
+.tech-tabs { background: #0d1220; border-color: #333c52; box-shadow: var(--soft-pressed); }
+.tech-tab { min-height: 44px; color: #cbd0e2; }
+.tech-tab:hover, .tech-tab:focus-visible {
+  color: #fff;
+  background: #232a40;
+  border-color: #65708d;
+  box-shadow: none;
+}
+.tech-tab.is-active {
+  color: #fff;
+  background: linear-gradient(145deg, #353254, #272d46);
+  border-color: #b299ef;
+  box-shadow: var(--soft-raised), inset 0 -2px 0 #b299ef;
+}
+.tech-tab:active { box-shadow: var(--soft-pressed); }
+
+/* Keyboard and high-contrast users must not depend on depth perception. */
+:is(.btn-outline, .hamburger, .projects-nav, .services-nav,
+    .contact-dialog-close, .contact-dialog-option, .tech-tab):focus-visible {
+  outline: 3px solid #b8a1ff;
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-card, .project-card, .contact-dialog-option { transition: none; }
+  .service-card:hover, .project-card:hover { transform: none; }
+}
+@media (forced-colors: active) {
+  :is(.service-card, .project-card, .btn-outline, .hamburger, .projects-nav,
+      .services-nav, .contact-dialog-close, .contact-dialog-option, .tech-tabs, .tech-tab) {
+    box-shadow: none;
+    border: 1px solid ButtonText;
+  }
+  .tech-tab.is-active { border: 2px solid Highlight; }
+}
+
+/* Match the featured-project carousel's bottom navigation row. */
+.services-controls {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) 36px;
+  direction: ltr;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+.what-we-do .services-controls .services-nav {
+  position: relative;
+  inset: auto;
+  top: auto;
+  left: auto;
+  right: auto;
+  width: 36px;
+  height: 36px;
+  transform: none;
+  border-color: rgba(193, 175, 255, .2);
+  background: rgba(20, 21, 35, .88);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .22);
+}
+.services-controls .services-nav-prev { grid-column: 1; grid-row: 1; }
+.services-controls .services-nav-next { grid-column: 3; grid-row: 1; }
+.services-controls .services-dots {
+  position: static;
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 18px;
+  margin: 0;
+  transform: none;
+}
+.what-we-do .services-controls .services-nav:hover,
+.what-we-do .services-controls .services-nav:focus-visible {
+  border-color: rgba(193, 175, 255, .36);
+  background: rgba(29, 30, 48, .96);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, .3);
+  transform: scale(1.06);
+}
+.what-we-do .services-nav svg {
+  width: 19px;
+  height: 19px;
+}
+@media (max-width: 767px) {
+  .services-controls { gap: 8px; margin-top: 12px; }
+}
+
+/* Compact, product-style services showcase; arrows stay in the bottom row. */
+.what-we-do {
+  padding: 38px clamp(16px, 3vw, 40px);
+}
+.what-we-do .services-header {
+  margin-bottom: 16px;
+}
+.what-we-do .services-header h3 {
+  font-size: 23px;
+}
+.what-we-do .services-viewport {
+  padding-block: 10px 14px;
+}
+.what-we-do .service-card {
+  min-height: 292px;
+  padding: 18px 20px 16px;
+  border-radius: 20px;
+}
+.what-we-do .service-icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 14px;
+  border-radius: 16px;
+  font-size: 28px;
+}
+.what-we-do .service-card h3 {
+  margin-bottom: 8px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+.what-we-do .service-card p {
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.what-we-do .service-card ul {
+  gap: 7px;
+}
+.what-we-do .service-card li {
+  font-size: 12px;
+  line-height: 1.55;
+}
+.what-we-do .service-card li::before {
+  width: 18px;
+  height: 18px;
+}
+.services-controls {
+  grid-template-columns: 36px minmax(0, 1fr) 36px;
+  direction: ltr;
+  margin-top: 8px;
+}
+@media (max-width: 767px) {
+  .what-we-do {
+    padding: 30px 14px;
+  }
+  .what-we-do .service-card {
+    min-height: 290px;
+    padding: 18px 17px 15px;
+  }
+  .what-we-do .services-header {
+    margin-bottom: 10px;
+  }
+  .services-controls {
+    margin-top: 6px;
+  }
+}

@@ -1,0 +1,14 @@
+/* Shared responsive layout rules */
+
+@media (min-width: 768px) {
+  .page {
+    width: min(100% - 48px, var(--container));
+  }
+}
+
+@media (min-width: 1180px) {
+  .page {
+    width: min(100% - 56px, var(--container));
+  }
+
+}

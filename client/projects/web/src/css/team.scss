@@ -1,0 +1,367 @@
+/* Team: sculpted surfaces with independent portrait and type layers. */
+.team-section {
+  --section-accent: #a78bfa;
+  --section-accent-2: #22d3ee;
+  --section-accent-3: #34d399;
+  --section-accent-text: #c4b5fd;
+  --section-accent-soft: rgba(167, 139, 250, 0.13);
+  --section-accent-glow: rgba(34, 211, 238, 0.2);
+  position: relative;
+  margin-top: 56px;
+  padding: clamp(42px, 5.5vw, 62px) clamp(16px, 3vw, 34px) clamp(34px, 4vw, 46px);
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 32px;
+  background:
+    radial-gradient(ellipse at 85% 0%, rgba(139, 92, 246, 0.1), transparent 38%),
+    radial-gradient(ellipse at 0% 45%, rgba(34, 211, 238, 0.055), transparent 40%),
+    linear-gradient(155deg, #192131, #141b29 50%, #101624);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 28px 90px rgba(0, 0, 0, 0.3);
+}
+
+.team-orb {
+  position: absolute;
+  z-index: -1;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.team-orb-right {
+  top: 88px;
+  right: -84px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.12), transparent 68%);
+}
+
+.team-orb-left {
+  left: -90px;
+  bottom: 140px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.16), transparent 68%);
+}
+
+.team-header {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto 38px;
+}
+
+.team-header h2 {
+  font-size: clamp(30px, 5.8vw, 48px);
+  line-height: 1.26;
+}
+
+.team-header h2 strong {
+  background: linear-gradient(135deg, #f8fafc, var(--section-accent) 34%, var(--section-accent-2) 72%, var(--section-accent-3));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.team-header p {
+  max-width: 680px;
+}
+
+@media (min-width: 768px) {
+  .team-header p {
+    max-width: none;
+    white-space: nowrap;
+  }
+}
+
+.team-grid {
+  position: relative;
+  max-width: 1080px;
+  margin-inline: auto;
+  display: grid;
+  gap: 28px;
+}
+
+/* Stable input plane: transforming the inner card never moves the pointer bounds. */
+.team-card-scene {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  display: flex;
+  perspective: 1400px;
+  perspective-origin: 50% 45%;
+}
+
+.team-card-scene.is-card-engaged {
+  z-index: 3;
+}
+
+.team-card {
+  --card-rx: 0deg;
+  --card-ry: 0deg;
+  --card-light-x: 50%;
+  --card-light-y: 35%;
+  --card-shadow-x: 0px;
+  --card-shadow-y: 18px;
+  --portrait-x: 0px;
+  --portrait-y: 0px;
+  --portrait-light-x: 50%;
+  --portrait-light-y: 35%;
+  --team-accent: #a78bfa;
+  --team-accent-2: #22d3ee;
+  --visual-depth: 4px;
+  --title-depth: 8px;
+  --badge-depth: 6px;
+  --role-depth: 4px;
+  --bio-depth: 2px;
+  --tags-depth: 4px;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  color: #f8fafc;
+  border: 1px solid rgba(207, 220, 255, 0.075);
+  border-radius: 28px;
+  background: linear-gradient(145deg, #202838, #171e2c 48%, #131a27);
+  box-shadow:
+    12px 14px 28px rgba(3, 7, 15, 0.5),
+    -8px -8px 22px rgba(73, 87, 118, 0.14),
+    inset 1px 1px 1px rgba(225, 232, 255, 0.1),
+    inset -1px -2px 2px rgba(0, 0, 0, 0.45);
+  /* Clipping, filters or isolation here would flatten the child Z layers. */
+  overflow: visible;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--card-rx)) rotateY(var(--card-ry));
+  transition: border-color 400ms ease, box-shadow 400ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.team-card::before,
+.team-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* A dark back plane gives the rounded card a visible, solid edge. */
+.team-card::before {
+  background: #0d1420;
+  border: 1px solid rgba(199, 212, 244, 0.08);
+  box-shadow: 0 4px 1px #0b111c;
+  transform: translateZ(-8px);
+}
+
+.team-card::after {
+  background: radial-gradient(ellipse at var(--card-light-x) var(--card-light-y), rgba(218, 230, 255, 0.065), transparent 65%);
+  transform: translateZ(1px);
+}
+
+.team-card.is-card-engaged {
+  --visual-depth: 26px;
+  --title-depth: 44px;
+  --badge-depth: 32px;
+  --role-depth: 22px;
+  --bio-depth: 12px;
+  --tags-depth: 18px;
+  border-color: rgba(184, 167, 235, 0.24);
+  box-shadow:
+    var(--card-shadow-x) var(--card-shadow-y) 34px rgba(3, 7, 15, 0.62),
+    -9px -9px 26px rgba(87, 100, 138, 0.2),
+    inset 1px 1px 1px rgba(225, 232, 255, 0.16),
+    inset -1px -2px 2px rgba(0, 0, 0, 0.45);
+}
+
+.team-card.is-card-pressed {
+  box-shadow: 5px 6px 18px rgba(3, 7, 15, 0.48), -3px -3px 12px rgba(87, 100, 138, 0.15), inset 1px 1px 2px rgba(225, 232, 255, 0.08);
+}
+
+.team-card-visual {
+  position: relative;
+  flex: none;
+  height: clamp(180px, 34svh, 258px);
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(5, 9, 18, 0.65);
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at 50% 70%, rgba(128, 100, 192, 0.14), transparent 60%),
+    linear-gradient(145deg, #111724, #0e1420);
+  box-shadow: inset 5px 5px 14px rgba(0, 0, 0, 0.4), inset -2px -2px 5px rgba(125, 139, 180, 0.08), 0 1px 1px rgba(215, 224, 255, 0.06);
+  transform: translateZ(var(--visual-depth));
+  transition: transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.team-portrait-aura {
+  position: absolute;
+  inset: 18% 15% -15%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(167, 139, 250, 0.18), transparent 65%);
+  transform: translate(calc(var(--portrait-x) * -2), calc(var(--portrait-y) * -2));
+  pointer-events: none;
+}
+
+.team-portrait {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  width: auto;
+  height: 128%;
+  max-width: none;
+  display: block;
+  object-fit: contain;
+  transform: translateX(-50%) translate(var(--portrait-x), var(--portrait-y));
+  -webkit-mask-image: linear-gradient(#000 65%, transparent 82%);
+  mask-image: linear-gradient(#000 65%, transparent 82%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.team-card-content {
+  position: relative;
+  min-width: 0;
+  flex: 1;
+  margin-top: 16px;
+  padding: 0 6px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  transform-style: preserve-3d;
+}
+
+.team-card-content > * {
+  max-width: 100%;
+  transition: transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.team-card-kicker {
+  width: fit-content;
+  padding: 5px 11px;
+  color: #a5edf8;
+  font-size: 10.5px;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(142, 220, 237, 0.12);
+  border-radius: 999px;
+  background: linear-gradient(145deg, #202f40, #17232f);
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.25), -2px -2px 6px rgba(100, 124, 159, 0.09), inset 0 1px 0 rgba(207, 243, 255, 0.06);
+  transform: translateZ(var(--badge-depth));
+}
+
+.team-card h3 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: clamp(20px, 2.5vw, 24px);
+  line-height: 1.5;
+  font-weight: 950;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.55), 0 5px 12px rgba(0, 0, 0, 0.25);
+  transform: translateZ(var(--title-depth));
+}
+
+.team-card-role {
+  margin: 0;
+  min-height: 22px;
+  direction: ltr;
+  unicode-bidi: plaintext;
+  color: #d3c5f6;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.8;
+  transform: translateZ(var(--role-depth));
+}
+
+.team-card-bio {
+  margin: 0 auto;
+  max-width: 420px;
+  color: #b4bfce;
+  font-size: 12px;
+  line-height: 1.85;
+  transform: translateZ(var(--bio-depth));
+}
+
+.team-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 8px;
+  direction: ltr;
+  transform: translateZ(var(--tags-depth));
+}
+
+.team-tags span {
+  min-height: 27px;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 9px;
+  color: #cbd5e1;
+  font-size: 9.8px;
+  font-weight: 750;
+  border: 1px solid rgba(166, 188, 223, 0.055);
+  border-radius: 999px;
+  background: #151e2b;
+  box-shadow: inset 2px 2px 4px rgba(2, 6, 13, 0.34), inset -1px -1px 3px rgba(98, 121, 157, 0.1);
+}
+
+@media (min-width: 640px) {
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 639px) {
+  .team-section {
+    padding-inline: 16px;
+    border-radius: 26px;
+  }
+
+  .team-header {
+    margin-bottom: 24px;
+  }
+
+  .team-grid {
+    gap: 18px;
+  }
+
+  .team-card {
+    padding: 11px;
+    border-radius: 24px;
+  }
+
+  .team-card-content {
+    margin-top: 10px;
+    padding-inline: 2px;
+    gap: 5px;
+  }
+
+  .team-card-visual {
+    height: clamp(164px, 25svh, 210px);
+  }
+
+  .team-card-bio {
+    font-size: 11.5px;
+    line-height: 1.65;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .team-tags {
+    padding-top: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-card,
+  .team-card-visual,
+  .team-card .team-card-content > * {
+    transition: none;
+    transform: none;
+  }
+
+  .team-portrait {
+    transform: translateX(-50%);
+  }
+}

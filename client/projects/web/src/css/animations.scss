@@ -1,0 +1,11 @@
+/* Animations */
+
+@keyframes iconPulse {
+  0%, 100% {
+    box-shadow: 0 0 24px rgba(139, 92, 246, 0.18);
+  }
+
+  50% {
+    box-shadow: 0 0 44px rgba(139, 92, 246, 0.42);
+  }
+}
