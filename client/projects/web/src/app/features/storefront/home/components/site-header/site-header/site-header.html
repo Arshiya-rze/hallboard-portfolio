@@ -1,0 +1,54 @@
+<header class="header">
+        <a
+          class="brand"
+          href="#hero"
+          aria-label="هالبورد؛ بازگشت به ابتدای صفحه"
+        >
+          <span class="brand-reveal" aria-hidden="true">
+            <img class="brand-mark" ngSrc="assets/brand/logo-crystal.webp" width="32" height="36" alt="" priority />
+            <span class="brand-wordmark"></span>
+          </span>
+        </a>
+
+        <input
+          type="checkbox"
+          id="menu-toggle"
+          class="menu-toggle"
+          tabindex="-1"
+          [checked]="menuOpen()"
+          (change)="toggleMenu($event)"
+        />
+
+        <label
+          for="menu-toggle"
+          class="hamburger"
+          role="button"
+          tabindex="0"
+          aria-label="باز کردن منوی اصلی"
+          aria-controls="primary-nav"
+          [attr.aria-expanded]="menuOpen()"
+          [attr.aria-label]="menuOpen() ? 'بستن منوی اصلی' : 'باز کردن منوی اصلی'"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+
+        <nav class="nav" id="primary-nav" aria-label="منوی اصلی">
+          <a href="#team" (click)="closeMenu()">تیم ما</a>
+          <a href="#projects" (click)="closeMenu()">نمونه‌کارها</a>
+          <a href="#what-we-do" (click)="closeMenu()">خدمات ما</a>
+          <a href="#how-we-work" (click)="closeMenu()">روش کار ما</a>
+        </nav>
+
+        <a
+          class="btn btn-primary header-btn"
+          href="#contact-dialog"
+          data-contact-open
+        >
+          شروع همکاری
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M17 7 7 17M7 7h10v10" />
+          </svg>
+        </a>
+      </header>

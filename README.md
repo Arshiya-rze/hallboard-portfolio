@@ -1,4 +1,4 @@
-# hallboard-portfolio
-Premium dark-mode SaaS portfolio website for Hallboard, a full-stack software engineering team.
+# Hallboard Portfolio
 
-See [asset organization and cleanup inventory](docs/assets.md).
+The Angular monolith application lives in [`client/`](client/). See its
+[README](client/README.md) for development, build, and test instructions.
