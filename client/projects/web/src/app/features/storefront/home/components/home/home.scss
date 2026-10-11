@@ -1,1 +1,18 @@
 :host { display: contents; }
+
+.page {
+  width: min(100% - 28px, var(--container));
+  margin: 0 auto 32px;
+}
+
+@media (min-width: 768px) {
+  .page { width: min(100% - 48px, var(--container)); }
+}
+
+@media (min-width: 1025px) {
+  .page { width: min(100% - clamp(72px, 10vw, 172px), var(--container)); }
+}
+
+@media (min-width: 1180px) {
+  .page { width: min(100% - 56px, var(--container)); }
+}
