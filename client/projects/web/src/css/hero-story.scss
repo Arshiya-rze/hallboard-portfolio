@@ -105,7 +105,7 @@
   opacity: var(--browser-opacity);
   transform: translate(-50%, -50%) scale(var(--browser-scale));
   transform-origin: center;
-  will-change: width, height, transform, opacity, border-radius;
+  will-change: transform, opacity;
   pointer-events: none;
 }
 .hero-browser-screen {

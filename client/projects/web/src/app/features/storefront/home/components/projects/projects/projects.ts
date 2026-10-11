@@ -10,9 +10,9 @@ import { afterNextRender, Component, DestroyRef, ElementRef, inject, signal } fr
 export class Projects {
   protected readonly projectDots = signal<number[]>([]);
   protected readonly activeProject = signal(0);
-  protected readonly previewImage = signal('assets/projects/persiankhab-home-extracted.png');
-  protected readonly previewWidth = signal(1517);
-  protected readonly previewHeight = signal(1037);
+  protected readonly previewImage = signal('assets/projects/persiankhab-home.webp');
+  protected readonly previewWidth = signal(1200);
+  protected readonly previewHeight = signal(820);
   protected readonly previewAlt = signal('پیش‌نمایش پروژه');
   protected readonly previewUrl = signal('https://persiankhab.hallboard.ir/');
   protected readonly previewActionContact = signal(false);
