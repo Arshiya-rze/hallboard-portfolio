@@ -325,6 +325,8 @@
   text-wrap: pretty;
 }
 .hero-browser-cta {
+  position: relative;
+  top: var(--cta-lift, 0px);
   min-width: var(--cta-width, 188px);
   min-height: 48px;
   margin-top: var(--cta-gap, 28px);

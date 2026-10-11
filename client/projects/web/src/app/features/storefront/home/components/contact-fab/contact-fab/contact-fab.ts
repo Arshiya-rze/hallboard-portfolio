@@ -26,7 +26,10 @@ export class ContactFab {
       const heroExit = heroShell
         ? heroShell.getBoundingClientRect().top + scrollY + heroShell.offsetHeight - window.innerHeight
         : team!.getBoundingClientRect().top + scrollY;
-      button.hidden = scrollY < heroExit;
+      // Keep the floating CTA out of the cinematic scene itself. The hero
+      // parks at heroExit while its phone morph finishes; reveal the button
+      // only after the document has actually moved beyond that boundary.
+      button.hidden = scrollY <= heroExit + 1;
     };
     const schedule = (): void => {
       if (!frame) frame = window.requestAnimationFrame(update);

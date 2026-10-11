@@ -9,6 +9,7 @@ interface SceneDimensions {
   desktopHeight: number;
   mobileHeight: number;
   compactness: number;
+  laptopViewport: boolean;
 }
 
 @Component({
@@ -50,6 +51,7 @@ export class HeroSection {
     let scrollFrame = 0;
     let transitionFrame = 0;
     let previousFrame = 0;
+    let lastWheelEventAt = 0;
     let manuallyScrolled = false;
     let heroExited = false;
     let transitionActive = false;
@@ -77,12 +79,19 @@ export class HeroSection {
       const width = hero.clientWidth || window.innerWidth;
       const height = hero.clientHeight || window.innerHeight;
       const narrow = isNarrowViewport();
+      const laptopViewport = !narrow && width >= 768 && height <= 760;
       const compactness = narrow ? clamp((height - 520) / 220, 0, 1) : clamp((height - 560) / 340, 0, 1);
-      const desktopHeight = Math.min(height * 0.76, 650);
-      const desktopWidth = narrow ? Math.max(260, width - 28) : Math.min(width * 0.9, 1200, desktopHeight * 1.82);
-      const mobileWidth = narrow ? Math.max(250, width - 44) : clamp(width * 0.3, 340, 410);
-      const mobileHeight = height * (narrow ? 0.78 + 0.08 * clamp((720 - height) / 170, 0, 1) : 0.79);
-      return { width, height, desktopWidth, mobileWidth, desktopHeight, mobileHeight, compactness };
+      const desktopHeight = Math.min(height * (laptopViewport ? 0.73 : 0.76), 650);
+      const desktopWidth = narrow
+        ? Math.max(260, width - 28)
+        : Math.min(width * (laptopViewport ? 0.88 : 0.9), laptopViewport ? 1120 : 1200, desktopHeight * (laptopViewport ? 1.78 : 1.82));
+      const mobileWidth = narrow
+        ? Math.max(250, width - 44)
+        : laptopViewport ? clamp(width * 0.27, 320, 360) : clamp(width * 0.3, 340, 410);
+      const mobileHeight = height * (narrow
+        ? 0.78 + 0.08 * clamp((720 - height) / 170, 0, 1)
+        : laptopViewport ? 0.84 : 0.79);
+      return { width, height, desktopWidth, mobileWidth, desktopHeight, mobileHeight, compactness, laptopViewport };
     };
 
     dimensions = measure();
@@ -117,7 +126,10 @@ export class HeroSection {
       set('--page-reveal', pageReveal.toFixed(3));
       set('--wordmark-reveal', smooth(0.555, 0.645, progress).toFixed(3));
       set('--mobile-layout', mobile.toFixed(3));
-      set('--content-lift', `${mix(14, 0, pageReveal).toFixed(1)}px`);
+      const contentLift = dimensions.laptopViewport
+        ? mix(0, -44, mobile)
+        : mix(14, 0, pageReveal);
+      set('--content-lift', `${contentLift.toFixed(1)}px`);
 
       if (activeCopy !== renderedCopy) {
         copySteps.forEach((step, index) => {
@@ -132,6 +144,10 @@ export class HeroSection {
 
       setInlineStyle(browser, 'width', `${frameWidth.toFixed(1)}px`);
       setInlineStyle(browser, 'height', `${frameHeight.toFixed(1)}px`);
+      const browserCenterY = dimensions.laptopViewport
+        ? 92 + frameHeight / 2
+        : dimensions.height * 0.52;
+      setInlineStyle(browser, 'top', `${browserCenterY.toFixed(1)}px`);
       setInlineStyle(browser, '--mobile-layout', mobile.toFixed(3));
       setInlineStyle(browser, '--browser-radius', `${mix(25, 48, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--screen-radius', `${mix(13, 39, mobile).toFixed(1)}px`);
@@ -141,7 +157,10 @@ export class HeroSection {
       setInlineStyle(browser, '--chrome-height', `${mix(32, 34, mobile).toFixed(1)}px`);
       const desktopHeader = mix(64, 82, dimensions.compactness);
       setInlineStyle(browser, '--site-header-height', `${mix(desktopHeader, 64, mobile).toFixed(1)}px`);
-      setInlineStyle(browser, '--content-top', `${mix(mix(47, 54, dimensions.compactness), 53, mobile).toFixed(1)}%`);
+      const contentTop = dimensions.laptopViewport
+        ? mix(50, 47, mobile)
+        : mix(mix(47, 54, dimensions.compactness), 53, mobile);
+      setInlineStyle(browser, '--content-top', `${contentTop.toFixed(1)}%`);
       setInlineStyle(browser, '--footer-inset', `${mix(28, 14, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--footer-size', `${mix(10, 9, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--camera-width', `${mix(5, 44, mobile).toFixed(1)}px`);
@@ -157,11 +176,16 @@ export class HeroSection {
       setInlineStyle(browser, '--cta-width', `${mix(188, 204, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--accent-gap', `${mix(mix(12, 23, dimensions.compactness), 18, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--support-gap', `${mix(mix(8, 12, dimensions.compactness), 10, mobile).toFixed(1)}px`);
-      setInlineStyle(browser, '--cta-gap', `${mix(mix(14, 28, dimensions.compactness), 23, mobile).toFixed(1)}px`);
+      const ctaGap = dimensions.laptopViewport
+        ? mix(16, 12, mobile)
+        : mix(mix(14, 28, dimensions.compactness), 23, mobile);
+      setInlineStyle(browser, '--cta-gap', `${ctaGap.toFixed(1)}px`);
+      const ctaLift = dimensions.laptopViewport ? mix(0, -30, mobile) : 0;
+      setInlineStyle(browser, '--cta-lift', `${ctaLift.toFixed(1)}px`);
       const brandInset = mix(narrow ? 22 : clamp(dimensions.width * 0.04, 22, 48), 22, mobile);
       setInlineStyle(browser, '--brand-inset', `${brandInset.toFixed(1)}px`);
       const targetX = frameWidth / 2 - mix(15, 10, mobile) - brandInset - 14;
-      const targetY = dimensions.height * 0.02 + mix(15, 14, mobile) + mix(32, 34, mobile) + mix(desktopHeader, 64, mobile) / 2 - frameHeight / 2;
+      const targetY = browserCenterY - frameHeight / 2 + mix(15, 14, mobile) + mix(32, 34, mobile) + mix(desktopHeader, 64, mobile) / 2 - dimensions.height / 2;
       const scaleToHeader = mix(1, 0.215, travel) * mix(1, browserScale, travel * 0.58);
       set('--mark-x', `${(targetX * travel).toFixed(1)}px`);
       set('--mark-y', `${(targetY * travel).toFixed(1)}px`);
@@ -204,6 +228,7 @@ export class HeroSection {
       }
       transitionFrame = 0;
       transitionActive = false;
+      lastWheelEventAt = performance.now();
     };
     const cancelTransition = (): void => {
       if (transitionFrame) window.cancelAnimationFrame(transitionFrame);
@@ -237,9 +262,15 @@ export class HeroSection {
     };
     const onWheel = (event: WheelEvent): void => {
       if (event.ctrlKey || reducedMotion.matches) return;
+      const now = performance.now();
+      const continuesWheelGesture = now - lastWheelEventAt < 300;
+      lastWheelEventAt = now;
       if (event.deltaY < 0) {
         if (heroExited && window.scrollY > endY + 1) return;
-        if (transitionActive) cancelTransition();
+        if (transitionActive) {
+          event.preventDefault();
+          cancelTransition();
+        }
         if (progress > introEnd + 0.001) {
           event.preventDefault();
           beginTransition(introEnd);
@@ -248,18 +279,16 @@ export class HeroSection {
       }
       if (event.deltaY === 0) return;
       if (transitionActive) {
-        if (transitionTo > introEnd) {
-          // If the next scroll arrives before the morph finishes, complete it
-          // and let that same gesture continue into the following section.
-          finishTransition();
-          return;
-        }
+        // Consume the whole wheel burst while the device morphs. A large or
+        // high-frequency trackpad gesture must not skip the phone stop.
         event.preventDefault();
-        cancelTransition();
-        beginTransition(1);
+        return;
       } else if (progress < 1) {
         event.preventDefault();
         beginTransition(1);
+      } else if (continuesWheelGesture) {
+        // Do not let the tail of the same momentum burst leave the hero.
+        event.preventDefault();
       }
     };
     const onTouchStart = (event: TouchEvent): void => {

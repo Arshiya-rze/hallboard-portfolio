@@ -38,7 +38,10 @@ export class SiteHeader {
       const shellTop = heroShell ? heroShell.getBoundingClientRect().top + scrollY : 0;
       const heroEnd = heroShell ? shellTop + heroShell.offsetHeight - window.innerHeight : 0;
       const hasScrolled = scrollY > 18;
-      const hidingOverHero = hasScrolled && scrollY < heroEnd - 1;
+      // Firefox may settle exactly on the sticky hero's end coordinate while
+      // Chromium can land a fractional pixel before it. Keep the header hidden
+      // through that boundary; reveal it only after a real scroll past the hero.
+      const hidingOverHero = hasScrolled && !!heroShell && scrollY <= heroEnd + 1;
 
       header.classList.toggle('is-hero-hidden', hidingOverHero);
       header.classList.toggle('is-sticky', hasScrolled && !hidingOverHero);
