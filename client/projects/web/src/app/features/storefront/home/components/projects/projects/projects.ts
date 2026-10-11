@@ -38,7 +38,6 @@ export class Projects {
 
   private initializeSliderAndDialogs(): void {
     const root = this.host.nativeElement;
-    const observationTarget = root.querySelector<HTMLElement>('.projects-section') ?? root;
     const viewport = root.querySelector<HTMLElement>('.projects-viewport');
     const track = root.querySelector<HTMLElement>('[data-projects-track]');
     const cards = Array.from(track?.children ?? []) as HTMLElement[];
@@ -48,13 +47,10 @@ export class Projects {
 
     const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)') ?? null;
     const prefersReducedMotion = (): boolean => reducedMotion?.matches ?? false;
-    let autoplay = 0;
     let scrollTimer = 0;
     let resizeFrame = 0;
     let touch: { id: number; x: number; y: number; index: number; dragged: boolean } | null = null;
     let suppressClickUntil = 0;
-    let isVisible = false;
-    let manualInteraction = false;
     let imageOpener: HTMLElement | null = null;
     const dialogOpeners = new WeakMap<HTMLDialogElement, HTMLElement>();
 
@@ -68,20 +64,6 @@ export class Projects {
     const updateDots = (): void => {
       const index = Math.min(nearestIndex(), maxIndex());
       this.activeProject.set(index);
-    };
-    const stopAutoplay = (): void => {
-      window.clearInterval(autoplay);
-      autoplay = 0;
-    };
-    const startAutoplay = (): void => {
-      if (autoplay || prefersReducedMotion() || manualInteraction || !isVisible || maxIndex() === 0) return;
-      autoplay = window.setInterval(() => {
-        if (!document.hidden) this.goToProject((this.activeProject() + 1) % (maxIndex() + 1));
-      }, 7000);
-    };
-    const disableAutoplay = (): void => {
-      manualInteraction = true;
-      stopAutoplay();
     };
     const scrollListener = (): void => {
       window.clearTimeout(scrollTimer);
@@ -158,9 +140,6 @@ export class Projects {
       if (close) close.closest('dialog')?.close();
     };
     const onPointerCancel = (): void => { touch = null; };
-    const onPointerDown = (): void => disableAutoplay();
-    const onWheel = (): void => disableAutoplay();
-    const onFocusIn = (): void => disableAutoplay();
     const motionAllowed = (window.matchMedia?.('(hover: hover) and (pointer: fine)')?.matches ?? false)
       && !prefersReducedMotion()
       && (navigator.hardwareConcurrency || 8) > 4;
@@ -187,15 +166,11 @@ export class Projects {
     previousButton?.addEventListener('click', goPrevious);
     nextButton?.addEventListener('click', goNext);
     viewport.addEventListener('scroll', scrollListener, { passive: true });
-    root.addEventListener('pointerdown', onPointerDown, { passive: true });
-    root.addEventListener('wheel', onWheel, { passive: true });
-    root.addEventListener('focusin', onFocusIn);
     root.addEventListener('click', onRootClick);
 
     const onTouchStart = (event: PointerEvent): void => {
       if (event.pointerType !== 'touch' || !event.isPrimary) return;
       touch = { id: event.pointerId, x: event.clientX, y: event.clientY, index: Math.min(nearestIndex(), maxIndex()), dragged: false };
-      disableAutoplay();
     };
     const onTouchMove = (event: PointerEvent): void => {
       if (!touch || event.pointerId !== touch.id) return;
@@ -220,12 +195,6 @@ export class Projects {
     viewport.addEventListener('pointerup', onTouchEnd, { passive: true });
     viewport.addEventListener('pointercancel', onPointerCancel, { passive: true });
 
-    const visibility = typeof IntersectionObserver === 'undefined' ? null : new IntersectionObserver(([entry]) => {
-      isVisible = entry?.isIntersecting ?? false;
-      if (isVisible) startAutoplay();
-      else stopAutoplay();
-    }, { threshold: 0.08 });
-    visibility?.observe(observationTarget);
     const onResize = (): void => {
       if (resizeFrame) return;
       resizeFrame = window.requestAnimationFrame(() => {
@@ -236,23 +205,15 @@ export class Projects {
       });
     };
     window.addEventListener('resize', onResize, { passive: true });
-    const onMotionChange = (): void => prefersReducedMotion() ? stopAutoplay() : startAutoplay();
-    reducedMotion?.addEventListener('change', onMotionChange);
     this.destroyRef.onDestroy(() => {
-      stopAutoplay();
       window.clearTimeout(scrollTimer);
       if (resizeFrame) window.cancelAnimationFrame(resizeFrame);
-      visibility?.disconnect();
       window.removeEventListener('resize', onResize);
-      reducedMotion?.removeEventListener('change', onMotionChange);
       viewport.removeEventListener('scroll', scrollListener);
       viewport.removeEventListener('pointercancel', onPointerCancel);
       viewport.removeEventListener('pointerdown', onTouchStart);
       viewport.removeEventListener('pointermove', onTouchMove);
       viewport.removeEventListener('pointerup', onTouchEnd);
-      root.removeEventListener('pointerdown', onPointerDown);
-      root.removeEventListener('wheel', onWheel);
-      root.removeEventListener('focusin', onFocusIn);
       root.removeEventListener('click', onRootClick);
       imageDialog?.removeEventListener('click', onImageDialogClick);
       imageDialog?.removeEventListener('close', onImageDialogClose);
