@@ -268,4 +268,27 @@ img {
   .btn-primary:hover, .btn-outline:hover { transform: none; }
 }
 
+/* Shared, one-shot reveal for section titles and their short introductions. */
+.scroll-reveal {
+  transition: opacity 460ms ease, transform 460ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.scroll-reveal-pending {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.scroll-reveal-visible[data-scroll-reveal="description"] {
+  transition-delay: 90ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-reveal-pending {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Component refinements shared by the service/project/technology controls. */

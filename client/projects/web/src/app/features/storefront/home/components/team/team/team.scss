@@ -367,3 +367,165 @@
     transform: translateX(-50%);
   }
 }
+
+/* Scroll-position-driven member stack; the default grid remains the no-JS and
+   reduced-motion layout. The section itself must not become a sticky scroller. */
+.team-section.is-stack-ready {
+  overflow: visible;
+  // The stack intentionally travels through this section's reserved scroll
+  // space. Keep its fixed stage above following sections until it is released.
+  z-index: 2;
+}
+
+.team-section.is-stack-ready .team-stack-track {
+  height: var(--team-stack-total-height, 0px);
+}
+
+.team-stack-track {
+  position: relative;
+}
+
+.team-stack-stage {
+  position: relative;
+  height: auto;
+  min-height: 0;
+  display: block;
+}
+
+.team-section.is-stack-ready .team-stack-stage {
+  height: var(--team-stage-height, 70svh);
+}
+
+.team-stack-stage.is-fixed {
+  position: fixed;
+  z-index: 5;
+  top: var(--team-stack-top, 88px);
+  left: var(--team-stage-left, 0px);
+  width: var(--team-stage-width, 100%);
+}
+
+.team-stack-stage.is-released {
+  position: absolute;
+  top: var(--team-stage-release-top, 0px);
+  right: 0;
+  left: 0;
+}
+
+.team-section.is-stack-ready .team-grid {
+  width: min(100%, 1080px);
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.team-section.is-stack-ready .team-card-scene {
+  position: absolute;
+  top: 0;
+  right: var(--team-stack-right, 0px);
+  bottom: 0;
+  width: calc(50% - 12px);
+  display: flex;
+  align-items: center;
+  transform: none;
+  transform-origin: 50% 50%;
+  z-index: 1;
+  transition: none;
+  will-change: transform;
+}
+
+.team-section.is-stack-ready .team-card {
+  height: auto;
+  max-height: 100%;
+  min-height: 0;
+}
+
+.team-section.is-stack-ready .team-card-content {
+  flex: 0 0 auto;
+  opacity: 1;
+  transform: none;
+}
+
+.team-section.is-stack-ready .team-card-content > * {
+  transition: none;
+}
+
+@media (max-width: 639px) {
+  // Keep the pinned card inside its reserved track on phones. Native sticky
+  // positioning releases it at the track boundary even during fast touch scrolls.
+  .team-section.is-stack-ready .team-stack-stage.is-fixed {
+    position: sticky;
+    top: var(--team-stack-top, 88px);
+    left: auto;
+    width: 100%;
+  }
+
+  .team-section.is-stack-ready .team-grid {
+    max-width: 520px;
+  }
+
+  .team-section.is-stack-ready .team-card-scene {
+    right: 0;
+    width: 100%;
+  }
+
+  .team-section.is-stack-ready .team-card-visual {
+    height: clamp(140px, 23svh, 190px);
+  }
+
+  .team-section.is-stack-ready .team-card-content {
+    margin-top: 8px;
+    gap: 4px;
+  }
+
+  .team-section.is-stack-ready .team-card-bio {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 639px) and (max-height: 560px) {
+  .team-section.is-stack-ready .team-card {
+    padding: 8px;
+  }
+
+  .team-section.is-stack-ready .team-card-visual {
+    height: clamp(96px, 25svh, 130px);
+  }
+
+  .team-section.is-stack-ready .team-card-content {
+    margin-top: 5px;
+    gap: 3px;
+  }
+
+  .team-section.is-stack-ready .team-card h3 {
+    font-size: clamp(18px, 5vw, 20px);
+    line-height: 1.3;
+  }
+
+  .team-section.is-stack-ready .team-card-role {
+    min-height: 0;
+    line-height: 1.45;
+  }
+
+  .team-section.is-stack-ready .team-card-bio {
+    -webkit-line-clamp: 1;
+    line-height: 1.45;
+  }
+
+  .team-section.is-stack-ready .team-tags {
+    padding-top: 2px;
+  }
+
+  .team-section.is-stack-ready .team-tags span {
+    min-height: 23px;
+    padding: 4px 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-section.is-stack-ready .team-card-scene {
+    transform: none;
+  }
+}

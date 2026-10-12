@@ -1,8 +1,9 @@
 import { afterNextRender, Component, DestroyRef, ElementRef, inject, signal } from '@angular/core';
+import { ScrollRevealDirective } from '../../../../../../shared/directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-services-section',
-  imports: [],
+  imports: [ScrollRevealDirective],
   templateUrl: './services.html',
   styleUrl: './services.scss',
 })

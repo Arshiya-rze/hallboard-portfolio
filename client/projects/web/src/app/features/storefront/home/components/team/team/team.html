@@ -1,5 +1,6 @@
 <section
         class="team-section"
+        [class.is-stack-ready]="stackReady()"
         id="team"
         aria-labelledby="team-title"
         data-team-section
@@ -8,17 +9,25 @@
         <div class="team-orb team-orb-left" aria-hidden="true"></div>
 
         <div class="section-header team-header">
-          <h2 id="team-title">
+          <h2 id="team-title" appScrollReveal data-scroll-reveal="heading">
             <strong>تیم هالبورد</strong>
           </h2>
 
-          <p>
+          <p appScrollReveal data-scroll-reveal="description">
             پشت هر تصمیم فنی، یک تیم دقیق ایستاده؛ از معماری و طراحی تا توسعه
             فول‌استک، تست، استقرار و رشد محصول.
           </p>
         </div>
 
+        <div class="team-stack-track" data-team-track>
+          <div
+            class="team-stack-stage"
+            [class.is-fixed]="stackStageMode() === 'fixed'"
+            [class.is-released]="stackStageMode() === 'released'"
+            data-team-stage
+          >
         <div class="team-grid" aria-label="اعضای تیم هالبورد">
+          <ng-template #tabaCard>
           <div class="team-card-scene" data-team-scene (pointerenter)="activatePortrait('taba')" (pointerleave)="deactivatePortrait('taba')" (focusin)="activatePortrait('taba')" (focusout)="deactivatePortrait('taba')">
             <article
               class="team-card team-card--living team-lead-card"
@@ -82,7 +91,9 @@
               </div>
             </article>
           </div>
+          </ng-template>
 
+          <ng-template #frankCard>
           <div class="team-card-scene" data-team-scene>
             <article
               class="team-card"
@@ -126,6 +137,9 @@
               </div>
             </article>
           </div>
+          </ng-template>
+          <ng-container *ngTemplateOutlet="tabaCard"></ng-container>
+          <ng-container *ngTemplateOutlet="frankCard"></ng-container>
 
           <div class="team-card-scene" data-team-scene (pointerenter)="activatePortrait('arshia')" (pointerleave)="deactivatePortrait('arshia')" (focusin)="activatePortrait('arshia')" (focusout)="deactivatePortrait('arshia')">
             <article
@@ -378,6 +392,8 @@
                 </div>
               </div>
             </article>
+          </div>
+        </div>
           </div>
         </div>
 

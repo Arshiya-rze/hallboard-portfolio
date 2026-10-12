@@ -1,9 +1,10 @@
 import { NgOptimizedImage } from '@angular/common';
 import { afterNextRender, Component, DestroyRef, ElementRef, inject, signal } from '@angular/core';
+import { ScrollRevealDirective } from '../../../../../../shared/directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-technology-stack-section',
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, ScrollRevealDirective],
   templateUrl: './technology-stack.html',
   styleUrl: './technology-stack.scss',
 })
