@@ -1,0 +1,384 @@
+<section
+        class="team-section"
+        id="team"
+        aria-labelledby="team-title"
+        data-team-section
+      >
+        <div class="team-orb team-orb-right" aria-hidden="true"></div>
+        <div class="team-orb team-orb-left" aria-hidden="true"></div>
+
+        <div class="section-header team-header">
+          <h2 id="team-title">
+            <strong>تیم هالبورد</strong>
+          </h2>
+
+          <p>
+            پشت هر تصمیم فنی، یک تیم دقیق ایستاده؛ از معماری و طراحی تا توسعه
+            فول‌استک، تست، استقرار و رشد محصول.
+          </p>
+        </div>
+
+        <div class="team-grid" aria-label="اعضای تیم هالبورد">
+          <div class="team-card-scene" data-team-scene (pointerenter)="activatePortrait('taba')" (pointerleave)="deactivatePortrait('taba')" (focusin)="activatePortrait('taba')" (focusout)="deactivatePortrait('taba')">
+            <article
+              class="team-card team-card--living team-lead-card"
+              data-team-card
+              [class.is-portrait-active]="activePortrait() === 'taba'"
+              aria-labelledby="taba-name"
+              style="
+                --team-accent: #a78bfa;
+                --team-accent-2: #22d3ee;
+                --team-accent-3: #f8fafc;
+                --portrait-mask: url('assets/team/reza-taba-portrait-mask.svg');
+              "
+            >
+              <div class="team-card-visual living-portrait">
+                <div class="living-portrait-backdrop">
+                  <span class="living-portrait-halo" aria-hidden="true"></span>
+                  <span class="living-portrait-light" aria-hidden="true"></span>
+                  <div class="living-portrait-photo-layer">
+                    <img
+                      class="team-portrait living-portrait-image living-portrait-photo"
+                      ngSrc="assets/team/reza-taba-3d-portrait.webp"
+                      width="800"
+                      height="1000"
+                      alt="پرتره مهندس رضا طبا، Team Lead هالبورد"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <span class="living-portrait-shadow" aria-hidden="true"></span>
+                  <span class="living-portrait-sweep" aria-hidden="true"></span>
+                </div>
+                <div class="living-portrait-depth" aria-hidden="true">
+                  <div class="living-portrait-arrival">
+                    <div class="living-portrait-cutout">
+                      <img class="living-portrait-image living-portrait-character" ngSrc="assets/team/reza-taba-3d-portrait.webp" width="800" height="1000" alt="" loading="lazy" />
+                    </div>
+                  </div>
+                </div>
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'taba'" [attr.aria-label]="activePortrait() === 'taba' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('taba'); $event.stopPropagation()">
+                  <span>{{ activePortrait() === 'taba' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
+                </button>
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Team Lead</span>
+                <h3 id="taba-name">مهندس رضا طبا</h3>
+                <p class="team-card-role">
+                  Senior Software Architect / Full Stack Engineer
+                </p>
+                <p class="team-card-bio">
+                  هدایت معماری، تصمیم‌های فنی و کیفیت خروجی؛ از ایده تا محصولی
+                  که بتواند در دنیای واقعی رشد کند.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای مهندس رضا طبا">
+                  <span>Architecture</span>
+                  <span>Leadership</span>
+                  <span>Product Engineering</span>
+                  <span>DevOps</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene>
+            <article
+              class="team-card"
+              data-team-card
+              aria-labelledby="frank-name"
+              style="
+                --team-accent: #22d3ee;
+                --team-accent-2: #a78bfa;
+                --team-accent-3: #34d399;
+              "
+            >
+              <div class="team-card-visual">
+                <span class="team-portrait-aura" aria-hidden="true"></span>
+                <img
+                  class="team-portrait"
+                  ngSrc="assets/team/frank-baran.webp"
+                  width="1059"
+                  height="1485"
+                  alt="پرتره فرانک باران چشمه، مدیر هالبورد و توسعه‌دهنده فول‌استک"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Manager</span>
+                <h3 id="frank-name">فرانک باران چشمه</h3>
+                <p class="team-card-role">
+                  Software Engineer / Full Stack Developer
+                </p>
+                <p class="team-card-bio">
+                  مدیریت مسیر تیم، هماهنگی اجرا و توسعه محصول با نگاه عملیاتی و
+                  دقیق.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای فرانک باران چشمه">
+                  <span>Team Flow</span>
+                  <span>Product Ops</span>
+                  <span>Scrum Master</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene (pointerenter)="activatePortrait('arshia')" (pointerleave)="deactivatePortrait('arshia')" (focusin)="activatePortrait('arshia')" (focusout)="deactivatePortrait('arshia')">
+            <article
+              class="team-card team-card--living"
+              data-team-card
+              [class.is-portrait-active]="activePortrait() === 'arshia'"
+              aria-labelledby="arshia-name"
+              style="
+                --team-accent: #60a5fa;
+                --team-accent-2: #8b5cf6;
+                --team-accent-3: #22d3ee;
+                --portrait-mask: url('assets/team/arshia-rezaei-front.webp');
+              "
+            >
+              <div class="team-card-visual living-portrait">
+                <div class="living-portrait-backdrop">
+                  <span class="living-portrait-halo" aria-hidden="true"></span>
+                  <span class="living-portrait-light" aria-hidden="true"></span>
+                  <div class="living-portrait-photo-layer">
+                    <img
+                      class="team-portrait living-portrait-image living-portrait-photo"
+                      ngSrc="assets/team/arshia-rezaei-front.webp"
+                      width="1122"
+                      height="1402"
+                      alt="پرتره ارشیا رضایی، UI و توسعه‌دهنده فول‌استک"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <span class="living-portrait-shadow" aria-hidden="true"></span>
+                  <span class="living-portrait-sweep" aria-hidden="true"></span>
+                </div>
+                <div class="living-portrait-depth" aria-hidden="true">
+                  <div class="living-portrait-arrival">
+                    <div class="living-portrait-cutout">
+                      <img class="living-portrait-image living-portrait-character" ngSrc="assets/team/arshia-rezaei-front-portrait.webp" width="1122" height="1402" alt="" loading="lazy" />
+                    </div>
+                  </div>
+                </div>
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'arshia'" [attr.aria-label]="activePortrait() === 'arshia' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('arshia'); $event.stopPropagation()">
+                  <span>{{ activePortrait() === 'arshia' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
+                </button>
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Developer</span>
+                <h3 id="arshia-name">ارشیا رضایی</h3>
+                <p class="team-card-role">
+                  UI Designer &amp; Engineer / Full Stack Developer
+                </p>
+                <p class="team-card-bio">
+                  پیوند تجربه بصری، رابط‌های دقیق و توسعه کامل محصول از فرانت تا
+                  بک‌اند.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای ارشیا رضایی">
+                  <span>AI</span>
+                  <span>Research</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene (pointerenter)="activatePortrait('hamid')" (pointerleave)="deactivatePortrait('hamid')" (focusin)="activatePortrait('hamid')" (focusout)="deactivatePortrait('hamid')">
+            <article
+              class="team-card team-card--living"
+              data-team-card
+              aria-labelledby="hamid-name"
+              [class.is-portrait-active]="activePortrait() === 'hamid'"
+              style="
+                --team-accent: #34d399;
+                --team-accent-2: #22d3ee;
+                --team-accent-3: #a78bfa;
+                --portrait-mask: url('assets/team/hamid-rahimi-portrait-mask.svg');
+              "
+            >
+              <div class="team-card-visual living-portrait">
+                <div class="living-portrait-backdrop">
+                  <span class="living-portrait-halo" aria-hidden="true"></span>
+                  <span class="living-portrait-light" aria-hidden="true"></span>
+                  <div class="living-portrait-photo-layer">
+                    <img
+                      class="team-portrait living-portrait-image living-portrait-photo"
+                      ngSrc="assets/team/hamid-rahimi-3d-portrait.webp"
+                      width="800"
+                      height="1000"
+                      alt="پرتره حمید رحیمی، UX و توسعه‌دهنده فول‌استک"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <span class="living-portrait-shadow" aria-hidden="true"></span>
+                  <span class="living-portrait-sweep" aria-hidden="true"></span>
+                </div>
+                <div class="living-portrait-depth" aria-hidden="true">
+                  <div class="living-portrait-arrival">
+                    <div class="living-portrait-cutout">
+                      <img class="living-portrait-image living-portrait-character" ngSrc="assets/team/hamid-rahimi-3d-portrait.webp" width="800" height="1000" alt="" loading="lazy" />
+                    </div>
+                  </div>
+                </div>
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'hamid'" [attr.aria-label]="activePortrait() === 'hamid' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('hamid'); $event.stopPropagation()">
+                  <span>{{ activePortrait() === 'hamid' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
+                </button>
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Developer</span>
+                <h3 id="hamid-name">حمید رحیمی</h3>
+                <p class="team-card-role">
+                  UX Designer &amp; Engineer / Full Stack Developer
+                </p>
+                <p class="team-card-bio">
+                  طراحی تجربه‌های انسانی و توسعه ساختارهایی که هم قابل
+                  استفاده‌اند، هم قابل رشد.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای حمید رحیمی">
+                  <span>UX</span>
+                  <span>Product Flow</span>
+                  <span>AI</span>
+                  <span>Research</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene (pointerenter)="activatePortrait('parsa')" (pointerleave)="deactivatePortrait('parsa')" (focusin)="activatePortrait('parsa')" (focusout)="deactivatePortrait('parsa')">
+            <article
+              class="team-card team-card--living"
+              data-team-card
+              aria-labelledby="parsa-name"
+              [class.is-portrait-active]="activePortrait() === 'parsa'"
+              style="
+                --team-accent: #f59e0b;
+                --team-accent-2: #8b5cf6;
+                --team-accent-3: #60a5fa;
+                --portrait-mask: url('assets/team/parsa-jafari-portrait-mask.svg');
+              "
+            >
+              <div class="team-card-visual living-portrait">
+                <div class="living-portrait-backdrop">
+                  <span class="living-portrait-halo" aria-hidden="true"></span>
+                  <span class="living-portrait-light" aria-hidden="true"></span>
+                  <div class="living-portrait-photo-layer">
+                    <img
+                      class="team-portrait living-portrait-image living-portrait-photo"
+                      ngSrc="assets/team/parsa-jafari-3d-portrait.webp"
+                      width="800"
+                      height="1000"
+                      alt="پرتره پارسا جعفری، توسعه‌دهنده فول‌استک"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <span class="living-portrait-shadow" aria-hidden="true"></span>
+                  <span class="living-portrait-sweep" aria-hidden="true"></span>
+                </div>
+                <div class="living-portrait-depth" aria-hidden="true">
+                  <div class="living-portrait-arrival">
+                    <div class="living-portrait-cutout">
+                      <img class="living-portrait-image living-portrait-character" ngSrc="assets/team/parsa-jafari-3d-portrait.webp" width="800" height="1000" alt="" loading="lazy" />
+                    </div>
+                  </div>
+                </div>
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'parsa'" [attr.aria-label]="activePortrait() === 'parsa' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('parsa'); $event.stopPropagation()">
+                  <span>{{ activePortrait() === 'parsa' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
+                </button>
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Developer</span>
+                <h3 id="parsa-name">پارسا جعفری</h3>
+                <p class="team-card-role">
+                  Infrastructure Engineer / Full Stack Developer
+                </p>
+                <p class="team-card-bio">
+                  ساخت قابلیت‌های کاربردی، اتصال لایه‌ها و توسعه محصول با تمرکز
+                  روی کیفیت.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای پارسا جغفری">
+                  <span>DB</span>
+                  <span>AI</span>
+                  <span>Infrastructure</span>
+                  <span>WebSocket</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="team-card-scene" data-team-scene (pointerenter)="activatePortrait('vahid')" (pointerleave)="deactivatePortrait('vahid')" (focusin)="activatePortrait('vahid')" (focusout)="deactivatePortrait('vahid')">
+            <article
+              class="team-card team-card--living"
+              data-team-card
+              [class.is-portrait-active]="activePortrait() === 'vahid'"
+              aria-labelledby="vahid-name"
+              style="
+                --team-accent: #fb7185;
+                --team-accent-2: #60a5fa;
+                --team-accent-3: #a78bfa;
+                --portrait-mask: url('assets/team/vahid-hayati-portrait-mask.svg');
+              "
+            >
+              <div class="team-card-visual living-portrait">
+                <div class="living-portrait-backdrop">
+                  <span class="living-portrait-halo" aria-hidden="true"></span>
+                  <span class="living-portrait-light" aria-hidden="true"></span>
+                  <div class="living-portrait-photo-layer">
+                    <img
+                      class="team-portrait living-portrait-image living-portrait-photo"
+                      ngSrc="assets/team/vahid-hayati-3d-portrait.webp"
+                      width="800"
+                      height="1000"
+                      alt="پرتره وحید حیاتی پور، توسعه‌دهنده فول‌استک"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <span class="living-portrait-shadow" aria-hidden="true"></span>
+                  <span class="living-portrait-sweep" aria-hidden="true"></span>
+                </div>
+                <div class="living-portrait-depth" aria-hidden="true">
+                  <div class="living-portrait-arrival">
+                    <div class="living-portrait-cutout">
+                      <img class="living-portrait-image living-portrait-character" ngSrc="assets/team/vahid-hayati-3d-portrait.webp" width="800" height="1000" alt="" loading="lazy" />
+                    </div>
+                  </div>
+                </div>
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'vahid'" [attr.aria-label]="activePortrait() === 'vahid' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('vahid'); $event.stopPropagation()">
+                  <span>{{ activePortrait() === 'vahid' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
+                </button>
+              </div>
+
+              <div class="team-card-content">
+                <span class="team-card-kicker">Developer</span>
+                <h3 id="vahid-name">وحید حیاتی</h3>
+                <p class="team-card-role">
+                  API &amp; QA Engineer / Full Stack Developer
+                </p>
+                <p class="team-card-bio">
+                  پیاده‌سازی بخش‌های پایدار، نگهدارپذیر و آماده رشد در محصول، همراه
+                  با کنترل قراردادهای API.
+                </p>
+
+                <div class="team-tags" aria-label="تمرکزهای وحید حیاتی">
+                  <span>Backend</span>
+                  <span>Contract</span>
+                  <span>QA:Test</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+      </section>
