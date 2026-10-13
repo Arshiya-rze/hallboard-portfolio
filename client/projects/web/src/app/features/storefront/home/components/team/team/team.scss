@@ -423,14 +423,13 @@
   top: 0;
   right: var(--team-stack-right, 0px);
   bottom: 0;
-  width: calc(50% - 12px);
+  width: calc(50% - 24px);
   display: flex;
   align-items: center;
   transform: none;
   transform-origin: 50% 50%;
   z-index: 1;
   transition: none;
-  will-change: transform;
 }
 
 .team-section.is-stack-ready .team-card {

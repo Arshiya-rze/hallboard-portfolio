@@ -84,7 +84,6 @@ export class Team {
     let stepDistance = 0;
     let stackStart = 0;
     let lastProgress = -1;
-    let lastActiveRow = -1;
     let stageMode: 'normal' | 'fixed' | 'released' = 'normal';
     let configuredWidth = window.innerWidth;
     let resizeTimer = 0;
@@ -96,7 +95,6 @@ export class Team {
     const clearStack = (): void => {
       stackEnabled = false;
       lastProgress = -1;
-      lastActiveRow = -1;
       stageMode = 'normal';
       this.stackReady.set(false);
       this.stackStageMode.set('normal');
@@ -151,16 +149,6 @@ export class Team {
       if (progress === lastProgress) return;
       lastProgress = progress;
       const activeRow = Math.min(rowCount - 1, Math.floor(progress + 0.5));
-
-      if (activeRow !== lastActiveRow) {
-        scenes.forEach((scene, index) => {
-          const row = Math.floor(index / cardsPerRow);
-          // Later rows must sit above the current card as soon as they enter
-          // its area, not wait until the active-row threshold has passed.
-          scene.style.zIndex = String(1000 + row);
-        });
-        lastActiveRow = activeRow;
-      }
 
       scenes.forEach((scene, index) => {
         const row = Math.floor(index / cardsPerRow);
@@ -217,7 +205,10 @@ export class Team {
       stage.style.setProperty('--team-stage-release-top', `${stackTravel.toFixed(0)}px`);
       scenes.forEach((scene, index) => {
         const column = index % cardsPerRow;
-        scene.style.setProperty('--team-stack-right', column === 0 ? '0px' : 'calc(50% + 12px)');
+        const row = Math.floor(index / cardsPerRow);
+        // Later rows stay above earlier cards throughout their entrance.
+        scene.style.zIndex = String(1000 + row);
+        scene.style.setProperty('--team-stack-right', column === 0 ? '12px' : 'calc(50% + 12px)');
       });
       root.classList.add('is-stack-ready');
       this.stackReady.set(true);
