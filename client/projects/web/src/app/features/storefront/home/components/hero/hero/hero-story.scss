@@ -382,12 +382,9 @@
 }
 .hero-film:not(.is-ready) { --page-reveal: 1; --wordmark-reveal: 1; }
 .hero-film:not(.is-ready) .hero-browser {
-  top: 52%;
-  width: min(1120px, calc(100% - 48px));
-  height: min(650px, 76dvh);
-  opacity: 1;
-  transform: translate(-50%, -50%);
-  pointer-events: auto;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.025);
+  pointer-events: none;
 }
 .hero-film:not(.is-ready) .hero-film-beam,
 .hero-film:not(.is-ready) .hero-film-symbol { display: none; }
@@ -401,7 +398,6 @@
   .hero-copy-step p { max-width: 300px; margin-top: var(--support-gap, 10px); line-height: 1.85; }
   .hero-browser-cta { min-height: 46px; margin-top: var(--cta-gap, 23px); }
   .hero-device-base { display: none; }
-  .hero-film:not(.is-ready) .hero-browser { width: calc(100% - 28px); height: min(86dvh, calc(100dvh - 72px)); }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-shell[data-hero-film-shell] { height: 100svh; height: 100dvh; min-height: 0; }
