@@ -34,11 +34,15 @@ export class SiteHeader {
 
     let frame = 0;
     let brandScrollAnchor = window.scrollY;
+    let heroEnd = 0;
+    const measureHeroEnd = (): void => {
+      const scrollY = window.scrollY;
+      const shellTop = heroShell ? heroShell.getBoundingClientRect().top + scrollY : 0;
+      heroEnd = heroShell ? shellTop + heroShell.offsetHeight - window.innerHeight : 0;
+    };
     const update = (): void => {
       frame = 0;
-      const scrollY = Math.max(0, Math.min(window.scrollY, document.documentElement.scrollHeight - window.innerHeight));
-      const shellTop = heroShell ? heroShell.getBoundingClientRect().top + scrollY : 0;
-      const heroEnd = heroShell ? shellTop + heroShell.offsetHeight - window.innerHeight : 0;
+      const scrollY = Math.max(0, window.scrollY);
       const hasScrolled = scrollY > 18;
       // Firefox may settle exactly on the sticky hero's end coordinate while
       // Chromium can land a fractional pixel before it. Keep the header hidden
@@ -60,15 +64,20 @@ export class SiteHeader {
     const schedule = (): void => {
       if (!frame) frame = window.requestAnimationFrame(update);
     };
+    const onResize = (): void => {
+      measureHeroEnd();
+      schedule();
+    };
 
+    measureHeroEnd();
     update();
     window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule, { passive: true });
+    window.addEventListener('resize', onResize, { passive: true });
     document.addEventListener('click', this.handleOutsideClick);
     document.addEventListener('keydown', this.handleEscape);
     this.destroyRef.onDestroy(() => {
       window.removeEventListener('scroll', schedule);
-      window.removeEventListener('resize', schedule);
+      window.removeEventListener('resize', onResize);
       document.removeEventListener('click', this.handleOutsideClick);
       document.removeEventListener('keydown', this.handleEscape);
       if (frame) window.cancelAnimationFrame(frame);
