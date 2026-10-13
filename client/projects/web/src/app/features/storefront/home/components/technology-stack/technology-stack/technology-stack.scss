@@ -451,6 +451,111 @@
   .tech-orb { animation: none; }
 }
 
+/* Light theme contrast; technology tabs and panels retain their current layout. */
+:host-context(html[data-theme='light']) .tech-stack {
+  border: 1px solid #dce3ee;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.095), transparent 34%),
+    radial-gradient(circle at 0% 20%, rgba(52, 211, 153, 0.06), transparent 26%),
+    radial-gradient(circle at 100% 20%, rgba(96, 165, 250, 0.065), transparent 26%),
+    linear-gradient(155deg, #f9fbfe, #edf2f8);
+}
+
+:host-context(html[data-theme='light']) .tech-stack::before {
+  opacity: 0.035;
+}
+
+:host-context(html[data-theme='light']) .tech-stack-header h2 {
+  color: #1d293d;
+}
+
+:host-context(html[data-theme='light']) .tech-stack-header p {
+  color: #56647a;
+}
+
+:host-context(html[data-theme='light']) .tech-tabs {
+  border-color: #d5deea;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 6px 18px rgba(39, 54, 78, 0.09), inset 0 1px 0 #fff;
+}
+
+:host-context(html[data-theme='light']) .tech-tab {
+  color: #43536b;
+}
+
+:host-context(html[data-theme='light']) .tech-tab:hover,
+:host-context(html[data-theme='light']) .tech-tab:focus-visible,
+:host-context(html[data-theme='light']) .tech-tab.is-active {
+  color: #fff;
+  border-color: rgba(70, 115, 173, 0.22);
+  background: linear-gradient(135deg, #28a9c5, #477fd1 58%, #8060c2);
+  box-shadow: 0 5px 14px rgba(60, 113, 177, 0.18);
+}
+
+:host-context(html[data-theme='light']) .tech-row {
+  border-color: color-mix(in srgb, var(--tech-accent) 28%, #d6dfeb);
+  background:
+    linear-gradient(90deg, var(--tech-accent-soft), transparent 36%),
+    linear-gradient(145deg, #fff, #eff4fa);
+  box-shadow: 0 10px 26px rgba(39, 54, 78, 0.11), inset 0 1px 0 #fff;
+}
+
+:host-context(html[data-theme='light']) .tech-category h3 {
+  color: #1d293d;
+}
+
+:host-context(html[data-theme='light']) .tech-category p {
+  color: #56647a;
+}
+
+:host-context(html[data-theme='light']) .tech-category-icon {
+  color: color-mix(in srgb, var(--tech-accent) 65%, #26364f);
+  background: color-mix(in srgb, var(--tech-accent-soft) 72%, #fff);
+  border-color: color-mix(in srgb, var(--tech-accent) 25%, #d5deea);
+  box-shadow: 0 4px 12px rgba(39, 54, 78, 0.09), inset 0 1px 0 #fff;
+}
+
+:host-context(html[data-theme='light']) .tech-category-icon img {
+  filter: drop-shadow(0 2px 4px rgba(39, 54, 78, 0.13));
+}
+
+:host-context(html[data-theme='light']) .tech-item {
+  border-color: #dce3ed;
+  background: rgba(255, 255, 255, 0.68);
+}
+
+:host-context(html[data-theme='light']) .tech-item:hover {
+  border-color: color-mix(in srgb, var(--tech-accent) 35%, #d6dfeb);
+  background: color-mix(in srgb, var(--tech-accent-soft) 70%, #fff);
+  box-shadow: 0 5px 14px rgba(39, 54, 78, 0.1);
+}
+
+:host-context(html[data-theme='light']) .tech-item span {
+  color: #36465d;
+}
+
+:host-context(html[data-theme='light']) .tech-orb {
+  color: #42617c;
+  border-color: #d4deea;
+  background: linear-gradient(145deg, #fff, #edf2f8);
+  box-shadow: 6px 8px 18px rgba(39, 54, 78, 0.13), inset 1px 1px 1px #fff;
+}
+
+:host-context(html[data-theme='light']) .tech-orb::before {
+  background: #e1e8f1;
+  border-color: #d1dbe8;
+  box-shadow: 0 4px 1px #d5deea;
+}
+
+:host-context(html[data-theme='light']) .tech-orb::after {
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.8), transparent 70%);
+  border-color: rgba(96, 115, 145, 0.1);
+}
+
+:host-context(html[data-theme='light']) .tech-orb > span {
+  text-shadow: 0 2px 5px rgba(39, 54, 78, 0.16);
+}
+
 /* Responsive */
 
 @media (min-width: 768px) {

@@ -1012,3 +1012,189 @@
   .project-image-dialog { max-height: 90dvh; }
   .project-image-dialog-image { max-height: calc(90dvh - 132px); }
 }
+
+/* Component-scoped light theme colors only; carousel geometry stays unchanged. */
+:host-context(html[data-theme='light']) .projects-section {
+  border: 1px solid #dce3ee;
+  background:
+    radial-gradient(ellipse at 52% 0%, rgba(96, 165, 250, 0.11), transparent 38%),
+    radial-gradient(ellipse at 4% 48%, rgba(34, 211, 238, 0.075), transparent 32%),
+    linear-gradient(180deg, #f8faff, #edf2f9);
+  box-shadow: inset 0 1px 0 #fff, 0 18px 48px rgba(39, 54, 78, 0.1);
+}
+
+:host-context(html[data-theme='light']) .projects-section::before {
+  opacity: 0.025;
+}
+
+:host-context(html[data-theme='light']) .projects-header h2 strong {
+  background-image: linear-gradient(135deg, #6842bd 0%, #2878b9 62%, #087b83 100%);
+}
+
+:host-context(html[data-theme='light']) .projects-header p {
+  color: #56647a;
+}
+
+:host-context(html[data-theme='light']) .project-card {
+  border-color: color-mix(in srgb, var(--project-accent) 30%, #d7dfeb);
+  background:
+    radial-gradient(circle at 50% 0%, var(--project-accent-soft), transparent 44%),
+    linear-gradient(150deg, #fff, #f0f4fa);
+  box-shadow: 0 10px 25px rgba(44, 60, 87, 0.12), inset 0 1px 0 #fff;
+}
+
+:host-context(html[data-theme='light']) .project-card-featured {
+  border-color: rgba(112, 86, 177, 0.26);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.08), transparent 46%),
+    linear-gradient(150deg, #fff, #eff3fa);
+}
+
+:host-context(html[data-theme='light']) .project-card::before {
+  background: linear-gradient(115deg, transparent, rgba(97, 115, 148, 0.08), transparent);
+}
+
+:host-context(html[data-theme='light']) .project-visual {
+  background:
+    radial-gradient(circle at 50% 45%, var(--project-accent-soft), transparent 58%),
+    #e8eef7;
+  box-shadow: 0 7px 18px rgba(42, 57, 83, 0.12);
+}
+
+:host-context(html[data-theme='light']) .project-visual::after {
+  background:
+    linear-gradient(180deg, transparent 70%, rgba(30, 42, 63, 0.08)),
+    radial-gradient(circle at 76% 20%, rgba(255, 255, 255, 0.12), transparent 22%);
+}
+
+:host-context(html[data-theme='light']) .project-body h3 {
+  color: #1d293d;
+}
+
+:host-context(html[data-theme='light']) .project-body > p,
+:host-context(html[data-theme='light']) .project-dialog p {
+  color: #526078;
+}
+
+:host-context(html[data-theme='light']) .project-meta span {
+  color: color-mix(in srgb, var(--project-accent) 70%, #1d293d);
+  border-color: var(--project-accent-border);
+  background: color-mix(in srgb, var(--project-accent-soft) 72%, #fff);
+}
+
+:host-context(html[data-theme='light']) .project-impact {
+  border-color: #d8e0ec;
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.08), rgba(139, 92, 246, 0.035)), #f8faff;
+}
+
+:host-context(html[data-theme='light']) .project-impact strong {
+  color: #243149;
+}
+
+:host-context(html[data-theme='light']) .project-impact span {
+  color: #526078;
+}
+
+:host-context(html[data-theme='light']) .project-techs span {
+  color: #334258;
+  border-color: #d9e1ec;
+  background: #edf2f9;
+}
+
+:host-context(html[data-theme='light']) .project-more {
+  border-color: #dce3ed;
+}
+
+:host-context(html[data-theme='light']) .project-more summary,
+:host-context(html[data-theme='light']) .project-details-trigger {
+  color: #583b92;
+}
+
+:host-context(html[data-theme='light']) .project-more summary::after,
+:host-context(html[data-theme='light']) .project-details-trigger::after {
+  color: #6842bd;
+}
+
+:host-context(html[data-theme='light']) .project-more[open] {
+  border-color: #d4ddeb;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.99), rgba(239, 243, 250, 0.99));
+  box-shadow: 0 12px 32px rgba(39, 54, 78, 0.2);
+}
+
+:host-context(html[data-theme='light']) .project-more[open] > summary {
+  border-color: #e0e6ef;
+  background: rgba(255, 255, 255, 0.97);
+}
+
+:host-context(html[data-theme='light']) .project-details-trigger:hover,
+:host-context(html[data-theme='light']) .project-details-trigger:focus-visible {
+  color: #392064;
+}
+
+:host-context(html[data-theme='light']) .project-actions .btn {
+  color: #493184;
+  border-color: rgba(112, 86, 177, 0.28);
+  background: rgba(124, 58, 237, 0.09);
+}
+
+:host-context(html[data-theme='light']) .project-actions .btn:hover,
+:host-context(html[data-theme='light']) .project-actions .btn:focus-visible {
+  color: #392064;
+  background: rgba(124, 58, 237, 0.15);
+}
+
+:host-context(html[data-theme='light']) .projects-controls .projects-nav {
+  color: #334258;
+  border-color: #d5deea;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 12px rgba(39, 54, 78, 0.12), inset 0 1px 0 #fff;
+}
+
+:host-context(html[data-theme='light']) .projects-controls .projects-nav:hover,
+:host-context(html[data-theme='light']) .projects-controls .projects-nav:focus-visible {
+  color: #4d3486;
+  border-color: #a992d8;
+  background: #fff;
+}
+
+:host-context(html[data-theme='light']) .project-dot {
+  background: rgba(64, 103, 157, 0.2);
+}
+
+:host-context(html[data-theme='light']) .project-dot.is-active {
+  background: #347fc8;
+  box-shadow: 0 0 12px rgba(52, 127, 200, 0.2);
+}
+
+:host-context(html[data-theme='light']) .project-dialog,
+:host-context(html[data-theme='light']) .project-image-dialog {
+  color: #243149;
+  border-color: #d4ddeb;
+  background: radial-gradient(ellipse at 90% 0%, rgba(139, 92, 246, 0.07), transparent 45%), linear-gradient(155deg, #fff, #eff3f9 78%);
+  box-shadow: 0 22px 70px rgba(35, 49, 73, 0.25);
+}
+
+:host-context(html[data-theme='light']) .project-dialog-header {
+  border-color: #e0e6ef;
+  background: rgba(250, 251, 254, 0.96);
+}
+
+:host-context(html[data-theme='light']) .project-dialog-header h3,
+:host-context(html[data-theme='light']) .project-image-dialog-toolbar h2 {
+  color: #1d293d;
+}
+
+:host-context(html[data-theme='light']) .project-dialog-project-name {
+  color: #60419c !important;
+}
+
+:host-context(html[data-theme='light']) .project-dialog-close,
+:host-context(html[data-theme='light']) .project-image-dialog-close {
+  color: #334258;
+  border-color: #d8e0eb;
+  background: #f2f5fa;
+}
+
+:host-context(html[data-theme='light']) .project-image-dialog-image {
+  background: #e9eef6;
+}

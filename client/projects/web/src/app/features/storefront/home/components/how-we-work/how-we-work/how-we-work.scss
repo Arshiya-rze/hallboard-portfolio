@@ -92,6 +92,111 @@
   .how-orb { animation: none; }
 }
 
+/* Light theme palette: preserve the existing principle/process layout. */
+:host-context(html[data-theme='light']) .how-we-work {
+  --how-surface: linear-gradient(145deg, #fff, #eff3f9 55%, #e9eff7);
+  --how-relief: 7px 9px 20px rgba(40, 56, 82, 0.12),
+    -4px -4px 14px rgba(255, 255, 255, 0.92),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.95),
+    inset -1px -2px 2px rgba(46, 63, 91, 0.07);
+  border: 1px solid #dce3ee;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.075), transparent 34%),
+    radial-gradient(circle at 0% 18%, rgba(52, 211, 153, 0.065), transparent 26%),
+    radial-gradient(circle at 100% 18%, rgba(139, 92, 246, 0.07), transparent 26%),
+    linear-gradient(155deg, #f9fbfe, #edf2f8);
+}
+
+:host-context(html[data-theme='light']) .how-we-work::before {
+  opacity: 0.035;
+}
+
+:host-context(html[data-theme='light']) .principles-title h3,
+:host-context(html[data-theme='light']) .process-title h3 {
+  color: #1d293d;
+}
+
+:host-context(html[data-theme='light']) .principles-title span,
+:host-context(html[data-theme='light']) .process-title span {
+  background: linear-gradient(90deg, transparent, rgba(88, 105, 132, 0.24), transparent);
+}
+
+:host-context(html[data-theme='light']) .process-title p {
+  color: #58667c;
+}
+
+:host-context(html[data-theme='light']) .principle-card,
+:host-context(html[data-theme='light']) .how-step {
+  background:
+    radial-gradient(circle at 50% 0%, var(--principle-accent-soft, var(--step-accent-soft)), transparent 45%),
+    var(--how-surface);
+  box-shadow: var(--how-relief);
+}
+
+:host-context(html[data-theme='light']) .principle-card h3,
+:host-context(html[data-theme='light']) .how-step h3 {
+  color: #25334a;
+}
+
+:host-context(html[data-theme='light']) .principle-card p,
+:host-context(html[data-theme='light']) .how-step p {
+  color: #56647a;
+}
+
+:host-context(html[data-theme='light']) .principle-icon,
+:host-context(html[data-theme='light']) .how-step-icon {
+  box-shadow: 0 5px 12px rgba(39, 54, 78, 0.16), inset 1px 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+:host-context(html[data-theme='light']) .how-step strong {
+  color: color-mix(in srgb, var(--step-accent) 68%, #1d293d);
+}
+
+:host-context(html[data-theme='light']) .how-result {
+  border-color: #c9e5da;
+  background:
+    radial-gradient(circle at 0% 50%, rgba(52, 211, 153, 0.1), transparent 32%),
+    radial-gradient(circle at 100% 50%, rgba(245, 158, 11, 0.055), transparent 34%),
+    linear-gradient(145deg, #fff, #eff5f3);
+}
+
+:host-context(html[data-theme='light']) .result-icon {
+  color: #147456;
+  background: #e1f4eb;
+  border-color: #bce2d0;
+  box-shadow: 0 5px 14px rgba(32, 111, 80, 0.12);
+}
+
+:host-context(html[data-theme='light']) .how-result p {
+  color: #35445a;
+}
+
+:host-context(html[data-theme='light']) .how-result strong {
+  background-image: linear-gradient(135deg, #087653 0%, #087f91 52%, #6842bd 100%);
+}
+
+:host-context(html[data-theme='light']) .how-orb {
+  color: #49647e;
+  border-color: #d4deea;
+  background: linear-gradient(145deg, #fff, #edf2f8);
+  box-shadow: 6px 8px 18px rgba(39, 54, 78, 0.13), inset 1px 1px 1px #fff;
+}
+
+:host-context(html[data-theme='light']) .how-orb::before {
+  background: #e1e8f1;
+  border-color: #d1dbe8;
+  box-shadow: 0 4px 1px #d5deea;
+}
+
+:host-context(html[data-theme='light']) .how-orb::after {
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.8), transparent 70%);
+  border-color: rgba(96, 115, 145, 0.1);
+}
+
+:host-context(html[data-theme='light']) .how-orb > span {
+  text-shadow: 0 2px 5px rgba(39, 54, 78, 0.16);
+}
+
 .how-orb-left {
   right: 3%;
   top: 18px;

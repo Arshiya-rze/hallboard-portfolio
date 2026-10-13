@@ -190,7 +190,7 @@ export class Team {
 
       const header = document.querySelector<HTMLElement>('.header');
       const stickyTop = Math.max(88, (header?.offsetHeight ?? 66) + 20);
-      const narrowViewport = window.matchMedia('(max-width: 639px)').matches;
+      const narrowViewport = window.matchMedia('(max-width: 559px)').matches;
       const bottomClearance = narrowViewport ? 24 : 32;
       cardsPerRow = narrowViewport ? 1 : 2;
       rowCount = Math.ceil(scenes.length / cardsPerRow);

@@ -578,3 +578,79 @@
     right: -18px;
   }
 }
+
+/* Light theme contrast; keep the carousel sizing and motion unchanged. */
+:host-context(html[data-theme='light']) .what-we-do {
+  border-color: #dce3ee;
+  background:
+    radial-gradient(circle at 52% 0%, rgba(34, 211, 238, 0.1), transparent 36%),
+    radial-gradient(circle at 6% 28%, rgba(59, 130, 246, 0.065), transparent 32%),
+    radial-gradient(circle at 95% 18%, rgba(168, 85, 247, 0.07), transparent 32%),
+    linear-gradient(155deg, #f9fbfe, #edf2f8);
+  box-shadow: inset 0 1px 0 #fff, 0 20px 54px rgba(39, 54, 78, 0.11);
+}
+
+:host-context(html[data-theme='light']) .services-header h3 {
+  color: #1d293d;
+}
+
+:host-context(html[data-theme='light']) .services-header span {
+  background: linear-gradient(90deg, transparent, rgba(74, 111, 160, 0.24), transparent);
+}
+
+:host-context(html[data-theme='light']) .service-card {
+  border-color: color-mix(in srgb, var(--card-accent) 24%, #d7dfeb);
+  background:
+    radial-gradient(circle at 50% 0%, var(--card-accent-soft), transparent 46%),
+    linear-gradient(145deg, #fff, #f0f4fa);
+  box-shadow: 0 8px 22px rgba(42, 57, 83, 0.1), inset 0 1px 0 #fff;
+}
+
+:host-context(html[data-theme='light']) .service-card::before {
+  opacity: 0.45;
+}
+
+:host-context(html[data-theme='light']) .service-card h3 {
+  color: #1d293d;
+}
+
+:host-context(html[data-theme='light']) .service-card p {
+  color: #56647a;
+}
+
+:host-context(html[data-theme='light']) .service-card li {
+  color: #46566e;
+}
+
+:host-context(html[data-theme='light']) .service-card li::before {
+  color: color-mix(in srgb, var(--card-accent) 68%, #26364f);
+  background: color-mix(in srgb, var(--card-accent-soft) 70%, #fff);
+}
+
+:host-context(html[data-theme='light']) .service-card:hover {
+  border-color: color-mix(in srgb, var(--card-accent) 42%, #cbd5e1);
+  box-shadow: 0 12px 28px rgba(42, 57, 83, 0.14), 0 0 24px var(--card-accent-soft);
+}
+
+:host-context(html[data-theme='light']) .services-nav {
+  color: #334258;
+  border-color: #d4deea;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 4px 12px rgba(39, 54, 78, 0.12), inset 0 1px 0 #fff;
+}
+
+:host-context(html[data-theme='light']) .services-nav:hover,
+:host-context(html[data-theme='light']) .services-nav:focus-visible {
+  color: #315b86;
+  border-color: #9ab6d8;
+  background: #fff;
+}
+
+:host-context(html[data-theme='light']) .services-dot {
+  background: rgba(59, 105, 160, 0.2);
+}
+
+:host-context(html[data-theme='light']) .services-dot.is-active {
+  background: #1685a3;
+  box-shadow: 0 0 12px rgba(22, 133, 163, 0.2);
+}

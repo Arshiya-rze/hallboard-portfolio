@@ -58,15 +58,16 @@ export class ContactDialog {
       opener?.focus({ preventScroll: true });
       opener = null;
     };
-    document.addEventListener('click', openFromLink);
-    document.addEventListener('keydown', activateFromKeyboard);
+    // Capture the trigger before carousel/header handlers can stop bubbling.
+    document.addEventListener('click', openFromLink, true);
+    document.addEventListener('keydown', activateFromKeyboard, true);
     dialog.querySelector('[data-contact-close]')?.addEventListener('click', close);
     dialog.addEventListener('pointerdown', onPointerDown);
     dialog.addEventListener('click', onClick);
     dialog.addEventListener('close', onClose);
     this.destroyRef.onDestroy(() => {
-      document.removeEventListener('click', openFromLink);
-      document.removeEventListener('keydown', activateFromKeyboard);
+      document.removeEventListener('click', openFromLink, true);
+      document.removeEventListener('keydown', activateFromKeyboard, true);
       dialog.querySelector('[data-contact-close]')?.removeEventListener('click', close);
       dialog.removeEventListener('pointerdown', onPointerDown);
       dialog.removeEventListener('click', onClick);
