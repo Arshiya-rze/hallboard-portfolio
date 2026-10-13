@@ -155,7 +155,9 @@ export class Team {
       if (activeRow !== lastActiveRow) {
         scenes.forEach((scene, index) => {
           const row = Math.floor(index / cardsPerRow);
-          scene.style.zIndex = String(1000 - Math.abs(row - activeRow) * 100 + (row <= activeRow ? 1 : 0));
+          // Later rows must sit above the current card as soon as they enter
+          // its area, not wait until the active-row threshold has passed.
+          scene.style.zIndex = String(1000 + row);
         });
         lastActiveRow = activeRow;
       }
