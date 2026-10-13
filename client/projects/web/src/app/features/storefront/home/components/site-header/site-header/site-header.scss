@@ -9,7 +9,7 @@
   min-height: 66px;
   padding: 8px 10px;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
   gap: 12px;
   direction: rtl;
@@ -210,6 +210,23 @@
   display: none;
 }
 
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--surface-raised);
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.theme-toggle:hover { transform: translateY(-1px); border-color: var(--border-purple); }
+.theme-toggle:focus-visible { outline: 2px solid #8b5cf6; outline-offset: 3px; }
+.theme-toggle svg { width: 21px; height: 21px; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -275,7 +292,7 @@
     width: min(calc(100% - 64px), var(--container));
     min-height: 68px;
     padding: 8px 16px;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     border-radius: 22px;
   }
 
@@ -322,6 +339,52 @@
     display: inline-flex;
     border-radius: 999px;
     font-size: 13px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* In the RTL grid, column three is the physical left edge. */
+  .brand { grid-column: 1; grid-row: 1; }
+  .hamburger { grid-column: 3; grid-row: 1; }
+  .theme-toggle { grid-column: 2; grid-row: 1; }
+
+  /* Keep the mobile menu controls legible and distinct on the light surface. */
+  :host-context(html[data-theme='light']) .hamburger {
+    color: #344158;
+    border-color: #d5deeb;
+    background: #f1f4f9;
+    box-shadow: 0 2px 7px rgba(36, 50, 74, .06);
+  }
+
+  :host-context(html[data-theme='light']) .hamburger span {
+    background: #344158;
+  }
+
+  :host-context(html[data-theme='light']) .menu-toggle:checked + .hamburger,
+  :host-context(html[data-theme='light']) .hamburger:hover,
+  :host-context(html[data-theme='light']) .hamburger:focus-visible {
+    border-color: #b9a1f5;
+    background: #eee8ff;
+  }
+
+  :host-context(html[data-theme='light']) .menu-toggle:checked + .hamburger span {
+    background: #5932a8;
+  }
+
+  :host-context(html[data-theme='light']) .nav {
+    border-color: #d9e1ed;
+    background: rgba(250, 252, 255, .98);
+    box-shadow: 0 18px 44px rgba(35, 48, 72, .18);
+  }
+
+  :host-context(html[data-theme='light']) .nav a {
+    color: #344158;
+  }
+
+  :host-context(html[data-theme='light']) .nav a:hover,
+  :host-context(html[data-theme='light']) .nav a:focus-visible {
+    color: #512b9b;
+    background: #f0eaff;
   }
 }
 

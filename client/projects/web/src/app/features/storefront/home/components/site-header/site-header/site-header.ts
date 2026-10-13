@@ -1,5 +1,6 @@
 import { afterNextRender, Component, DestroyRef, ElementRef, inject, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { ThemeService } from '../../../../../../core/theme/theme.service';
 
 @Component({
   selector: 'app-site-header',
@@ -9,6 +10,7 @@ import { NgOptimizedImage } from '@angular/common';
 })
 export class SiteHeader {
   protected readonly menuOpen = signal(false);
+  protected readonly theme = inject(ThemeService);
 
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly destroyRef = inject(DestroyRef);
@@ -62,10 +64,12 @@ export class SiteHeader {
     update();
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', schedule, { passive: true });
+    document.addEventListener('click', this.handleOutsideClick);
     document.addEventListener('keydown', this.handleEscape);
     this.destroyRef.onDestroy(() => {
       window.removeEventListener('scroll', schedule);
       window.removeEventListener('resize', schedule);
+      document.removeEventListener('click', this.handleOutsideClick);
       document.removeEventListener('keydown', this.handleEscape);
       if (frame) window.cancelAnimationFrame(frame);
     });
@@ -73,5 +77,19 @@ export class SiteHeader {
 
   private readonly handleEscape = (event: KeyboardEvent): void => {
     if (event.key === 'Escape') this.menuOpen.set(false);
+  };
+
+  private readonly handleOutsideClick = (event: MouseEvent): void => {
+    if (!this.menuOpen()) return;
+
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+
+    const header = this.host.nativeElement.querySelector<HTMLElement>('.header');
+    const nav = header?.querySelector<HTMLElement>('.nav');
+    const hamburger = header?.querySelector<HTMLElement>('.hamburger');
+    if (nav?.contains(target) || hamburger?.contains(target)) return;
+
+    this.closeMenu();
   };
 }
