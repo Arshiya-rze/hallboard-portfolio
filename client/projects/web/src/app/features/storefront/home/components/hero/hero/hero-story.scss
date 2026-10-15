@@ -2,11 +2,15 @@
 .hero-shell[data-hero-film-shell] {
   position: relative;
   width: 100vw;
-  /* One deliberate scroll span: desktop state -> final phone -> next section. */
-  height: 200svh;
-  height: 200dvh;
+  /* The two hero states are gesture-driven, so the section itself stays one
+     viewport tall and never leaves an empty scroll runway after the phone. */
+  height: 100svh;
+  height: 100dvh;
   min-height: 0;
-  margin-inline: calc(50% - 50vw);
+  // In RTL, break out on the inline-start side only. Negative margins on both
+  // sides make the margin box wider than its parent and create page overflow.
+  margin-inline-start: calc(50% - 50vw);
+  margin-inline-end: 0;
   overflow: clip;
   isolation: isolate;
   background: #05050a;
@@ -390,7 +394,7 @@
 .hero-film:not(.is-ready) .hero-film-symbol { display: none; }
 .hero-film:not(.is-ready) .hero-copy-step[data-copy-step="0"] { --copy-opacity: 1; --copy-shift: 0px; }
 @media (max-width: 767px) {
-  .hero-shell[data-hero-film-shell] { height: 200svh; height: 200dvh; }
+  .hero-shell[data-hero-film-shell] { height: 100svh; height: 100dvh; }
   .hero-browser-content { top: 53%; }
   .hero-browser-accent { width: 30px; }
   .hero-copy-step h1,

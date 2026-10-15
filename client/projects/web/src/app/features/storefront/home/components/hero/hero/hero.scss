@@ -542,7 +542,8 @@
 @media (min-width: 768px) {
   .hero-shell {
     width: 100vw;
-    margin-inline: calc(50% - 50vw);
+    margin-inline-start: calc(50% - 50vw);
+    margin-inline-end: 0;
   }
 
   .hero {

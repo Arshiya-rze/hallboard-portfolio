@@ -23,9 +23,11 @@ export class ContactFab {
     let revealAfter = 0;
     const measureRevealBoundary = (): void => {
       const scrollY = window.scrollY;
-      revealAfter = heroShell
-        ? heroShell.getBoundingClientRect().top + scrollY + heroShell.offsetHeight - window.innerHeight
-        : team!.getBoundingClientRect().top + scrollY;
+      // Anchor the floating CTA to the actual start of the next section instead
+      // of a viewport-height calculation that shifts with mobile browser chrome.
+      revealAfter = team
+        ? team.getBoundingClientRect().top + scrollY
+        : heroShell!.getBoundingClientRect().top + scrollY + heroShell!.offsetHeight - window.innerHeight;
     };
     const update = (): void => {
       frame = 0;
