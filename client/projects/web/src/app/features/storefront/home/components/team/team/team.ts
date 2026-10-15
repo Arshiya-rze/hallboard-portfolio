@@ -15,7 +15,6 @@ export class Team {
   protected readonly activePortrait = signal<string | null>(null);
   protected readonly pinnedPortrait = signal<string | null>(null);
   protected readonly stackReady = signal(false);
-  protected readonly stackStageMode = signal<'normal' | 'fixed' | 'released'>('normal');
 
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly destroyRef = inject(DestroyRef);
@@ -84,29 +83,19 @@ export class Team {
     let stepDistance = 0;
     let stackStart = 0;
     let lastProgress = -1;
-    let stageMode: 'normal' | 'fixed' | 'released' = 'normal';
     let configuredWidth = window.innerWidth;
     let resizeTimer = 0;
     let rowCount = scenes.length;
     let cardsPerRow = 1;
-    let stageLeft = 0;
-    let stageWidth = 0;
 
     const clearStack = (): void => {
       stackEnabled = false;
       lastProgress = -1;
-      stageMode = 'normal';
       this.stackReady.set(false);
-      this.stackStageMode.set('normal');
       root.classList.remove('is-stack-ready');
-      track.style.removeProperty('--team-stack-travel');
       track.style.removeProperty('--team-stack-total-height');
       stage.style.removeProperty('--team-stage-height');
       stage.style.removeProperty('--team-stack-top');
-      stage.style.removeProperty('--team-stage-left');
-      stage.style.removeProperty('--team-stage-width');
-      stage.style.removeProperty('--team-stage-release-top');
-      stage.classList.remove('is-fixed', 'is-released');
       scenes.forEach((scene) => {
         scene.inert = false;
         scene.removeAttribute('aria-hidden');
@@ -129,19 +118,6 @@ export class Team {
       stackFrame = 0;
       if (!stackEnabled) return;
       const scrollY = window.scrollY;
-      const stackTravel = stepDistance * (rowCount - 1);
-      const nextStageMode = scrollY < stackStart
-        ? 'normal'
-        : scrollY < stackStart + stackTravel
-          ? 'fixed'
-          : 'released';
-      if (nextStageMode !== stageMode) {
-        this.stackStageMode.set(nextStageMode);
-        stage.classList.toggle('is-fixed', nextStageMode === 'fixed');
-        stage.classList.toggle('is-released', nextStageMode === 'released');
-        stageMode = nextStageMode;
-      }
-
       const rawProgress = Math.max(0, Math.min(rowCount - 1, (scrollY - stackStart) / stepDistance));
       // Keep the visuals directly tied to the scroll position. Extra easing
       // here creates perceived input lag, especially with touch/trackpad input.
@@ -156,7 +132,7 @@ export class Team {
         const depth = Math.min(3, Math.abs(relative));
         const y = relative >= 0 ? `${(Math.pow(relative, 1.08) * 100).toFixed(2)}%` : `${(-depth * 15).toFixed(1)}px`;
         const scale = relative >= 0 ? 1 - Math.min(0.08, relative * 0.035) : 1 - depth * 0.018;
-        const copyOpacity = Math.max(0, Math.min(1, 1 - Math.abs(relative) * 1.65));
+        const copyOpacity = Math.max(0, Math.min(1, 1 - Math.abs(relative) * 0.75));
         const copyY = Math.max(0, relative) * 16;
         scene.style.transform = `translate3d(0, ${y}, 0) scale(${scale.toFixed(4)})`;
         const content = sceneContents[index];
@@ -181,28 +157,44 @@ export class Team {
       const header = document.querySelector<HTMLElement>('.header');
       const stickyTop = Math.max(88, (header?.offsetHeight ?? 66) + 20);
       const narrowViewport = window.matchMedia('(max-width: 559px)').matches;
-      const bottomClearance = narrowViewport ? 24 : 32;
+      const contactFab = document.querySelector<HTMLElement>('.contact-fab');
+      const fabStyles = contactFab ? window.getComputedStyle(contactFab) : null;
+      const fabRect = contactFab?.getBoundingClientRect();
+      const fabHeight = Math.max(
+        Number.parseFloat(fabStyles?.minHeight ?? '') || 58,
+        fabRect?.height ?? 0,
+      );
+      const estimatedSafeInset = narrowViewport ? 34 : 0;
+      const fabBottom = Math.max(
+        Number.parseFloat(fabStyles?.bottom ?? '') || 18,
+        fabRect?.height ? window.innerHeight - fabRect.bottom : estimatedSafeInset,
+      );
+      const bottomClearance = Math.max(32, fabHeight + fabBottom + 12);
       cardsPerRow = narrowViewport ? 1 : 2;
       rowCount = Math.ceil(scenes.length / cardsPerRow);
       if (rowCount < 2) return;
-      const naturalCardHeight = Math.max(...scenes.map((scene) => scene.querySelector<HTMLElement>('[data-team-card]')?.offsetHeight ?? 0));
-      const minimumStageTop = stickyTop + 12;
-      const availableHeight = Math.max(1, window.innerHeight - minimumStageTop - bottomClearance);
-      // Keep the stack enabled in short mobile browser viewports too. Let the
-      // card use the available stage height instead of falling back to a list.
-      const stageHeight = Math.min(naturalCardHeight, availableHeight);
+      const naturalCardHeight = Math.max(...scenes.map((scene) => {
+        const card = scene.querySelector<HTMLElement>('[data-team-card]');
+        return card ? Math.max(card.offsetHeight, card.scrollHeight) : 0;
+      }));
+      const safeTop = stickyTop + 12;
+      const safeBottom = window.innerHeight - bottomClearance;
+      const availableHeight = Math.max(1, safeBottom - safeTop);
       if (!naturalCardHeight) return;
-      // Center the stage in the viewport, while keeping it clear of the sticky
-      // navigation and the lower viewport edge on short screens.
-      const stageTop = Math.max(minimumStageTop, (window.innerHeight - stageHeight) / 2);
+      // If the full card cannot fit between the navbar and floating CTA, retain
+      // the readable natural-flow grid instead of shrinking or clipping it.
+      if (naturalCardHeight > availableHeight) return;
+      const stageHeight = naturalCardHeight;
+      const stageTop = safeTop + (availableHeight - stageHeight) / 2;
 
-      stepDistance = Math.max(220, Math.min(620, window.innerHeight * (narrowViewport ? 0.46 : 0.58)));
+      stepDistance = Math.min(
+        availableHeight,
+        Math.max(180, Math.min(620, Math.max(availableHeight * 0.52, stageHeight * 0.88))),
+      );
       const stackTravel = stepDistance * (rowCount - 1);
-      track.style.setProperty('--team-stack-travel', `${stackTravel.toFixed(0)}px`);
       track.style.setProperty('--team-stack-total-height', `${(stageHeight + stackTravel).toFixed(0)}px`);
       stage.style.setProperty('--team-stage-height', `${stageHeight.toFixed(0)}px`);
       stage.style.setProperty('--team-stack-top', `${stageTop.toFixed(1)}px`);
-      stage.style.setProperty('--team-stage-release-top', `${stackTravel.toFixed(0)}px`);
       scenes.forEach((scene, index) => {
         const column = index % cardsPerRow;
         const row = Math.floor(index / cardsPerRow);
@@ -213,13 +205,10 @@ export class Team {
       root.classList.add('is-stack-ready');
       this.stackReady.set(true);
 
-      const bounds = track.getBoundingClientRect();
-      stageLeft = bounds.left;
-      stageWidth = bounds.width;
-      stage.style.setProperty('--team-stage-left', `${stageLeft.toFixed(1)}px`);
-      stage.style.setProperty('--team-stage-width', `${stageWidth.toFixed(1)}px`);
       stackEnabled = true;
-      stackStart = stage.getBoundingClientRect().top + window.scrollY - stageTop;
+      // Measure the track, not its sticky child, so restoring a page mid-stack
+      // preserves the right member and progress.
+      stackStart = track.getBoundingClientRect().top + window.scrollY - stageTop;
       updateStack();
     };
 
@@ -252,17 +241,27 @@ export class Team {
     for (const scene of scenes) {
       const card = scene.querySelector<HTMLElement>('[data-team-card]');
       if (!card) continue;
-      const updatePointer = (event: PointerEvent): void => {
-        if (event.pointerType !== 'mouse' || reducedMotion.matches) return;
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+      const updateTilt = (clientX: number, clientY: number): void => {
         const bounds = scene.getBoundingClientRect();
         if (!bounds.width || !bounds.height) return;
-        const x = Math.max(-1, Math.min(1, ((event.clientX - bounds.left) / bounds.width - 0.5) * 2));
-        const y = Math.max(-1, Math.min(1, ((event.clientY - bounds.top) / bounds.height - 0.5) * 2));
+        const x = Math.max(-1, Math.min(1, ((clientX - bounds.left) / bounds.width - 0.5) * 2));
+        const y = Math.max(-1, Math.min(1, ((clientY - bounds.top) / bounds.height - 0.5) * 2));
         card.style.setProperty('--card-rx', `${(-y * 2.5).toFixed(2)}deg`);
         card.style.setProperty('--card-ry', `${(x * 4).toFixed(2)}deg`);
         card.style.setProperty('--card-light-x', `${(50 + x * 35).toFixed(1)}%`);
         card.style.setProperty('--card-light-y', `${(50 + y * 35).toFixed(1)}%`);
         card.style.setProperty('--card-shadow-x', `${(-x * 8).toFixed(2)}px`);
+      };
+      const updatePointer = (event: PointerEvent): void => {
+        if (event.pointerType !== 'mouse' || reducedMotion.matches) return;
+        updateTilt(event.clientX, event.clientY);
+      };
+      // Mouse events provide a lightweight fallback for browsers/devices where
+      // Pointer Events do not consistently reach transformed, stacked cards.
+      const updateMouse = (event: MouseEvent): void => {
+        if (!finePointer.matches || reducedMotion.matches) return;
+        updateTilt(event.clientX, event.clientY);
       };
       const reset = (): void => {
         card.classList.remove('is-card-engaged');
@@ -277,6 +276,12 @@ export class Team {
         card.classList.add('is-card-engaged');
         scene.classList.add('is-card-engaged');
       };
+      const engageMouse = (): void => {
+        if (finePointer.matches) engage();
+      };
+      const resetMouse = (): void => {
+        if (finePointer.matches) reset();
+      };
       const onFocusOut = (event: FocusEvent): void => {
         if (!scene.contains(event.relatedTarget as Node | null)) reset();
       };
@@ -284,12 +289,18 @@ export class Team {
       scene.addEventListener('pointerenter', engage);
       scene.addEventListener('pointermove', updatePointer, { passive: true });
       scene.addEventListener('pointerleave', reset);
+      scene.addEventListener('mouseenter', engageMouse);
+      scene.addEventListener('mousemove', updateMouse, { passive: true });
+      scene.addEventListener('mouseleave', resetMouse);
       scene.addEventListener('focusin', engage);
       scene.addEventListener('focusout', onFocusOut);
       disposers.push(() => {
         scene.removeEventListener('pointerenter', engage);
         scene.removeEventListener('pointermove', updatePointer);
         scene.removeEventListener('pointerleave', reset);
+        scene.removeEventListener('mouseenter', engageMouse);
+        scene.removeEventListener('mousemove', updateMouse);
+        scene.removeEventListener('mouseleave', resetMouse);
         scene.removeEventListener('focusin', engage);
         scene.removeEventListener('focusout', onFocusOut);
       });
