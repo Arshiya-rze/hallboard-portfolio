@@ -548,3 +548,11 @@
 :host-context(html[data-theme='light']) .hero-scroll-hint svg {
   stroke: #7c3aed;
 }
+
+// Keep the touch scene stable while mobile browser toolbars expand/collapse.
+@media (max-width: 767px) {
+  .hero-shell[data-hero-film-shell],
+  .hero.hero-film[data-cinematic-hero] {
+    height: 100svh;
+  }
+}

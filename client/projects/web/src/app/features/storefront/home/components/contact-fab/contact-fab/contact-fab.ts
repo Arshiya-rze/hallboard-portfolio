@@ -35,7 +35,8 @@ export class ContactFab {
       // Keep the floating CTA out of the cinematic scene itself. The hero
       // parks at heroExit while its phone morph finishes; reveal the button
       // only after the document has actually moved beyond that boundary.
-      button.hidden = scrollY <= revealAfter + 1;
+      const hidden = scrollY <= revealAfter + 1;
+      if (button.hidden !== hidden) button.hidden = hidden;
     };
     const schedule = (): void => {
       if (!frame) frame = window.requestAnimationFrame(update);

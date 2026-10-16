@@ -26,6 +26,7 @@ export class TechnologyStack {
     if (!tabs.length || !panels.length) return;
 
     const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)') ?? null;
+    const mobileViewport = window.matchMedia('(max-width: 767px)');
     const prefersReducedMotion = (): boolean => reducedMotion?.matches ?? false;
     let timer = 0;
     let paused = false;
@@ -46,7 +47,7 @@ export class TechnologyStack {
     };
     const start = (): void => {
       stop();
-      if (!visible || paused || manualInteraction || prefersReducedMotion() || document.hidden) return;
+      if (mobileViewport.matches || !visible || paused || manualInteraction || prefersReducedMotion() || document.hidden) return;
       timer = window.setInterval(() => {
         const current = tabs.findIndex((tab) => tab.dataset['techTarget'] === this.activeCategory());
         activate(tabs[(current + 1) % tabs.length]?.dataset['techTarget'] ?? 'frontend');
@@ -81,9 +82,10 @@ export class TechnologyStack {
       else stop();
     }, { threshold: 0.12 });
     visibility?.observe(root);
-    const onMotionChange = (): void => prefersReducedMotion() ? stop() : start();
+    const onMotionChange = (): void => prefersReducedMotion() || mobileViewport.matches ? stop() : start();
     const onVisibilityChange = (): void => document.hidden ? stop() : start();
     reducedMotion?.addEventListener('change', onMotionChange);
+    mobileViewport.addEventListener('change', onMotionChange);
     document.addEventListener('visibilitychange', onVisibilityChange);
     this.destroyRef.onDestroy(() => {
       stop();
@@ -94,6 +96,7 @@ export class TechnologyStack {
       root.removeEventListener('focusin', onFocusIn);
       root.removeEventListener('focusout', onFocusOut);
       reducedMotion?.removeEventListener('change', onMotionChange);
+      mobileViewport.removeEventListener('change', onMotionChange);
       document.removeEventListener('visibilitychange', onVisibilityChange);
     });
   }

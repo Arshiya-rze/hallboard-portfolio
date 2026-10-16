@@ -38,6 +38,7 @@ export class Services {
     if (!viewport || !track || !cards.length) return;
 
     const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)') ?? null;
+    const mobileViewport = window.matchMedia('(max-width: 767px)');
     const prefersReducedMotion = (): boolean => reducedMotion?.matches ?? false;
     const dots = Array.from(root.querySelectorAll<HTMLButtonElement>('.services-dot'));
     let autoplay = 0;
@@ -66,7 +67,7 @@ export class Services {
       autoplay = 0;
     };
     const start = (): void => {
-      if (autoplay || !visible || paused || manualInteraction || prefersReducedMotion() || maxIndex() === 0) return;
+      if (mobileViewport.matches || autoplay || !visible || paused || manualInteraction || prefersReducedMotion() || maxIndex() === 0) return;
       autoplay = window.setInterval(() => {
         if (!document.hidden) this.goToService((this.activeService() + 1) % (maxIndex() + 1));
       }, 4000);
@@ -103,13 +104,19 @@ export class Services {
       else stop();
     }, { threshold: 0.12 });
     visibility?.observe(observationTarget);
+    let sliderWidth = viewport.clientWidth;
     const onResize = (): void => {
+      // Browser toolbar height changes do not change the horizontal layout.
+      const nextWidth = viewport.clientWidth;
+      if (nextWidth === sliderWidth) return;
+      sliderWidth = nextWidth;
       this.serviceDots.set(Array.from({ length: maxIndex() + 1 }, (_, index) => index));
       this.goToService(Math.min(this.activeService(), maxIndex()));
     };
-    const onMotionChange = (): void => prefersReducedMotion() ? stop() : start();
+    const onMotionChange = (): void => prefersReducedMotion() || mobileViewport.matches ? stop() : start();
     window.addEventListener('resize', onResize, { passive: true });
     reducedMotion?.addEventListener('change', onMotionChange);
+    mobileViewport.addEventListener('change', onMotionChange);
     this.serviceDots.set(Array.from({ length: maxIndex() + 1 }, (_, index) => index));
     this.destroyRef.onDestroy(() => {
       stop();
@@ -117,6 +124,7 @@ export class Services {
       visibility?.disconnect();
       window.removeEventListener('resize', onResize);
       reducedMotion?.removeEventListener('change', onMotionChange);
+      mobileViewport.removeEventListener('change', onMotionChange);
       viewport.removeEventListener('scroll', onScroll);
       root.removeEventListener('pointerenter', onPointerEnter);
       root.removeEventListener('pointerleave', onPointerLeave);

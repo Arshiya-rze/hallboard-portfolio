@@ -88,7 +88,7 @@
 .projects-viewport {
   direction: ltr;
   overflow-x: auto;
-  touch-action: pan-y pinch-zoom;
+  touch-action: pan-x pan-y pinch-zoom;
   overscroll-behavior-inline: contain;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
@@ -1197,4 +1197,36 @@
 
 :host-context(html[data-theme='light']) .project-image-dialog-image {
   background: #e9eef6;
+}
+
+// Mobile surfaces do not resample the backdrop during scrolling.
+@media (max-width: 767px) {
+  .projects-nav {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (max-width: 767px) {
+  // Avoid keeping every offscreen carousel card in a 3D rendering context.
+  .project-card {
+    transform-style: flat;
+    transform: none;
+  }
+
+  .project-visual img {
+    transform: none;
+    transition: none;
+  }
+
+  .project-card::before,
+  .projects-section::before {
+    display: none;
+  }
+
+  .projects-viewport {
+    // Finger-driven motion and snapping stay native. Button navigation still
+    // opts into smooth scrolling explicitly via scrollTo().
+    scroll-behavior: auto;
+  }
 }

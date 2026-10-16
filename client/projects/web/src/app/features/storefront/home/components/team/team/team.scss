@@ -571,3 +571,79 @@
   background: linear-gradient(145deg, #f9fbfe, #e8eef6);
   box-shadow: 0 2px 5px rgba(37, 51, 75, 0.08), inset 0 1px 0 #fff;
 }
+
+@media (max-width: 767px) {
+  // Keep text in the normal 2D paint plane instead of separate Z layers.
+  .team-card {
+    transform-style: flat;
+    transform: none;
+  }
+
+  .team-card::before,
+  .team-card::after,
+  .team-card .team-card-content > * {
+    transform: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .team-card-scene {
+    perspective: none;
+  }
+
+  // Future rows wait just outside the stage rather than painting over later
+  // sections. Completed rows stay underneath the next one at their full size.
+  .team-section.is-stack-ready .team-grid {
+    overflow: clip;
+    overflow-clip-margin: 20px;
+  }
+}
+
+/* Line artwork fills the breathing room beneath the sticky cards.
+   Its opacity follows the existing stack progress without affecting layout. */
+.team-stack-art {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  width: min(100%, 480px);
+  height: 64px;
+  transform: translateX(-50%);
+  color: var(--section-accent);
+  pointer-events: none;
+}
+
+.team-section.is-stack-ready .team-stack-art {
+  display: block;
+}
+
+.team-stack-art svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+:host-context(html[data-theme='light']) .team-stack-art {
+  color: #7352b5;
+}
+
+/* Let the title use the section as its sticky boundary, rather than the short
+   introduction wrapper. Native sticky positioning adds no scroll handler. */
+.team-section.is-stack-ready .team-header {
+  display: contents;
+}
+
+.team-section.is-stack-ready .team-header h2 {
+  position: sticky;
+  top: var(--team-title-top, 88px);
+  z-index: 6;
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.team-section.is-stack-ready .team-header p {
+  margin-bottom: 38px;
+  text-align: center;
+}

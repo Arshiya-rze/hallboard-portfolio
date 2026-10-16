@@ -411,3 +411,12 @@
     min-width: 148px;
   }
 }
+
+// Mobile surfaces do not resample the backdrop during scrolling.
+@media (max-width: 767px) {
+  .header, .header.is-sticky {
+    background: #090d1b;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}

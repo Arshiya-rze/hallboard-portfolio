@@ -35,6 +35,9 @@ export class SiteHeader {
     let frame = 0;
     let brandScrollAnchor = window.scrollY;
     let heroEnd = 0;
+    const setClass = (name: string, enabled: boolean): void => {
+      if (header.classList.contains(name) !== enabled) header.classList.toggle(name, enabled);
+    };
     const measureHeroEnd = (): void => {
       const scrollY = window.scrollY;
       const shellTop = heroShell ? heroShell.getBoundingClientRect().top + scrollY : 0;
@@ -49,15 +52,15 @@ export class SiteHeader {
       // through that boundary; reveal it only after a real scroll past the hero.
       const hidingOverHero = hasScrolled && !!heroShell && scrollY <= heroEnd + 1;
 
-      header.classList.toggle('is-hero-hidden', hidingOverHero);
-      header.classList.toggle('is-sticky', hasScrolled && !hidingOverHero);
+      setClass('is-hero-hidden', hidingOverHero);
+      setClass('is-sticky', hasScrolled && !hidingOverHero);
       if (hidingOverHero && this.menuOpen()) this.menuOpen.set(false);
 
       if (scrollY <= 24) {
-        header.classList.remove('is-brand-expanded');
+        setClass('is-brand-expanded', false);
         brandScrollAnchor = scrollY;
       } else if (Math.abs(scrollY - brandScrollAnchor) >= 12) {
-        header.classList.toggle('is-brand-expanded', scrollY > brandScrollAnchor);
+        setClass('is-brand-expanded', scrollY > brandScrollAnchor);
         brandScrollAnchor = scrollY;
       }
     };

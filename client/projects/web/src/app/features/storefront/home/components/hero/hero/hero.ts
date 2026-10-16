@@ -53,14 +53,11 @@ export class HeroSection {
     let previousFrame = 0;
     let manuallyScrolled = false;
     let dimensions: SceneDimensions;
+    let measuredViewportWidth = window.innerWidth;
     const header = document.querySelector<HTMLElement>('.header');
     const introEnd = 0.7;
     let stage: 'desktop' | 'mobile' = 'desktop';
     let transitioning = false;
-    let wheelTimer = 0;
-    let wheelDelta = 0;
-    let wheelCaptured = false;
-    let wheelBlockedUntil = 0;
     let touchStartY: number | null = null;
     let touchStartedInHero = false;
     const inlineStyleCache = new WeakMap<HTMLElement, Map<string, string>>();
@@ -211,7 +208,8 @@ export class HeroSection {
       return window.scrollY >= shellTop - 1 && window.scrollY <= shellEnd + 1;
     };
     const canCaptureDirection = (direction: number): boolean =>
-      isHeroActive() && !reducedMotion.matches && (direction > 0 || (direction < 0 && stage === 'mobile'));
+      isHeroActive() && !reducedMotion.matches
+      && ((direction > 0 && (stage === 'desktop' || transitioning)) || (direction < 0 && stage === 'mobile'));
 
     const animateStage = (target: number): void => {
       if (frame) window.cancelAnimationFrame(frame);
@@ -235,61 +233,21 @@ export class HeroSection {
       transitionFrame = window.requestAnimationFrame(tick);
     };
 
-    const exitHero = (): void => {
-      const nextSection = document.querySelector<HTMLElement>('[data-team-section]');
-      if (!nextSection) return;
-      manuallyScrolled = true;
-      const nextTop = nextSection.getBoundingClientRect().top + window.scrollY;
-      const target = Math.max(window.scrollY, nextTop);
-      window.scrollTo({ top: target, behavior: 'smooth' });
-    };
-
     const handleScrollGesture = (direction: number): void => {
       if (!canCaptureDirection(direction) || transitioning) return;
       manuallyScrolled = true;
-      if (direction > 0) {
-        if (stage === 'desktop') {
-          stage = 'mobile';
-          animateStage(1);
-        } else {
-          exitHero();
-        }
-        return;
-      }
-      stage = 'desktop';
-      animateStage(introEnd);
-    };
-
-    const finishWheelGesture = (): void => {
-      const direction = Math.sign(wheelDelta);
-      const captured = wheelCaptured;
-      wheelTimer = 0;
-      wheelDelta = 0;
-      wheelCaptured = false;
-      if (!captured || !direction) return;
-      wheelBlockedUntil = performance.now() + 700;
-      handleScrollGesture(direction);
+      stage = direction > 0 ? 'mobile' : 'desktop';
+      animateStage(direction > 0 ? 1 : introEnd);
     };
 
     const onWheel = (event: WheelEvent): void => {
       if (event.ctrlKey || event.deltaY === 0) return;
-      const now = performance.now();
-      if (now < wheelBlockedUntil && isHeroActive()) {
-        if (canCaptureDirection(Math.sign(event.deltaY))) event.preventDefault();
-        // Keep treating momentum as part of the same gesture until it has
-        // been quiet for a full pause window, even if the morph has finished.
-        wheelBlockedUntil = now + 700;
-        return;
-      }
-      if (!wheelTimer) {
-        wheelCaptured = canCaptureDirection(Math.sign(event.deltaY));
-        wheelDelta = event.deltaY;
-      } else {
-        wheelDelta += event.deltaY;
-      }
-      if (wheelCaptured) event.preventDefault();
-      window.clearTimeout(wheelTimer);
-      wheelTimer = window.setTimeout(finishWheelGesture, 180);
+      const direction = Math.sign(event.deltaY);
+      if (!canCaptureDirection(direction)) return;
+      event.preventDefault();
+      // Start immediately, without waiting for wheel/trackpad momentum to end.
+      // Capture only the morph; subsequent downward input scrolls natively.
+      if (!transitioning) handleScrollGesture(direction);
     };
 
     const onTouchStart = (event: TouchEvent): void => {
@@ -299,20 +257,17 @@ export class HeroSection {
     const onTouchMove = (event: TouchEvent): void => {
       if (touchStartY === null || !touchStartedInHero || event.touches.length !== 1) return;
       const nextY = event.touches[0]?.clientY;
-      if (nextY === undefined) return;
-      const direction = touchStartY - nextY;
-      if (Math.abs(direction) > 8 && canCaptureDirection(Math.sign(direction))) event.preventDefault();
+      if (nextY === undefined || Math.abs(touchStartY - nextY) <= 28) return;
+      const direction = Math.sign(touchStartY - nextY);
+      touchStartedInHero = false;
+      // Preserve native momentum and morph alongside the first swipe.
+      // Later swipes continue scrolling naturally.
+      if (reducedMotion.matches || transitioning || direction <= 0 || stage !== 'desktop') return;
+      manuallyScrolled = true;
+      stage = 'mobile';
+      animateStage(1);
     };
-    const onTouchEnd = (event: TouchEvent): void => {
-      const endY = event.changedTouches[0]?.clientY;
-      const direction = touchStartY !== null && endY !== undefined ? touchStartY - endY : 0;
-      if (touchStartedInHero && Math.abs(direction) > 28) {
-        const sign = Math.sign(direction);
-        if (canCaptureDirection(sign)) {
-          wheelBlockedUntil = performance.now() + 700;
-          handleScrollGesture(sign);
-        }
-      }
+    const onTouchEnd = (): void => {
       touchStartY = null;
       touchStartedInHero = false;
     };
@@ -326,6 +281,9 @@ export class HeroSection {
       if (!transitioning) handleScrollGesture(direction);
     };
     const onResize = (): void => {
+      // Toolbar movement must not relayout the scene during a mobile swipe.
+      if (isNarrowViewport() && window.innerWidth === measuredViewportWidth) return;
+      measuredViewportWidth = window.innerWidth;
       dimensions = measure();
       setProgress(progress, true);
     };
@@ -352,7 +310,8 @@ export class HeroSection {
 
     window.addEventListener('wheel', onWheel, { passive: false });
     window.addEventListener('touchstart', onTouchStart, { passive: true });
-    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    window.addEventListener('touchcancel', onTouchEnd, { passive: true });
     window.addEventListener('touchend', onTouchEnd, { passive: true });
     window.addEventListener('keydown', onKeyDown);
     window.addEventListener('resize', onResize, { passive: true });
@@ -361,13 +320,13 @@ export class HeroSection {
       window.removeEventListener('wheel', onWheel);
       window.removeEventListener('touchstart', onTouchStart);
       window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchcancel', onTouchEnd);
       window.removeEventListener('touchend', onTouchEnd);
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVisibilityChange);
       if (frame) window.cancelAnimationFrame(frame);
       if (transitionFrame) window.cancelAnimationFrame(transitionFrame);
-      window.clearTimeout(wheelTimer);
     });
   }
 }

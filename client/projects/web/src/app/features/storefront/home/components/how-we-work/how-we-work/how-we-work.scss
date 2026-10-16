@@ -868,3 +868,31 @@
     animation: none;
   }
 }
+
+@media (max-width: 767px) {
+  .principles-title,
+  .process-title,
+  .principle-card,
+  .how-step,
+  .how-result,
+  .principle-icon,
+  .how-step-icon,
+  .result-icon {
+    animation: none;
+  }
+
+  .principle-card,
+  .how-step {
+    will-change: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .how-we-work::before {
+    display: none;
+  }
+
+  .how-we-work {
+    --how-relief: 0 4px 10px #0003, inset 0 1px 0 #ffffff12;
+  }
+}

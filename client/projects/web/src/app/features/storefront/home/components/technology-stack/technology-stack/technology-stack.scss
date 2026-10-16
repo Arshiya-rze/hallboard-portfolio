@@ -669,3 +669,40 @@
   }
 
 }
+
+// Mobile surfaces do not resample the backdrop during scrolling.
+@media (max-width: 767px) {
+  .tech-tabs, .tech-row {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .tech-item img {
+    animation: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .tech-stack::before,
+  .tech-row::before {
+    display: none;
+  }
+
+  .tech-item img,
+  .tech-category-icon,
+  .tech-category-icon img {
+    filter: none;
+  }
+
+  .tech-row {
+    box-shadow: inset 0 1px 0 #ffffff0a;
+    transition: none;
+  }
+
+  .tech-row:hover,
+  .tech-item:hover {
+    transform: none;
+  }
+}

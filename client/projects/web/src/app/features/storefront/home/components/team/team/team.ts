@@ -70,6 +70,8 @@ export class Team {
     const stage = root?.querySelector<HTMLElement>('[data-team-stage]');
     const scenes = Array.from(root?.querySelectorAll<HTMLElement>('[data-team-scene]') ?? []);
     if (!root || !track || !stage || !scenes.length) return;
+    const platform = stage.querySelector<HTMLElement>('.team-stack-art');
+    const title = root.querySelector<HTMLElement>('#team-title');
     const sceneContents = scenes.map((scene) => scene.querySelector<HTMLElement>('.team-card-content'));
 
     // Hydration may recreate the component while retaining the server DOM.
@@ -80,7 +82,10 @@ export class Team {
     const disposers: Array<() => void> = [];
     let stackFrame = 0;
     let stackEnabled = false;
+    let mobileStack = false;
+    const renderedTransforms = new WeakMap<HTMLElement, string>();
     let stepDistance = 0;
+    let titleFadeDistance = 1;
     let stackStart = 0;
     let lastProgress = -1;
     let configuredWidth = window.innerWidth;
@@ -91,8 +96,11 @@ export class Team {
     const clearStack = (): void => {
       stackEnabled = false;
       lastProgress = -1;
+      platform?.style.removeProperty('opacity');
+      title?.style.removeProperty('opacity');
       this.stackReady.set(false);
       root.classList.remove('is-stack-ready');
+      root.style.removeProperty('--team-title-top');
       track.style.removeProperty('--team-stack-total-height');
       stage.style.removeProperty('--team-stage-height');
       stage.style.removeProperty('--team-stack-top');
@@ -106,6 +114,7 @@ export class Team {
         scene.style.removeProperty('--team-copy-opacity');
         scene.style.removeProperty('--team-copy-y');
         scene.style.removeProperty('transform');
+        renderedTransforms.delete(scene);
         scene.style.removeProperty('z-index');
       });
       sceneContents.forEach((content) => {
@@ -118,25 +127,54 @@ export class Team {
       stackFrame = 0;
       if (!stackEnabled) return;
       const scrollY = window.scrollY;
+      // Continue fading after card progress reaches its cap: this is when
+      // the final card leaves its sticky position and the section scrolls out.
+      if (title) {
+        const exitDistance = scrollY - (stackStart + stepDistance * (rowCount - 1));
+        const fade = Math.max(0, Math.min(1, exitDistance / titleFadeDistance));
+        const opacity = (1 - fade * fade * (3 - 2 * fade)).toFixed(3);
+        if (!title.style.opacity || Number(title.style.opacity) !== Number(opacity)) {
+          title.style.opacity = opacity;
+        }
+      }
       const rawProgress = Math.max(0, Math.min(rowCount - 1, (scrollY - stackStart) / stepDistance));
       // Keep the visuals directly tied to the scroll position. Extra easing
       // here creates perceived input lag, especially with touch/trackpad input.
       const progress = rawProgress;
       if (progress === lastProgress) return;
       lastProgress = progress;
+      // Fade during the last part of the final row's arrival. The same scroll
+      // progress restores the platform naturally when scrolling back up.
+      if (platform) {
+        const fade = Math.max(0, Math.min(1, (progress - (rowCount - 1 - 0.4)) / 0.4));
+        const opacity = (1 - fade * fade * (3 - 2 * fade)).toFixed(3);
+        if (!platform.style.opacity || Number(platform.style.opacity) !== Number(opacity)) {
+          platform.style.opacity = opacity;
+        }
+      }
       const activeRow = Math.min(rowCount - 1, Math.floor(progress + 0.5));
 
       scenes.forEach((scene, index) => {
         const row = Math.floor(index / cardsPerRow);
         const relative = row - progress;
+        // Mobile cards only translate: completed rows stay still while the
+        // incoming row covers them. Never rescale or independently move text.
         const depth = Math.min(3, Math.abs(relative));
-        const y = relative >= 0 ? `${(Math.pow(relative, 1.08) * 100).toFixed(2)}%` : `${(-depth * 15).toFixed(1)}px`;
+        const y = mobileStack
+          ? `${(Math.max(0, Math.min(1.1, relative)) * 100).toFixed(3)}%`
+          : relative >= 0 ? `${(Math.pow(relative, 1.08) * 100).toFixed(2)}%` : `${(-depth * 15).toFixed(1)}px`;
         const scale = relative >= 0 ? 1 - Math.min(0.08, relative * 0.035) : 1 - depth * 0.018;
-        const copyOpacity = Math.max(0, Math.min(1, 1 - Math.abs(relative) * 0.75));
-        const copyY = Math.max(0, relative) * 16;
-        scene.style.transform = `translate3d(0, ${y}, 0) scale(${scale.toFixed(4)})`;
+        const transform = mobileStack
+          ? `translate3d(0, ${y}, 0)`
+          : `translate3d(0, ${y}, 0) scale(${scale.toFixed(4)})`;
+        if (renderedTransforms.get(scene) !== transform) {
+          scene.style.transform = transform;
+          renderedTransforms.set(scene, transform);
+        }
         const content = sceneContents[index];
-        if (content) {
+        if (content && !mobileStack) {
+          const copyOpacity = Math.max(0, Math.min(1, 1 - Math.abs(relative) * 0.75));
+          const copyY = Math.max(0, relative) * 16;
           content.style.opacity = copyOpacity.toFixed(3);
           content.style.transform = `translateY(${copyY.toFixed(1)}px)`;
         }
@@ -152,6 +190,7 @@ export class Team {
 
     const enableStack = (): void => {
       clearStack();
+      mobileStack = window.matchMedia('(max-width: 767px)').matches;
       if (reducedMotion.matches || scenes.length < 2) return;
 
       const header = document.querySelector<HTMLElement>('.header');
@@ -177,7 +216,8 @@ export class Team {
         const card = scene.querySelector<HTMLElement>('[data-team-card]');
         return card ? Math.max(card.offsetHeight, card.scrollHeight) : 0;
       }));
-      const safeTop = stickyTop + 12;
+      const titleHeight = root.querySelector<HTMLElement>('#team-title')?.offsetHeight ?? 0;
+      const safeTop = stickyTop + titleHeight + 16;
       const safeBottom = window.innerHeight - bottomClearance;
       const availableHeight = Math.max(1, safeBottom - safeTop);
       if (!naturalCardHeight) return;
@@ -185,6 +225,7 @@ export class Team {
       // the readable natural-flow grid instead of shrinking or clipping it.
       if (naturalCardHeight > availableHeight) return;
       const stageHeight = naturalCardHeight;
+      titleFadeDistance = Math.min(160, stageHeight * 0.4);
       const stageTop = safeTop + (availableHeight - stageHeight) / 2;
 
       stepDistance = Math.min(
@@ -202,6 +243,7 @@ export class Team {
         scene.style.zIndex = String(1000 + row);
         scene.style.setProperty('--team-stack-right', column === 0 ? '12px' : 'calc(50% + 12px)');
       });
+      root.style.setProperty('--team-title-top', `${stickyTop}px`);
       root.classList.add('is-stack-ready');
       this.stackReady.set(true);
 
@@ -286,7 +328,7 @@ export class Team {
         if (!scene.contains(event.relatedTarget as Node | null)) reset();
       };
 
-      scene.addEventListener('pointerenter', engage);
+      scene.addEventListener('pointerenter', engageMouse);
       scene.addEventListener('pointermove', updatePointer, { passive: true });
       scene.addEventListener('pointerleave', reset);
       scene.addEventListener('mouseenter', engageMouse);
@@ -295,7 +337,7 @@ export class Team {
       scene.addEventListener('focusin', engage);
       scene.addEventListener('focusout', onFocusOut);
       disposers.push(() => {
-        scene.removeEventListener('pointerenter', engage);
+        scene.removeEventListener('pointerenter', engageMouse);
         scene.removeEventListener('pointermove', updatePointer);
         scene.removeEventListener('pointerleave', reset);
         scene.removeEventListener('mouseenter', engageMouse);

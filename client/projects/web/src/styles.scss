@@ -463,3 +463,33 @@ html[data-theme='light'] .contact-dialog-close { color: #26364f; border-color: #
 }
 
 /* Component refinements shared by the service/project/technology controls. */
+
+/* Mobile scroll surfaces avoid live backdrop sampling. Preserve gradients,
+   borders and shadows; text stays in the document's normal scrolling plane. */
+@media (max-width: 767px) {
+  .header,
+  .header.is-sticky {
+    background: #090d1b;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  html[data-theme='light'] .header,
+  html[data-theme='light'] .header.is-sticky {
+    background: #f8fafd;
+  }
+
+  .btn-outline {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  // Opacity preserves the reveal without moving glyphs against touch scroll.
+  .scroll-reveal {
+    transition-property: opacity;
+  }
+
+  .scroll-reveal-pending {
+    transform: none;
+  }
+}

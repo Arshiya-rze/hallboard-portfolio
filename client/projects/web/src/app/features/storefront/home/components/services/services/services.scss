@@ -654,3 +654,28 @@
   background: #1685a3;
   box-shadow: 0 0 12px rgba(22, 133, 163, 0.2);
 }
+
+// Mobile surfaces do not resample the backdrop during scrolling.
+@media (max-width: 767px) {
+  .what-we-do, .service-card, .services-nav {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (max-width: 767px) {
+  // The section gradients already provide the ambient color without a large
+  // additional blurred surface behind the horizontal scroller.
+  .what-we-do::before,
+  .service-card::before {
+    display: none;
+  }
+
+  .services-viewport {
+    scroll-behavior: auto;
+  }
+
+  .what-we-do .service-card {
+    box-shadow: 0 4px 10px #0003, inset 0 1px 0 #ffffff12;
+  }
+}

@@ -50,7 +50,7 @@ export class Projects {
     const prefersReducedMotion = (): boolean => reducedMotion?.matches ?? false;
     let scrollTimer = 0;
     let resizeFrame = 0;
-    let touch: { id: number; x: number; y: number; index: number; dragged: boolean } | null = null;
+    let touch: { id: number; x: number; y: number; dragged: boolean } | null = null;
     let suppressClickUntil = 0;
     let imageOpener: HTMLElement | null = null;
     const dialogOpeners = new WeakMap<HTMLDialogElement, HTMLElement>();
@@ -140,7 +140,10 @@ export class Projects {
       const close = target.closest<HTMLButtonElement>('.project-dialog-close, .project-image-dialog-close');
       if (close) close.closest('dialog')?.close();
     };
-    const onPointerCancel = (): void => { touch = null; };
+    const onPointerCancel = (): void => {
+      if (touch?.dragged) suppressClickUntil = performance.now() + 400;
+      touch = null;
+    };
     const motionAllowed = (window.matchMedia?.('(hover: hover) and (pointer: fine)')?.matches ?? false)
       && !prefersReducedMotion()
       && (navigator.hardwareConcurrency || 8) > 4;
@@ -171,7 +174,7 @@ export class Projects {
 
     const onTouchStart = (event: PointerEvent): void => {
       if (event.pointerType !== 'touch' || !event.isPrimary) return;
-      touch = { id: event.pointerId, x: event.clientX, y: event.clientY, index: Math.min(nearestIndex(), maxIndex()), dragged: false };
+      touch = { id: event.pointerId, x: event.clientX, y: event.clientY, dragged: false };
     };
     const onTouchMove = (event: PointerEvent): void => {
       if (!touch || event.pointerId !== touch.id) return;
@@ -181,22 +184,22 @@ export class Projects {
     };
     const onTouchEnd = (event: PointerEvent): void => {
       if (!touch || event.pointerId !== touch.id) return;
-      const deltaX = event.clientX - touch.x;
-      const deltaY = event.clientY - touch.y;
-      const wasDragged = touch.dragged;
-      const startIndex = touch.index;
+      // Native scrolling and CSS snapping own the swipe. Only suppress a
+      // possible click after dragging; do not start a second scripted scroll.
+      if (touch.dragged) suppressClickUntil = performance.now() + 400;
       touch = null;
-      if (wasDragged && Math.abs(deltaX) > Math.max(32, viewport.clientWidth * 0.08) && Math.abs(deltaX) > Math.abs(deltaY)) {
-        suppressClickUntil = performance.now() + 400;
-        this.goToProject(startIndex + (deltaX < 0 ? 1 : -1));
-      }
     };
     viewport.addEventListener('pointerdown', onTouchStart, { passive: true });
     viewport.addEventListener('pointermove', onTouchMove, { passive: true });
     viewport.addEventListener('pointerup', onTouchEnd, { passive: true });
     viewport.addEventListener('pointercancel', onPointerCancel, { passive: true });
 
+    let sliderWidth = viewport.clientWidth;
     const onResize = (): void => {
+      // Browser toolbar height changes do not change the horizontal layout.
+      const nextWidth = viewport.clientWidth;
+      if (nextWidth === sliderWidth) return;
+      sliderWidth = nextWidth;
       if (resizeFrame) return;
       resizeFrame = window.requestAnimationFrame(() => {
         resizeFrame = 0;
