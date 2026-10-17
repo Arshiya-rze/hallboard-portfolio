@@ -579,6 +579,11 @@
     transform: none;
   }
 
+  // In the flat mobile layout, this white highlight paints over the portrait.
+  :host-context(html[data-theme='light']) .team-card::after {
+    display: none;
+  }
+
   .team-card::before,
   .team-card::after,
   .team-card .team-card-content > * {
