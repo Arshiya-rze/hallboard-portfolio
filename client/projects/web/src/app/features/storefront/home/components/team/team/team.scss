@@ -50,7 +50,7 @@
 }
 
 .team-header h2 {
-  font-size: clamp(30px, 5.8vw, 48px);
+  font-size: clamp(1.875rem, 5.8vw, 3rem);
   line-height: 1.26;
 }
 
@@ -240,7 +240,7 @@
   width: fit-content;
   padding: 5px 11px;
   color: #a5edf8;
-  font-size: 10.5px;
+  font-size: var(--font-size-label);
   font-weight: 850;
   letter-spacing: 0.02em;
   border: 1px solid rgba(142, 220, 237, 0.12);
@@ -253,7 +253,7 @@
 .team-card h3 {
   margin: 0;
   color: #f8fafc;
-  font-size: clamp(20px, 2.5vw, 24px);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   line-height: 1.5;
   font-weight: 950;
   text-shadow: 0 2px 1px rgba(0, 0, 0, 0.55), 0 5px 12px rgba(0, 0, 0, 0.25);
@@ -263,7 +263,7 @@
 .team-card-affiliation {
   display: block;
   margin-top: 2px;
-  font-size: 13px;
+  font-size: var(--font-size-label);
   font-weight: 500;
   line-height: 1.8;
   text-shadow: none;
@@ -275,7 +275,7 @@
   direction: ltr;
   unicode-bidi: plaintext;
   color: #d3c5f6;
-  font-size: 11px;
+  font-size: var(--font-size-label);
   font-weight: 800;
   line-height: 1.8;
   transform: translateZ(var(--role-depth));
@@ -285,7 +285,7 @@
   margin: 0 auto;
   max-width: 420px;
   color: #b4bfce;
-  font-size: 12px;
+  font-size: var(--font-size-body);
   line-height: 1.85;
   transform: translateZ(var(--bio-depth));
 }
@@ -312,7 +312,7 @@
   align-items: center;
   padding: 5px 9px;
   color: #cbd5e1;
-  font-size: 9.8px;
+  font-size: var(--font-size-label);
   font-weight: 750;
   border: 1px solid rgba(166, 188, 223, 0.055);
   border-radius: 999px;
@@ -357,7 +357,7 @@
   }
 
   .team-card-bio {
-    font-size: 11.5px;
+    font-size: var(--font-size-body);
     line-height: 1.65;
   }
 
@@ -463,30 +463,30 @@
 }
 
 @media (max-width: 559px) and (max-height: 560px) {
-  .team-section.is-stack-ready .team-card {
+  .team-section:is(.is-stack-fitting, .is-stack-ready) .team-card {
     padding: 8px;
   }
 
-  .team-section.is-stack-ready .team-card-content {
+  .team-section:is(.is-stack-fitting, .is-stack-ready) .team-card-content {
     margin-top: 5px;
     gap: 3px;
   }
 
-  .team-section.is-stack-ready .team-card h3 {
-    font-size: clamp(18px, 5vw, 20px);
+  .team-section:is(.is-stack-fitting, .is-stack-ready) .team-card h3 {
+    font-size: clamp(1.125rem, 5vw, 1.25rem);
     line-height: 1.3;
   }
 
-  .team-section.is-stack-ready .team-card-role {
+  .team-section:is(.is-stack-fitting, .is-stack-ready) .team-card-role {
     min-height: 0;
     line-height: 1.45;
   }
 
-  .team-section.is-stack-ready .team-tags {
+  .team-section:is(.is-stack-fitting, .is-stack-ready) .team-tags {
     padding-top: 2px;
   }
 
-  .team-section.is-stack-ready .team-tags span {
+  .team-section:is(.is-stack-fitting, .is-stack-ready) .team-tags span {
     min-height: 23px;
     padding: 4px 7px;
   }
@@ -660,4 +660,81 @@
 .team-section.is-stack-ready .team-header p {
   margin-bottom: 38px;
   text-align: center;
+}
+
+// Measure the same full-width, compact geometry used by the mobile stack.
+// Keep text in the page's scroll flow so swipes continue to advance cards.
+@media (max-width: 767px) {
+  .team-section:is(.is-stack-fitting, .is-stack-ready) .team-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 520px;
+  }
+
+  .team-section.is-stack-ready .team-card-scene {
+    right: 0;
+    width: 100%;
+  }
+
+  .team-section:is(.is-stack-fitting, .is-stack-ready) .team-card-content {
+    margin-top: 8px;
+    gap: 4px;
+  }
+
+  .team-section.is-stack-ready .team-header h2 {
+    position: relative;
+    top: auto;
+  }
+}
+
+// Native dialog uses the top layer, above the transformed cards and sticky nav.
+.portrait-preview {
+  width: min(92vw, 520px);
+  max-height: 90dvh;
+  padding: 18px;
+  overflow: auto;
+  border: 1px solid var(--border-purple);
+  border-radius: 24px;
+  color: var(--text);
+  background: var(--bg);
+  box-shadow: 0 24px 80px #0008;
+  text-align: center;
+  direction: rtl;
+}
+
+.portrait-preview::backdrop { background: #030712cc; }
+.portrait-preview h2 { margin: 0 44px 12px; font-size: 1.25rem; line-height: 1.8; }
+.portrait-preview img { width: 100%; height: min(65dvh, 620px); object-fit: contain; }
+.portrait-preview-close {
+  position: absolute;
+  top: 10px;
+  inset-inline-end: 10px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  background: var(--surface-raised);
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+.portrait-preview-close:focus-visible { outline: 2px solid #8b5cf6; outline-offset: 3px; }
+
+.portrait-preview-role {
+  margin: 0 0 16px;
+  color: #c4b5fd;
+  font-size: var(--font-size-body);
+  line-height: 1.8;
+}
+:host-context(html[data-theme='light']) .portrait-preview-role { color: #593c8a; }
+
+@media (max-width: 767px) {
+  // Leave the right side of the portrait clear for the character button.
+  .team-card-visual .team-portrait,
+  .team-card-visual .living-portrait-image { left: 32%; }
+
+  .living-portrait-toggle {
+    inset-inline-start: 8px;
+    max-width: 46%;
+    padding-inline: 8px;
+  }
 }

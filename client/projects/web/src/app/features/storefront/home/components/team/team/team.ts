@@ -1,4 +1,4 @@
-import { afterNextRender, ApplicationRef, Component, DestroyRef, ElementRef, inject, signal } from '@angular/core';
+import { afterNextRender, ApplicationRef, Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { first } from 'rxjs';
 import { ScrollRevealDirective } from '../../../../../../shared/directives/scroll-reveal.directive';
@@ -15,6 +15,8 @@ export class Team {
   protected readonly activePortrait = signal<string | null>(null);
   protected readonly pinnedPortrait = signal<string | null>(null);
   protected readonly stackReady = signal(false);
+  protected readonly portraitPreview = signal<{ src: string; name: string; role: string } | null>(null);
+  private readonly portraitDialog = viewChild<ElementRef<HTMLDialogElement>>('portraitDialog');
 
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly destroyRef = inject(DestroyRef);
@@ -54,7 +56,20 @@ export class Team {
     if (this.activePortrait() === id) this.activePortrait.set(this.pinnedPortrait());
   }
 
-  protected togglePortrait(id: string): void {
+  protected togglePortrait(id: string, event: Event): void {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      const button = event.currentTarget;
+      const card = button instanceof HTMLElement ? button.closest('[data-team-card]') : null;
+      const image = card?.querySelector<HTMLImageElement>('.living-portrait-character');
+      const name = card?.querySelector('.team-member-name')?.textContent?.trim();
+      const role = card?.querySelector('.team-card-role')?.textContent?.trim() ?? '';
+      const dialog = this.portraitDialog()?.nativeElement;
+      if (image && name && dialog) {
+        this.portraitPreview.set({ src: image.currentSrc || image.src, name, role });
+        dialog.showModal();
+        return;
+      }
+    }
     if (this.pinnedPortrait() === id) {
       this.pinnedPortrait.set(null);
       if (this.activePortrait() === id) this.activePortrait.set(null);
@@ -62,6 +77,21 @@ export class Team {
     }
     this.pinnedPortrait.set(id);
     this.activePortrait.set(id);
+  }
+
+  protected closePortraitPreview(): void {
+    this.portraitDialog()?.nativeElement.close();
+  }
+
+  protected onPortraitBackdropClick(event: MouseEvent): void {
+    if (event.target !== event.currentTarget) return;
+    const dialog = this.portraitDialog()?.nativeElement;
+    if (!dialog) return;
+    const bounds = dialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right ||
+        event.clientY < bounds.top || event.clientY > bounds.bottom) {
+      this.closePortraitPreview();
+    }
   }
 
   private initializeCardMotion(): void {
@@ -100,7 +130,7 @@ export class Team {
       platform?.style.removeProperty('opacity');
       title?.style.removeProperty('opacity');
       this.stackReady.set(false);
-      root.classList.remove('is-stack-ready');
+      root.classList.remove('is-stack-ready', 'is-stack-fitting');
       root.style.removeProperty('--team-title-top');
       root.style.removeProperty('--team-visual-height');
       track.style.removeProperty('--team-stack-total-height');
@@ -211,25 +241,31 @@ export class Team {
         fabRect?.height ? window.innerHeight - fabRect.bottom : estimatedSafeInset,
       );
       const bottomClearance = Math.max(32, fabHeight + fabBottom + 12);
-      cardsPerRow = narrowViewport ? 1 : 2;
+      // Match the mobile stack's full-width card geometry while measuring.
+      cardsPerRow = mobileStack ? 1 : 2;
       rowCount = Math.ceil(scenes.length / cardsPerRow);
       if (rowCount < 2) return;
+      root.classList.add('is-stack-fitting');
       const measureCardHeight = (): number => Math.max(...scenes.map((scene) => {
         const card = scene.querySelector<HTMLElement>('[data-team-card]');
         return card ? Math.max(card.offsetHeight, card.scrollHeight) : 0;
       }));
       let naturalCardHeight = measureCardHeight();
       const titleHeight = root.querySelector<HTMLElement>('#team-title')?.offsetHeight ?? 0;
-      const safeTop = stickyTop + titleHeight + 16;
+      // On mobile the heading scrolls away, leaving room for readable bios.
+      const safeTop = stickyTop + (mobileStack ? 0 : titleHeight + 16);
       const safeBottom = window.innerHeight - bottomClearance;
       const availableHeight = Math.max(1, safeBottom - safeTop);
-      if (!naturalCardHeight) return;
+      if (!naturalCardHeight) {
+        root.classList.remove('is-stack-fitting');
+        return;
+      }
       // Longer bios or a shorter viewport should use some of the portrait's
       // space before falling back to the grid. Never shrink or clip the copy.
       if (naturalCardHeight > availableHeight) {
         const visual = scenes[0].querySelector<HTMLElement>('.team-card-visual');
         const visualHeight = visual?.offsetHeight ?? 0;
-        const fittedHeight = Math.max(120, visualHeight - (naturalCardHeight - availableHeight) - 2);
+        const fittedHeight = Math.max(mobileStack ? 80 : 120, visualHeight - (naturalCardHeight - availableHeight) - 2);
         if (visualHeight > fittedHeight) {
           root.style.setProperty('--team-visual-height', `${fittedHeight.toFixed(0)}px`);
           naturalCardHeight = measureCardHeight();
@@ -237,6 +273,7 @@ export class Team {
         // Very short screens retain the readable, natural-flow layout.
         if (naturalCardHeight > availableHeight) {
           root.style.removeProperty('--team-visual-height');
+          root.classList.remove('is-stack-fitting');
           return;
         }
       }
@@ -260,6 +297,7 @@ export class Team {
         scene.style.setProperty('--team-stack-right', column === 0 ? '12px' : 'calc(50% + 12px)');
       });
       root.style.setProperty('--team-title-top', `${stickyTop}px`);
+      root.classList.remove('is-stack-fitting');
       root.classList.add('is-stack-ready');
       this.stackReady.set(true);
 

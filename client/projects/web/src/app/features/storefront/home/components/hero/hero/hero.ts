@@ -181,11 +181,11 @@ export class HeroSection {
       setInlineStyle(browser, '--footer-bottom', `${mix(mix(12, 16, dimensions.compactness), 16, mobile).toFixed(1)}px`);
       const finalInset = narrow && dimensions.width <= 360 ? 18 : 24;
       setInlineStyle(browser, '--page-inset', `${mix(narrow ? 24 : 68, finalInset, mobile).toFixed(1)}px`);
-      const titleSize = narrow ? (dimensions.width <= 360 ? 18 : 20) : mix(31, 46, dimensions.compactness);
-      const supportSize = narrow ? 11.5 : mix(12.5, 16, dimensions.compactness);
+      const titleSize = narrow ? (dimensions.width <= 360 ? 16 : 18) : mix(28, 40, dimensions.compactness);
       setInlineStyle(browser, '--page-title-leading', narrow ? mix(1.35, 1.55, mobile).toFixed(3) : '1.5');
-      setInlineStyle(browser, '--page-title-size', `${mix(titleSize, 29, mobile).toFixed(1)}px`);
-      setInlineStyle(browser, '--page-support-size', `${mix(supportSize, 13.5, mobile).toFixed(1)}px`);
+      setInlineStyle(browser, '--page-title-size', `${(mix(titleSize, 25, mobile) / 16).toFixed(3)}rem`);
+      const supportSize = narrow ? 11.5 : mix(12.5, 14, dimensions.compactness);
+      setInlineStyle(browser, '--page-support-size', `${(mix(supportSize, 13, mobile) / 16).toFixed(3)}rem`);
       setInlineStyle(browser, '--brand-size', `${mix(narrow ? 15 : 17, 14, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--cta-width', `${mix(188, 204, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--accent-gap', `${mix(narrow ? 6 : mix(12, 23, dimensions.compactness), 18, mobile).toFixed(1)}px`);

@@ -65,6 +65,12 @@
 }
 
 :root {
+  // Reading sizes for Vazirmatn; rem units respect browser font preferences.
+  // Material guidance: https://m1.material.io/style/typography.html#typography-language-categorization
+  --font-size-body: 1rem;
+  --font-size-label: 0.875rem;
+  --font-size-control: 1rem;
+  --font-size-title-small: 1.125rem;
   color-scheme: dark;
   --bg: #050712;
   --surface: rgba(10, 14, 28, 0.78);
@@ -131,6 +137,8 @@ body {
   min-height: 100%;
   margin: 0;
   font-family: "Vazirmatn", sans-serif;
+  font-size: var(--font-size-body);
+  line-height: 1.8;
   color: var(--text);
   background:
     radial-gradient(circle at 50% 18%, rgba(124, 58, 237, 0.22), transparent 32%),
@@ -154,8 +162,18 @@ html[data-theme='light'] .projects-header h2 strong {
 
 body,
 button,
-input {
+input,
+select,
+textarea {
   font-family: "Vazirmatn", sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: var(--font-size-control);
+  line-height: 1.6;
 }
 
 a {
@@ -261,7 +279,7 @@ img {
   gap: 10px;
   margin-bottom: 18px;
   color: var(--section-accent-text, #c084fc);
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 700;
 }
 
@@ -277,10 +295,10 @@ img {
 
 .section-header h2 {
   margin: 0;
-  font-size: clamp(36px, 9vw, 58px);
+  font-size: clamp(2.25rem, 9vw, 3.625rem);
   line-height: 1.25;
   font-weight: 900;
-  letter-spacing: -1.4px;
+  letter-spacing: 0;
 }
 
 .section-header h2 strong {
@@ -295,7 +313,7 @@ img {
   max-width: 680px;
   margin: 22px auto 0;
   color: var(--muted);
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 2;
   font-weight: 500;
 }
@@ -428,10 +446,10 @@ html[data-theme='light'] .contact-dialog-close { color: #26364f; border-color: #
 
 @media (max-width: 767px) {
   .section-header { margin-bottom: 22px; }
-  .section-eyebrow { gap: 8px; margin-bottom: 12px; font-size: 11px; }
+  .section-eyebrow { gap: 8px; margin-bottom: 12px; font-size: var(--font-size-label); }
   .section-eyebrow::before, .section-eyebrow::after { width: 4px; height: 4px; }
-  .section-header h2 { font-size: clamp(28px, 8vw, 34px); line-height: 1.32; letter-spacing: -0.6px; }
-  .section-header p { margin-top: 14px; font-size: 12.5px; line-height: 1.95; }
+  .section-header h2 { font-size: clamp(1.75rem, 8vw, 2.125rem); line-height: 1.32; letter-spacing: 0; }
+  .section-header p { margin-top: 14px; font-size: var(--font-size-body); line-height: 1.95; }
 }
 
 @media (prefers-reduced-motion: reduce) {

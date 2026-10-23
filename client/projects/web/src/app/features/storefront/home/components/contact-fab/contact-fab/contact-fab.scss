@@ -9,7 +9,7 @@
   border: 1px solid rgba(221, 207, 255, .52); border-radius: 999px;
   background: linear-gradient(135deg, #7b3dff, #6550eb 58%, #315cdd);
   box-shadow: 0 8px 26px #05051599, 0 0 24px #8158ff55, inset 0 1px 0 #ffffff70;
-  font: inherit; font-size: 14px; font-weight: 800; white-space: nowrap;
+  font: inherit; font-size: 0.875rem; font-weight: 800; white-space: nowrap;
   -webkit-tap-highlight-color: transparent; transition: transform 180ms ease, box-shadow 180ms ease;
 }
 .contact-fab[hidden] { display: none; }

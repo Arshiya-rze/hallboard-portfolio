@@ -196,7 +196,7 @@
   margin-bottom: 16px;
 }
 .what-we-do .services-header h3 {
-  font-size: 23px;
+  font-size: 1.4375rem;
 }
 .what-we-do .services-viewport {
   padding-block: 10px 14px;
@@ -215,19 +215,19 @@
 }
 .what-we-do .service-card h3 {
   margin-bottom: 8px;
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 1.4;
 }
 .what-we-do .service-card p {
   margin-bottom: 12px;
-  font-size: 13px;
+  font-size: var(--font-size-body);
   line-height: 1.7;
 }
 .what-we-do .service-card ul {
   gap: 7px;
 }
 .what-we-do .service-card li {
-  font-size: 12px;
+  font-size: var(--font-size-body);
   line-height: 1.55;
 }
 .what-we-do .service-card li::before {

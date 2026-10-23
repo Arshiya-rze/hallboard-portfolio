@@ -63,7 +63,7 @@
                     </div>
                   </div>
                 </div>
-                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'taba'" [attr.aria-label]="activePortrait() === 'taba' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('taba'); $event.stopPropagation()">
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'taba'" [attr.aria-label]="activePortrait() === 'taba' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('taba', $event); $event.stopPropagation()">
                   <span>{{ activePortrait() === 'taba' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
                 </button>
               </div>
@@ -71,7 +71,7 @@
               <div class="team-card-content">
                 <span class="team-card-kicker">Team Lead</span>
                 <h3 id="taba-name">
-                  مهندس رضا طبا
+                  <span class="team-member-name">مهندس رضا طبا</span>
                   <span class="team-card-affiliation" dir="rtl">Studied at the University of California, Irvine (UCI)</span>
                 </h3>
                 <p class="team-card-role">
@@ -112,7 +112,7 @@
                   ngSrc="assets/team/frank-baran.webp"
                   width="1059"
                   height="1485"
-                  alt="پرتره فرانک باران چشمه، مدیر هالبورد و توسعه‌دهنده فول‌استک"
+                  alt="پرتره مهندس فرانک باران چشمه، مدیر هالبورد و توسعه‌دهنده فول‌استک"
                   loading="lazy"
                   decoding="async"
                 />
@@ -120,7 +120,7 @@
 
               <div class="team-card-content">
                 <span class="team-card-kicker">Manager</span>
-                <h3 id="frank-name">فرانک باران چشمه</h3>
+                <h3 id="frank-name"><span class="team-member-name">مهندس فرانک باران چشمه</span></h3>
                 <p class="team-card-role">
                   Software Engineer / Full Stack Developer
                 </p>
@@ -163,7 +163,7 @@
                       ngSrc="assets/team/arshia-rezaei-front.webp"
                       width="1122"
                       height="1402"
-                      alt="پرتره ارشیا رضایی، UI و توسعه‌دهنده فول‌استک"
+                      alt="پرتره مهندس ارشیا رضایی، UI و توسعه‌دهنده فول‌استک"
                       loading="lazy"
                       decoding="async"
                     />
@@ -178,14 +178,14 @@
                     </div>
                   </div>
                 </div>
-                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'arshia'" [attr.aria-label]="activePortrait() === 'arshia' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('arshia'); $event.stopPropagation()">
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'arshia'" [attr.aria-label]="activePortrait() === 'arshia' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('arshia', $event); $event.stopPropagation()">
                   <span>{{ activePortrait() === 'arshia' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
                 </button>
               </div>
 
               <div class="team-card-content">
                 <span class="team-card-kicker">Developer</span>
-                <h3 id="arshia-name">ارشیا رضایی</h3>
+                <h3 id="arshia-name"><span class="team-member-name">مهندس ارشیا رضایی</span></h3>
                 <p class="team-card-role">
                   UI Designer &amp; Engineer / Full Stack Developer
                 </p>
@@ -224,7 +224,7 @@
                       ngSrc="assets/team/hamid-rahimi-3d-portrait-cutout.webp"
                       width="800"
                       height="1000"
-                      alt="پرتره حمید رحیمی، UX و توسعه‌دهنده فول‌استک"
+                      alt="پرتره مهندس حمید رحیمی، UX و توسعه‌دهنده فول‌استک"
                       loading="lazy"
                       decoding="async"
                     />
@@ -239,14 +239,14 @@
                     </div>
                   </div>
                 </div>
-                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'hamid'" [attr.aria-label]="activePortrait() === 'hamid' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('hamid'); $event.stopPropagation()">
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'hamid'" [attr.aria-label]="activePortrait() === 'hamid' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('hamid', $event); $event.stopPropagation()">
                   <span>{{ activePortrait() === 'hamid' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
                 </button>
               </div>
 
               <div class="team-card-content">
                 <span class="team-card-kicker">Developer</span>
-                <h3 id="hamid-name">حمید رحیمی</h3>
+                <h3 id="hamid-name"><span class="team-member-name">مهندس حمید رحیمی</span></h3>
                 <p class="team-card-role">
                   UX Designer &amp; Engineer / Full Stack Developer
                 </p>
@@ -286,7 +286,7 @@
                       ngSrc="assets/team/parsa-jafari-3d-portrait-cutout.webp"
                       width="800"
                       height="1000"
-                      alt="پرتره پارسا جعفری، توسعه‌دهنده فول‌استک"
+                      alt="پرتره مهندس پارسا جعفری، توسعه‌دهنده فول‌استک"
                       loading="lazy"
                       decoding="async"
                     />
@@ -301,14 +301,14 @@
                     </div>
                   </div>
                 </div>
-                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'parsa'" [attr.aria-label]="activePortrait() === 'parsa' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('parsa'); $event.stopPropagation()">
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'parsa'" [attr.aria-label]="activePortrait() === 'parsa' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('parsa', $event); $event.stopPropagation()">
                   <span>{{ activePortrait() === 'parsa' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
                 </button>
               </div>
 
               <div class="team-card-content">
                 <span class="team-card-kicker">Developer</span>
-                <h3 id="parsa-name">پارسا جعفری</h3>
+                <h3 id="parsa-name"><span class="team-member-name">مهندس پارسا جعفری</span></h3>
                 <p class="team-card-role">
                   Infrastructure Engineer / Full Stack Developer
                 </p>
@@ -349,7 +349,7 @@
                       ngSrc="assets/team/vahid-hayati-3d-portrait-cutout.webp"
                       width="800"
                       height="1000"
-                      alt="پرتره وحید حیاتی پور، توسعه‌دهنده فول‌استک"
+                      alt="پرتره مهندس وحید حیاتی پور، توسعه‌دهنده فول‌استک"
                       loading="lazy"
                       decoding="async"
                     />
@@ -364,14 +364,14 @@
                     </div>
                   </div>
                 </div>
-                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'vahid'" [attr.aria-label]="activePortrait() === 'vahid' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('vahid'); $event.stopPropagation()">
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'vahid'" [attr.aria-label]="activePortrait() === 'vahid' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('vahid', $event); $event.stopPropagation()">
                   <span>{{ activePortrait() === 'vahid' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
                 </button>
               </div>
 
               <div class="team-card-content">
                 <span class="team-card-kicker">Developer</span>
-                <h3 id="vahid-name">وحید حیاتی</h3>
+                <h3 id="vahid-name"><span class="team-member-name">مهندس وحید حیاتی</span></h3>
                 <p class="team-card-role">
                   API &amp; QA Engineer / Full Stack Developer
                 </p>
@@ -417,3 +417,18 @@
         </div>
 
       </section>
+
+<dialog
+  #portraitDialog
+  class="portrait-preview"
+  aria-labelledby="portrait-preview-title"
+  (click)="onPortraitBackdropClick($event)"
+  (close)="portraitPreview.set(null)"
+>
+  <button class="portrait-preview-close" type="button" aria-label="بستن تصویر" autofocus (click)="closePortraitPreview()">×</button>
+  @if (portraitPreview(); as portrait) {
+    <h2 id="portrait-preview-title">{{ portrait.name }}</h2>
+    <p class="portrait-preview-role" dir="auto">{{ portrait.role }}</p>
+    <img [ngSrc]="portrait.src" width="800" height="1000" [alt]="'کاراکتر سه‌بعدی ' + portrait.name" />
+  }
+</dialog>

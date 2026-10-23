@@ -176,7 +176,7 @@
   padding: 12px 14px;
   color: rgba(255, 255, 255, 0.78);
   border-radius: 12px;
-  font-size: 14px;
+  font-size: var(--font-size-control);
   font-weight: 600;
   text-align: center;
   transition: color 0.2s ease, background-color 0.2s ease;
@@ -314,7 +314,7 @@
     padding: 0;
     display: flex;
     justify-content: center;
-    gap: clamp(24px, 4vw, 64px);
+    gap: clamp(12px, 2vw, 24px);
     visibility: visible;
     opacity: 1;
     transform: none;
@@ -328,7 +328,7 @@
 
   .nav a {
     padding: 8px 4px;
-    font-size: 14px;
+    font-size: var(--font-size-control);
   }
 
   .header .header-btn {
@@ -338,7 +338,7 @@
     min-height: 44px;
     display: inline-flex;
     border-radius: 999px;
-    font-size: 13px;
+    font-size: var(--font-size-control);
   }
 }
 
@@ -404,7 +404,7 @@
   }
 
   .nav a {
-    font-size: 14.5px;
+    font-size: var(--font-size-control);
   }
 
   .header .header-btn {
@@ -418,5 +418,42 @@
     background: #090d1b;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
+  }
+}
+
+// Keep the larger navigation labels comfortable on tablet widths.
+@media (min-width: 768px) and (max-width: 1024px) {
+  .header { grid-template-columns: auto 1fr auto; }
+  .header .header-btn { display: none; }
+}
+
+// Keep theme overrides beside the encapsulated rules they override.
+:host-context(html[data-theme='light']) {
+  .nav a { color: #24324a; }
+
+  .nav a:hover,
+  .nav a:focus-visible {
+    color: #5b21b6;
+    background: #eee8ff;
+  }
+
+  .brand-wordmark::before { color: #24324a; }
+
+  .theme-toggle {
+    color: #344158;
+    border-color: #d5deeb;
+    background: #f1f4f9;
+  }
+
+  .header .header-btn {
+    color: #fff;
+    background: linear-gradient(135deg, #6d28d9, #4338ca);
+  }
+}
+
+@media (min-width: 768px) {
+  :host-context(html[data-theme='light']) .nav {
+    background: transparent;
+    box-shadow: none;
   }
 }

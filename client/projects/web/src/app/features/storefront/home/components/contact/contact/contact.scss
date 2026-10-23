@@ -14,9 +14,9 @@
 }
 .contact-dialog::backdrop { background: #030513b8; backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px); }
 .contact-dialog[open] { animation: contact-enter 220ms ease-out; }
-.contact-dialog-close { display: block; margin-inline-start: auto; width: 44px; height: 44px; border: 1px solid #ffffff30; border-radius: 50%; color: inherit; background: #ffffff08; font: inherit; font-size: 26px; cursor: pointer; }
-.contact-dialog h2 { font-size: clamp(24px, 5vw, 30px); margin: 12px 0; }
-.contact-dialog p { font-size: 14px; line-height: 1.9; color: #bab9ce; margin: 0 0 24px; }
+.contact-dialog-close { display: block; margin-inline-start: auto; width: 44px; height: 44px; border: 1px solid #ffffff30; border-radius: 50%; color: inherit; background: #ffffff08; font: inherit; font-size: 1.625rem; cursor: pointer; }
+.contact-dialog h2 { font-size: clamp(1.5rem, 5vw, 1.875rem); margin: 12px 0; }
+.contact-dialog p { font-size: var(--font-size-body); line-height: 1.9; color: #bab9ce; margin: 0 0 24px; }
 .contact-dialog-options { display: grid; gap: 12px; }
 .contact-dialog-option { display: grid; gap: 6px; padding: 18px 20px; border: 1px solid #ffffff25; border-radius: 18px; color: #f6f5ff; background: #ffffff06; text-decoration: none; transition: background 180ms, border-color 180ms; }
 .contact-dialog-option:hover { background: #8064e51f; border-color: #a68aee; }

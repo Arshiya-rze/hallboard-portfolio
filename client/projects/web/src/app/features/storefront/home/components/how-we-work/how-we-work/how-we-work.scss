@@ -234,7 +234,7 @@
 .principles-title h3,
 .process-title h3 {
   margin: 0;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 900;
 }
 
@@ -242,7 +242,7 @@
   grid-column: 1 / -1;
   margin: -8px 0 0;
   color: var(--muted);
-  font-size: 14px;
+  font-size: var(--font-size-body);
 }
 
 .principles-grid {
@@ -348,7 +348,7 @@
 
 .principle-card h3 {
   margin: 0 0 14px;
-  font-size: 21px;
+  font-size: 1.3125rem;
   font-weight: 900;
 }
 
@@ -356,7 +356,7 @@
   margin: 0 auto;
   max-width: 260px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: var(--font-size-body);
   line-height: 2;
 }
 
@@ -418,7 +418,7 @@
   display: block;
   margin-bottom: 10px;
   color: var(--step-accent);
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 900;
 }
 
@@ -454,7 +454,7 @@
 
 .how-step h3 {
   margin: 0 0 10px;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 900;
 }
 
@@ -462,7 +462,7 @@
   margin: 0 auto;
   max-width: 230px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: var(--font-size-body);
   line-height: 1.9;
 }
 
@@ -500,7 +500,7 @@
 .how-result p {
   margin: 0;
   color: rgba(255,255,255,0.88);
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 2;
   font-weight: 700;
 }
@@ -671,17 +671,17 @@
 
   .principles-title h3,
   .process-title h3 {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   .process-title p {
     margin-top: -4px;
-    font-size: 11.5px;
+    font-size: var(--font-size-body);
   }
 
   .principles-grid,
   .how-process {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     gap: 9px;
   }
 
@@ -717,19 +717,19 @@
   .principle-card h3,
   .how-step h3 {
     margin-bottom: 6px;
-    font-size: 13px;
+    font-size: var(--font-size-title-small);
     line-height: 1.55;
   }
 
   .how-step strong {
     margin-bottom: 3px;
-    font-size: 12px;
+    font-size: var(--font-size-label);
   }
 
   .principle-card p,
   .how-step p {
-    max-width: 150px;
-    font-size: 10.5px;
+    max-width: 100%;
+    font-size: var(--font-size-body);
     line-height: 1.75;
   }
 
@@ -748,7 +748,7 @@
   }
 
   .how-result p {
-    font-size: 12px;
+    font-size: var(--font-size-body);
     line-height: 1.85;
   }
 }
@@ -778,11 +778,11 @@
   }
 
   .principle-card h3 {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
 
   .principle-card p {
-    font-size: 12.5px;
+    font-size: var(--font-size-body);
     line-height: 1.8;
   }
 
@@ -793,15 +793,15 @@
 
   .how-step strong {
     margin-bottom: 7px;
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .how-step h3 {
-    font-size: 17px;
+    font-size: var(--font-size-title-small);
   }
 
   .how-step p {
-    font-size: 12px;
+    font-size: var(--font-size-body);
     line-height: 1.75;
   }
 
@@ -817,7 +817,7 @@
   }
 
   .how-result p {
-    font-size: 14px;
+    font-size: var(--font-size-body);
     line-height: 1.8;
   }
 }
