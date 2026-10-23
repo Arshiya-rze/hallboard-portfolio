@@ -184,9 +184,16 @@ export class Projects {
     };
     const onTouchEnd = (event: PointerEvent): void => {
       if (!touch || event.pointerId !== touch.id) return;
-      // Native scrolling and CSS snapping own the swipe. Only suppress a
-      // possible click after dragging; do not start a second scripted scroll.
-      if (touch.dragged) suppressClickUntil = performance.now() + 400;
+      if (touch.dragged) {
+        suppressClickUntil = performance.now() + 400;
+        // Advance one card per gesture, independent of swipe distance or
+        // velocity. In LTR track coordinates, a leftward finger swipe moves
+        // toward the next card.
+        const deltaX = event.clientX - touch.x;
+        const currentIndex = nearestIndex();
+        const nextIndex = currentIndex + (deltaX < 0 ? 1 : -1);
+        this.goToProject(Math.max(0, Math.min(nextIndex, maxIndex())));
+      }
       touch = null;
     };
     viewport.addEventListener('pointerdown', onTouchStart, { passive: true });
