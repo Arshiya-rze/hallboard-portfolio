@@ -105,7 +105,7 @@
                       href="https://persiankhab.hallboard.ir/"
                       target="_blank"
                       rel="noopener"
-                      class="btn btn-primary"
+                      class="btn btn-primary project-visit"
                       >مشاهده پروژه <span>↗</span></a
                     >
                   </div>
@@ -209,7 +209,7 @@
                       href="https://mostaghelat.hallboard.ir/"
                       target="_blank"
                       rel="noopener"
-                      class="btn btn-primary"
+                      class="btn btn-primary project-visit"
                       >مشاهده پروژه <span>↗</span></a
                     >
                   </div>
@@ -309,7 +309,7 @@
                       href="https://boomdeal.net/"
                       target="_blank"
                       rel="noopener"
-                      class="btn btn-primary"
+                      class="btn btn-primary project-visit"
                       >مشاهده پروژه <span>↗</span></a
                     >
                   </div>
@@ -1009,6 +1009,7 @@
             <div class="project-image-dialog-action">
               <a
                 class="btn btn-primary project-image-dialog-visit"
+                [class.project-visit]="!previewActionContact()"
                 [href]="previewUrl()"
                 [attr.target]="previewActionContact() ? null : '_blank'"
                 [attr.rel]="previewActionContact() ? null : 'noopener'"

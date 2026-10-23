@@ -88,7 +88,8 @@
 .projects-viewport {
   direction: ltr;
   overflow-x: auto;
-  touch-action: pan-x pan-y pinch-zoom;
+  // Handle horizontal touch swipes one card at a time; keep page scrolling native.
+  touch-action: pan-y pinch-zoom;
   overscroll-behavior-inline: contain;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
@@ -1225,8 +1226,32 @@
   }
 
   .projects-viewport {
-    // Finger-driven motion and snapping stay native. Button navigation still
-    // opts into smooth scrolling explicitly via scrollTo().
+    // Swipe and button navigation opt into smooth scrolling via scrollTo().
     scroll-behavior: auto;
+  }
+}
+
+/* Give live project links a stronger visual priority than demo requests. */
+.project-actions .btn.project-visit,
+.project-card-featured .project-actions .btn.project-visit,
+.project-image-dialog-visit.project-visit,
+:host-context(html[data-theme='light']) .project-actions .btn.project-visit,
+:host-context(html[data-theme='light']) .project-image-dialog-visit.project-visit {
+  color: #fff;
+  border-color: #60a5fa;
+  background: linear-gradient(135deg, #2563eb, #0891b2);
+  box-shadow: 0 4px 18px rgba(37, 99, 235, 0.38);
+
+  &:hover,
+  &:focus-visible {
+    color: #fff;
+    border-color: #93c5fd;
+    background: linear-gradient(135deg, #1d4ed8, #0e7490);
+    box-shadow: 0 4px 22px rgba(37, 99, 235, 0.5);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0891b2;
+    outline-offset: 3px;
   }
 }

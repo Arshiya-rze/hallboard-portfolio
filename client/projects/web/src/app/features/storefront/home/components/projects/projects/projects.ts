@@ -50,7 +50,7 @@ export class Projects {
     const prefersReducedMotion = (): boolean => reducedMotion?.matches ?? false;
     let scrollTimer = 0;
     let resizeFrame = 0;
-    let touch: { id: number; x: number; y: number; dragged: boolean } | null = null;
+    let touch: { id: number; x: number; y: number; index: number; axis: 'horizontal' | 'vertical' | null; dragged: boolean } | null = null;
     let suppressClickUntil = 0;
     let imageOpener: HTMLElement | null = null;
     const dialogOpeners = new WeakMap<HTMLDialogElement, HTMLElement>();
@@ -97,7 +97,7 @@ export class Projects {
     imageDialog?.addEventListener('close', onImageDialogClose);
     const onRootClick = (event: MouseEvent): void => {
       const target = event.target as Element;
-      if (performance.now() < suppressClickUntil && target.closest('[data-project-image-open]')) {
+      if (performance.now() < suppressClickUntil && target.closest('.projects-viewport')) {
         event.preventDefault();
         event.stopPropagation();
         return;
@@ -174,26 +174,28 @@ export class Projects {
 
     const onTouchStart = (event: PointerEvent): void => {
       if (event.pointerType !== 'touch' || !event.isPrimary) return;
-      touch = { id: event.pointerId, x: event.clientX, y: event.clientY, dragged: false };
+      touch = { id: event.pointerId, x: event.clientX, y: event.clientY, index: this.activeProject(), axis: null, dragged: false };
     };
     const onTouchMove = (event: PointerEvent): void => {
       if (!touch || event.pointerId !== touch.id) return;
       const dx = event.clientX - touch.x;
       const dy = event.clientY - touch.y;
-      if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) touch.dragged = true;
+      if (!touch.axis && Math.max(Math.abs(dx), Math.abs(dy)) > 10) {
+        touch.axis = Math.abs(dx) > Math.abs(dy) ? 'horizontal' : 'vertical';
+      }
+      if (touch.axis === 'horizontal') {
+        touch.dragged = true;
+        if (!viewport.hasPointerCapture(event.pointerId)) viewport.setPointerCapture(event.pointerId);
+      }
     };
     const onTouchEnd = (event: PointerEvent): void => {
       if (!touch || event.pointerId !== touch.id) return;
-      if (touch.dragged) {
-        suppressClickUntil = performance.now() + 400;
-        // Advance one card per gesture, independent of swipe distance or
-        // velocity. In LTR track coordinates, a leftward finger swipe moves
-        // toward the next card.
-        const deltaX = event.clientX - touch.x;
-        const currentIndex = nearestIndex();
-        const nextIndex = currentIndex + (deltaX < 0 ? 1 : -1);
-        this.goToProject(Math.max(0, Math.min(nextIndex, maxIndex())));
-      }
+      const dx = event.clientX - touch.x;
+      const dy = event.clientY - touch.y;
+      const swiped = touch.axis !== 'vertical' && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy);
+      if (touch.dragged || swiped) suppressClickUntil = performance.now() + 400;
+      // Use the index at gesture start so distance and velocity cannot skip cards.
+      if (swiped) this.goToProject(touch.index + (dx < 0 ? 1 : -1));
       touch = null;
     };
     viewport.addEventListener('pointerdown', onTouchStart, { passive: true });
