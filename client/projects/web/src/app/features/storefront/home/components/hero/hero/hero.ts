@@ -10,6 +10,7 @@ interface SceneDimensions {
   mobileHeight: number;
   compactness: number;
   laptopViewport: boolean;
+  narrow: boolean;
   headerBottom: number;
 }
 
@@ -32,9 +33,14 @@ export class HeroSection {
     const hero = shell?.querySelector<HTMLElement>('[data-cinematic-hero]');
     const browser = hero?.querySelector<HTMLElement>('[data-film-browser]');
     const content = hero?.querySelector<HTMLElement>('[data-browser-content]');
+    const symbol = hero?.querySelector<HTMLElement>('[data-film-symbol]');
+    const symbolImage = symbol?.querySelector<HTMLElement>('.hero-film-symbol-image');
+    const beam = hero?.querySelector<HTMLElement>('.hero-film-beam');
+    const wordmark = browser?.querySelector<HTMLElement>('.hero-browser-wordmark');
+    const scrollMeter = hero?.querySelector<HTMLElement>('.hero-scroll-meter i');
     const copySteps = Array.from(hero?.querySelectorAll<HTMLElement>('[data-copy-step]') ?? []);
     const scrollHint = hero?.querySelector<HTMLElement>('[data-hero-scroll-hint]');
-    if (!shell || !hero || !browser || !content) return;
+    if (!shell || !hero || !browser || !content || !symbol || !symbolImage || !beam || !wordmark || !scrollMeter || !scrollHint) return;
 
     const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)') ?? { matches: false };
     const isNarrowViewport = (): boolean => window.matchMedia?.('(max-width: 767px)')?.matches ?? window.innerWidth <= 767;
@@ -48,6 +54,9 @@ export class HeroSection {
     let progress = 0;
     let renderedProgress: number | null = null;
     let renderedCopy = -1;
+    let hintIsHidden: boolean | null = null;
+    let shellTop = 0;
+    let shellEnd = 0;
     let frame = 0;
     let transitionFrame = 0;
     let previousFrame = 0;
@@ -74,23 +83,29 @@ export class HeroSection {
     };
 
     const measure = (): SceneDimensions => {
+      // Read layout only at initialization / a real viewport resize, never
+      // from an animation frame or high-frequency gesture handler.
+      shellTop = shell.getBoundingClientRect().top + window.scrollY;
+      shellEnd = shellTop + shell.offsetHeight - window.innerHeight;
       const width = hero.clientWidth || window.innerWidth;
       const height = hero.clientHeight || window.innerHeight;
       const narrow = isNarrowViewport();
       const laptopViewport = !narrow && width >= 768 && height <= 760;
       const compactness = narrow ? clamp((height - 520) / 220, 0, 1) : clamp((height - 560) / 340, 0, 1);
-      const desktopHeight = Math.min(height * (laptopViewport ? 0.73 : 0.76), 650);
+      const desktopHeight = narrow
+        ? Math.max(332, Math.min(height * 0.54, (width - 28) / 1.12))
+        : Math.min(height * (laptopViewport ? 0.73 : 0.76), 650);
       const desktopWidth = narrow
         ? Math.max(260, width - 28)
         : Math.min(width * (laptopViewport ? 0.88 : 0.9), laptopViewport ? 1120 : 1200, desktopHeight * (laptopViewport ? 1.78 : 1.82));
       const mobileWidth = narrow
-        ? Math.max(250, width - 44)
+        ? Math.min(320, width - 64)
         : laptopViewport ? clamp(width * 0.27, 320, 360) : clamp(width * 0.3, 340, 410);
       const mobileHeight = height * (narrow
         ? 0.78 + 0.08 * clamp((720 - height) / 170, 0, 1)
         : laptopViewport ? 0.84 : 0.79);
       const headerBottom = header?.getBoundingClientRect().bottom ?? 0;
-      return { width, height, desktopWidth, mobileWidth, desktopHeight, mobileHeight, compactness, laptopViewport, headerBottom };
+      return { width, height, desktopWidth, mobileWidth, desktopHeight, mobileHeight, compactness, laptopViewport, narrow, headerBottom };
     };
 
     dimensions = measure();
@@ -99,36 +114,37 @@ export class HeroSection {
       progress = clamp(value, 0, 1);
       if (!force && renderedProgress !== null && Math.abs(progress - renderedProgress) < 0.0005) return;
       renderedProgress = progress;
-      const narrow = isNarrowViewport();
+      const narrow = dimensions.narrow;
       const markReveal = smooth(0.23, 0.35, progress);
       const browserReveal = smooth(0.35, 0.63, progress);
       const pageReveal = smooth(0.555, 0.69, progress);
       const travel = smooth(0.4, 0.64, progress);
-      const mobile = narrow
-        ? smooth(0.9, 0.995, progress)
-        : smooth(0.7, 0.995, progress);
+      const mobile = smooth(0.7, 0.995, progress);
       const activeCopy = mobile >= 0.5 ? 2 : 0;
       const browserScale = 0.025 + browserReveal * 0.975;
       const frameWidth = mix(dimensions.desktopWidth, dimensions.mobileWidth, mobile);
       const frameHeight = mix(dimensions.desktopHeight, dimensions.mobileHeight, mobile);
-      const set = (name: string, value: string): void => setInlineStyle(hero, name, value);
-
-      set('--film-progress', progress.toFixed(4));
-      set('--hero-scroll-progress', (manuallyScrolled ? clamp((progress - introEnd) / (1 - introEnd), 0, 1) : 0).toFixed(4));
+      // Write visual properties on their consumers. Updating inherited custom
+      // properties on the hero invalidates styles across the entire scene.
+      setInlineStyle(scrollMeter, 'transform', `scaleX(${(manuallyScrolled ? clamp((progress - introEnd) / (1 - introEnd), 0, 1) : 0).toFixed(4)})`);
       const hintOpacity = reducedMotion.matches ? 1 : manuallyScrolled ? 1 - smooth(introEnd, introEnd + 0.14, progress) : 1;
-      set('--hero-scroll-hint-opacity', hintOpacity.toFixed(3));
-      scrollHint?.setAttribute('aria-hidden', hintOpacity < 0.15 ? 'true' : 'false');
-      set('--mark-inset', `${((1 - markReveal) * 50).toFixed(2)}%`);
-      set('--mark-opacity', smooth(0.2, 0.26, progress).toFixed(3));
-      set('--beam-opacity', (1 - smooth(0.1, 0.21, progress)).toFixed(3));
-      set('--beam-scale', mix(0.34, 1, smooth(0.005, 0.055, progress)).toFixed(3));
-      set('--browser-opacity', browserReveal.toFixed(3));
-      set('--browser-scale', browserScale.toFixed(4));
-      set('--page-reveal', pageReveal.toFixed(3));
-      set('--wordmark-reveal', smooth(0.555, 0.645, progress).toFixed(3));
-      set('--mobile-layout', mobile.toFixed(3));
-      const contentLift = mix(14, 0, pageReveal);
-      set('--content-lift', `${contentLift.toFixed(1)}px`);
+      setInlineStyle(scrollHint, 'opacity', hintOpacity.toFixed(3));
+      const nextHintIsHidden = hintOpacity < 0.15;
+      if (hintIsHidden !== nextHintIsHidden) {
+        scrollHint.setAttribute('aria-hidden', String(nextHintIsHidden));
+        hintIsHidden = nextHintIsHidden;
+      }
+      setInlineStyle(symbolImage, 'clip-path', `inset(${((1 - markReveal) * 50).toFixed(2)}% 0)`);
+      setInlineStyle(symbol, 'opacity', smooth(0.2, 0.26, progress).toFixed(3));
+      setInlineStyle(beam, 'opacity', (1 - smooth(0.1, 0.21, progress)).toFixed(3));
+      setInlineStyle(beam, 'transform', `translate(-50%, -50%) scaleX(${mix(0.34, 1, smooth(0.005, 0.055, progress)).toFixed(3)})`);
+      setInlineStyle(browser, 'opacity', browserReveal.toFixed(3));
+      setInlineStyle(browser, 'transform', `translate(-50%, -50%) scale(${browserScale.toFixed(4)})`);
+      setInlineStyle(content, 'opacity', pageReveal.toFixed(3));
+      setInlineStyle(content, 'transform', narrow
+        ? `translate(-50%, ${mix(14, 0, pageReveal).toFixed(1)}px)`
+        : `translate(-50%, calc(-50% + ${mix(14, 0, pageReveal).toFixed(1)}px))`);
+      setInlineStyle(wordmark, 'opacity', smooth(0.555, 0.645, progress).toFixed(3));
 
       if (activeCopy !== renderedCopy) {
         copySteps.forEach((step, index) => {
@@ -152,7 +168,7 @@ export class HeroSection {
       setInlineStyle(browser, '--screen-inset-top', `${mix(15, 14, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--screen-inset-bottom', `${mix(25, 14, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--chrome-height', `${mix(32, 34, mobile).toFixed(1)}px`);
-      const desktopHeader = mix(64, 82, dimensions.compactness);
+      const desktopHeader = narrow ? 46 : mix(64, 82, dimensions.compactness);
       setInlineStyle(browser, '--site-header-height', `${mix(desktopHeader, 64, mobile).toFixed(1)}px`);
       const contentTop = dimensions.laptopViewport
         ? mix(50, 47, mobile)
@@ -165,17 +181,18 @@ export class HeroSection {
       setInlineStyle(browser, '--footer-bottom', `${mix(mix(12, 16, dimensions.compactness), 16, mobile).toFixed(1)}px`);
       const finalInset = narrow && dimensions.width <= 360 ? 18 : 24;
       setInlineStyle(browser, '--page-inset', `${mix(narrow ? 24 : 68, finalInset, mobile).toFixed(1)}px`);
-      const titleSize = narrow ? mix(28, 32, dimensions.compactness) : mix(31, 46, dimensions.compactness);
-      const supportSize = narrow ? mix(12.5, 14, dimensions.compactness) : mix(12.5, 16, dimensions.compactness);
+      const titleSize = narrow ? (dimensions.width <= 360 ? 18 : 20) : mix(31, 46, dimensions.compactness);
+      const supportSize = narrow ? 11.5 : mix(12.5, 16, dimensions.compactness);
+      setInlineStyle(browser, '--page-title-leading', narrow ? mix(1.35, 1.55, mobile).toFixed(3) : '1.5');
       setInlineStyle(browser, '--page-title-size', `${mix(titleSize, 29, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--page-support-size', `${mix(supportSize, 13.5, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--brand-size', `${mix(narrow ? 15 : 17, 14, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--cta-width', `${mix(188, 204, mobile).toFixed(1)}px`);
-      setInlineStyle(browser, '--accent-gap', `${mix(mix(12, 23, dimensions.compactness), 18, mobile).toFixed(1)}px`);
-      setInlineStyle(browser, '--support-gap', `${mix(mix(8, 12, dimensions.compactness), 10, mobile).toFixed(1)}px`);
+      setInlineStyle(browser, '--accent-gap', `${mix(narrow ? 6 : mix(12, 23, dimensions.compactness), 18, mobile).toFixed(1)}px`);
+      setInlineStyle(browser, '--support-gap', `${mix(narrow ? 6 : mix(8, 12, dimensions.compactness), 10, mobile).toFixed(1)}px`);
       const ctaGap = dimensions.laptopViewport
         ? mix(16, 12, mobile)
-        : mix(mix(14, 28, dimensions.compactness), 23, mobile);
+        : mix(narrow ? 8 : mix(14, 28, dimensions.compactness), 23, mobile);
       setInlineStyle(browser, '--cta-gap', `${ctaGap.toFixed(1)}px`);
       const ctaLift = dimensions.laptopViewport ? mix(0, -30, mobile) : 0;
       setInlineStyle(browser, '--cta-lift', `${ctaLift.toFixed(1)}px`);
@@ -184,9 +201,7 @@ export class HeroSection {
       const targetX = frameWidth / 2 - mix(15, 10, mobile) - brandInset - 14;
       const targetY = browserCenterY - frameHeight / 2 + mix(15, 14, mobile) + mix(32, 34, mobile) + mix(desktopHeader, 64, mobile) / 2 - dimensions.height / 2;
       const scaleToHeader = mix(1, 0.215, travel) * mix(1, browserScale, travel * 0.58);
-      set('--mark-x', `${(targetX * travel).toFixed(1)}px`);
-      set('--mark-y', `${(targetY * travel).toFixed(1)}px`);
-      set('--mark-scale', scaleToHeader.toFixed(4));
+      setInlineStyle(symbol, 'transform', `translate(calc(-50% + ${(targetX * travel).toFixed(1)}px), calc(-50% + ${(targetY * travel).toFixed(1)}px)) scale(${scaleToHeader.toFixed(4)})`);
       const contentIsInert = pageReveal < 0.45;
       if (content.inert !== contentIsInert) content.inert = contentIsInert;
       setInlineStyle(browser, 'pointer-events', pageReveal > 0.45 ? 'auto' : 'none');
@@ -199,14 +214,13 @@ export class HeroSection {
       const elapsed = Math.max(0, time - previousFrame);
       previousFrame = time;
       setProgress(Math.min(introEnd, progress + (elapsed / 2800) * introEnd));
-      if (progress < introEnd) frame = window.requestAnimationFrame(animateIntro);
+      if (progress < introEnd) {
+        frame = window.requestAnimationFrame(animateIntro);
+      }
     };
 
-    const isHeroActive = (): boolean => {
-      const shellTop = shell.getBoundingClientRect().top + window.scrollY;
-      const shellEnd = shellTop + shell.offsetHeight - window.innerHeight;
-      return window.scrollY >= shellTop - 1 && window.scrollY <= shellEnd + 1;
-    };
+    const isHeroActive = (): boolean =>
+      window.scrollY >= shellTop - 1 && window.scrollY <= shellEnd + 1;
     const canCaptureDirection = (direction: number): boolean =>
       isHeroActive() && !reducedMotion.matches
       && ((direction > 0 && (stage === 'desktop' || transitioning)) || (direction < 0 && stage === 'mobile'));
@@ -217,7 +231,7 @@ export class HeroSection {
       if (transitionFrame) window.cancelAnimationFrame(transitionFrame);
       const from = progress;
       const startedAt = performance.now();
-      const duration = 620;
+      const duration = dimensions.narrow ? 820 : 620;
       transitioning = true;
       const tick = (time: number): void => {
         const amount = clamp((time - startedAt) / duration, 0, 1);

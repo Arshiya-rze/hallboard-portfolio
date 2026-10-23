@@ -69,8 +69,8 @@
 }
 .hero-film-symbol {
   position: absolute;
-  top: calc(50% + var(--mark-y));
-  left: calc(50% + var(--mark-x));
+  top: 50%;
+  left: 50%;
   z-index: 4;
   width: 130px;
   height: 165px;
@@ -93,6 +93,8 @@
 }
 .hero-browser {
   --mobile-layout: 0;
+  // Keep the morph's layout work local without clipping the device controls.
+  contain: layout style;
   position: absolute;
   top: 52%;
   left: 50%;
@@ -113,6 +115,7 @@
   pointer-events: none;
 }
 .hero-browser-screen {
+  contain: layout paint style;
   position: absolute;
   z-index: 1;
   inset: var(--screen-inset-top, 14px) var(--screen-inset-x, 14px) var(--screen-inset-bottom, 20px);
@@ -395,13 +398,25 @@
 .hero-film:not(.is-ready) .hero-copy-step[data-copy-step="0"] { --copy-opacity: 1; --copy-shift: 0px; }
 @media (max-width: 767px) {
   .hero-shell[data-hero-film-shell] { height: 100svh; height: 100dvh; }
-  .hero-browser-content { top: 53%; }
+  .hero-browser-content {
+    // Center within the usable page area, reserving header and footer space.
+    top: calc(var(--site-header-height, 46px) + 8px);
+    bottom: 44px;
+    justify-content: center;
+  }
   .hero-browser-accent { width: 30px; }
   .hero-copy-step h1,
-  .hero-copy-step h2 { line-height: 1.55; }
+  .hero-copy-step h2 { line-height: var(--page-title-leading, 1.55); }
   .hero-copy-step p { max-width: 300px; margin-top: var(--support-gap, 10px); line-height: 1.85; }
-  .hero-browser-cta { min-height: 46px; margin-top: var(--cta-gap, 23px); }
-  .hero-device-base { display: none; }
+  .hero-browser-cta { flex-shrink: 0; min-height: 46px; margin-top: var(--cta-gap, 23px); }
+  .hero-browser {
+    // Smaller paint area for touch devices; geometry still uses the same RAF loop.
+    box-shadow: 0 18px 36px rgba(0, 0, 0, .5), inset 0 1px 1px rgba(255, 255, 255, .48);
+  }
+  .hero-scroll-hint {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-shell[data-hero-film-shell] { height: 100svh; height: 100dvh; min-height: 0; }
