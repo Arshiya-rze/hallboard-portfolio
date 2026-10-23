@@ -69,6 +69,8 @@ export class HeroSection {
     let transitioning = false;
     let touchStartY: number | null = null;
     let touchStartedInHero = false;
+    let touchCaptured = false;
+    let touchStageChanged = false;
     const inlineStyleCache = new WeakMap<HTMLElement, Map<string, string>>();
 
     const setInlineStyle = (element: HTMLElement, property: string, value: string): void => {
@@ -175,18 +177,22 @@ export class HeroSection {
         : mix(mix(47, 54, dimensions.compactness), 53, mobile);
       setInlineStyle(browser, '--content-top', `${contentTop.toFixed(1)}%`);
       setInlineStyle(browser, '--footer-inset', `${mix(28, 14, mobile).toFixed(1)}px`);
-      setInlineStyle(browser, '--footer-size', `${mix(10, 9, mobile).toFixed(1)}px`);
+      setInlineStyle(browser, '--footer-size', 'var(--font-size-label)');
       setInlineStyle(browser, '--camera-width', `${mix(5, 44, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--camera-height', `${mix(5, 8, mobile).toFixed(1)}px`);
-      setInlineStyle(browser, '--footer-bottom', `${mix(mix(12, 16, dimensions.compactness), 16, mobile).toFixed(1)}px`);
+      // Give the CTA more room in the short initial frame on phones, then
+      // restore the footer inset as the frame grows into the mobile device.
+      const initialFooterBottom = narrow ? 4 : mix(12, 16, dimensions.compactness);
+      setInlineStyle(browser, '--footer-bottom', `${mix(initialFooterBottom, 16, mobile).toFixed(1)}px`);
       const finalInset = narrow && dimensions.width <= 360 ? 18 : 24;
       setInlineStyle(browser, '--page-inset', `${mix(narrow ? 24 : 68, finalInset, mobile).toFixed(1)}px`);
       const titleSize = narrow ? (dimensions.width <= 360 ? 16 : 18) : mix(28, 40, dimensions.compactness);
       setInlineStyle(browser, '--page-title-leading', narrow ? mix(1.35, 1.55, mobile).toFixed(3) : '1.5');
-      setInlineStyle(browser, '--page-title-size', `${(mix(titleSize, 25, mobile) / 16).toFixed(3)}rem`);
-      const supportSize = narrow ? 11.5 : mix(12.5, 14, dimensions.compactness);
-      setInlineStyle(browser, '--page-support-size', `${(mix(supportSize, 13, mobile) / 16).toFixed(3)}rem`);
-      setInlineStyle(browser, '--brand-size', `${mix(narrow ? 15 : 17, 14, mobile).toFixed(1)}px`);
+      // Keep copy proportional to the smaller frame on phone viewports.
+      const mobileTitleSize = narrow ? (dimensions.width <= 360 ? 18 : 20) : 25;
+      setInlineStyle(browser, '--page-title-size', `${(mix(titleSize, mobileTitleSize, mobile) / 16).toFixed(3)}rem`);
+      setInlineStyle(browser, '--page-support-size', 'var(--font-size-body)');
+      setInlineStyle(browser, '--brand-size', `${(mix(narrow ? 15 : 17, 14, mobile) / 16).toFixed(3)}rem`);
       setInlineStyle(browser, '--cta-width', `${mix(188, 204, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--accent-gap', `${mix(narrow ? 6 : mix(12, 23, dimensions.compactness), 18, mobile).toFixed(1)}px`);
       setInlineStyle(browser, '--support-gap', `${mix(narrow ? 6 : mix(8, 12, dimensions.compactness), 10, mobile).toFixed(1)}px`);
@@ -266,24 +272,31 @@ export class HeroSection {
 
     const onTouchStart = (event: TouchEvent): void => {
       touchStartY = event.touches.length === 1 ? event.touches[0]?.clientY ?? null : null;
+      touchStageChanged = false;
       touchStartedInHero = touchStartY !== null && isHeroActive();
+      touchCaptured = touchStartedInHero && transitioning && !reducedMotion.matches;
     };
     const onTouchMove = (event: TouchEvent): void => {
       if (touchStartY === null || !touchStartedInHero || event.touches.length !== 1) return;
       const nextY = event.touches[0]?.clientY;
-      if (nextY === undefined || Math.abs(touchStartY - nextY) <= 28) return;
-      const direction = Math.sign(touchStartY - nextY);
-      touchStartedInHero = false;
-      // Preserve native momentum and morph alongside the first swipe.
-      // Later swipes continue scrolling naturally.
-      if (reducedMotion.matches || transitioning || direction <= 0 || stage !== 'desktop') return;
-      manuallyScrolled = true;
-      stage = 'mobile';
-      animateStage(1);
+      if (nextY === undefined || reducedMotion.matches) return;
+      const distance = touchStartY - nextY;
+      // Cancel native scrolling before the browser starts panning, and keep
+      // the triggering swipe captured even after the morph finishes.
+      const direction = Math.sign(distance);
+      if (!touchCaptured && direction !== 0 && canCaptureDirection(direction)) touchCaptured = true;
+      if (!touchCaptured) return;
+      event.preventDefault();
+      if (Math.abs(distance) > 28 && !transitioning && !touchStageChanged && canCaptureDirection(direction)) {
+        touchStageChanged = true;
+        handleScrollGesture(direction);
+      }
     };
     const onTouchEnd = (): void => {
       touchStartY = null;
       touchStartedInHero = false;
+      touchCaptured = false;
+      touchStageChanged = false;
     };
     const onKeyDown = (event: KeyboardEvent): void => {
       if (!isHeroActive() || reducedMotion.matches) return;
@@ -324,7 +337,7 @@ export class HeroSection {
 
     window.addEventListener('wheel', onWheel, { passive: false });
     window.addEventListener('touchstart', onTouchStart, { passive: true });
-    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
     window.addEventListener('touchcancel', onTouchEnd, { passive: true });
     window.addEventListener('touchend', onTouchEnd, { passive: true });
     window.addEventListener('keydown', onKeyDown);

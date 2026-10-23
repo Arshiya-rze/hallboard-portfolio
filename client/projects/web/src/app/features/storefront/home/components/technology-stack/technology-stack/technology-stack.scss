@@ -45,7 +45,7 @@
   place-items: center;
   border-radius: 24px;
   color: #80d8e6;
-  font-size: 40px;
+  font-size: 2.5rem;
   background: linear-gradient(145deg, #202838, #171e2c 48%, #131a27);
   border: 1px solid rgba(34, 211, 238, 0.16);
   box-shadow:
@@ -222,7 +222,7 @@
   place-items: center;
   border-radius: 18px;
   color: var(--tech-accent);
-  font-size: 30px;
+  font-size: 1.875rem;
   background:
     radial-gradient(circle at 30% 20%, rgba(255,255,255,0.14), transparent 30%),
     var(--tech-accent-soft);
@@ -313,7 +313,7 @@
   place-items: center;
   border-radius: 10px;
   color: #fff !important;
-  font-size: 17px !important;
+  font-size: 1.0625rem !important;
   font-weight: 900 !important;
   background: linear-gradient(135deg, var(--tech-accent), #8b5cf6);
   box-shadow: 0 0 18px var(--tech-accent-soft);
@@ -597,7 +597,7 @@
     width: 72px;
     height: 72px;
     border-radius: 20px;
-    font-size: 30px;
+    font-size: 1.875rem;
   }
 
   .tech-row {
@@ -665,7 +665,7 @@
   .text-logo {
     width: 38px;
     height: 38px;
-    font-size: 17px !important;
+    font-size: 1.0625rem !important;
   }
 
 }

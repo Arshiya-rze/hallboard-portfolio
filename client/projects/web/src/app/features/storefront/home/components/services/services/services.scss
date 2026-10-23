@@ -291,7 +291,7 @@
   place-items: center;
   border-radius: 18px;
   color: #e9d5ff;
-  font-size: 34px;
+  font-size: 2.125rem;
   background:
     linear-gradient(145deg, var(--card-accent), rgba(76, 29, 149, 0.72));
   box-shadow:
@@ -347,7 +347,7 @@
   border-radius: 50%;
   color: #d8b4fe;
   background: var(--card-accent-soft);
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .service-card:nth-child(2) {
@@ -477,7 +477,7 @@
     height: 54px;
     margin-bottom: 18px;
     border-radius: 15px;
-    font-size: 26px;
+    font-size: 1.625rem;
   }
 
   .service-card h3 {
@@ -503,7 +503,7 @@
   .service-card li::before {
     width: 18px;
     height: 18px;
-    font-size: 10px;
+    font-size: 0.625rem;
   }
 
   .services-nav {

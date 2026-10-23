@@ -102,7 +102,6 @@ export class Team {
     if (!root || !track || !stage || !scenes.length) return;
     const platform = stage.querySelector<HTMLElement>('.team-stack-art');
     const title = root.querySelector<HTMLElement>('#team-title');
-    const sceneContents = scenes.map((scene) => scene.querySelector<HTMLElement>('.team-card-content'));
 
     // Hydration may recreate the component while retaining the server DOM.
     // Retire the previous controller before taking ownership of this section.
@@ -148,10 +147,6 @@ export class Team {
         scene.style.removeProperty('transform');
         renderedTransforms.delete(scene);
         scene.style.removeProperty('z-index');
-      });
-      sceneContents.forEach((content) => {
-        content?.style.removeProperty('opacity');
-        content?.style.removeProperty('transform');
       });
     };
 
@@ -202,13 +197,6 @@ export class Team {
         if (renderedTransforms.get(scene) !== transform) {
           scene.style.transform = transform;
           renderedTransforms.set(scene, transform);
-        }
-        const content = sceneContents[index];
-        if (content && !mobileStack) {
-          const copyOpacity = Math.max(0, Math.min(1, 1 - Math.abs(relative) * 0.75));
-          const copyY = Math.max(0, relative) * 16;
-          content.style.opacity = copyOpacity.toFixed(3);
-          content.style.transform = `translateY(${copyY.toFixed(1)}px)`;
         }
         const inactive = row !== activeRow;
         if (scene.inert !== inactive) scene.inert = inactive;

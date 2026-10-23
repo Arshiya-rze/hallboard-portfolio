@@ -64,7 +64,7 @@
                   </div>
                 </div>
                 <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'taba'" [attr.aria-label]="activePortrait() === 'taba' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('taba', $event); $event.stopPropagation()">
-                  <span>{{ activePortrait() === 'taba' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
+                  <span>کاراکتر سه‌بعدی</span>
                 </button>
               </div>
 
@@ -79,7 +79,7 @@
                 </p>
                 <p class="team-card-bio">
                   هدایت تیم در معماری، تصمیم‌های مهندسی، و کیفیت خروجی؛ از ایده تا محصولی
-                  قابل رشد در دنیای واقعی.
+                  قابل رشد.
                 </p>
 
                 <div class="team-tags" aria-label="تمرکزهای مهندس رضا طبا">
@@ -179,7 +179,7 @@
                   </div>
                 </div>
                 <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'arshia'" [attr.aria-label]="activePortrait() === 'arshia' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('arshia', $event); $event.stopPropagation()">
-                  <span>{{ activePortrait() === 'arshia' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
+                  <span>کاراکتر سه‌بعدی</span>
                 </button>
               </div>
 
@@ -240,7 +240,7 @@
                   </div>
                 </div>
                 <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'hamid'" [attr.aria-label]="activePortrait() === 'hamid' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('hamid', $event); $event.stopPropagation()">
-                  <span>{{ activePortrait() === 'hamid' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
+                  <span>کاراکتر سه‌بعدی</span>
                 </button>
               </div>
 
@@ -302,7 +302,7 @@
                   </div>
                 </div>
                 <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'parsa'" [attr.aria-label]="activePortrait() === 'parsa' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('parsa', $event); $event.stopPropagation()">
-                  <span>{{ activePortrait() === 'parsa' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
+                  <span>کاراکتر سه‌بعدی</span>
                 </button>
               </div>
 
@@ -365,7 +365,7 @@
                   </div>
                 </div>
                 <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'vahid'" [attr.aria-label]="activePortrait() === 'vahid' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('vahid', $event); $event.stopPropagation()">
-                  <span>{{ activePortrait() === 'vahid' ? 'عکس اصلی' : 'کاراکتر سه‌بعدی' }}</span>
+                  <span>کاراکتر سه‌بعدی</span>
                 </button>
               </div>
 
@@ -429,6 +429,12 @@
   @if (portraitPreview(); as portrait) {
     <h2 id="portrait-preview-title">{{ portrait.name }}</h2>
     <p class="portrait-preview-role" dir="auto">{{ portrait.role }}</p>
-    <img [ngSrc]="portrait.src" width="800" height="1000" [alt]="'کاراکتر سه‌بعدی ' + portrait.name" />
+    <div class="portrait-preview-stage">
+      <span class="portrait-preview-halo" aria-hidden="true"></span>
+      <span class="portrait-preview-platform" aria-hidden="true"></span>
+      <div class="portrait-preview-character">
+        <img [ngSrc]="portrait.src" width="800" height="1000" [alt]="'کاراکتر سه‌بعدی ' + portrait.name" />
+      </div>
+    </div>
   }
 </dialog>
