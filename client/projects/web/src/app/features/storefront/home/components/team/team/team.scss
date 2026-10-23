@@ -179,7 +179,7 @@
 .team-card-visual {
   position: relative;
   flex: none;
-  height: clamp(180px, 34svh, 258px);
+  height: var(--team-visual-height, clamp(180px, 34svh, 258px));
   margin: 0;
   overflow: hidden;
   border: 1px solid rgba(5, 9, 18, 0.65);
@@ -353,7 +353,7 @@
   }
 
   .team-card-visual {
-    height: clamp(164px, 25svh, 210px);
+    height: var(--team-visual-height, clamp(164px, 25svh, 210px));
   }
 
   .team-card-bio {

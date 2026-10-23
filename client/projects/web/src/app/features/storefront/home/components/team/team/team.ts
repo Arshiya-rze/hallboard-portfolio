@@ -89,6 +89,7 @@ export class Team {
     let stackStart = 0;
     let lastProgress = -1;
     let configuredWidth = window.innerWidth;
+    let configuredHeight = window.innerHeight;
     let resizeTimer = 0;
     let rowCount = scenes.length;
     let cardsPerRow = 1;
@@ -101,6 +102,7 @@ export class Team {
       this.stackReady.set(false);
       root.classList.remove('is-stack-ready');
       root.style.removeProperty('--team-title-top');
+      root.style.removeProperty('--team-visual-height');
       track.style.removeProperty('--team-stack-total-height');
       stage.style.removeProperty('--team-stage-height');
       stage.style.removeProperty('--team-stack-top');
@@ -212,18 +214,32 @@ export class Team {
       cardsPerRow = narrowViewport ? 1 : 2;
       rowCount = Math.ceil(scenes.length / cardsPerRow);
       if (rowCount < 2) return;
-      const naturalCardHeight = Math.max(...scenes.map((scene) => {
+      const measureCardHeight = (): number => Math.max(...scenes.map((scene) => {
         const card = scene.querySelector<HTMLElement>('[data-team-card]');
         return card ? Math.max(card.offsetHeight, card.scrollHeight) : 0;
       }));
+      let naturalCardHeight = measureCardHeight();
       const titleHeight = root.querySelector<HTMLElement>('#team-title')?.offsetHeight ?? 0;
       const safeTop = stickyTop + titleHeight + 16;
       const safeBottom = window.innerHeight - bottomClearance;
       const availableHeight = Math.max(1, safeBottom - safeTop);
       if (!naturalCardHeight) return;
-      // If the full card cannot fit between the navbar and floating CTA, retain
-      // the readable natural-flow grid instead of shrinking or clipping it.
-      if (naturalCardHeight > availableHeight) return;
+      // Longer bios or a shorter viewport should use some of the portrait's
+      // space before falling back to the grid. Never shrink or clip the copy.
+      if (naturalCardHeight > availableHeight) {
+        const visual = scenes[0].querySelector<HTMLElement>('.team-card-visual');
+        const visualHeight = visual?.offsetHeight ?? 0;
+        const fittedHeight = Math.max(120, visualHeight - (naturalCardHeight - availableHeight) - 2);
+        if (visualHeight > fittedHeight) {
+          root.style.setProperty('--team-visual-height', `${fittedHeight.toFixed(0)}px`);
+          naturalCardHeight = measureCardHeight();
+        }
+        // Very short screens retain the readable, natural-flow layout.
+        if (naturalCardHeight > availableHeight) {
+          root.style.removeProperty('--team-visual-height');
+          return;
+        }
+      }
       const stageHeight = naturalCardHeight;
       titleFadeDistance = Math.min(160, stageHeight * 0.4);
       const stageTop = safeTop + (availableHeight - stageHeight) / 2;
@@ -257,11 +273,14 @@ export class Team {
     const onResize = (): void => {
       // Mobile browser chrome expands/collapses by changing viewport height
       // while the user scrolls. Rebuilding the stack then can disable it on a
-      // short viewport or reset its progress. Only rebuild after width changes.
-      if (Math.abs(window.innerWidth - configuredWidth) < 1) return;
+      // short viewport or reset its progress. On desktop, height changes are
+      // real window resizes and must retry the fit check.
+      const sameWidth = Math.abs(window.innerWidth - configuredWidth) < 1;
+      if (sameWidth && (mobileStack || window.innerHeight === configuredHeight)) return;
       window.clearTimeout(resizeTimer);
       resizeTimer = window.setTimeout(() => {
         configuredWidth = window.innerWidth;
+        configuredHeight = window.innerHeight;
         enableStack();
       }, 120);
     };
