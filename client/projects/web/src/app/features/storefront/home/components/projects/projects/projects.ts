@@ -50,8 +50,6 @@ export class Projects {
     const prefersReducedMotion = (): boolean => reducedMotion?.matches ?? false;
     let scrollTimer = 0;
     let resizeFrame = 0;
-    let touch: { id: number; x: number; y: number; index: number; axis: 'horizontal' | 'vertical' | null; dragged: boolean } | null = null;
-    let suppressClickUntil = 0;
     let imageOpener: HTMLElement | null = null;
     const dialogOpeners = new WeakMap<HTMLDialogElement, HTMLElement>();
 
@@ -97,11 +95,6 @@ export class Projects {
     imageDialog?.addEventListener('close', onImageDialogClose);
     const onRootClick = (event: MouseEvent): void => {
       const target = event.target as Element;
-      if (performance.now() < suppressClickUntil && target.closest('.projects-viewport')) {
-        event.preventDefault();
-        event.stopPropagation();
-        return;
-      }
       const visual = target.closest<HTMLButtonElement>('[data-project-image-open]');
       if (visual && imageDialog) {
         const image = visual.querySelector<HTMLImageElement>('img');
@@ -140,10 +133,6 @@ export class Projects {
       const close = target.closest<HTMLButtonElement>('.project-dialog-close, .project-image-dialog-close');
       if (close) close.closest('dialog')?.close();
     };
-    const onPointerCancel = (): void => {
-      if (touch?.dragged) suppressClickUntil = performance.now() + 400;
-      touch = null;
-    };
     const motionAllowed = (window.matchMedia?.('(hover: hover) and (pointer: fine)')?.matches ?? false)
       && !prefersReducedMotion()
       && (navigator.hardwareConcurrency || 8) > 4;
@@ -172,37 +161,6 @@ export class Projects {
     viewport.addEventListener('scroll', scrollListener, { passive: true });
     root.addEventListener('click', onRootClick);
 
-    const onTouchStart = (event: PointerEvent): void => {
-      if (event.pointerType !== 'touch' || !event.isPrimary) return;
-      touch = { id: event.pointerId, x: event.clientX, y: event.clientY, index: this.activeProject(), axis: null, dragged: false };
-    };
-    const onTouchMove = (event: PointerEvent): void => {
-      if (!touch || event.pointerId !== touch.id) return;
-      const dx = event.clientX - touch.x;
-      const dy = event.clientY - touch.y;
-      if (!touch.axis && Math.max(Math.abs(dx), Math.abs(dy)) > 10) {
-        touch.axis = Math.abs(dx) > Math.abs(dy) ? 'horizontal' : 'vertical';
-      }
-      if (touch.axis === 'horizontal') {
-        touch.dragged = true;
-        if (!viewport.hasPointerCapture(event.pointerId)) viewport.setPointerCapture(event.pointerId);
-      }
-    };
-    const onTouchEnd = (event: PointerEvent): void => {
-      if (!touch || event.pointerId !== touch.id) return;
-      const dx = event.clientX - touch.x;
-      const dy = event.clientY - touch.y;
-      const swiped = touch.axis !== 'vertical' && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy);
-      if (touch.dragged || swiped) suppressClickUntil = performance.now() + 400;
-      // Use the index at gesture start so distance and velocity cannot skip cards.
-      if (swiped) this.goToProject(touch.index + (dx < 0 ? 1 : -1));
-      touch = null;
-    };
-    viewport.addEventListener('pointerdown', onTouchStart, { passive: true });
-    viewport.addEventListener('pointermove', onTouchMove, { passive: true });
-    viewport.addEventListener('pointerup', onTouchEnd, { passive: true });
-    viewport.addEventListener('pointercancel', onPointerCancel, { passive: true });
-
     let sliderWidth = viewport.clientWidth;
     const onResize = (): void => {
       // Browser toolbar height changes do not change the horizontal layout.
@@ -223,10 +181,6 @@ export class Projects {
       if (resizeFrame) window.cancelAnimationFrame(resizeFrame);
       window.removeEventListener('resize', onResize);
       viewport.removeEventListener('scroll', scrollListener);
-      viewport.removeEventListener('pointercancel', onPointerCancel);
-      viewport.removeEventListener('pointerdown', onTouchStart);
-      viewport.removeEventListener('pointermove', onTouchMove);
-      viewport.removeEventListener('pointerup', onTouchEnd);
       root.removeEventListener('click', onRootClick);
       imageDialog?.removeEventListener('click', onImageDialogClick);
       imageDialog?.removeEventListener('close', onImageDialogClose);

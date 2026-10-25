@@ -88,8 +88,7 @@
 .projects-viewport {
   direction: ltr;
   overflow-x: auto;
-  // Handle horizontal touch swipes one card at a time; keep page scrolling native.
-  touch-action: pan-y pinch-zoom;
+  // Keep horizontal touch scrolling native so iOS Safari can drive the carousel.
   overscroll-behavior-inline: contain;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
