@@ -307,6 +307,19 @@
   }
 }
 
+@media (max-width: 767px) {
+  // Mobile cards use a flat paint plane for reliable touch hit testing.
+  // Supply explicit enlargement instead of relying on perspective's Z scale.
+  .team-card--living .living-portrait {
+    transform-style: flat;
+  }
+
+  .is-portrait-active .living-portrait-depth {
+    transform: translateY(-18px) scale(1.22);
+    transform-origin: 32% 45%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .team-card--living,
   .living-portrait-image,

@@ -63,7 +63,7 @@
                     </div>
                   </div>
                 </div>
-                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'taba'" [attr.aria-label]="activePortrait() === 'taba' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('taba', $event); $event.stopPropagation()">
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'taba'" [attr.aria-label]="activePortrait() === 'taba' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('taba'); $event.stopPropagation()">
                   <span>کاراکتر سه‌بعدی</span>
                 </button>
               </div>
@@ -178,7 +178,7 @@
                     </div>
                   </div>
                 </div>
-                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'arshia'" [attr.aria-label]="activePortrait() === 'arshia' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('arshia', $event); $event.stopPropagation()">
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'arshia'" [attr.aria-label]="activePortrait() === 'arshia' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('arshia'); $event.stopPropagation()">
                   <span>کاراکتر سه‌بعدی</span>
                 </button>
               </div>
@@ -239,7 +239,7 @@
                     </div>
                   </div>
                 </div>
-                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'hamid'" [attr.aria-label]="activePortrait() === 'hamid' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('hamid', $event); $event.stopPropagation()">
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'hamid'" [attr.aria-label]="activePortrait() === 'hamid' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('hamid'); $event.stopPropagation()">
                   <span>کاراکتر سه‌بعدی</span>
                 </button>
               </div>
@@ -301,7 +301,7 @@
                     </div>
                   </div>
                 </div>
-                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'parsa'" [attr.aria-label]="activePortrait() === 'parsa' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('parsa', $event); $event.stopPropagation()">
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'parsa'" [attr.aria-label]="activePortrait() === 'parsa' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('parsa'); $event.stopPropagation()">
                   <span>کاراکتر سه‌بعدی</span>
                 </button>
               </div>
@@ -364,7 +364,7 @@
                     </div>
                   </div>
                 </div>
-                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'vahid'" [attr.aria-label]="activePortrait() === 'vahid' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('vahid', $event); $event.stopPropagation()">
+                <button class="living-portrait-toggle" type="button" [attr.aria-pressed]="pinnedPortrait() === 'vahid'" [attr.aria-label]="activePortrait() === 'vahid' ? 'نمایش پرتره اصلی' : 'نمایش کاراکتر سه‌بعدی'" (click)="togglePortrait('vahid'); $event.stopPropagation()">
                   <span>کاراکتر سه‌بعدی</span>
                 </button>
               </div>
@@ -417,24 +417,3 @@
         </div>
 
       </section>
-
-<dialog
-  #portraitDialog
-  class="portrait-preview"
-  aria-labelledby="portrait-preview-title"
-  (click)="onPortraitBackdropClick($event)"
-  (close)="portraitPreview.set(null)"
->
-  <button class="portrait-preview-close" type="button" aria-label="بستن تصویر" autofocus (click)="closePortraitPreview()">×</button>
-  @if (portraitPreview(); as portrait) {
-    <h2 id="portrait-preview-title">{{ portrait.name }}</h2>
-    <p class="portrait-preview-role" dir="auto">{{ portrait.role }}</p>
-    <div class="portrait-preview-stage">
-      <span class="portrait-preview-halo" aria-hidden="true"></span>
-      <span class="portrait-preview-platform" aria-hidden="true"></span>
-      <div class="portrait-preview-character">
-        <img [ngSrc]="portrait.src" width="800" height="1000" [alt]="'کاراکتر سه‌بعدی ' + portrait.name" />
-      </div>
-    </div>
-  }
-</dialog>

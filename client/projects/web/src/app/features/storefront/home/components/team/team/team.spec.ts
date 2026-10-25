@@ -29,6 +29,7 @@ describe('Team mobile stack', () => {
 
   afterEach(() => {
     TestBed.resetTestingModule();
+    vi.restoreAllMocks();
     vi.unstubAllGlobals();
     Object.defineProperty(window, 'innerWidth', { configurable: true, value: originalWidth });
     Object.defineProperty(window, 'innerHeight', { configurable: true, value: originalHeight });
@@ -38,6 +39,11 @@ describe('Team mobile stack', () => {
     Object.defineProperty(window, 'innerHeight', { configurable: true, value: height });
     const fixture = TestBed.createComponent(Team);
     const root = fixture.nativeElement.querySelector('[data-team-section]') as HTMLElement;
+    const stage = root.querySelector<HTMLElement>('[data-team-stage]')!;
+    vi.spyOn(root.querySelector<HTMLElement>('[data-team-track]')!, 'getBoundingClientRect')
+      .mockImplementation(() => ({
+        top: Number.parseFloat(stage.style.getPropertyValue('--team-stack-top')) || 0,
+      } as DOMRect));
     Object.defineProperty(root.querySelector('#team-title'), 'offsetHeight', { value: 50 });
     root.querySelectorAll<HTMLElement>('[data-team-card]').forEach((card) => {
       // A larger-font card is 650px tall, including its 180px portrait.
@@ -67,5 +73,36 @@ describe('Team mobile stack', () => {
     expect(root.classList.contains('is-stack-fitting')).toBe(false);
     expect(root.style.getPropertyValue('--team-visual-height')).toBe('');
     expect(root.querySelector('[aria-hidden="true"]')).toBeNull();
+  });
+
+  it('keeps exposed cards interactive throughout the incoming mobile card transition', () => {
+    let frame: FrameRequestCallback | undefined;
+    vi.spyOn(window, 'requestAnimationFrame').mockImplementation((callback) => {
+      frame = callback;
+      return 1;
+    });
+    vi.spyOn(window, 'scrollY', 'get').mockReturnValue(0);
+    const root = initialize(760);
+    const stage = root.querySelector<HTMLElement>('[data-team-stage]')!;
+    const track = root.querySelector<HTMLElement>('[data-team-track]')!;
+    const scenes = root.querySelectorAll<HTMLElement>('[data-team-scene]');
+    const stageHeight = Number.parseFloat(stage.style.getPropertyValue('--team-stage-height'));
+    const step = Number.parseFloat(track.style.getPropertyValue('--team-stack-total-height')) - stageHeight;
+
+    for (const progress of [0.3, 0.5, 0.7]) {
+      vi.spyOn(window, 'scrollY', 'get').mockReturnValue(step * progress);
+      window.dispatchEvent(new Event('scroll'));
+      frame!(0);
+      for (const scene of scenes) {
+        expect(scene.inert).toBe(false);
+        expect(scene.getAttribute('aria-hidden')).toBe('false');
+      }
+    }
+
+    vi.spyOn(window, 'scrollY', 'get').mockReturnValue(step + 1);
+    window.dispatchEvent(new Event('scroll'));
+    frame!(0);
+    expect(scenes[0].inert).toBe(true);
+    expect(scenes[1].inert).toBe(false);
   });
 });

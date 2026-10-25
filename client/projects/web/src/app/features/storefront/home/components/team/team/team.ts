@@ -1,4 +1,4 @@
-import { afterNextRender, ApplicationRef, Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
+import { afterNextRender, ApplicationRef, Component, DestroyRef, ElementRef, inject, signal } from '@angular/core';
 import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common';
 import { first } from 'rxjs';
 import { ScrollRevealDirective } from '../../../../../../shared/directives/scroll-reveal.directive';
@@ -15,8 +15,6 @@ export class Team {
   protected readonly activePortrait = signal<string | null>(null);
   protected readonly pinnedPortrait = signal<string | null>(null);
   protected readonly stackReady = signal(false);
-  protected readonly portraitPreview = signal<{ src: string; name: string; role: string } | null>(null);
-  private readonly portraitDialog = viewChild<ElementRef<HTMLDialogElement>>('portraitDialog');
 
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly destroyRef = inject(DestroyRef);
@@ -56,20 +54,7 @@ export class Team {
     if (this.activePortrait() === id) this.activePortrait.set(this.pinnedPortrait());
   }
 
-  protected togglePortrait(id: string, event: Event): void {
-    if (window.matchMedia('(max-width: 767px)').matches) {
-      const button = event.currentTarget;
-      const card = button instanceof HTMLElement ? button.closest('[data-team-card]') : null;
-      const image = card?.querySelector<HTMLImageElement>('.living-portrait-character');
-      const name = card?.querySelector('.team-member-name')?.textContent?.trim();
-      const role = card?.querySelector('.team-card-role')?.textContent?.trim() ?? '';
-      const dialog = this.portraitDialog()?.nativeElement;
-      if (image && name && dialog) {
-        this.portraitPreview.set({ src: image.currentSrc || image.src, name, role });
-        dialog.showModal();
-        return;
-      }
-    }
+  protected togglePortrait(id: string): void {
     if (this.pinnedPortrait() === id) {
       this.pinnedPortrait.set(null);
       if (this.activePortrait() === id) this.activePortrait.set(null);
@@ -77,21 +62,6 @@ export class Team {
     }
     this.pinnedPortrait.set(id);
     this.activePortrait.set(id);
-  }
-
-  protected closePortraitPreview(): void {
-    this.portraitDialog()?.nativeElement.close();
-  }
-
-  protected onPortraitBackdropClick(event: MouseEvent): void {
-    if (event.target !== event.currentTarget) return;
-    const dialog = this.portraitDialog()?.nativeElement;
-    if (!dialog) return;
-    const bounds = dialog.getBoundingClientRect();
-    if (event.clientX < bounds.left || event.clientX > bounds.right ||
-        event.clientY < bounds.top || event.clientY > bounds.bottom) {
-      this.closePortraitPreview();
-    }
   }
 
   private initializeCardMotion(): void {
@@ -198,7 +168,12 @@ export class Team {
           scene.style.transform = transform;
           renderedTransforms.set(scene, transform);
         }
-        const inactive = row !== activeRow;
+        // Both the current and incoming mobile cards have exposed controls.
+        // Inert would block the incoming button until the halfway threshold,
+        // then disable the still-visible controls on the preceding card.
+        const inactive = mobileStack
+          ? row < Math.floor(progress) || row >= progress + 1
+          : row !== activeRow;
         if (scene.inert !== inactive) scene.inert = inactive;
         const hiddenValue = String(inactive);
         if (scene.getAttribute('aria-hidden') !== hiddenValue) scene.setAttribute('aria-hidden', hiddenValue);
